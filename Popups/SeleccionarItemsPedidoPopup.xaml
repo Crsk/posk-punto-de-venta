@@ -1,0 +1,41 @@
+﻿<Window x:Class="posk.Popups.SeleccionarItemsPedidoPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:posk.Popups"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="SeleccionarItemsPedido" Height="360" Width="520" AllowsTransparency="True" WindowStyle="None">
+    <Grid Background="#FF055B25">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <Label x:Name="lbPedidoId" Content="ID del pedido: "/>
+                <Separator Width="20"/>
+                <Label x:Name="lbPedidoFecha" Content="Fecha y hora"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <ComboBox x:Name="cbGarzon" materialDesign:HintAssist.Hint="Garzón" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="0 0 8 0"/>
+                <ComboBox x:Name="cbMesa" materialDesign:HintAssist.Hint="Mesa" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="8 0 0 0"/>
+            </StackPanel>
+        </StackPanel>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel x:Name="spItems" Margin="16"/>
+        </ScrollViewer>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" x:Name="btnPedirCuenta" Height="50" Background="#FF05481E" BorderBrush="{x:Null}" Content="PEDIR CUENTA" Foreground="#FFECECEC" Margin="4 4 2 4"/>
+            <Button Grid.Column="1" x:Name="btnActualizarPedido" Height="50" Background="#FF05481E" BorderBrush="{x:Null}" Content="REGENERAR PEDIDO" Foreground="#FFECECEC" Margin="4 4 2 4"/>
+            <Button Grid.Column="2" x:Name="btnIngresarVenta" Height="50" Background="#FF05481E" BorderBrush="{x:Null}" Content="INGRESAR A VENTA" Foreground="#FFECECEC" Margin="2 4 4 4"/>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="posk.Controls.ItemLineaMateriaPrima"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls"
+             mc:Ignorable="d" 
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="#FF0F0F0F"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf">
+    <StackPanel x:Name="spItem" Margin="4" HorizontalAlignment="Center" Orientation="Horizontal">
+        <Button x:Name="btnEliminar" Margin="0 0 16 0" Style="{StaticResource BtnClear}" Background="{x:Null}" Foreground="#FFC50A0A">
+            <materialDesign:PackIcon Kind="Delete" />
+        </Button>
+        <Border x:Name="borderItem" Height="46" Margin="4 0 4 0" Background="#FF060606">
+            <TextBox x:Name="txtItem" Width="180" Foreground="#f9f9f9" Background="#FF060606" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" materialDesign:HintAssist.Hint="Nombre" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        </Border>
+        <Border x:Name="borderUnidadMedida" Height="46" Margin="4 0 4 0" Background="#FF060606">
+            <ComboBox x:Name="cbUnidadMedida" Width="140" Foreground="#f9f9f9" Background="#FF060606" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="16" materialDesign:HintAssist.Hint="Unidad medida" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+        </Border>
+        <Button x:Name="btnGuardar" Margin="16 0 0 0" Style="{StaticResource BtnClear}" Background="{x:Null}" Foreground="ForestGreen">
+            <materialDesign:PackIcon Kind="ContentSave"/>
+        </Button>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,31 @@
+﻿<Page x:Class="posk.Pages.Menu.PageInformes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:posk.Pages.Menu"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1024"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal" 
+      TextOptions.TextRenderingMode="Auto"        
+      Background="#FF0F0F0F"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Title="PageLogin">
+    <DockPanel>
+        <Border DockPanel.Dock="Top">
+            <StackPanel Background="#121212" Orientation="Horizontal" HorizontalAlignment="Center">
+                <MenuItem x:Name="miIngresosEnCurso" Height="48" Header="EN CURSO"/>
+                <MenuItem x:Name="miIngresosPeriodo" Height="48" Header="PERIODO"/>
+                <MenuItem x:Name="miIngresosUsuarioEspecifico" Height="48" Header="USUARIO"/>
+                <MenuItem x:Name="miIngresosGlobal" Height="48" Header="GLOBAL"/>
+            </StackPanel>
+        </Border>
+        <!-- GRÁFICOS -->
+        <Border>
+            <Frame x:Name="frameInformes" NavigationUIVisibility="Hidden"/>
+        </Border>
+    </DockPanel>
+</Page>

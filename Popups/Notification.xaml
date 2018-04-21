@@ -1,0 +1,22 @@
+﻿<Window x:Class="posk.Popup.Notification"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:posk.Popup"
+        mc:Ignorable="d"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Title="WindowMensajePopup" Height="80" Width="360" AllowsTransparency="True" WindowStyle="None">
+    <Button x:Name="btnCerrar" Height="80" Width="360" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{StaticResource BtnClear}" Background="{x:Null}">
+        <Grid>
+            <Label Content="x" Panel.ZIndex="1" Margin="0 -6 0 0"/>
+        <Border x:Name="borderFondo" Height="80" Width="360" Background="#FF055B25">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Name="lbMensaje" Text="MENSAJE" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" Foreground="#fafafa" TextWrapping="Wrap"/>
+                <TextBlock Name="tbMensajeSecundario" Text="Mensaje secundario" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" MaxWidth="340" Foreground="#fafafa" TextWrapping="Wrap"/>
+            </StackPanel>
+        </Border>
+        </Grid>
+    </Button>
+</Window>

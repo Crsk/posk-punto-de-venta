@@ -1,0 +1,113 @@
+﻿<Page x:Class="posk.Pages.Menu.PageAdministrarSectoresCategorias"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:posk.Pages.Menu"
+      mc:Ignorable="d" 
+      xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="#FF0F0F0F"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+      Title="PageAdministrarRelaciones">
+
+    <Grid MinHeight="500">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="148"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Label Content="SECTORES" HorizontalAlignment="Center" FontSize="22" VerticalAlignment="Top"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0 42 0 0">
+                        <ScrollViewer.Resources>
+                            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">50</sys:Double>
+                        </ScrollViewer.Resources>
+                        <StackPanel x:Name="spSectores" />
+                    </ScrollViewer>
+                </Grid>
+                <Grid Grid.Row="1" Background="#FF0C0C0C">
+                    <StackPanel Margin="16" HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Border Height="46" Width="200">
+                            <TextBox x:Name="txtNuevoSector" Height="50" HorizontalContentAlignment="Center" Background="#FF020202" FontSize="24" VerticalContentAlignment="Center" Padding="16 0 16 0" />
+                        </Border>
+                        <Button x:Name="btnAgregarSector" Margin="16 0 0 0" Foreground="ForestGreen" Background="{x:Null}" Style="{StaticResource BtnClear}">
+                            <materialDesign:PackIcon Kind="Plus" Height="32" Width="32"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="148"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="#FF0D0D0D" >
+                    <Label Content="CATEGORIAS" HorizontalAlignment="Center" FontSize="22" VerticalAlignment="Top"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0 42 0 0">
+                        <ScrollViewer.Resources>
+                            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">40</sys:Double>
+                        </ScrollViewer.Resources>
+                        <StackPanel x:Name="spCategorias" />
+                    </ScrollViewer>
+                </Grid>
+                <Grid Grid.Row="1" Background="#FF0A0A0A">
+                    <StackPanel Margin="16" HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Border Height="46" Width="200">
+                            <TextBox x:Name="txtNuevaCategoria" Height="50" HorizontalContentAlignment="Center" Background="#FF020202" FontSize="24" VerticalContentAlignment="Center" Padding="16 0 16 0" />
+                        </Border>
+                        <Button x:Name="btnAgregarCategoria" Margin="16 0 0 0" Foreground="ForestGreen" Background="{x:Null}" Style="{StaticResource BtnClear}">
+                            <materialDesign:PackIcon Kind="Plus" Height="32" Width="32"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="148"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Label Content="SUBCATEGORIAS" HorizontalAlignment="Center" FontSize="22" VerticalAlignment="Top"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0 42 0 0">
+                        <ScrollViewer.Resources>
+                            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">40</sys:Double>
+                        </ScrollViewer.Resources>
+                        <StackPanel x:Name="spSubCategorias" />
+                    </ScrollViewer>
+                </Grid>
+                <Grid Grid.Row="1" Background="#FF0C0C0C">
+                    <StackPanel Margin="16" HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Border Height="46" Width="200">
+                            <TextBox x:Name="txtNuevaSubcategoria" Height="50" HorizontalContentAlignment="Center" Background="#FF020202" FontSize="24" VerticalContentAlignment="Center" Padding="16 0 16 0" />
+                        </Border>
+                        <Button x:Name="btnAgregarSubCategoria" Margin="16 0 0 0" Foreground="ForestGreen" Background="{x:Null}" Style="{StaticResource BtnClear}">
+                            <materialDesign:PackIcon Kind="Plus" Height="32" Width="32"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Border x:Name="borderTeclado"/>
+        </Grid>
+
+    </Grid>
+</Page>

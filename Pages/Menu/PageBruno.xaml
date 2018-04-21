@@ -1,0 +1,59 @@
+﻿<Page x:Class="posk.Pages.Menu.PageBruno"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:posk.Pages.Menu"
+      xmlns:test="clr-namespace:posk.Controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="640" d:DesignWidth="1200"
+      Background="#FF040404"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Title="PageBruno">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="640" Width="1200">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <StackPanel x:Name="spPedidos" Margin="0 0 8 0">
+                <Label Content="PEDIDOS" HorizontalAlignment="Center" Panel.ZIndex="1"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderBrush="Azure" BorderThickness="1">
+                    <Label Content="Pedido 1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+                </Border>
+                <Border Grid.Row="1" BorderBrush="Azure" BorderThickness="1">
+                    <Label Content="Pedido 3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderBrush="Azure" BorderThickness="1">
+                    <Label Content="Pedido 2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+                </Border>
+                <Border Grid.Row="1" BorderBrush="Azure" BorderThickness="1">
+                    <Label Content="Pedido 4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

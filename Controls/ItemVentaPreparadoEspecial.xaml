@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="posk.Controls.ItemVentaPreparadoEspecial"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls"
+             mc:Ignorable="d" 
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <Grid Background="#6c18ad" Margin="0 4 0 4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Button Name="btnBorrar" Background="{x:Null}" Style="{StaticResource BtnClear}">
+                <materialDesign:PackIcon Kind="Delete" />
+            </Button>
+        </Grid>
+        <Grid Grid.Column="1" Margin="0 2 12 4" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Name="lbItemVenta" Grid.Row="0" Content="PLATO PRINCIPAL" Padding="0" FontSize="22" HorizontalAlignment="Right"/>
+            <TextBlock Name="tbAgregados" Grid.Row="2" Text="" Padding="0" FontSize="16" HorizontalAlignment="Right" TextWrapping="Wrap"/>
+            <TextBlock Name="tbTotal" Grid.Row="3" Text="" Padding="0" FontSize="16" HorizontalAlignment="Right" TextWrapping="Wrap"/>
+        </Grid>
+    </Grid>
+</UserControl>

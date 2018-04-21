@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="posk.Controls.Accion.ItemDejarMensaje_pedido"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls.Accion"
+             mc:Ignorable="d" 
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto">
+    <Button x:Name="btnMensaje" Background="{x:Null}" Margin="4 0 4 0" BorderBrush="{x:Null}" VerticalAlignment="Bottom" Foreground="ForestGreen" Style="{StaticResource BtnClear}" Height="62" Width="60">
+        <materialDesign:PackIcon Kind="MessageOutline" Height="52" Width="52"/>
+    </Button>
+</UserControl>

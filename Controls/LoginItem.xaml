@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="posk.Controls.LoginItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls"
+             mc:Ignorable="d" 
+      xmlns:custom="clr-namespace:posk.Globals"
+      xmlns:controls="clr-namespace:posk.Controls"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto">
+    <Grid Height="142" Width="160" Background="#FF020202" Margin="0 8 0 8">
+        <Image Name="foto" Source="C:/posk/img/usuarios/usuario.png"  VerticalAlignment="Top"/>
+        <Label Name="nombre" Content="Christopher Kiessling" VerticalAlignment="Bottom" FontSize="14" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="#7F00102C" Height="22" Padding="0"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Name="code1" Grid.Row="0" Grid.Column="0" Background="#19000000" Margin="0 0 1 1"/>
+            <Grid Name="code2" Grid.Row="0" Grid.Column="1" Background="#19000000" Margin="1 0 0 1"/>
+            <Grid Name="code3" Grid.Row="1" Grid.Column="0" Background="#19000000" Margin="0 1 1 0"/>
+            <Grid Name="code4" Grid.Row="1" Grid.Column="1" Background="#19000000" Margin="1 1 0 0"/>
+        </Grid>
+    </Grid>
+</UserControl>

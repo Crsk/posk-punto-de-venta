@@ -1,0 +1,172 @@
+﻿<Page x:Class="posk.Pages.Menu.PageEstadisticasGlobalIngresos"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:posk.Pages.Menu"
+      mc:Ignorable="d" 
+      Height="600" Width="960"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal" 
+      TextOptions.TextRenderingMode="Auto"        
+      Background="#FFF0F0F0"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Title="PageLogin" d:DataContext="{d:DesignInstance local:PageEstadisticasGlobalIngresos}">
+    <DockPanel>
+        <!--
+        <Border DockPanel.Dock="Right">
+            <StackPanel>
+                <Label Content="INVENTARIO" Foreground="Black" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="#FFE6E6E6"/>
+                <DataGrid 
+                    x:Name="dgStatus" 
+                    ItemsSource="{Binding}"
+                    AutoGenerateColumns="False"
+                    Background="#FF1E1E1E"
+                    SelectionMode="Single"
+                    CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn 
+                            Header="PRODUCTO" 
+                            IsReadOnly="True"
+                            Width="120"
+                            Binding="{Binding name}"/>
+                        <DataGridTextColumn 
+                            Header="INICIO" 
+                            Width="60"
+                            IsReadOnly="True"
+                            Binding="{Binding name}"/>
+                        <DataGridTextColumn 
+                            Header="VENTA" 
+                            Width="65"
+                            IsReadOnly="True"
+                            Binding="{Binding name}"/>
+                        <DataGridTextColumn 
+                            Header="MERMA" 
+                            Width="70"
+                            IsReadOnly="True"
+                            Binding="{Binding name}"/>
+                        <DataGridTextColumn 
+                            Header="COMPRA" 
+                            Width="75"
+                            IsReadOnly="True"
+                            Binding="{Binding name}"/>
+                        <DataGridTextColumn 
+                            Header="FINAL" 
+                            Width="60"
+                            IsReadOnly="True"
+                            Binding="{Binding name}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </Border>
+        -->
+        <Border DockPanel.Dock="Left" HorizontalAlignment="Center" Width="600">
+            <DockPanel Margin="0 0 4 0">
+                <Border DockPanel.Dock="Top" VerticalAlignment="Top">
+                    <Label Content="INGRESOS" Foreground="Black" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Background="#FFE6E6E6"/>
+                </Border>
+                <Border DockPanel.Dock="Top">
+                    <DatePicker x:Name="dpIngresos" Foreground="White" FontSize="24" Background="#FF1E1E1E" Height="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                </Border>
+                <Border DockPanel.Dock="Top" Margin="28 0 0 0">
+                    <!--<StackPanel Orientation="Horizontal">
+                <Label Content="Ene" Width="44" HorizontalContentAlignment="Center" Foreground="Black"/>
+                <Label Content="Feb" Width="44" HorizontalContentAlignment="Center" Foreground="Black"/>
+                <Label Content="Mar" Width="44" HorizontalContentAlignment="Center" Foreground="Black"/>
+                <Label Content="Abr" Width="44" HorizontalContentAlignment="Center" Foreground="Black"/>
+                <Label Content="May" Width="44" HorizontalContentAlignment="Center" Foreground="Black"/>
+                <Label Content="Jun" Width="44" HorizontalContentAlignment="Center" Foreground="Black"/>
+                <Label Content="Jul" Width="44" HorizontalContentAlignment="Center" Foreground="Black"/>
+                <Label Content="Ago" Width="44" HorizontalContentAlignment="Center" Foreground="Black"/>
+                <Label Content="Sep" Width="44" HorizontalContentAlignment="Center" Foreground="Black"/>
+                <Label Content="Oct" Width="44" HorizontalContentAlignment="Center" Foreground="Black"/>
+                <Label Content="Nov" Width="44" HorizontalContentAlignment="Center" Foreground="Black"/>
+                <Label Content="Dic" Width="44" HorizontalContentAlignment="Center" Foreground="Black"/>
+            </StackPanel>-->
+                </Border>
+                <Border DockPanel.Dock="Top">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <StackPanel VerticalAlignment="Top">
+                            <Label Content="Lun" Height="25" FontSize="13" VerticalContentAlignment="Center" Padding="0" Margin="1" Foreground="Black"/>
+                            <Label Content="Mar" Height="25" FontSize="13" VerticalContentAlignment="Center" Padding="0" Margin="1" Foreground="Black"/>
+                            <Label Content="Mie" Height="25" FontSize="13" VerticalContentAlignment="Center" Padding="0" Margin="1" Foreground="Black"/>
+                            <Label Content="Jue" Height="25" FontSize="13" VerticalContentAlignment="Center" Padding="0" Margin="1" Foreground="Black"/>
+                            <Label Content="Vie" Height="25" FontSize="13" VerticalContentAlignment="Center" Padding="0" Margin="1" Foreground="Black"/>
+                            <Label Content="Sab" Height="25" FontSize="13" VerticalContentAlignment="Center" Padding="0" Margin="1" Foreground="Black"/>
+                            <Label Content="Dom" Height="25" FontSize="13" VerticalContentAlignment="Center" Padding="0" Margin="1" Foreground="Black"/>
+                        </StackPanel>
+                        <WrapPanel x:Name="wrapIngresos" Orientation="Vertical" HorizontalAlignment="Right" Height="189">
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+                <Border DockPanel.Dock="Top">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button x:Name="btnCompararIngresos" FontSize="10" Width="50" Style="{StaticResource BtnClear}" Background="{x:Null}" HorizontalAlignment="Right" Foreground="ForestGreen">
+                            <materialDesign:PackIcon Kind="Compare" />
+                        </Button>
+                        <Button x:Name="btnAyuda" FontSize="10" Width="50" Style="{StaticResource BtnClear}" Background="{x:Null}" HorizontalAlignment="Right" Foreground="ForestGreen">
+                            <materialDesign:PackIcon Kind="Help" />
+                        </Button>
+                    </StackPanel>
+                </Border>
+                <Border DockPanel.Dock="Top">
+                    <Expander x:Name="expCompararIngresos" Background="{x:Null}" Style="{StaticResource ExpanderStyleSinHeader}">
+                        <Label x:Name="lbCompararIngresos" HorizontalAlignment="Right" Foreground="Black"/>
+                    </Expander>                    
+                </Border>
+                <Border DockPanel.Dock="Top">
+                    <Expander x:Name="expAyuda" Background="{x:Null}" Style="{StaticResource ExpanderStyleSinHeader}">
+                        <StackPanel HorizontalAlignment="Right">
+                            <StackPanel Orientation="Horizontal" Margin="0" HorizontalAlignment="Right">
+                                <Label x:Name="lbRangoBajo" Content="DESDE: $123 HASTA: $456" Foreground="Black" VerticalContentAlignment="Center"/>
+                                <Border Background="#FF8CFA8C" Width="8" Height="25"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 0" HorizontalAlignment="Right">
+                                <Label x:Name="lbRangoMedioBajo" Content="DESDE: $123 HASTA: $456" Foreground="Black" VerticalContentAlignment="Center"/>
+                                <Border Background="#FF46F046" Width="8" Height="25"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0" HorizontalAlignment="Right">
+                                <Label x:Name="lbRangoMedioAlto" Content="DESDE: $123 HASTA: $456" Foreground="Black" VerticalContentAlignment="Center"/>
+                                <Border Background="#FF008C00" Width="8" Height="25"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0" HorizontalAlignment="Right">
+                                <Label x:Name="lbRangoAlto" Content="DESDE: $123 HASTA: $456" Foreground="Black" VerticalContentAlignment="Center"/>
+                                <Border Background="#FF005A00" Width="8" Height="25"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0" HorizontalAlignment="Right">
+                                <Label x:Name="lbMayorIngreso" Content="MAYOR INGRESO" Foreground="Black" VerticalContentAlignment="Center"/>
+                                <Border Background="#FFFF8000" Width="8" Height="25"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Expander>
+                </Border>
+                <Border DockPanel.Dock="Top" VerticalAlignment="Top" Background="#FFE6E6E6">
+                    <DockPanel>
+                        <Border Width="200" DockPanel.Dock="Left" VerticalAlignment="Center">
+                            <DockPanel>
+                                <Border DockPanel.Dock="Top">
+                                    <Label Content="INGRESO" Foreground="Black" HorizontalContentAlignment="Center"/>
+                                </Border>
+                                <Border DockPanel.Dock="Bottom">
+                                    <Label x:Name="lbInfoIngreso" Content="" FontSize="23" Foreground="Black" HorizontalAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 0"/>
+                                </Border>
+                            </DockPanel>
+                        </Border>
+                        <Border DockPanel.Dock="Right" VerticalAlignment="Top">
+                            <DockPanel>
+                                <Border DockPanel.Dock="Top">
+                                    <Label Content="PERIODO" Foreground="Black" HorizontalContentAlignment="Center"/>
+                                </Border>
+                                <Border DockPanel.Dock="Bottom" VerticalAlignment="Center">
+                                    <Label x:Name="lbInfo" Content="" Foreground="Black" HorizontalAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 0"/>
+                                </Border>
+                            </DockPanel>
+                        </Border>
+                    </DockPanel>
+                </Border>
+            </DockPanel>
+        </Border>
+    </DockPanel>
+</Page>

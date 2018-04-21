@@ -1,0 +1,269 @@
+﻿<Page x:Class="posk.Pages.Menu.PageConfig"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:posk.Pages.Menu"
+      mc:Ignorable="d" 
+      xmlns:custom="clr-namespace:posk.Globals"
+      d:DesignHeight="600" d:DesignWidth="1024"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal" 
+      TextOptions.TextRenderingMode="Auto"        
+      Background="#FF060606"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Title="Configuración">
+    <DockPanel>
+        <!--<DockPanel Height="30" DockPanel.Dock="Bottom" Background="#FF020202">
+            <Border DockPanel.Dock="Right" Width="500" HorizontalAlignment="Right" Height="30" Background="#FF020202" BorderBrush="#FF191919">
+                <StackPanel x:Name="spInfo" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Label x:Name="lbInfo" VerticalContentAlignment="Center" Margin="0,0,4,0"/>
+                    <Ellipse x:Name="ellipseInternetStatus" Width="15" Height="15" Fill="SeaGreen" Margin="0,0,8,0"/>
+                </StackPanel>
+            </Border>
+            <Border>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="SECCIÓN DE COMPRAS" Margin="4,0,0,0" VerticalContentAlignment="Center"/>
+                    <Label Content="COMPRA N° 00000267" Margin="4,0,0,0" VerticalContentAlignment="Center"/>
+                </StackPanel>
+            </Border>
+        </DockPanel>-->
+        <Border DockPanel.Dock="Bottom">
+            <Expander x:Name="expTecladoNum" 
+                    VerticalAlignment="Bottom" 
+                    VerticalContentAlignment="Bottom" 
+                    ExpandDirection="Down"
+                    Background="#FF020202"
+                    Style="{DynamicResource ExpanderStyleTeclado}">
+                <StackPanel x:Name="spTecladoNumerico" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,3,0,0" Height="32">
+                    <StackPanel Orientation="Horizontal" Height="32">
+                        <Button x:Name="btnCerrarTecladoNumerico" Margin="6,0,3,0" Width="50" Height="30" Background="#FF020202" Foreground="Beige" BorderThickness="0" Style="{DynamicResource BtnClear}" materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                            <materialDesign:PackIcon Kind="KeyboardClose" Height="16" Width="16"/>
+                        </Button>
+                        <Button x:Name="btn1_tn" FontSize="10" Content="1" Margin="3,0,3,0" Width="50" Height="30" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+                        <Button x:Name="btn2_tn" FontSize="10" Content="2" Margin="3,0,3,0" Width="50" Height="30" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+                        <Button x:Name="btn3_tn" FontSize="10" Content="3" Margin="3,0,3,0" Width="50" Height="30" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+                        <Button x:Name="btn4_tn" FontSize="10" Content="4" Margin="3,0,3,0" Width="50" Height="30" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+                        <Button x:Name="btn5_tn" FontSize="10" Content="5" Margin="3,0,3,0" Width="50" Height="30" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+                        <Button x:Name="btn6_tn" FontSize="10" Content="6" Margin="3,0,3,0" Width="50" Height="30" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+                        <Button x:Name="btn7_tn" FontSize="10" Content="7" Margin="3,0,3,0" Width="50" Height="30" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+                        <Button x:Name="btn8_tn" FontSize="10" Content="8" Margin="3,0,3,0" Width="50" Height="30" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+                        <Button x:Name="btn9_tn" FontSize="10" Content="9" Margin="3,0,3,0" Width="50" Height="30" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+                        <Button x:Name="btn0_tn" FontSize="10" Content="0" Margin="3,0,3,0" Width="50" Height="30" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+                    </StackPanel>
+                    <StackPanel Height="32">
+                        <Button x:Name="btnDelete_tn" Width="50" Margin="3,0,6,0"  Background="#FF020202" Foreground="Beige" BorderThickness="0" Style="{DynamicResource BtnClear}" materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                            <materialDesign:PackIcon Kind="Backspace" Height="16" Width="16"/>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Expander>
+        </Border>
+        <Grid>
+            <DockPanel>
+                <DockPanel DockPanel.Dock="Right">
+                    <DockPanel Width="260" DockPanel.Dock="Right" Background="#FFD6D6D6">
+                        <Border DockPanel.Dock="Top" Background="#FF020202">
+                            <Label Content="OPCIONES" Foreground="#FFC3C3C3" HorizontalContentAlignment="Center"/>
+                        </Border>
+                        <Border DockPanel.Dock="Top">
+                            <Expander Header="NEGOCIO" Style="{DynamicResource ExpanderSubMenuRight}" Background="#FFD6D6D6" Foreground="Black" VerticalAlignment="Top">
+                                <StackPanel>
+                                    <Border DockPanel.Dock="Top">
+                                        <StackPanel>
+                                            <Border Height="36" Margin="2">
+                                                <TextBox x:Name="txtNombreDelNegocio" materialDesign:HintAssist.Hint="NOMBRE" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" HorizontalContentAlignment="Center"/>
+                                            </Border>
+                                            <Border Height="36" Margin="2">
+                                                <TextBox x:Name="txtDescripcionNegocio" materialDesign:HintAssist.Hint="DESCRIPCIÓN" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" HorizontalContentAlignment="Center"/>
+                                            </Border>
+                                            <Border Height="36" Margin="2">
+                                                <TextBox x:Name="txtDireccionNegocio" materialDesign:HintAssist.Hint="DIRECCIÓN" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" HorizontalContentAlignment="Center"/>
+                                            </Border>
+                                            <Border Height="36" Margin="2">
+                                                <TextBox x:Name="txtImagenPortada" materialDesign:HintAssist.Hint="IMAGEN PORTADA" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" HorizontalContentAlignment="Center"/>
+                                            </Border>
+                                            <Button x:Name="btnGuardarDescripcionNegocio" Content="Guardar" Margin="8,12,8,8" VerticalAlignment="Top" />
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                            </Expander>
+                        </Border>
+                        <Border DockPanel.Dock="Top">
+                            <Expander Header="GLOBAL" Style="{DynamicResource ExpanderSubMenuRight}" Background="#FFD6D6D6" Foreground="Black">
+                                <StackPanel>
+                                    <Border Height="36" Margin="2">
+                                        <TextBox x:Name="txtIVA" materialDesign:HintAssist.Hint="IVA %" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" HorizontalContentAlignment="Center"/>
+                                    </Border>
+                                    <CheckBox x:Name="checkTecladoTactilIntegrado" Content="Teclado táctil integrado"/>
+                                    <RadioButton x:Name="checkModoRestaurant" GroupName="modo" Content="Modo restaurant"/>
+                                    <RadioButton x:Name="checkModoRua" GroupName="modo" Content="Modo rua"/>
+                                    <RadioButton x:Name="checkModoKupal" GroupName="modo" Content="Modo kupal"/>
+                                    <RadioButton x:Name="checkModoNormal" GroupName="modo" Content="Modo normal"/>
+                                    <RadioButton x:Name="checkModoSushi" GroupName="modo" Content="Modo sushi"/>
+                                    <Button x:Name="btnGuardarGlobal" Content="Guardar" Margin="8,12,8,8" VerticalAlignment="Top" />
+                                </StackPanel>
+                            </Expander>
+                        </Border>
+                        <Border DockPanel.Dock="Top">
+                            <Expander Header="JORNADA" Style="{DynamicResource ExpanderSubMenuRight}" Background="#FFD6D6D6" Foreground="Black">
+                                <StackPanel>
+                                    <Border Margin="2">
+                                        <StackPanel>
+                                            <ComboBox x:Name="cbInicioJornadaDia" materialDesign:HintAssist.Hint="Dia de Inicio Jornada" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Foreground="Black" HorizontalContentAlignment="Left" Margin="0 0 0 12"/>
+                                            <ComboBox x:Name="cbTerminoJornadaDia" materialDesign:HintAssist.Hint="Dia de Término Jornada" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Foreground="Black" HorizontalContentAlignment="Left" Margin="0 0 0 2"/>
+                                            <materialDesign:TimePicker x:Name="timeInicioJornadaHora" materialDesign:HintAssist.Hint="Hora de Inicio Jornada" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Foreground="Black" HorizontalContentAlignment="Center"/>
+                                            <materialDesign:TimePicker x:Name="timeTerminoJornadaHora" materialDesign:HintAssist.Hint="Hora de Término Jornada" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Foreground="Black" HorizontalContentAlignment="Center"/>
+                                            <Button x:Name="btnGuardarJornada" Content="Guardar" Margin="8,12,8,8" VerticalAlignment="Top" />
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                            </Expander>
+                        </Border>
+
+
+
+                        <Border DockPanel.Dock="Top">
+                            <Expander Header="IMPRESORAS" Style="{DynamicResource ExpanderSubMenuRight}" Background="#FFD6D6D6" Foreground="Black">
+                                <StackPanel>
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <Border Margin="2">
+                                                <StackPanel>
+                                                    <ComboBox x:Name="cbSectorUno" materialDesign:HintAssist.Hint="Sector" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Foreground="Black" HorizontalContentAlignment="Left" Margin="0 0 0 12"/>
+                                                    <ComboBox x:Name="cbSectorDos" materialDesign:HintAssist.Hint="Sector" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Foreground="Black" HorizontalContentAlignment="Left" Margin="0 0 0 12"/>
+                                                    <ComboBox x:Name="cbSectorTres" materialDesign:HintAssist.Hint="Sector" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Foreground="Black" HorizontalContentAlignment="Left" Margin="0 0 0 12"/>
+                                                    <ComboBox x:Name="cbSectorCuatro" materialDesign:HintAssist.Hint="Sector" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Foreground="Black" HorizontalContentAlignment="Left" Margin="0 0 0 12"/>
+                                                    <ComboBox x:Name="cbSectorCinco" materialDesign:HintAssist.Hint="Sector" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Foreground="Black" HorizontalContentAlignment="Left" Margin="0 0 0 12"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1">
+                                            <Border Margin="2">
+                                                <StackPanel>
+                                                    <ComboBox x:Name="cbImpresoraUno" materialDesign:HintAssist.Hint="Impresora" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Foreground="Black" HorizontalContentAlignment="Left" Margin="0 0 0 12"/>
+                                                    <ComboBox x:Name="cbImpresoraDos" materialDesign:HintAssist.Hint="Impresora" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Foreground="Black" HorizontalContentAlignment="Left" Margin="0 0 0 12"/>
+                                                    <ComboBox x:Name="cbImpresoraTres" materialDesign:HintAssist.Hint="Impresora" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Foreground="Black" HorizontalContentAlignment="Left" Margin="0 0 0 12"/>
+                                                    <ComboBox x:Name="cbImpresoraCuatro" materialDesign:HintAssist.Hint="Impresora" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Foreground="Black" HorizontalContentAlignment="Left" Margin="0 0 0 12"/>
+                                                    <ComboBox x:Name="cbImpresoraCinco" materialDesign:HintAssist.Hint="Impresora" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Foreground="Black" HorizontalContentAlignment="Left" Margin="0 0 0 12"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Button x:Name="btnGuardarImpresoras" Content="Guardar" Margin="8,12,8,8" VerticalAlignment="Top" />
+                                </StackPanel>
+                            </Expander>
+                        </Border>
+
+                        <Border DockPanel.Dock="Top">
+                            <Expander Header="NOTIFICACIONES" Style="{DynamicResource ExpanderSubMenuRight}" Background="#FFD6D6D6" Foreground="Black">
+                                <StackPanel>
+                                    <Border Height="36" Margin="2">
+                                        <TextBox x:Name="txtCorreo_primario" materialDesign:HintAssist.Hint="CORREO PRIMARIO" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" HorizontalContentAlignment="Center"/>
+                                    </Border>
+                                    <Border Height="36" Margin="2">
+                                        <TextBox x:Name="txtCorreo_secundario" materialDesign:HintAssist.Hint="CORREO SECUNDARIO" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" HorizontalContentAlignment="Center"/>
+                                    </Border>
+                                    <CheckBox Content="Notificar resumen de jornada" Margin="8" IsChecked="True" />
+                                    <StackPanel Orientation="Horizontal" Margin="8">
+                                        <CheckBox IsChecked="True" />
+                                        <Label Content="Notificar bajo stock: " Foreground="Black"/>
+                                        <TextBox Width="30" Text="50" HorizontalContentAlignment="Center" ToolTip="Enviar un correo cuando quede poco stock"/>
+                                    </StackPanel>
+                                    <Button x:Name="btnGuardarNotificaciones" Content="Guardar" Margin="8,12,8,8" VerticalAlignment="Top" />
+                                </StackPanel>
+                            </Expander>
+                        </Border>
+                        <Border DockPanel.Dock="Top">
+
+                            <Expander Header="BASE DE DATOS" Style="{DynamicResource ExpanderSubMenuRight}" Background="#FFD6D6D6" Foreground="Black">
+                                <StackPanel>
+                                    <Button x:Name="btnRespaldarBD" Content="RESPALDAR" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="SeaGreen" Margin="0"/>
+                                    <Button x:Name="btnRestaurarBD" Content="RESTAURAR" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="SeaGreen" Margin="0"/>
+                                    <Button x:Name="btnBorrarStock" Content="BORRAR STOCK" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="SeaGreen" Margin="0"/>
+                                </StackPanel>
+                            </Expander>
+                        </Border>
+                        <Button x:Name="btnActualizar" Content="BUSCAR ACTUALIZACIÓN" BorderBrush="{x:Null}" Background="ForestGreen" Foreground="#f9f9f9" Margin="0" VerticalAlignment="Top"/>
+                    </DockPanel>
+                    <DockPanel>
+                        <StackPanel HorizontalAlignment="Left" Margin="120 24 0 0" Visibility="Hidden">
+                            <CheckBox Content="Modo delimitador" ToolTip="Al presionar un producto crea un nuevo item venta en vez de sumar su cantidad (x2)"/>
+                        </StackPanel>
+                    </DockPanel>
+                </DockPanel>
+            </DockPanel>
+            <Expander x:Name="expTeclado" 
+                          VerticalAlignment="Bottom" 
+                          VerticalContentAlignment="Bottom" 
+                          HorizontalAlignment="Left"
+                          Width="705"
+                          ExpandDirection="Down"
+                          Background="#FF020202"
+                          Style="{DynamicResource ExpanderStyleTeclado}">
+                <StackPanel x:Name="spTeclado" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,6,0,4">
+                    <StackPanel x:Name="spKeyboard2" Orientation="Horizontal">
+                        <Button x:Name="btnCerrarTeclado" Margin="0,0,3,0" FontSize="10" Width="45" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" Style="{DynamicResource BtnClear}" materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                            <materialDesign:PackIcon Kind="KeyboardClose" Height="16" Width="16"/>
+                        </Button>
+                        <Button x:Name="btnQ" Margin="3,0,3,0" Content="q" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnW" Margin="3,0,3,0" Content="w" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnE" Margin="3,0,3,0" Content="e" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnR" Margin="3,0,3,0" Content="r" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnT" Margin="3,0,3,0" Content="t" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnY" Margin="3,0,3,0" Content="y" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnU" Margin="3,0,3,0" Content="u" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnI" Margin="3,0,3,0" Content="i" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnO" Margin="3,0,3,0" Content="o" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnP" Margin="3,0,3,0" Content="p" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnDelete" Margin="3,0,0,0" Width="82" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                            <materialDesign:PackIcon Kind="Backspace" Height="16" Width="16"/>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel x:Name="spKeyboard3" Orientation="Horizontal" Margin="0,6,0,0">
+                        <Button x:Name="btnShift" Margin="0,0,3,0" Width="70" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                            <materialDesign:PackIcon Kind="ArrowUp" Width="16" Height="16" />
+                        </Button>
+                        <Button x:Name="btnA" Margin="3,0,3,0" Content="a" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnS" Margin="3,0,3,0" Content="s" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnD" Margin="3,0,3,0" Content="d" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnF" Margin="3,0,3,0" Content="f" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnG" Margin="3,0,3,0" Content="g" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnH" Margin="3,0,3,0" Content="h" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnJ" Margin="3,0,3,0" Content="j" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnK" Margin="3,0,3,0" Content="k" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnL" Margin="3,0,3,0" Content="l" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnN2" Margin="3,0,3,0" Content="ñ" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnEnter" Margin="3,0,0,0" Width="57" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" Style="{DynamicResource BtnClear}"  materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                            <materialDesign:PackIcon Kind="KeyboardReturn" Height="16" Width="20"/>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel x:Name="spKeyboard4" Orientation="Horizontal" Margin="0,6,0,0">
+                        <Button x:Name="btnMore" Margin="0,0,3,0" Content="..." FontSize="10" Width="95" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+                        <Button x:Name="btnZ" Margin="3,0,3,0" Content="z" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnX" Margin="3,0,3,0" Content="x" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnC" Margin="3,0,3,0" Content="c" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnV" Margin="3,0,3,0" Content="v" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnB" Margin="3,0,3,0" Content="b" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnN" Margin="3,0,3,0" Content="n" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnM" Margin="3,0,3,0" Content="m" FontSize="14" Width="50" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light"/>
+                        <Button x:Name="btnSpace" Margin="3,0,3,0" Width="108" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+                        <Button x:Name="btnLeft" Margin="3,0,3,0" Width="40" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" Style="{DynamicResource BtnClear}" materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                            <materialDesign:PackIcon Kind="ArrowLeft" Width="16"/>
+                        </Button>
+                        <Button x:Name="btnRight" Margin="3,0,0,0" Width="40" Height="40" Background="#FF020202" Foreground="Beige" BorderThickness="0" Style="{DynamicResource BtnClear}" materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                            <materialDesign:PackIcon Kind="ArrowRight" Width="16"/>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Expander>
+        </Grid>
+    </DockPanel>
+</Page>

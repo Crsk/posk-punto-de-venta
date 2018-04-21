@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="posk.Controls.ItemMedioPagoCalcular"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls"
+             mc:Ignorable="d" 
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto">
+    <StackPanel>
+        <TextBox x:Name="txtMonto" materialDesign:HintAssist.Hint="$" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="4 0 4 0" PreviewTextInput="ValidarNumero"/>
+        <Button x:Name="btnMedioPago" Content="MEDIO" Margin="4" Style="{StaticResource BtnClear}" Padding="12" Background="#FFE1E1E1" Foreground="#FF7C7C7C" Height="40" />
+    </StackPanel>
+</UserControl>
+

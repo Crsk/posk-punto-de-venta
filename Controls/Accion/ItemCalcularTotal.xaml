@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="posk.Controls.Accion.ItemCalcularTotal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls.Accion"
+             mc:Ignorable="d" 
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto">
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="54">
+        <TextBox x:Name="txtPagaCon" Width="115" Height="56" FontSize="22"
+            VerticalContentAlignment="Bottom"
+            HorizontalContentAlignment="Center"
+            materialDesign:HintAssist.Hint="PAGA CON"
+            materialDesign:HintAssist.HintOpacity=".9"
+            Foreground="Black"
+            materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+            materialDesign:HintAssist.FloatingScale="0.50"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}" Background="{x:Null}"/>
+        <Separator Width="10" Visibility="Hidden"/>
+        <TextBox x:Name="txtVuelto" Width="85" Height="56" FontSize="22"
+            VerticalContentAlignment="Bottom"
+            HorizontalContentAlignment="Center"
+            IsReadOnly="True"
+            materialDesign:HintAssist.Hint="VUELTO"
+            materialDesign:HintAssist.HintOpacity=".9"
+            Foreground="Black"
+            materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+            materialDesign:HintAssist.FloatingScale="0.50"  
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+            Background="{x:Null}"/>
+        <Separator Width="10" Visibility="Hidden"/>
+
+        <TextBox x:Name="txtTotalVenta" Width="85" Height="56" FontSize="22"
+            VerticalContentAlignment="Bottom"
+            HorizontalContentAlignment="Center"
+            materialDesign:HintAssist.Hint="TOTAL"
+            materialDesign:HintAssist.HintOpacity=".9"
+            Text="{Binding VentaActual_total}"
+            Foreground="Black" IsReadOnly="True"
+            materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+            materialDesign:HintAssist.FloatingScale="0.50"  
+            Style="{StaticResource MaterialDesignFloatingHintTextBox}" Background="{x:Null}"/>
+        <Button x:Name="btnDcto" Content="DCTO" Style="{StaticResource BtnClear}" Background="LightGray" FontSize="10" Margin="0 12 0 0"/>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="posk.Controls.ItemSeleccionarPendienteParaVenta"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                           xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+             xmlns:local="clr-namespace:posk.Controls"
+             mc:Ignorable="d" >
+    <StackPanel Orientation="Horizontal">
+        <!--<Button x:Name="btnBorrar" Style="{StaticResource BtnClear}" Width="26" Background="{x:Null}" Foreground="#FF8C0000">
+            <materialDesign:PackIcon Kind="Delete" />
+        </Button>-->
+        <CheckBox x:Name="checkSeleccion" Height="40" Width="30" Margin="12 0 0 0"/>
+        <TextBlock x:Name="lbNombre" MinWidth="160" TextWrapping="Wrap" Width="250" Foreground="#f9f9f9" VerticalAlignment="Center"/>
+    </StackPanel>
+</UserControl>

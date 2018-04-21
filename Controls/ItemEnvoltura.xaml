@@ -1,0 +1,9 @@
+﻿<UserControl x:Class="posk.Controls.ItemEnvoltura"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls"
+             mc:Ignorable="d">
+    <Button Name="btnEnvoltura" Content="NORI" Background="#990c0c" Padding="8" Foreground="#FFDDE0E2" Margin="4" FontSize="20" Height="60" Style="{StaticResource BtnClear}" />
+</UserControl>

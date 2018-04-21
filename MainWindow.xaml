@@ -1,0 +1,162 @@
+﻿<Window x:Class="posk.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:posk"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+      mc:Ignorable="d"
+      Height="800" Width="980"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      Background="#FF080808"
+      AllowsTransparency="True" WindowStyle="None" WindowState="Maximized"
+      Title="">
+    <Grid>
+        <!-- AllowsTransparency="True" WindowStyle="None" WindowState="Maximized" -->
+        <Frame DockPanel.Dock="Right" x:Name="menuFrame" NavigationUIVisibility="Hidden" />
+        <Grid>
+            <Button x:Name="btnMenu" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFA00A1E" Height="38" Width="60" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="4,6,0,0">
+                <materialDesign:PackIcon Kind="Menu" Height="30" Width="30" Foreground="#FFB8B8B8" />
+            </Button>
+            <DockPanel>
+                <Border DockPanel.Dock="Left">
+                    <Expander 
+                        x:Name="expMenu" 
+                        ExpandDirection="Left" 
+                        Background="#FF00030C" 
+                        Foreground="#FFDFE8FF"
+                        BorderBrush="Black" 
+                        BorderThickness="0"
+                        HorizontalAlignment="Left"
+                        HorizontalContentAlignment="Left"
+                        Style="{DynamicResource ExpanderStyleSinHeader}">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel x:Name="spMenu" Orientation="Horizontal">
+                                <StackPanel>
+                                    <StackPanel Margin="0 16 0 8">
+                                        <Ellipse Width="120" Height="112" Margin="16 0 16 0">
+                                            <Ellipse.Fill>
+                                                <ImageBrush x:Name="fotoUsuario"/>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <Label x:Name="lbNombreUsuario" Content="Christopher Kiessling" HorizontalContentAlignment="Center" FontSize="12" Foreground="#FFDFE8FF"/>
+                                        <Label x:Name="lbRol" Content="Administrador" HorizontalContentAlignment="Center" FontSize="10" Foreground="#FFDFE8FF"/>
+                                    </StackPanel>
+
+                                    <MenuItem x:Name="miVenta" Header="Venta" Height="54" FontSize="22"/>
+                                    <Separator Height="8" Width="100" Background="#FF000104"/>
+                                    
+                                    <StackPanel x:Name="spGlobal" Orientation="Horizontal">
+                                        <MenuItem x:Name="miGlobal" Header="Global" Height="36" FontSize="12"/>
+                                        <materialDesign:PackIcon Kind="MenuRight" VerticalAlignment="Center" Margin="-16 0 0 0"/>
+                                    </StackPanel>
+
+                                    <Separator Height="8" Width="100" Background="#FF000104"/>
+
+                                    <Separator Height="8" Width="100" Background="#FF000104"/>
+
+                                    <StackPanel x:Name="spStock" Orientation="Horizontal">
+                                        <MenuItem x:Name="miStock" Header="Stock" Height="36" FontSize="12"/>
+                                        <materialDesign:PackIcon Kind="MenuRight" VerticalAlignment="Center" Margin="-16 0 0 0"/>
+                                    </StackPanel>
+  
+                                    <StackPanel x:Name="spJornada" Orientation="Horizontal">
+                                        <MenuItem x:Name="miJornada" Header="Mi jornada" Height="36" FontSize="12"/>
+                                        <materialDesign:PackIcon Kind="MenuRight" VerticalAlignment="Center" Margin="-16 0 0 0"/>
+                                    </StackPanel>
+                                    <Separator Height="8" Width="100" Background="#FF000104"/>
+    
+                                    <StackPanel x:Name="spAdmin">
+                                        <Separator Height="8" Width="100" Background="#FF000104"/>
+                                        <StackPanel x:Name="spEstadisticas" Orientation="Horizontal">
+                                            <MenuItem x:Name="miEstadisticas" Header="Estadísticas" Height="36" FontSize="12"/>
+                                            <materialDesign:PackIcon Kind="MenuRight" VerticalAlignment="Center" Margin="-16 0 0 0"/>
+                                        </StackPanel>
+    
+                                        <StackPanel x:Name="spAdministrar" Orientation="Horizontal">
+                                            <MenuItem x:Name="miAdministrar" Header="Administrar" Height="36" FontSize="12"/>
+                                            <materialDesign:PackIcon Kind="MenuRight" VerticalAlignment="Center" Margin="-16 0 0 0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+
+                                    <Separator Height="8" Width="100" Background="#FF000104"/>
+                                    <Separator Height="8" Width="100" Background="#FF000104"/>
+                                    
+                                    <MenuItem x:Name="miInicio" Header="Cerrar sesión" Height="36" FontSize="12"/>
+                                    <Separator Height="8" Width="100" Background="#FF000104"/>
+                                    <MenuItem x:Name="miTerminarJornada" Header="Terminar jornada" Height="36" FontSize="12" Foreground="#7FFFB200"/>
+                                    <Separator Height="8" Width="100" Background="#FF000104"/>
+                                    <Button x:Name="btnCerrar" Content="Cerrar programa" Style="{StaticResource BtnClear}" Background="{x:Null}" HorizontalAlignment="Center" Foreground="#7FDC250C" />
+                                    <Label Content="posk v2.4.13 2017" HorizontalAlignment="Center"/>
+                                </StackPanel>
+
+                                <Expander x:Name="expMenuGlobalExtension" Style="{StaticResource ExpMenu}" Background="{x:Null}" ExpandDirection="Right">
+                                    <StackPanel x:Name="spMenuGlobalExtension">
+                                        <Separator Height="178" Width="100" Background="#F2080808" Visibility="Hidden"/>
+                                        <MenuItem x:Name="miVerInventario" Header="Inventario" Height="36" FontSize="12"/>
+                                        <Separator Height="8" Width="100" Background="#FF000104"/>
+                                        <MenuItem x:Name="miGasto" Header="Gasto" Height="36" FontSize="12"/>
+                                        <Separator Height="8" Width="100" Background="#FF000104"/>
+                                        <MenuItem x:Name="miOpciones" Header="Opciones" Height="36" FontSize="12"/>
+                                    </StackPanel>
+                                </Expander>
+
+                                <Expander x:Name="expMenuJornadaExtension" Style="{StaticResource ExpMenu}" Background="{x:Null}" ExpandDirection="Right">
+                                    <StackPanel x:Name="spMenuJornadaExtension">
+                                        <Separator Height="178" Width="100" Background="#F2080808" Visibility="Hidden"/>
+                                        <MenuItem x:Name="miJornadaVentas" Header="Ventas realizadas" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miJornadaResumen" Header="Resúmen" Height="36" FontSize="12"/>
+                                    </StackPanel>
+                                </Expander>
+
+                                <Expander x:Name="expMenuStockExtension" Style="{StaticResource ExpMenu}" Background="{x:Null}" ExpandDirection="Right">
+                                    <StackPanel x:Name="spMenuStockExtension">
+                                        <Separator Height="178" Width="100" Background="#F2080808" Visibility="Hidden"/>
+                                        <MenuItem x:Name="miCompra" Header="Compra" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miDevolucion" Header="Devolución" Height="32" FontSize="12"/>
+                                        <MenuItem x:Name="miMerma" Header="Merma" Height="36" FontSize="12"/>
+                                    </StackPanel>
+                                </Expander>
+                                <Expander x:Name="expMenuAdministrarExtension" Style="{StaticResource ExpMenu}" Background="{x:Null}" ExpandDirection="Right">
+                                    <StackPanel x:Name="spMenuAdministrarExtension">
+                                        <Separator Height="178" Width="100" Background="#F2080808" Visibility="Hidden"/>
+                                        <MenuItem x:Name="miAdministrarProducto" Header="Item Venta" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miAdministrarMateriaPrima" Header="Materia Prima" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miAdministrarUsuario" Header="Usuarios" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miAdministrarCliente" Header="Clientes" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miAdministrarBoletas" Header="Boletas" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miAdministrarSectoresCategorias" Header="Sectores y Categorias" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miAdministrarRelaciones" Header="Relaciones" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miAdministrarPromociones" Header="Promociones" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miAdministrarStock" Header="Stock" Height="36" FontSize="12"/>
+                                    </StackPanel>
+                                </Expander>
+                                <Expander x:Name="expMenuAdministrarExtensionEstadisticas" Style="{StaticResource ExpMenu}" Background="{x:Null}" ExpandDirection="Right">
+                                    <StackPanel x:Name="spMenuAdministrarExtensionEstadisticas">
+                                        <Separator Height="178" Width="100" Background="#F2080808" Visibility="Hidden"/>
+                                        <MenuItem x:Name="miEstadisticasPeriodo" Header="Periodo" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miEstadisticasGlobalIngresos" Header="Global Ingresos" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miEstadisticasFecha" Header="Fecha" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miEstadisticasUsuario" Header="Usuario" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miEstadisticasCliente" Header="Cliente" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miEstadisticasStock" Header="Stock" Height="36" FontSize="12"/>
+                                    </StackPanel>
+                                </Expander>
+
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Expander>
+                </Border>
+                <Border DockPanel.Dock="Right">
+                    <Grid x:Name="gridOverlay" Background="#33001855" Visibility="Hidden" Cursor="Hand" Opacity="0"/>
+                </Border>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</Window>

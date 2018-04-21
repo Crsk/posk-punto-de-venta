@@ -1,0 +1,36 @@
+﻿<Page x:Class="posk.Pages.Menu.PageAdministrarCategoria"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:posk.Pages.Menu"
+      mc:Ignorable="d" 
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="#020202"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+      Title="PageAdministrarCategoria">
+    <DockPanel>
+        <Border x:Name="borderTeclado" DockPanel.Dock="Bottom"/>
+        <Border DockPanel.Dock="Top">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Width="360" MaxHeight="800">
+                <StackPanel x:Name="spItems" Orientation="Vertical" Margin="16" HorizontalAlignment="Center">
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        <Border DockPanel.Dock="Bottom">
+            <StackPanel Margin="16" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Border Height="46" Width="200">
+                    <TextBox x:Name="txtNuevaCategoria" Height="50" HorizontalContentAlignment="Center" Background="#FF111111" FontSize="24" VerticalContentAlignment="Center" Padding="16 0 16 0" />
+                </Border>
+                <Button x:Name="btnAgregar" Margin="16 0 0 0" Foreground="ForestGreen" Background="{x:Null}" Style="{StaticResource BtnClear}">
+                    <materialDesign:PackIcon Kind="Plus" />
+                </Button>
+            </StackPanel>
+        </Border>
+    </DockPanel>
+</Page>

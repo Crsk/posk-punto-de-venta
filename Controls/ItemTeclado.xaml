@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="posk.Controls.ItemTeclado"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls"
+            mc:Ignorable="d"
+             
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto"
+            Background="#020202">
+    <Grid Background="#020202">
+        <Border DockPanel.Dock="Bottom" Background="#020202">
+            <Expander x:Name="expTeclado" 
+                          VerticalAlignment="Bottom" 
+                          VerticalContentAlignment="Bottom" 
+                          HorizontalAlignment="Center"
+                                          
+                          ExpandDirection="Down"
+                          Background="#FF020202"
+                          Style="{DynamicResource ExpanderStyleTeclado}">
+                <StackPanel x:Name="spTeclado" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,0">
+                    <StackPanel x:Name="spKeyboard2" Orientation="Horizontal">
+                        <Button x:Name="btnCerrarTeclado" Margin="0,0,2,0" Width="56" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource BtnClear}">
+                            <materialDesign:PackIcon Kind="KeyboardClose" Width="22" Height="22" Margin="0 8 0 0"/>
+                        </Button>
+                        <Button x:Name="btnQ" Margin="2,0,2,0" Content="q" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnW" Margin="2,0,2,0" Content="w" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnE" Margin="2,0,2,0" Content="e" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnR" Margin="2,0,2,0" Content="r" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnT" Margin="2,0,2,0" Content="t" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnY" Margin="2,0,2,0" Content="y" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnU" Margin="2,0,2,0" Content="u" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnI" Margin="2,0,2,0" Content="i" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnO" Margin="2,0,2,0" Content="o" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnP" Margin="2,0,2,0" Content="p" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnDelete" Margin="2,0,0,0" Width="40" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource BtnClear}">
+                            <materialDesign:PackIcon Kind="Backspace" Height="24" Width="24" Margin="0 12 0 0"/>
+                        </Button>
+                    </StackPanel>
+                    <StackPanel x:Name="spKeyboard3" Orientation="Horizontal" Margin="0,6,0,0">
+                        <Button x:Name="btnShift" Margin="0,0,2,0" Width="68" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource BtnClear}">
+                            <materialDesign:PackIcon Kind="ArrowUp" Width="24" Height="24" Margin="0 8 0 0"/>
+                        </Button>
+                        <Button x:Name="btnA" Margin="2,0,2,0" Content="a" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnS" Margin="2,0,2,0" Content="s" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnD" Margin="2,0,2,0" Content="d" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnF" Margin="2,0,2,0" Content="f" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnG" Margin="2,0,2,0" Content="g" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnH" Margin="2,0,2,0" Content="h" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnJ" Margin="2,0,2,0" Content="j" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnK" Margin="2,0,2,0" Content="k" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnL" Margin="2,0,2,0" Content="l" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnN2" Margin="2,0,2,0" Content="ñ" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                    </StackPanel>
+                    <StackPanel x:Name="spKeyboard4" Orientation="Horizontal" Margin="0,6,0,0">
+                        <Button x:Name="btnMore" Margin="0,0,2,0" FontSize="28" Width="90" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource BtnClear}">
+                            <Label Content="..." FontSize="28"/>
+                        </Button>
+                        <Button x:Name="btnZ" Margin="2,0,2,0" Content="z" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnX" Margin="2,0,2,0" Content="x" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnC" Margin="2,0,2,0" Content="c" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnV" Margin="2,0,2,0" Content="v" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnB" Margin="2,0,2,0" Content="b" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnN" Margin="2,0,2,0" Content="n" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnM" Margin="2,0,2,0" Content="m" FontSize="28" Width="42" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" Style="{StaticResource BtnClear}"/>
+                        <Button x:Name="btnSpace" Content="espacio"  Margin="2,0,0,0" Width="168" Height="60" Background="#FF020202" Foreground="Beige" BorderThickness="0" materialDesign:ShadowAssist.ShadowDepth="Depth0" FontWeight="Light" FontSize="22" Style="{StaticResource BtnClear}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Expander>
+        </Border>
+    </Grid>
+</UserControl>

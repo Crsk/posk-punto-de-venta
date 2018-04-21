@@ -1,0 +1,54 @@
+﻿<Window x:Class="posk.Popups.DeliveryPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:posk.Popups"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Title="Delivery" Height="260" Width="250"  AllowsTransparency="True" WindowStyle="None" Background="#FFE7E7E7">
+    <Grid Margin="8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label x:Name="lbCliente" Content="Nombre cliente" Foreground="Black"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <StackPanel HorizontalAlignment="Center">
+                    <StackPanel HorizontalAlignment="Center">
+                        <Label x:Name="lbFecha" Content="asdasdsad" Foreground="Black" HorizontalAlignment="Center"/>
+                        <Label Content="Salsas: " Foreground="Black" HorizontalAlignment="Center" Margin="0 12 0 0"/>
+                        <TextBlock x:Name="txtSalsas" Text="nombre de las salsas" TextWrapping="Wrap" Foreground="Black" MaxWidth="150" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="4" Grid.Row="2">
+                <StackPanel>
+                    <Label Content="¿YA FUE ENTREGADO?" Foreground="Black" HorizontalAlignment="Center"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="btnCerrar" Grid.Column="0" Margin="4" Background="#FFB40B00" BorderThickness="0" Foreground="White">
+                            <materialDesign:PackIcon Kind="Close"/>
+                        </Button>
+                        <Button x:Name="btnAceptar" Grid.Column="1" Margin="4" Background="#FF0A7562" BorderThickness="0" Foreground="White">
+                            <materialDesign:PackIcon Kind="Check"/>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

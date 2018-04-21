@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="posk.Controls.Accion.ItemMensajeCocina"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls.Accion"
+             mc:Ignorable="d" 
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto">
+    <StackPanel Orientation="Horizontal">
+        <Button x:Name="btnBorrarMensaje" Width="32" Background="{x:Null}" Foreground="#c0392b" HorizontalAlignment="Left" Height="32" Style="{StaticResource BtnClear}" Margin="-2 0 0 -6">
+            <materialDesign:PackIcon Kind="Delete" Width="24" Height="24" Foreground="#FFB40B00"/>
+        </Button>
+        <TextBox Name="txtMensaje" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="8 0 8 0" Width="210" Foreground="Black" FontSize="14" materialDesign:HintAssist.Hint="MENSAJE TICKET" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <ComboBox x:Name="cbSectoresImpresion" materialDesign:HintAssist.Hint="SECTOR" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Foreground="Black" Margin="0 0 8 0"/>
+        <!--
+        <Button x:Name="btnNuevoMensaje" Width="64" Background="{x:Null}" Foreground="#FF0A7042" HorizontalAlignment="Left" Height="64" Style="{StaticResource BtnClear}">
+            <materialDesign:PackIcon Kind="Plus" Width="32" Height="32"/>
+        </Button>
+        -->
+    </StackPanel>
+</UserControl>

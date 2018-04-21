@@ -1,0 +1,1735 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{86E04CF4-F0E1-42EA-B41A-69B7D0758319}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>posk</RootNamespace>
+    <AssemblyName>posk</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>C:\posk\releases\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Background</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <UpdateUrl>http://posk.cl/public_ftp/posk/ruabar/</UpdateUrl>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>81</ApplicationRevision>
+    <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>94A89BBC665F2A09C876DE9DB5B09BB574FD0B8A</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>posk_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DeltaCompressionDotNet, Version=1.1.0.0, Culture=neutral, PublicKeyToken=1d14d6e5194e7f4a, processorArchitecture=MSIL">
+      <HintPath>packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DeltaCompressionDotNet.MsDelta, Version=1.1.0.0, Culture=neutral, PublicKeyToken=46b2138a390abf55, processorArchitecture=MSIL">
+      <HintPath>packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.MsDelta.dll</HintPath>
+    </Reference>
+    <Reference Include="DeltaCompressionDotNet.PatchApi, Version=1.1.0.0, Culture=neutral, PublicKeyToken=3e8888ee913ed789, processorArchitecture=MSIL">
+      <HintPath>packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.PatchApi.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=2.2.1.750, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignThemes.2.2.1.750\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>packages\Mono.Cecil.0.9.6.1\lib\net45\Mono.Cecil.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>packages\Mono.Cecil.0.9.6.1\lib\net45\Mono.Cecil.Mdb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>packages\Mono.Cecil.0.9.6.1\lib\net45\Mono.Cecil.Pdb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>packages\Mono.Cecil.0.9.6.1\lib\net45\Mono.Cecil.Rocks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySqlBackup, Version=2.0.9.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MySqlBackup.NET.2.0.9.5\lib\net45\MySqlBackup.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpCompress, Version=0.17.1.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>packages\SharpCompress.0.17.1\lib\net45\SharpCompress.dll</HintPath>
+    </Reference>
+    <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Splat.1.6.2\lib\Net45\Splat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WebCam_Capture">
+      <HintPath>D:\Projects\WebCam_Capture.dll</HintPath>
+    </Reference>
+    <Reference Include="WebEye.Controls.Wpf.WebCameraControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WebEye.Controls.Wpf.WebCameraControl.1.0.1\lib\net40\WebEye.Controls.Wpf.WebCameraControl.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsInput, Version=1.0.4.0, Culture=neutral, PublicKeyToken=9b287f7dc5073cad, processorArchitecture=MSIL">
+      <HintPath>packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WPFMediaKit, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WPFMediaKit.2.2.0\lib\WPFMediaKit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Components\AdministrarProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\BoletaVentaComponent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\BuscarProductoComponent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\PedidoComponent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\PrincipalComponent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Venta\VentaSeccionDerechaComponent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\Venta\VentaSeccionIzquierdaComponent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Accion\ItemCalcularTotal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Accion\ItemDejarMensaje_pedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Accion\ItemDejarPendiente_venta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Accion\ItemDelimitador.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Accion\ItemEnviar_pedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Accion\ItemMensajeCocina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Accion\ItemVerPendientes_venta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemAgregadoHandroll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemArriendo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemBoleta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemBuscarPorCategoria.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemBuscarPorCategoriaSeleccionable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemBuscarPorSector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemAccion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemDcto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemEnvoltura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemEscogerGarzonSeccionVenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemEscogerMesa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemEscogerMesaSeccionVenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemFoto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemIdMasNombreItemVenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemInventario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemLineaCompra.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemLineaCompraDetalle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemLineaMateriaPrima.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemLineaMateriaPrimaContenida.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemLineaStockEstadistica.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemMedioPago.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemMedioPagoCalcular.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemMesa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Accion\ItemMesa_pedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemMesaPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemMoneda.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemPendienteMesa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemPreparacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemProductoComplejoDetalle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemPromo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemPromoDetalle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemPromoVentaPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemRolloArmarTabla.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemSalsa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemSectorPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemSeleccionarPendienteParaVenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemStockDisponible.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemUltimaVenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemVentaHandroll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemVentaPreparadoEspecial.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemDelivery.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SubCategoriaBuscarItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemRelacion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemAgregado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemAgregarLineaBoleta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemBoletaFactura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemBoletaFacturaDetalle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemLineaBoleta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemPendiente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemTeclado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemTecladoNumerico.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemVentaPlatoFondo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemVentaPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LoginItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PromoItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PromoItem_xs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ProveedorItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Globals\ItemPendienteControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemVenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Globals\KeyboardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Globals\PurchaseLineControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Globals\VentaDetailLineControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BLL\AgregadoBLL.cs" />
+    <Compile Include="BLL\ArriendoBLL.cs" />
+    <Compile Include="BLL\BodegaBLL.cs" />
+    <Compile Include="BLL\BoletaBLL.cs" />
+    <Compile Include="BLL\BoletaMediopagoBLL.cs" />
+    <Compile Include="BLL\CategoriaBLL.cs" />
+    <Compile Include="BLL\CategoriaSectorBLL.cs" />
+    <Compile Include="BLL\CategoriaSubcategoriaBLL.cs" />
+    <Compile Include="BLL\ClienteBLL.cs" />
+    <Compile Include="BLL\DatosNegocioBLL.cs" />
+    <Compile Include="BLL\DB.cs" />
+    <Compile Include="BLL\DeliveryItemBLL.cs" />
+    <Compile Include="BLL\DevolucionBLL.cs" />
+    <Compile Include="BLL\EnvolturaBLL.cs" />
+    <Compile Include="BLL\FiadoBLL.cs" />
+    <Compile Include="BLL\GastoBLL.cs" />
+    <Compile Include="BLL\ImpresoraBLL.cs" />
+    <Compile Include="BLL\InformeBLL.cs" />
+    <Compile Include="BLL\ItemBodegaInventarioBLL.cs" />
+    <Compile Include="BLL\JornadaBLL.cs" />
+    <Compile Include="BLL\LineaDetalleBLL.cs" />
+    <Compile Include="BLL\LogItem.cs" />
+    <Compile Include="BLL\MateriaPrimaBLL.cs" />
+    <Compile Include="BLL\MedioPagoBLL.cs" />
+    <Compile Include="BLL\MermaBLL.cs" />
+    <Compile Include="BLL\MesaBLL.cs" />
+    <Compile Include="BLL\PedidoAgregadoBLL.cs" />
+    <Compile Include="BLL\PedidoBLL.cs" />
+    <Compile Include="BLL\PedidosAgregadosBLL.cs" />
+    <Compile Include="BLL\PedidosPreparaciones.cs" />
+    <Compile Include="BLL\PedidosPreparacionesBLL.cs" />
+    <Compile Include="BLL\PedidosProductosBLL.cs" />
+    <Compile Include="BLL\PreparacionesBLL.cs" />
+    <Compile Include="BLL\ProductoMateriaPrimaBLL.cs" />
+    <Compile Include="BLL\PromoBLL.cs" />
+    <Compile Include="BLL\PromocionBLL.cs" />
+    <Compile Include="BLL\ProductoPromocionBLL.cs" />
+    <Compile Include="BLL\RegistroBLL.cs" />
+    <Compile Include="BLL\PendienteBLL.cs" />
+    <Compile Include="BLL\PuntoBLL.cs" />
+    <Compile Include="BLL\PrestamoEnvaseBLL.cs" />
+    <Compile Include="BLL\ProductoBLL.cs" />
+    <Compile Include="BLL\CompraProducto.cs" />
+    <Compile Include="BLL\CompraBLL.cs" />
+    <Compile Include="BLL\SalsaBLL.cs" />
+    <Compile Include="BLL\SectorBLL.cs" />
+    <Compile Include="BLL\SectorImpresionBLL.cs" />
+    <Compile Include="BLL\SectorMesaBLL.cs" />
+    <Compile Include="BLL\StockBLL.cs" />
+    <Compile Include="BLL\StockMovimientoBLL.cs" />
+    <Compile Include="BLL\StockmpBLL.cs" />
+    <Compile Include="BLL\SubCategoriaBLL.cs" />
+    <Compile Include="BLL\ProveedorBLL.cs" />
+    <Compile Include="BLL\SyncBLL.cs" />
+    <Compile Include="BLL\TipoItemVentaBLL.cs" />
+    <Compile Include="BLL\UnidadMedidaVentaBLL.cs" />
+    <Compile Include="BLL\UsuarioBLL.cs" />
+    <Compile Include="BLL\VentasJornadaBLL.cs" />
+    <Compile Include="Components\AdministrarProducto.xaml.cs">
+      <DependentUpon>AdministrarProducto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\BoletaVentaComponent.xaml.cs">
+      <DependentUpon>BoletaVentaComponent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\BuscarProductoComponent.xaml.cs">
+      <DependentUpon>BuscarProductoComponent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\.xaml.cs">
+      <DependentUpon>.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\PedidoComponent.xaml.cs">
+      <DependentUpon>PedidoComponent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\PrincipalComponent.xaml.cs">
+      <DependentUpon>PrincipalComponent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Venta\VentaSeccionDerechaComponent.xaml.cs">
+      <DependentUpon>VentaSeccionDerechaComponent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Venta\VentaSeccionIzquierdaComponent.xaml.cs">
+      <DependentUpon>VentaSeccionIzquierdaComponent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Accion\ItemCalcularTotal.xaml.cs">
+      <DependentUpon>ItemCalcularTotal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Accion\ItemDejarMensaje_pedido.xaml.cs">
+      <DependentUpon>ItemDejarMensaje_pedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Accion\ItemDejarPendiente_venta.xaml.cs">
+      <DependentUpon>ItemDejarPendiente_venta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Accion\ItemDelimitador.xaml.cs">
+      <DependentUpon>ItemDelimitador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Accion\ItemEnviar_pedido.xaml.cs">
+      <DependentUpon>ItemEnviar_pedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Accion\ItemMensajeCocina.xaml.cs">
+      <DependentUpon>ItemMensajeCocina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Accion\ItemVerPendientes_venta.xaml.cs">
+      <DependentUpon>ItemVerPendientes_venta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemAgregadoHandroll.xaml.cs">
+      <DependentUpon>ItemAgregadoHandroll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemArriendo.xaml.cs">
+      <DependentUpon>ItemArriendo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemBoleta.xaml.cs">
+      <DependentUpon>ItemBoleta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemBuscarPorCategoria.xaml.cs">
+      <DependentUpon>ItemBuscarPorCategoria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemBuscarPorCategoriaSeleccionable.xaml.cs">
+      <DependentUpon>ItemBuscarPorCategoriaSeleccionable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemBuscarPorSector.xaml.cs">
+      <DependentUpon>ItemBuscarPorSector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemAccion.xaml.cs">
+      <DependentUpon>ItemAccion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemDcto.xaml.cs">
+      <DependentUpon>ItemDcto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemEnvoltura.xaml.cs">
+      <DependentUpon>ItemEnvoltura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemEscogerGarzonSeccionVenta.xaml.cs">
+      <DependentUpon>ItemEscogerGarzonSeccionVenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemEscogerMesa.xaml.cs">
+      <DependentUpon>ItemEscogerMesa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemEscogerMesaSeccionVenta.xaml.cs">
+      <DependentUpon>ItemEscogerMesaSeccionVenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemFoto.xaml.cs">
+      <DependentUpon>ItemFoto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemIdMasNombreItemVenta.xaml.cs">
+      <DependentUpon>ItemIdMasNombreItemVenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemInventario.xaml.cs">
+      <DependentUpon>ItemInventario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemLineaCompra.xaml.cs">
+      <DependentUpon>ItemLineaCompra.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemLineaCompraDetalle.xaml.cs">
+      <DependentUpon>ItemLineaCompraDetalle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemLineaMateriaPrima.xaml.cs">
+      <DependentUpon>ItemLineaMateriaPrima.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemLineaMateriaPrimaContenida.xaml.cs">
+      <DependentUpon>ItemLineaMateriaPrimaContenida.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemLineaStockEstadistica.xaml.cs">
+      <DependentUpon>ItemLineaStockEstadistica.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemMedioPago.xaml.cs">
+      <DependentUpon>ItemMedioPago.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemMedioPagoCalcular.xaml.cs">
+      <DependentUpon>ItemMedioPagoCalcular.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemMesa.xaml.cs">
+      <DependentUpon>ItemMesa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Accion\ItemMesa_pedido.xaml.cs">
+      <DependentUpon>ItemMesa_pedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemMesaPedido.xaml.cs">
+      <DependentUpon>ItemMesaPedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemMoneda.xaml.cs">
+      <DependentUpon>ItemMoneda.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemPendienteMesa.xaml.cs">
+      <DependentUpon>ItemPendienteMesa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemPreparacion.xaml.cs">
+      <DependentUpon>ItemPreparacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemProductoComplejoDetalle.xaml.cs">
+      <DependentUpon>ItemProductoComplejoDetalle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemPromo.xaml.cs">
+      <DependentUpon>ItemPromo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemPromoDetalle.xaml.cs">
+      <DependentUpon>ItemPromoDetalle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemPromoVentaPedido.xaml.cs">
+      <DependentUpon>ItemPromoVentaPedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemRolloArmarTabla.xaml.cs">
+      <DependentUpon>ItemRolloArmarTabla.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemSalsa.xaml.cs">
+      <DependentUpon>ItemSalsa.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemSectorPedido.xaml.cs">
+      <DependentUpon>ItemSectorPedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemSeleccionarPendienteParaVenta.xaml.cs">
+      <DependentUpon>ItemSeleccionarPendienteParaVenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemStockDisponible.xaml.cs">
+      <DependentUpon>ItemStockDisponible.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemUltimaVenta.xaml.cs">
+      <DependentUpon>ItemUltimaVenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemVentaHandroll.xaml.cs">
+      <DependentUpon>ItemVentaHandroll.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemVentaPreparadoEspecial.xaml.cs">
+      <DependentUpon>ItemVentaPreparadoEspecial.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemDelivery.xaml.cs">
+      <DependentUpon>ItemDelivery.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SubCategoriaBuscarItem.xaml.cs">
+      <DependentUpon>SubCategoriaBuscarItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemRelacion.xaml.cs">
+      <DependentUpon>ItemRelacion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemAgregado.xaml.cs">
+      <DependentUpon>ItemAgregado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemAgregarLineaBoleta.xaml.cs">
+      <DependentUpon>ItemAgregarLineaBoleta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemBoletaFactura.xaml.cs">
+      <DependentUpon>ItemBoletaFactura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemBoletaFacturaDetalle.xaml.cs">
+      <DependentUpon>ItemBoletaFacturaDetalle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemCliente.xaml.cs">
+      <DependentUpon>ItemCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemLineaBoleta.xaml.cs">
+      <DependentUpon>ItemLineaBoleta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemProducto.xaml.cs">
+      <DependentUpon>ItemProducto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemTeclado.xaml.cs">
+      <DependentUpon>ItemTeclado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemTecladoNumerico.xaml.cs">
+      <DependentUpon>ItemTecladoNumerico.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemUsuario.xaml.cs">
+      <DependentUpon>ItemUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemVentaPlatoFondo.xaml.cs">
+      <DependentUpon>ItemVentaPlatoFondo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemVentaPedido.xaml.cs">
+      <DependentUpon>ItemVentaPedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LoginItem.xaml.cs">
+      <DependentUpon>LoginItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PromoItem.xaml.cs">
+      <DependentUpon>PromoItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PromoItem_xs.xaml.cs">
+      <DependentUpon>PromoItem_xs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProveedorItem.xaml.cs">
+      <DependentUpon>ProveedorItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CategoryEntity.cs" />
+    <Compile Include="Entities\ProductEntity.cs" />
+    <Compile Include="Entities\SubCategoryEntity.cs" />
+    <Compile Include="Entities\SupplierEntity.cs" />
+    <Compile Include="Globals\AppSettings.cs" />
+    <Compile Include="Globals\CrearTicket.cs" />
+    <Compile Include="Globals\EnviarCorreo.cs" />
+    <Compile Include="Globals\Estadisticas.cs" />
+    <Compile Include="Globals\GlobalSettings.cs" />
+    <Compile Include="Globals\Imprimir.cs" />
+    <Compile Include="Globals\InformeJornada.cs" />
+    <Compile Include="Globals\PoskException.cs" />
+    <Compile Include="Globals\FilteredComboBox.cs" />
+    <Compile Include="Globals\Helper.cs" />
+    <Compile Include="Globals\IKeyboard.cs" />
+    <Compile Include="Globals\InternetChecker.cs" />
+    <Compile Include="Globals\ItemClient.cs" />
+    <Compile Include="Globals\ItemName_Image.cs" />
+    <Compile Include="Globals\ItemName_TextBox.cs" />
+    <Compile Include="Controls\ItemPendiente.xaml.cs">
+      <DependentUpon>ItemPendiente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Globals\ItemPendienteControl.xaml.cs">
+      <DependentUpon>ItemPendienteControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Globals\ItemProduct.cs" />
+    <Compile Include="Entities\UserEntity.cs" />
+    <Compile Include="Globals\ItemPurchase.cs" />
+    <Compile Include="Controls\ItemVenta.xaml.cs">
+      <DependentUpon>ItemVenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Globals\KeyboardControl.xaml.cs">
+      <DependentUpon>KeyboardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Globals\LogoutMessage.cs" />
+    <Compile Include="Globals\PurchaseLineControl.xaml.cs">
+      <DependentUpon>PurchaseLineControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Globals\RegistroActividad.cs" />
+    <Compile Include="Globals\Settings.cs" />
+    <Compile Include="Globals\Users.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Users.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Globals\Validaciones.cs" />
+    <Compile Include="Globals\VentaDetailLineControl.xaml.cs">
+      <DependentUpon>VentaDetailLineControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Globals\WebCam.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Pages\Graficos\PageVentasGlobal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Informes\PageInformeVentas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageAdministrarBoleta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageAdministrarCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageVerInventario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageAdministrarProductoDos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageAdministrarCategoria.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageAdministrarMateriaPrima.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageAdministrarPromociones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageAdministrarSectoresCategorias.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageAdministrarRelaciones.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageAdministrarUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageBienvenido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageBruno.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageCaja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageCompra.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageConfiguracionJornada.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageDevolucion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageEstadisticasPeriodo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageEstadisticasGlobalIngresos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageAdministrarStock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageEstadisticasPorFecha.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageEstadisticasStock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageEstadisticasUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageGasto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageGaugeTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageInforme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageInformes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageInicioAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageInicioLogo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageInicio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageMerma.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageMesas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageAdministrarProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageMesasSectorDos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageMesasSectorUno.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PagePedidoGarzon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PagePrimerInicio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageProveedor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageRealizarPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageTemp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageUsuario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageVenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageVentaRespaldo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageVenta_.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageKeyboardTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageResumenJornada.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PopUp\PopupCliente_busquedaAvanzada.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PopUp\PopupEnvasesInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PopUp\PopupFiado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PopUp\PopupGaugeOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PopUp\PopupLogout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PopUp\PopupPurchase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PopUp\PopupRealizarVenta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PopUp\WindowChooseCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PopUp\WindowChooseOrTakeImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PopUp\WindowChooseSubCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PopUp\WindowChooseSupplier.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PopUp\WindowInfoStock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PopUp\WindowPointsInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PopUp\WindowPriceInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PopUp\WindowTomarFoto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\AgregarCantidadPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\ArmarProductoPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\ArmarTablaPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\CategoriaPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\DctoPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\DeliveryPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\InfoVentaPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\NotificarError.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\PromoPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\RealizarPedidoPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\RealizarVentaSushi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\SeleccionarItemsPedidoPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\UsuarioPendientePopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\ComprarPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\EscogerTomarFotoPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\PendientePopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\ProveedorPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\SubCategoriaPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\UltimasBoletasPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\Notification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\WindowOpcionesPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\agregado.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bodega_movimiento.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bodega_stock.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\boleta.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\boleta_mediopago.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\cantidadesvendida.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\cantidadesvendidas_jornada.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\categoria.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\categoria_sector.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\categoria_subcategoria.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\cliente.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\compra.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\config.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\datos_negocio.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\delivery_item.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\detalle_boleta.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\deuda.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\devolucion.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\envoltura.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\fiado.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\gasto.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ingreso.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\jornada.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\lineas_fiado.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\materiasprima.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\medio_pago.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\merma.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\mesa.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pedido.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pedidos_agregados.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pedidos_preparaciones.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pedidos_productos.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pendiente.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PoskDB6.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PoskDB6.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PoskDB6.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PoskDB6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PoskDB6.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\preparacione.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\prestamo_envases.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\producto.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\productoscomplejo.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\producto_compra.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\producto_materiaprima.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\producto_preparacion.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\producto_productocomplejo.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\producto_promocion.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\promocione.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\proveedore.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\punto.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\registro.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\reserva.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\salsa.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sectore.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sectormesa.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sector_impresion.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\stock_mp.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\stock_pr.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\subcategoria.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sync.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tipo_itemventa.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\unidades_medida.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usuario.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ventas_jornada.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Graficos\PageVentasGlobal.xaml.cs">
+      <DependentUpon>PageVentasGlobal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Informes\PageInformeVentas.xaml.cs">
+      <DependentUpon>PageInformeVentas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageAdministrarBoleta.xaml.cs">
+      <DependentUpon>PageAdministrarBoleta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageAdministrarCliente.xaml.cs">
+      <DependentUpon>PageAdministrarCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageVerInventario.xaml.cs">
+      <DependentUpon>PageVerInventario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageAdministrarProductoDos.xaml.cs">
+      <DependentUpon>PageAdministrarProductoDos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageAdministrarCategoria.xaml.cs">
+      <DependentUpon>PageAdministrarCategoria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageAdministrarMateriaPrima.xaml.cs">
+      <DependentUpon>PageAdministrarMateriaPrima.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageAdministrarPromociones.xaml.cs">
+      <DependentUpon>PageAdministrarPromociones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageAdministrarSectoresCategorias.xaml.cs">
+      <DependentUpon>PageAdministrarSectoresCategorias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageAdministrarRelaciones.xaml.cs">
+      <DependentUpon>PageAdministrarRelaciones.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageAdministrarUsuario.xaml.cs">
+      <DependentUpon>PageAdministrarUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageBienvenido.xaml.cs">
+      <DependentUpon>PageBienvenido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageBruno.xaml.cs">
+      <DependentUpon>PageBruno.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageCaja.xaml.cs">
+      <DependentUpon>PageCaja.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageClient.xaml.cs">
+      <DependentUpon>PageClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageCompra.xaml.cs">
+      <DependentUpon>PageCompra.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageConfig.xaml.cs">
+      <DependentUpon>PageConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageConfiguracionJornada.xaml.cs">
+      <DependentUpon>PageConfiguracionJornada.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageDevolucion.xaml.cs">
+      <DependentUpon>PageDevolucion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageEstadisticasPeriodo.xaml.cs">
+      <DependentUpon>PageEstadisticasPeriodo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageEstadisticasGlobalIngresos.xaml.cs">
+      <DependentUpon>PageEstadisticasGlobalIngresos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageAdministrarStock.xaml.cs">
+      <DependentUpon>PageAdministrarStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageEstadisticasPorFecha.xaml.cs">
+      <DependentUpon>PageEstadisticasPorFecha.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageEstadisticasStock.xaml.cs">
+      <DependentUpon>PageEstadisticasStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageEstadisticasUsuario.xaml.cs">
+      <DependentUpon>PageEstadisticasUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageGasto.xaml.cs">
+      <DependentUpon>PageGasto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageGaugeTest.xaml.cs">
+      <DependentUpon>PageGaugeTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageInforme.xaml.cs">
+      <DependentUpon>PageInforme.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageInformes.xaml.cs">
+      <DependentUpon>PageInformes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageInicioAdmin.xaml.cs">
+      <DependentUpon>PageInicioAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageInicioLogo.xaml.cs">
+      <DependentUpon>PageInicioLogo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageLogin.xaml.cs">
+      <DependentUpon>PageLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageInicio.xaml.cs">
+      <DependentUpon>PageInicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageMerma.xaml.cs">
+      <DependentUpon>PageMerma.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageMesas.xaml.cs">
+      <DependentUpon>PageMesas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageAdministrarProducto.xaml.cs">
+      <DependentUpon>PageAdministrarProducto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageMesasSectorDos.xaml.cs">
+      <DependentUpon>PageMesasSectorDos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageMesasSectorUno.xaml.cs">
+      <DependentUpon>PageMesasSectorUno.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PagePedidoGarzon.xaml.cs">
+      <DependentUpon>PagePedidoGarzon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PagePrimerInicio.xaml.cs">
+      <DependentUpon>PagePrimerInicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageProveedor.xaml.cs">
+      <DependentUpon>PageProveedor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageRealizarPedido.xaml.cs">
+      <DependentUpon>PageRealizarPedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageStatus.xaml.cs">
+      <DependentUpon>PageStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageTemp.xaml.cs">
+      <DependentUpon>PageTemp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageUsuario.xaml.cs">
+      <DependentUpon>PageUsuario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageVenta.xaml.cs">
+      <DependentUpon>PageVenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageVentaRespaldo.xaml.cs">
+      <DependentUpon>PageVentaRespaldo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageVenta_.xaml.cs">
+      <DependentUpon>PageVenta_.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageKeyboardTest.xaml.cs">
+      <DependentUpon>PageKeyboardTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageResumenJornada.xaml.cs">
+      <DependentUpon>PageResumenJornada.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PopUp\PopupCliente_busquedaAvanzada.xaml.cs">
+      <DependentUpon>PopupCliente_busquedaAvanzada.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PopUp\PopupEnvasesInfo.xaml.cs">
+      <DependentUpon>PopupEnvasesInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PopUp\PopupFiado.xaml.cs">
+      <DependentUpon>PopupFiado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PopUp\PopupGaugeOptions.xaml.cs">
+      <DependentUpon>PopupGaugeOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PopUp\PopupLogout.xaml.cs">
+      <DependentUpon>PopupLogout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PopUp\PopupPurchase.xaml.cs">
+      <DependentUpon>PopupPurchase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PopUp\PopupRealizarVenta.xaml.cs">
+      <DependentUpon>PopupRealizarVenta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PopUp\WindowChooseCategory.xaml.cs">
+      <DependentUpon>WindowChooseCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PopUp\WindowChooseOrTakeImage.xaml.cs">
+      <DependentUpon>WindowChooseOrTakeImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PopUp\WindowChooseSubCategory.xaml.cs">
+      <DependentUpon>WindowChooseSubCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PopUp\WindowChooseSupplier.xaml.cs">
+      <DependentUpon>WindowChooseSupplier.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PopUp\WindowInfoStock.xaml.cs">
+      <DependentUpon>WindowInfoStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PopUp\WindowPointsInfo.xaml.cs">
+      <DependentUpon>WindowPointsInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PopUp\WindowPriceInfo.xaml.cs">
+      <DependentUpon>WindowPriceInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PopUp\WindowTomarFoto.xaml.cs">
+      <DependentUpon>WindowTomarFoto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Partials\DeliveryInfo.cs" />
+    <Compile Include="Partials\PrestamoEnvaseUserDetails.cs" />
+    <Compile Include="Partials\ProductoRollo.cs" />
+    <Compile Include="Partials\ProductPurchaseDetails.cs" />
+    <Compile Include="Partials\Supplier.cs" />
+    <Compile Include="Partials\unidades_medida.cs" />
+    <Compile Include="Popups\AgregarCantidadPopup.xaml.cs">
+      <DependentUpon>AgregarCantidadPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\ArmarProductoPopup.xaml.cs">
+      <DependentUpon>ArmarProductoPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\ArmarTablaPopup.xaml.cs">
+      <DependentUpon>ArmarTablaPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\CategoriaPopup.xaml.cs">
+      <DependentUpon>CategoriaPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\DctoPopup.xaml.cs">
+      <DependentUpon>DctoPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\DeliveryPopup.xaml.cs">
+      <DependentUpon>DeliveryPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\InfoVentaPopup.xaml.cs">
+      <DependentUpon>InfoVentaPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\NotificarError.xaml.cs">
+      <DependentUpon>NotificarError.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\PromoPopup.xaml.cs">
+      <DependentUpon>PromoPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\RealizarPedidoPopup.xaml.cs">
+      <DependentUpon>RealizarPedidoPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\RealizarVentaSushi.xaml.cs">
+      <DependentUpon>RealizarVentaSushi.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\SeleccionarItemsPedidoPopup.xaml.cs">
+      <DependentUpon>SeleccionarItemsPedidoPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\UsuarioPendientePopup.xaml.cs">
+      <DependentUpon>UsuarioPendientePopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\ComprarPopup.xaml.cs">
+      <DependentUpon>ComprarPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\EscogerTomarFotoPopup.xaml.cs">
+      <DependentUpon>EscogerTomarFotoPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\PendientePopup.xaml.cs">
+      <DependentUpon>PendientePopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\ProveedorPopup.xaml.cs">
+      <DependentUpon>ProveedorPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\SubCategoriaPopup.xaml.cs">
+      <DependentUpon>SubCategoriaPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\UltimasBoletasPopup.xaml.cs">
+      <DependentUpon>UltimasBoletasPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\Notification.xaml.cs">
+      <DependentUpon>Notification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\WindowOpcionesPopup.xaml.cs">
+      <DependentUpon>WindowOpcionesPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Globals\Users.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Users.Designer.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="Models\PoskDB6.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PoskDB6.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\PoskDB6.edmx.diagram">
+      <DependentUpon>PoskDB6.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="posk_TemporaryKey.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\PoskDB6.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PoskDB6.edmx</DependentUpon>
+      <LastGenOutput>PoskDB6.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\PoskDB6.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PoskDB6.edmx</DependentUpon>
+      <LastGenOutput>PoskDB6.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="packages\WPFMediaKit.2.2.0\build\WPFMediaKit.targets" Condition="Exists('packages\WPFMediaKit.2.2.0\build\WPFMediaKit.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\WPFMediaKit.2.2.0\build\WPFMediaKit.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\WPFMediaKit.2.2.0\build\WPFMediaKit.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

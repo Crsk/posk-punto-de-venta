@@ -1,0 +1,89 @@
+﻿<Window x:Class="posk.Pages.PopUp.PopupPurchase"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:posk.Pages.PopUp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        BorderBrush="#FFFF9800"
+        BorderThickness="1"
+        Title="Historial de compras" Height="400" Width="530" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="#FF060606" Foreground="#FFF1F1F1">
+    <DockPanel Margin="4">
+        <Border DockPanel.Dock="Top">
+            <DockPanel>
+                <Border DockPanel.Dock="Top">
+                    <DockPanel>
+                        <Border DockPanel.Dock="Left">
+                            <Label Content="UNITARIO" Margin="45,0,0,0"/>
+                        </Border>
+                        <Border DockPanel.Dock="Right">
+                            <Label Content="TOTAL" HorizontalAlignment="Right" Margin="0,0,45,0"/>
+                        </Border>
+                    </DockPanel>
+                </Border>
+                <Border DockPanel.Dock="Top">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="65" Content="BRUTO" ToolTip="COSTO UNITARIO BRUTO" HorizontalContentAlignment="Center"/>
+                        <Separator Width="16" Visibility="Hidden"/>
+                        <Label Width="65" Content="NETO" ToolTip="COSTO UNITARIO NETO" HorizontalContentAlignment="Center"/>
+                        <Separator Width="16" Visibility="Hidden"/>
+                        <Label Width="200" Content="DETALLE" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Separator Width="16" Visibility="Hidden"/>
+                        <Label Width="65" Content="BRUTO" ToolTip="Bruto * Cantidad" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <Separator Width="16" Visibility="Hidden"/>
+                        <Label Width="65" Content="NETO" ToolTip="Neto * Cantidad" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+            </DockPanel>
+        </Border>
+        <Border DockPanel.Dock="Bottom">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  VerticalAlignment="Bottom">
+                <Button x:Name="btnCerrar" Content="CANCELAR" Margin="0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#7FFF9800" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+                <Button x:Name="btnCrearCompra" Content="COMPRAR" VerticalAlignment="Bottom" Background="{x:Null}" Margin="0" BorderBrush="{x:Null}" Foreground="#FFFF9800" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+            </StackPanel>
+        </Border>
+        <Border DockPanel.Dock="Bottom">
+            <DockPanel Margin="0,4,0,0">
+                <Border DockPanel.Dock="Right" Background="#FF020202">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="4,0,0,0">
+                        <StackPanel Width="65" HorizontalAlignment="Right">
+                            <Label Content="Sub Total" FontSize="11" Height="23"/>
+                            <Label Content="IVA" FontSize="11" Height="23"/>
+                            <Label Content="ILA" FontSize="11" Height="23"/>
+                            <Label Content="Total" FontSize="13" Height="26"/>
+                        </StackPanel>
+                        <StackPanel >
+                            <Label Content="{Binding SubTotal}" Height="23" Foreground="#FF0A689E" HorizontalContentAlignment="Right"/>
+                            <Label Content="{Binding IVA}" Height="23" Foreground="#FFBD2A2A" HorizontalContentAlignment="Right"/>
+                            <Label Content="{Binding ILA}" Height="23" Foreground="#FFBD2A2A" HorizontalContentAlignment="Right"/>
+                            <Label Content="{Binding Total}" Height="26" Foreground="#FF0A689E" HorizontalContentAlignment="Right"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <Border DockPanel.Dock="Left" Background="#FF020202">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="4" Height="25">
+                            <TextBox x:Name="txtNumeroFactura" Width="140" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Numero de factura" Height="26" Background="#FF020202"/>
+                            <DatePicker x:Name="dpFechaDeVencimiento" materialDesign:HintAssist.Hint="Fecha de vencimiento" Width="140" HorizontalAlignment="Left" Margin="8,0,0,0" Height="26" Background="#FF020202"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="4" Height="25">
+                            <DatePicker x:Name="dpFechaDeCompra" materialDesign:HintAssist.Hint="Fecha de compra" Width="140" HorizontalAlignment="Left" Height="26" Background="#FF020202"/>
+                            <materialDesign:TimePicker Width="140" materialDesign:HintAssist.Hint="Hora de compra" Margin="8,0,0,0" Height="26" Background="#FF020202"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="4" Height="25">
+                            <ComboBox x:Name="cbProveedor" Width="140" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Proveedor" Height="26" Background="#FF020202"/>
+                            <ComboBox x:Name="cbVendedor" Width="140" HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Vendedor" Margin="8,0,0,0" Height="26" Background="#FF020202"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </DockPanel>
+        </Border>
+        <Border>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="spPurchases" Margin="0,0,0,0">
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </DockPanel>
+</Window>

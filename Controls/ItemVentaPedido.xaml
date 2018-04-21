@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="posk.Controls.ItemVentaPedido"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <Grid Height="36" Background="#c0392b" Margin="0 4 0 4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Button x:Name="btnQuitarUnidad" Background="{x:Null}" Width="30" Height="60" BorderBrush="{x:Null}" Foreground="#FF262626" FontSize="33" materialDesign:ShadowAssist.ShadowDepth="Depth0" Margin="0 0 0 8" Style="{StaticResource BtnClear}" VerticalAlignment="Center">-</Button>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Button x:Name="btnCantidad" Style="{StaticResource BtnClear}" Background="{x:Null}" Margin="0 0 0 4">
+                <Label x:Name="lbCantidad" Content="x1" FontSize="26" Foreground="White" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="0 0 0 0" Padding="0"/>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <Button x:Name="btnAgregarUnidad" Background="{x:Null}" Width="30" Height="60" BorderBrush="{x:Null}" Foreground="#FF262626" FontSize="26" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource BtnClear}" VerticalAlignment="Center" Margin="0 0 0 8">+</Button>
+        </Grid>
+
+        <Grid Grid.Column="3" Margin="0 0 8 0">
+            <Label x:Name="lbDetalle" Content="TEXTO DE PRUEBA" Foreground="White" FontSize="22" HorizontalAlignment="Right" VerticalContentAlignment="Center" Padding="0"/>
+        </Grid>
+    </Grid>
+</UserControl>

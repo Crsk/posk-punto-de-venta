@@ -1,0 +1,11 @@
+﻿<Page x:Class="posk.Pages.Menu.PageMesasSectorUno"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:posk.Pages.Menu"
+      mc:Ignorable="d"
+      Title="PageMesasSectorUno">
+    <WrapPanel x:Name="wrapMesas" HorizontalAlignment="Center" Width="1000">
+    </WrapPanel>
+</Page>

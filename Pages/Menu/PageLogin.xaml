@@ -1,0 +1,56 @@
+﻿<Page x:Class="posk.Pages.Menu.PageLogin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:posk.Pages.Menu"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1024"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal" 
+      TextOptions.TextRenderingMode="Auto"        
+      Background="#FF080808"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Title="PageLogin">
+    <DockPanel>
+        <Border DockPanel.Dock="Right">
+            <StackPanel Orientation="Horizontal">
+                <Expander x:Name="expLogin" ExpandDirection="Left" VerticalAlignment="Top" Background="#FF080808">
+                    <StackPanel Margin="8" MaxWidth="580">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="8">
+                            <TextBox x:Name="txtUser" materialDesign:HintAssist.Hint="USUARIO" Width="125"/>
+                            <Separator Width="16" Visibility="Hidden"/>
+                            <PasswordBox x:Name="txtPass" materialDesign:HintAssist.Hint="CONTRASEÑA" Width="120"/>
+                            <Separator Width="16" Visibility="Hidden"/>
+                            <CheckBox x:Name="checkGuardarContrasena" Content="GUARDAR CONTRASEÑA"/>
+                            <Separator Width="16" Visibility="Hidden"/>
+                            <Button x:Name="btnIngresar" Content="LOGIN" Width="100" Click="btnIngresar_Click"/>
+                        </StackPanel>
+                        <Label x:Name="lbDebug" Content=""/>
+                        <WrapPanel x:Name="wrapUsuarios" Orientation="Horizontal" MaxWidth="1024" HorizontalAlignment="Right">
+                            <Button x:Name="btnAdmin" Content="Admin" Height="100" Width="100" Margin="8" Background="#FFE8E8E8" BorderBrush="#FFE8E8E8"/>
+                            <Button x:Name="btnCK" Content="CK" Height="100" Width="100" Margin="8" Background="#FFE8E8E8" BorderBrush="#FFE8E8E8"/>
+                            <Button Content="AG" Height="100" Width="100" Margin="8" Background="#FFE8E8E8" BorderBrush="#FFE8E8E8"/>
+                            <Button Content="FR" Height="100" Width="100" Margin="8" Background="#FFE8E8E8" BorderBrush="#FFE8E8E8"/>
+                            <Button Content="BQ" Height="100" Width="100" Margin="8" Background="#FFE8E8E8" BorderBrush="#FFE8E8E8"/>
+                            <Button Content="RM" Height="100" Width="100" Margin="8" Background="#FFE8E8E8" BorderBrush="#FFE8E8E8"/>
+                            <Button Content="SO" Height="100" Width="100" Margin="8" Background="#FFE8E8E8" BorderBrush="#FFE8E8E8"/>
+                            <Button Content="NP" Height="100" Width="100" Margin="8" Background="#FFE8E8E8" BorderBrush="#FFE8E8E8"/>
+                            <Button Content="FZ" Height="100" Width="100" Margin="8" Background="#FFE8E8E8" BorderBrush="#FFE8E8E8"/>
+                        </WrapPanel>
+                    </StackPanel>
+                </Expander>
+                <!--<Label Height="70" VerticalAlignment="Top" VerticalContentAlignment="Center" Content="LOGIN" Margin="0,0,16,0"/>-->
+            </StackPanel>
+        </Border>
+        <Border>
+            <Frame x:Name="frameTest" NavigationUIVisibility="Hidden" />
+            <!--<DockPanel>-->
+                <!--<Image Margin="48,0,0,0" x:Name="imgStart" Source="C:\cposk\img\logo-sample.png"/>-->
+                <!-- <Image Height="400" Margin="48,0,0,0" x:Name="imgStart" Source="C:\Users\rehp\Creative Cloud Files\artboard 1.png"/> -->
+            <!--</DockPanel>-->
+        </Border>
+    </DockPanel>
+</Page>

@@ -1,0 +1,45 @@
+﻿<Page x:Class="posk.Pages.Menu.PageInicio"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+      d:DesignHeight="640" d:DesignWidth="1200"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      Background="#FF0F0F0F"
+      Title="PageLogin2">
+    <Grid Background="#FF020202">
+        <Button x:Name="btnCerrar" Style="{StaticResource BtnClear}" Background="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="16">
+            <Label Content="Cerrar programa" VerticalAlignment="Center" Foreground="#7F830000"/>
+        </Button>
+        <DockPanel>
+            <Expander Name="expLogin" ExpandDirection="Left" Style="{StaticResource ExpanderStyleSinHeader}" Background="{x:Null}">
+                <Border DockPanel.Dock="Left">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ScrollViewer.Resources>
+                            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">50</sys:Double>
+                        </ScrollViewer.Resources>
+                        <StackPanel Name="spUsuarios">
+                        
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
+            </Expander>
+            <Border DockPanel.Dock="Right">
+                <Grid>
+                    <Button Name="btnLogin" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="22" Height="80" Width="80" Style="{StaticResource BtnClear}" Background="{x:Null}" Foreground="#FFAAAAAA" Margin="8">
+                        <materialDesign:PackIcon Kind="Account" Height="60" Width="60"/>
+                    </Button>
+                    <Image x:Name="imageLogo" Height="380" Margin="0 0 0 200"/>
+                </Grid>
+            </Border>
+        </DockPanel>
+    </Grid>
+</Page>

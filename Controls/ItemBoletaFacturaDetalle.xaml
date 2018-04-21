@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="posk.Controls.ItemBoletaFacturaDetalle"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls"
+             
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+             
+             mc:Ignorable="d" >
+    <DockPanel Margin="0 2 2 2" Background="Gainsboro" Width="360" Height="40">
+        <DockPanel Margin="0 0 4 0">
+            <Label Content="asdasgajbga akwhd akhf" Foreground="Black"/>
+        </DockPanel>
+    </DockPanel>
+</UserControl>

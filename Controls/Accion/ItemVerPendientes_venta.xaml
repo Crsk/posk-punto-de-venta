@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="posk.Controls.Accion.ItemVerPendientes_venta"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls.Accion"
+             mc:Ignorable="d" 
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto">
+    <Button x:Name="btnVerPendientes" 
+        Height="53" Width="46"
+        VerticalAlignment="Bottom"
+        VerticalContentAlignment="Center"
+        FontSize="34" 
+        Margin="0 0 0 0"
+        HorizontalAlignment="Stretch" Background="{x:Null}" BorderThickness="0" BorderBrush="{x:Null}" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource BtnClear}">
+        <Grid>
+            <!--<Label x:Name="lbVerEntregasNumero" Content="10" Foreground="#FFFF8B00" FontSize="14" VerticalAlignment="Top" Margin="20 26 0 0"/>-->
+            <materialDesign:PackIcon Kind="Clock" Height="36" Width="32" VerticalAlignment="Center" Foreground="#FFFF8B00"/>
+        </Grid>
+    </Button>
+</UserControl>

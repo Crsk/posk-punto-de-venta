@@ -1,0 +1,106 @@
+﻿<Window x:Class="posk.Pages.PopUp.WindowTomarFoto"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:posk.Pages.PopUp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:cam="clr-namespace:WebEye.Controls.Wpf;assembly=WebEye.Controls.Wpf.WebCameraControl"
+        xmlns:WPFMediaKit="clr-namespace:WPFMediaKit.DirectShow.Controls;assembly=WPFMediaKit"
+        mc:Ignorable="d"
+        BorderBrush="#FFFF9800"
+        BorderThickness="1"
+        Background="#FFBFBFBF"
+        WindowState="Maximized" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Foreground="#FFF1F1F1">
+    <DockPanel>
+        <Border DockPanel.Dock="Bottom">
+            <StackPanel HorizontalAlignment="Center">
+                <Label Content="CAMARA" HorizontalAlignment="Center" FontSize="18"/>
+                <ComboBox x:Name="cbCameras" Width="376" Height="60" Background="WhiteSmoke" Foreground="Black" SelectedIndex="1" Margin="0 0 0 8"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button 
+                    x:Name="btnBuscarImagen"
+                    Height="80"
+                    Width="80"
+                    Margin="8"
+                        Content="..." FontSize="24"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                    </Button>
+                    <Button 
+                    x:Name="btnGuardar"
+                    Height="80"
+                    Width="80"
+                    Margin="8"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                        <materialDesign:PackIcon Kind="ContentSave" Height="48" Width="48"/>
+                    </Button>
+                    <Button 
+                    x:Name="btnCapturar" 
+                    Height="80"
+                    Width="280"
+                    Margin="8"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0">
+                        <materialDesign:PackIcon Kind="Camera" Height="48" Width="48"/>
+                    </Button>
+                </StackPanel>
+                <Button x:Name="btnCerrar" Content="CERRAR" Width="120" Height="80" Background="{x:Null}" BorderBrush="{x:Null}"/>
+            </StackPanel>
+        </Border>
+        <Border>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                <WPFMediaKit:VideoCaptureElement x:Name="captureElement"
+                            LoadedBehavior="Play"
+                            DesiredPixelWidth="320"
+                            DesiredPixelHeight="240"
+                            Stretch="Fill"
+                            VideoCaptureSource="{Binding Path=CaptureDeviceName}"
+                            FPS="30" 
+                            Height="240" Width="320"/>
+                <Border Width="8"/>
+                <Image x:Name="imageBox2" Height="240" Width="320"/>
+            </StackPanel>
+        </Border>
+
+        <!--<Border DockPanel.Dock="Bottom">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <cam:WebCameraControl x:Name="webCameraControl1" Width="200" Height="200" Margin="12,8,4,8"/>
+
+                    -->
+        <!--<Image 
+                        x:Name="imageFromVideo" 
+                        Width="200" 
+                        Height="200"
+                        Margin="12,8,4,8"/>-->
+        <!--
+                    <Image 
+                        x:Name="imageBox2" 
+                        Width="200" 
+                        Height="200"
+                        Margin="8,8,4,8"/>
+                    <StackPanel VerticalAlignment="Center" Margin="8,8,8,12">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8" HorizontalAlignment="Center">
+                        </StackPanel>
+                        <Button 
+                            x:Name="btnBuscarImagen" 
+                            Content="BUSCAR IMAGEN" 
+                            Margin="4"
+                            Click="btnBuscarImagen_Click"/>
+                        <Button 
+                            x:Name="btnEscogerCam"
+                            Content="ESCOGER CAM"
+                            Margin="4" Click="btnEscogerCam_Click"/>
+                        <Button 
+                            x:Name="btnCerrar" 
+                            Content="CERRAR" 
+                            Margin="4"
+                            Click="btnCerrar_Click_1"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Border>
+
+        </Border>-->
+    </DockPanel>
+</Window>

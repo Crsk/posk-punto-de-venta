@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="posk.Controls.ItemPromoVentaPedido"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+             mc:Ignorable="d">
+    <Grid >
+        <Button x:Name="btnProducto" Height="120" Width="160" Style="{StaticResource BtnClear}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="4">
+            <Grid Height="120" Width="160">
+                <Image x:Name="image"/>
+                <Grid x:Name="overlay" Background="#6606704D" Opacity="0" Visibility="Hidden"/>
+                <Label x:Name="lbPromo" VerticalAlignment="Bottom" Content="PROMO" Foreground="White" Background="#FF06704D" HorizontalContentAlignment="Center" Width="160" FontWeight="Normal" Height="23" Padding="0 0 0 2" VerticalContentAlignment="Center" FontSize="16"/>
+            </Grid>
+        </Button>
+    </Grid>
+</UserControl>

@@ -1,0 +1,24 @@
+﻿<Window x:Class="posk.Pages.PopUp.PopupLogout"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:posk.Pages.PopUp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        BorderBrush="#FFFF9800"
+        BorderThickness="1"
+        Title="DETALLES" Height="110" Width="470" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="#FF020202" Foreground="#FFF1F1F1">
+    <DockPanel>
+        <Border DockPanel.Dock="Bottom">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnCerrar" Content="CERRAR" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFFF9800" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+                <Button x:Name="btnDejarMensaje" Content="DEJAR MENSAJE" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFFF9800" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+            </StackPanel>
+        </Border>
+        <Border DockPanel.Dock="Top">
+            <Label Content="DEJALE UN MENSAJE AL SIGUIENTE USUARIO EN INICIAR SESIÓN" HorizontalContentAlignment="Center"/>
+        </Border>
+        <TextBox x:Name="txtMessage" VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" Height="48" FontSize="13" Width="460" Background="#FFCFCFCF" Foreground="Black" TextWrapping="Wrap"/>
+    </DockPanel>
+</Window>

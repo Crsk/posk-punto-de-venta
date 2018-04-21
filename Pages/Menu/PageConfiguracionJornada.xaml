@@ -1,0 +1,28 @@
+﻿<Page x:Class="posk.Pages.Menu.PageConfiguracionJornada"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:posk.Pages.Menu"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1024"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal" 
+      TextOptions.TextRenderingMode="Auto"        
+      Background="#FF080808"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Title="PageLogin">
+    <DockPanel>
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Background="#090909">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="16">
+                <Label Content="¿Son las 22:56?" HorizontalAlignment="Center" FontSize="22"/>
+                <Label Content="El sistema genera estadísticas en base a la hora del PC, es importante que verifiques que la hora sea correcta antes de comenzar..."/>
+                <Label Content="Bien, ahora ingresa la fecha de inicio de la jornada que comienza" HorizontalAlignment="Center" FontSize="22"/>
+                <DatePicker x:Name="dpFechaInicioJornada" HorizontalAlignment="Center" Width="200" materialDesign:HintAssist.Hint="FECHA INICIO JORNADA" Margin="32"/>
+                <Button x:Name="btnComencemos" Content="COMENCEMOS!" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            </StackPanel>
+        </Border>
+    </DockPanel>
+</Page>

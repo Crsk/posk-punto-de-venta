@@ -1,0 +1,40 @@
+﻿<Page x:Class="posk.Pages.Menu.PageBienvenido"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:posk.Pages.Menu"
+      mc:Ignorable="d"
+      d:DesignHeight="600" d:DesignWidth="1024"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal" 
+      TextOptions.TextRenderingMode="Auto"        
+      Background="#FF080808"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Title="PageLogin">
+    <Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Background="#090909">
+            <Label x:Name="lbBienvenida" Content="NOMBREUSUARIO" HorizontalAlignment="Center" FontSize="22" VerticalContentAlignment="Center" Margin="32"/>
+        </Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Expander x:Name="expIniciarJornada" Style="{StaticResource ExpanderStyleSinHeader}" Background="{x:Null}">
+                <StackPanel x:Name="spApertura" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Visible">
+                    <Button x:Name="btnComenzarJornada" Content="INICIAR JORNADA" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="32 32 32 8"/>
+                    <Label Content="Admin: Inicia jornada solo si vas a vender (para generar estadisticas)"/>
+                </StackPanel>
+            </Expander>
+            <Expander x:Name="expTerminarJornada" Style="{StaticResource ExpanderStyleSinHeader}" Background="{x:Null}">
+                <StackPanel x:Name="spCierre" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="16">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="¿JORNADA ESPECIAL?"/>
+                        <CheckBox x:Name="checkJornadaEspecial" materialDesign:HintAssist.Hint="DIA ESPECIAL" IsEnabled="False"/>
+                        <TextBox x:Name="txtMensajeJornadaEspecial" materialDesign:HintAssist.Hint="MENSAJE DE JORNADA, EJEMPLO: FESTIVO" Margin="16 0 0 0" Width="280"/>
+                    </StackPanel>
+                    <Button x:Name="btnCerrarJornada" Content="CERRAR JORNADA Y LOGOUT" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="32"/>
+                </StackPanel>
+            </Expander>
+        </Grid>
+    </Grid>
+</Page>

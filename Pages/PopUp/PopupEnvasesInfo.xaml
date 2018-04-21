@@ -1,0 +1,58 @@
+﻿<Window x:Class="posk.Pages.PopUp.PopupEnvasesInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:posk.Pages.PopUp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        BorderBrush="#FFFF9800"
+        BorderThickness="1"
+        Title="DETALLES" Height="250" Width="420" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="#FF080808" Foreground="#FFF1F1F1">
+    <DockPanel>
+        <Border DockPanel.Dock="Bottom">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnCerrar" Content="CERRAR" Background="#FF080808" BorderBrush="#FF080808" Foreground="#FFFF9800" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+            </StackPanel>
+        </Border>
+        <Border Margin="4">
+            <DataGrid 
+                x:Name="dgPrestamos" 
+                Margin="0,0,0,8"
+                ItemsSource="{Binding}"
+                AutoGenerateColumns="False"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Background="#FF080808"
+                SelectionMode="Single"
+                CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn 
+                        Header="FECHA" 
+                        Width="90"
+                        IsReadOnly="True"
+                        Binding="{Binding date, StringFormat=dd/MM/yyyy }"/>
+                    <DataGridTextColumn 
+                        Header="ENVASES" 
+                        Width="85"
+                        IsReadOnly="True"
+                        Binding="{Binding envases}"/>
+                    <DataGridTextColumn
+                        Header="QUIEN VENDIÓ" 
+                        Width="150"
+                        IsReadOnly="True"
+                        Binding="{Binding userName}"/>
+                    <DataGridTemplateColumn Header="BORRAR">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Background="#FF171717" BorderBrush="#FF171717" Foreground="#FFE2E2E2" Click="DeleteRow">
+                                    <materialDesign:PackIcon Kind="Delete" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </DockPanel>
+</Window>

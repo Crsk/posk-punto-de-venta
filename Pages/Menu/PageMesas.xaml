@@ -1,0 +1,48 @@
+﻿<Page x:Class="posk.Pages.Menu.PageMesas"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:posk.Pages.Menu"
+      mc:Ignorable="d" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+      d:DesignHeight="610" d:DesignWidth="980"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      Background="#FF0C1119"
+      Title="PageMesas">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="btnSector1" Grid.Column="0" Content="PRIMER PISO" Height="80" Margin="8 0 8 8" Background="#ecf0f1" BorderBrush="#ecf0f1" Foreground="#020202" Style="{StaticResource BtnClear}" FontSize="18"/>
+            <Button Name="btnSector2" Grid.Column="1" Content="SUBTERRANEO" Height="80" Margin="8 0 8 8" Background="#ecf0f1" BorderBrush="#ecf0f1" Foreground="#020202" Style="{StaticResource BtnClear}" FontSize="18"/>
+        </Grid>
+        <Frame Name="frameMesas"  Grid.Row="1" NavigationUIVisibility="Hidden" VerticalAlignment="Center"/>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Height="30" Width="100" Margin="16" FontSize="28" Background="#27ae60" Foreground="#27ae60" Style="{StaticResource BtnClear}" VerticalAlignment="Center"/>
+                <Label Content="LIBRE" Foreground="#27ae60" FontSize="22" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Height="30" Width="100" Margin="16" FontSize="28" Background="#c0392b" Foreground="#020202" Style="{StaticResource BtnClear}" VerticalAlignment="Center"/>
+                <Label Content="OCUPADA" Foreground="#c0392b" FontSize="22" VerticalContentAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="posk.Controls.ItemPromoDetalle"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls"
+             mc:Ignorable="d" 
+            xmlns:custom="clr-namespace:posk.Globals"
+            xmlns:controls="clr-namespace:posk.Controls"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13" Background="#FF090909"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto">
+    <StackPanel x:Name="spItem" Margin="4" HorizontalAlignment="Center" Orientation="Horizontal">
+        <Button x:Name="btnEliminar" Margin="0 0 16 0" Style="{StaticResource BtnClear}" Background="{x:Null}" Foreground="#FFC50A0A">
+            <materialDesign:PackIcon Kind="Delete" />
+        </Button>
+        <Label Content="$" VerticalAlignment="Center" FontSize="22"/>
+        <Border x:Name="borderItemCantidad" Height="36">
+            <TextBox x:Name="txtPrecio" Text="" Width="80" VerticalAlignment="Center" Foreground="#f9f9f9" Background="#FF020202" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="8 0 8 0" FontSize="18"/>
+        </Border>
+        <Border x:Name="borderItem" Height="36">
+            <TextBox x:Name="txtNombre" Text="PRODUCTO" VerticalAlignment="Center" Width="250" Foreground="#f9f9f9" Background="#FF020202" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18"/>
+        </Border>
+    </StackPanel>
+</UserControl>

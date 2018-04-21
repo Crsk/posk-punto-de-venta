@@ -1,0 +1,11 @@
+﻿<UserControl x:Class="posk.Controls.ItemUltimaVenta"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls"
+             mc:Ignorable="d">
+    <Button x:Name="btnBoleta" Style="{StaticResource BtnClear}" Background="{x:Null}">
+        <Label x:Name="lbUltimaVenta" Margin="4,0,4,0" FontSize="18" VerticalContentAlignment="Center" FontWeight="Medium" Foreground="#DDE8E8E8" HorizontalContentAlignment="Center"/>
+    </Button>
+</UserControl>

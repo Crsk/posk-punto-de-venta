@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="posk.Controls.ItemBoleta"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+            TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto"
+            Background="#111111">
+    <Button x:Name="btnBoleta" Style="{StaticResource BtnClear}" Background="{x:Null}" Height="40">
+        <StackPanel Orientation="Horizontal">
+            <Label x:Name="lbId" Margin="8" Padding="0" FontWeight="Regular" FontSize="16"/>
+            <Label x:Name="lbTotal" Margin="8" Padding="0" FontWeight="Regular" FontSize="16"/>
+            <Label x:Name="lbFecha" Margin="8" Padding="0" FontWeight="Regular" FontSize="16"/>
+            <Label x:Name="lbUsuario" Margin="8" Padding="0" FontWeight="Regular" FontSize="16"/>
+        </StackPanel>
+    </Button>
+</UserControl>

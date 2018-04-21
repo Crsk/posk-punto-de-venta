@@ -1,0 +1,37 @@
+﻿<Window x:Class="posk.Pages.PopUp.WindowChooseSubCategory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:posk.Pages.PopUp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        BorderBrush="#FFFF9800"
+        BorderThickness="1"
+        Title="Sub Categoria" Height="400" Width="250" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="#FF1E1E1E" Foreground="#FFF1F1F1">
+    <DockPanel>
+        <Border DockPanel.Dock="Bottom">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnCerrar" Margin="4" Content="CERRAR"/>
+            </StackPanel>
+        </Border>
+        <Border>
+            <DataGrid 
+                x:Name="dgSubCategory" 
+                ItemsSource="{Binding}" 
+                Background="#FF1E1E1E"
+                AutoGenerateColumns="False"
+                Height="356"
+                SelectionMode="Single"
+                CanUserAddRows="False" SelectionChanged="dgSubCategoria_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn 
+                        Binding="{Binding name}" 
+                        Header="SUB CATEGORÍA"
+                        IsReadOnly="True"
+                        Width="230"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </DockPanel>
+</Window>

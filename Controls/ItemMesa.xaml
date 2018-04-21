@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="posk.Controls.ItemMesa"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls"
+             mc:Ignorable="d" >
+    <Button x:Name="btnMesa" Height="80" Width="100" Margin="32" FontSize="28" Background="#27ae60" Foreground="#ecf0f1" Style="{StaticResource BtnClear}">
+        <StackPanel Width="100">
+            <TextBlock x:Name="tbMesa" VerticalAlignment="Center" HorizontalAlignment="Center" Text="2"/>
+            <TextBlock x:Name="tbUsuario" VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="Christopher Kiessling" FontSize="10"/>
+            <TextBlock x:Name="tbItems" VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="4 items" FontSize="10"/>
+        </StackPanel>
+    </Button>
+</UserControl>

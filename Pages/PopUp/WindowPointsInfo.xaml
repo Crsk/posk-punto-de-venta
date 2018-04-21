@@ -1,0 +1,23 @@
+﻿<Window x:Class="posk.Pages.PopUp.WindowPointsInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:posk.Pages.PopUp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        BorderBrush="#FFFF9800"
+        BorderThickness="2"
+        Title="DETALLES" Height="150" Width="320" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="#FF1E1E1E" Foreground="#FFF1F1F1">
+    <DockPanel>
+        <Border DockPanel.Dock="Bottom">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnCerrar" Margin="4" Content="CERRAR" Background="#FF1E1E1E" BorderBrush="#FF1E1E1E" Foreground="#FFFF9800" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+
+            </StackPanel>
+        </Border>
+        <Border>
+            <Label x:Name="lbInfo" Margin="16,8,16,8" VerticalContentAlignment="Center"/>
+        </Border>
+    </DockPanel>
+</Window>

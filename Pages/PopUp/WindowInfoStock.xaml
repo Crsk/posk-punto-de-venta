@@ -1,0 +1,98 @@
+﻿<Window x:Class="posk.Pages.PopUp.WindowInfoStock"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:posk.Pages.PopUp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        BorderBrush="#FFFF9800"
+        BorderThickness="2"
+        Title="Historial de compras" Height="450" Width="490" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="#FF1E1E1E" Foreground="#FFF1F1F1">
+    <DockPanel>
+        <Border DockPanel.Dock="Top">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="9" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="         Para realizar una compra avanzada, presiona el enlace ->"/>
+                    <Button FontSize="10" Content="Ir a compra avanzada" Background="#FF1E1E1E" BorderBrush="#FF1E1E1E" Foreground="#FFFF9800" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+                </StackPanel>
+                <Label FontSize="9" HorizontalContentAlignment="Center" Content="Aquí puedes realizar compras de solo un producto y borrar al producto de compras realizadas anteriormente"/>
+                <Separator Margin="0,6,0,0"/>
+            </StackPanel>
+        </Border>
+        <Border DockPanel.Dock="Bottom" Margin="0,8,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnCerrar" Margin="4,0,8,8" Content="CERRAR" Background="#FF1E1E1E" BorderBrush="#FF1E1E1E" Foreground="#FFFF9800" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+            </StackPanel>
+        </Border>
+        <Border DockPanel.Dock="Bottom">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <DatePicker
+                    x:Name="dpDate"
+                    Width="90" Margin="8,0,8,0"
+                    VerticalAlignment="Bottom"
+                    Text="{Binding StringFormat=dd/MM/yy}"
+                    materialDesign:HintAssist.Hint="FECHA"/>
+                <TextBox 
+                    x:Name="txtQuantity"
+                    Width="90" Margin="8,0,8,0"
+                    materialDesign:HintAssist.Hint="CANTIDAD"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox 
+                    x:Name="txtCost"
+                    Width="90" Margin="8,0,8,0"
+                    materialDesign:HintAssist.Hint="COSTO UN."
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <Button x:Name="btnAddPurchase" Content="AGREGAR COMPRA" Margin="0,5,0,0" Click="btnAddPurchase_Click" Background="#FF1E1E1E" BorderBrush="#FF1E1E1E" Foreground="#FFFF9800" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+            </StackPanel>
+        </Border>
+        <Border DockPanel.Dock="Bottom">
+            <Separator Margin="4"/>
+        </Border>
+        <Border>
+            <DataGrid 
+                x:Name="dgPurchases" 
+                Margin="0,0,0,8"
+                HorizontalAlignment="Center"
+                HorizontalContentAlignment="Center"
+                Background="#FF1E1E1E"
+                AutoGenerateColumns="False"
+                ItemsSource="{Binding}"
+                SelectionMode="Single"
+                CanUserAddRows="False"
+                >
+                <DataGrid.Columns>
+                    <DataGridTextColumn 
+                        Header="FECHA" 
+                        Width="80"
+                        IsReadOnly="True"
+                        Binding="{Binding date, StringFormat=dd/MM/yyyy }"/>
+                    <DataGridTextColumn 
+                        Header="CANTIDAD" 
+                        Width="85"
+                        IsReadOnly="True"
+                        Binding="{Binding quantity}"/>
+                    <DataGridTextColumn 
+                        Header="COSTO U." 
+                        Width="80"
+                        IsReadOnly="True"
+                        Binding="{Binding unitary_cost, StringFormat=#.0}"/>
+                    <DataGridTextColumn 
+                        Header="QUIEN AGREGÓ" 
+                        Width="115"
+                        IsReadOnly="True"
+                        Binding="{Binding instigator}"/>
+                    <DataGridTemplateColumn Header="BORRAR">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Background="#FF171717" BorderBrush="#FF171717" Foreground="#FFE2E2E2" Click="DeleteRow">
+                                    <materialDesign:PackIcon Kind="Delete" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </DockPanel>
+</Window>

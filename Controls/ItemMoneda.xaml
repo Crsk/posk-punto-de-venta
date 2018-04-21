@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="posk.Controls.ItemMoneda"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls"
+             mc:Ignorable="d" 
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextElement.FontWeight="Regular"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto">
+
+    <Button x:Name="btnMoneda" Style="{StaticResource BtnClear}" Background="{x:Null}" BorderBrush="{x:Null}" Height="50" Margin="2 0 2 0">
+        <Grid Background="#FF020206">
+            <Grid x:Name="overlay" Background="#B206704D" Opacity="0" Visibility="Hidden"/>
+            <Label x:Name="lbValor" VerticalAlignment="Bottom" FontSize="20" Foreground="#fafafa" Background="{x:Null}" HorizontalContentAlignment="Center" FontWeight="Normal" Padding="8 8 8 8" VerticalContentAlignment="Center"/>
+        </Grid>
+    </Button>
+</UserControl>

@@ -1,0 +1,151 @@
+﻿<UserControl x:Class="posk.Components.PedidoComponent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Components"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+             d:DesignHeight="640" d:DesignWidth="1200"
+             Background="#FF05070C">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <!-- Inicio Principal -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="360"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Inicio Buscar Producto-->
+            <Grid Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="58"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid Background="#FF04050A" Height="56" VerticalAlignment="Top"/>
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Border DockPanel.Dock="Right" Background="{x:Null}" Width="245" HorizontalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button x:Name="btnLimpiarBusqueda" Height="60" HorizontalAlignment="Right" Background="{x:Null}" Foreground="#FFBD2A2A" BorderBrush="{x:Null}" >
+                                        <materialDesign:PackIcon Kind="Recycle" Height="36" Width="36" Foreground="#FFE6E6E6"/>
+                                    </Button>
+                                    <Button x:Name="btnBusquedaProductos_fav" Background="{x:Null}" Margin="8 0 16 0" BorderBrush="{x:Null}" Foreground="#FFFF9600" Style="{StaticResource BtnClear}">
+                                        <materialDesign:PackIcon x:Name="masVendidos_estrella" Kind="Star" Height="36" Width="36" VerticalAlignment="Center"/>
+                                    </Button>
+                                    <Button x:Name="btnBuscarLupa" Background="{x:Null}" Margin="8 0 16 0" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Style="{StaticResource BtnClear}">
+                                        <materialDesign:PackIcon x:Name="lupa" Kind="Magnify" Height="36" Width="36" VerticalAlignment="Center"/>
+                                    </Button>
+                                    <Button x:Name="btnTodo" Content="T" FontSize="28" Background="{x:Null}" Margin="8 0 16 12" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Style="{StaticResource BtnClear}"/>
+                                    <Button x:Name="btnCategoria" Content="C" FontSize="28" Background="{x:Null}" Margin="8 0 16 12" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Style="{StaticResource BtnClear}"/>
+                                </StackPanel>
+                            </Border>
+                            <!--<Expander Name="expBuscarLupa" Style="{StaticResource ExpanderStyleSinHeader}" Background="{x:Null}" BorderBrush="{x:Null}">
+                                <Border DockPanel.Dock="Left" Height="56" Width="220" Margin="0,0,0,0">
+                                    <TextBox x:Name="txtBuscar" Height="60" FontSize="22" Background="#FF020206" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="BUSCAR" materialDesign:HintAssist.HintOpacity=".9" VerticalContentAlignment="Center"/>
+                                </Border>
+                            </Expander>-->
+                        </WrapPanel>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Expander Background="#FF04050A" ExpandDirection="Left" HorizontalAlignment="Left" Style="{StaticResource ExpanderStyleSinHeader}">
+                                <ScrollViewer Width="300">
+                                    <ScrollViewer.Resources>
+                                        <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">50</sys:Double>
+                                    </ScrollViewer.Resources>
+                                    <StackPanel Name="spCategoria">
+                                        <Button Content="CATEGORÍA 1" Background="#FF020206" Foreground="#FFDDE0E2" Margin="4" FontSize="28" Height="60" Style="{StaticResource BtnClear}"/>
+                                        <Button Content="CATEGORÍA 2" Background="#FF020206" Foreground="#FFDDE0E2" Margin="4" FontSize="28" Height="60" Style="{StaticResource BtnClear}"/>
+                                        <Button Content="CATEGORÍA 3" Background="#FF020206" Foreground="#FFDDE0E2" Margin="4" FontSize="28" Height="60" Style="{StaticResource BtnClear}"/>
+                                        <Button Content="CATEGORÍA 4" Background="#FF020206" Foreground="#FFDDE0E2" Margin="4" FontSize="28" Height="60" Style="{StaticResource BtnClear}"/>
+                                        <Button Content="CATEGORÍA 5" Background="#FF020206" Foreground="#FFDDE0E2" Margin="4" FontSize="28" Height="60" Style="{StaticResource BtnClear}"/>
+                                        <Button Content="CATEGORÍA 6" Background="#FF020206" Foreground="#FFDDE0E2" Margin="4" FontSize="28" Height="60" Style="{StaticResource BtnClear}"/>
+                                        <Button Content="CATEGORÍA 7" Background="#FF020206" Foreground="#FFDDE0E2" Margin="4" FontSize="28" Height="60" Style="{StaticResource BtnClear}"/>
+                                        <Button Content="CATEGORÍA 7" Background="#FF020206" Foreground="#FFDDE0E2" Margin="4" FontSize="28" Height="60" Style="{StaticResource BtnClear}"/>
+                                        <Button Content="CATEGORÍA 7" Background="#FF020206" Foreground="#FFDDE0E2" Margin="4" FontSize="28" Height="60" Style="{StaticResource BtnClear}"/>
+                                        <Button Content="CATEGORÍA 7" Background="#FF020206" Foreground="#FFDDE0E2" Margin="4" FontSize="28" Height="60" Style="{StaticResource BtnClear}"/>
+                                        <Button Content="CATEGORÍA 7" Background="#FF020206" Foreground="#FFDDE0E2" Margin="4" FontSize="28" Height="60" Style="{StaticResource BtnClear}"/>
+                                        <Button Content="CATEGORÍA 7" Background="#FF020206" Foreground="#FFDDE0E2" Margin="4" FontSize="28" Height="60" Style="{StaticResource BtnClear}"/>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </Expander>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <ScrollViewer HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto">
+                                <ScrollViewer.Resources>
+                                    <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">40</sys:Double>
+                                </ScrollViewer.Resources>
+                                <WrapPanel x:Name="wrapEscogerProductos" HorizontalAlignment="Center">
+                                </WrapPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <!-- Fin Buscar Producto-->
+
+            <!-- Inicio ItemsVenta -->
+            <Grid Grid.Column="1" Background="#bdc3c7">
+            </Grid>
+            <!-- Fin ItemsVenta -->
+
+        </Grid>
+        <!-- Fin Principal -->
+
+        <!-- Inicio Barra información -->
+        <Grid Grid.Row="1" Background="#FF04050A">
+            <Expander x:Name="expInfo" Style="{StaticResource ExpanderStyleSinHeader}" IsExpanded="True">
+
+                <DockPanel Background="#FF04050A">
+                    <Border DockPanel.Dock="Right" HorizontalAlignment="Right" Height="30" Background="{x:Null}" BorderBrush="{x:Null}">
+                        <StackPanel x:Name="spInfo" Orientation="Horizontal" HorizontalAlignment="Right">
+
+                            <Label x:Name="lbFecha" VerticalContentAlignment="Center" Margin="0,0,4,0"/>
+                            <!--<Ellipse x:Name="ellipseInternetStatus" Width="15" Height="15" Fill="SeaGreen" Margin="0,0,8,0"/>-->
+                            <Label x:Name="internetStatus" VerticalContentAlignment="Center">
+                                <materialDesign:PackIcon Kind="Wifi" />
+                            </Label>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="{x:Null}">
+                        <DockPanel>
+                            <Border DockPanel.Dock="Left">
+                                <Label x:Name="lbInfo" Content="VENTA" Margin="4,0,16,0" FontSize="14" VerticalContentAlignment="Center" FontWeight="Medium" Foreground="#DDE8E8E8"/>
+                            </Border>
+                            <Border DockPanel.Dock="Right">
+                                <Button HorizontalAlignment="Right" Foreground="#f9f9f9" Background="{x:Null}" Style="{StaticResource BtnClear}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Information" Width="22" Height="22" VerticalAlignment="Center"/>
+                                        <Label Content="2" VerticalContentAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+                            </Border>
+                            <Border DockPanel.Dock="Right">
+                                <Label x:Name="lbUsuario" Content="Usuario: Christopher Kiessling" Margin="4,0,4,0" FontSize="14" VerticalContentAlignment="Center" FontWeight="Medium" Foreground="#DDE8E8E8" HorizontalContentAlignment="Right"/>
+                            </Border>
+                        </DockPanel>
+                    </Border>
+                </DockPanel>
+            </Expander>
+        </Grid>
+        <!-- Fin Barra información -->
+
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="posk.Controls.ItemAgregarLineaBoleta"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls"
+             
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+             
+             mc:Ignorable="d" >
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Background="#FFC9C9C9" Margin="4">
+        <StackPanel Orientation="Horizontal" Margin="4">
+            <TextBox x:Name="txtCodigo" Margin="4" Width="100" materialDesign:HintAssist.Hint="Código Producto" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black"/>
+            <ComboBox x:Name="cbProductos" Width="150" Margin="4" VerticalAlignment="Bottom" materialDesign:HintAssist.Hint="Producto" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Foreground="Black"/>
+            <Button x:Name="btnQuitarUnidad" Content="-" FontSize="20" Margin="8 0 4 0" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource BtnClear}" />
+            <Label x:Name="lbCantidad" Content="x200" Margin="4 4 0 0" FontSize="20" Foreground="Black"/>
+            <Button x:Name="btnAgregarUnidad" Content="+" FontSize="20" Margin="8 0 4 0" Background="{x:Null}" BorderBrush="{x:Null}" Style="{StaticResource BtnClear}" />
+            <Label x:Name="lbMonto" Content="$290000" Margin="4 4 4 0" FontSize="20" Foreground="Black"/>
+        </StackPanel>
+        <Button x:Name="btnAgregar" Content="Agregar" Background="#040404" Foreground="Gainsboro" BorderBrush="{x:Null}" Margin="4" materialDesign:ShadowAssist.ShadowDepth="Depth0"/>
+    </StackPanel>
+</UserControl>

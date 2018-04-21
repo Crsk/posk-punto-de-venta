@@ -1,0 +1,338 @@
+﻿<UserControl x:Class="posk.Components.PageAdministrarProducto"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Components"
+             mc:Ignorable="d" 
+      xmlns:custom="clr-namespace:posk.Globals"
+      xmlns:controls="clr-namespace:posk.Controls"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:Converters="clr-namespace:MaterialDesignThemes.Wpf.Converters;assembly=MaterialDesignThemes.Wpf"
+      d:DesignHeight="640" d:DesignWidth="1200"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      Background="#FF0F0F0F">
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Bottom" Background="#FF020202">
+            <Border x:Name="borderTecladoNumerico" DockPanel.Dock="Bottom" Background="#FF020202">
+
+            </Border>
+            <Border DockPanel.Dock="Bottom" VerticalAlignment="Center">
+
+                <Expander x:Name="expInfo" Style="{StaticResource ExpanderStyleSinHeader}" IsExpanded="True">
+
+                    <DockPanel Background="#FF020202">
+                        <Border DockPanel.Dock="Right" HorizontalAlignment="Right" Height="30" Background="{x:Null}" BorderBrush="{x:Null}">
+                            <StackPanel x:Name="spInfo" Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Label x:Name="lbFecha" VerticalContentAlignment="Center" Margin="0,0,4,0"/>
+                                <Label x:Name="internetStatus" VerticalContentAlignment="Center">
+                                    <materialDesign:PackIcon Kind="Wifi" />
+                                </Label>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="{x:Null}">
+                            <DockPanel>
+                                <Border>
+                                    <Label x:Name="lbInfo" Content="VENTA" Margin="4,0,0,0" FontSize="14" VerticalContentAlignment="Center" FontWeight="Medium" Foreground="#DDE8E8E8"/>
+                                </Border>
+                                <Border>
+                                    <Label x:Name="lbUsuario" Content="Usuario: Christopher Kiessling" Margin="4,0,4,0" FontSize="14" VerticalContentAlignment="Center" FontWeight="Medium" Foreground="#DDE8E8E8" HorizontalContentAlignment="Right"/>
+                                </Border>
+                            </DockPanel>
+                        </Border>
+                    </DockPanel>
+                </Expander>
+            </Border>
+        </DockPanel>
+        <Grid>
+            <Grid DockPanel.Dock="Bottom">
+            </Grid>
+            <Border DockPanel.Dock="Top">
+                <DockPanel>
+                    <Border DockPanel.Dock="Right" Width="360">
+                        <DockPanel VerticalAlignment="Bottom">
+                            <Expander 
+            x:Name="expAsociacion" 
+            DockPanel.Dock="Right" 
+            ExpandDirection="Left"
+            IsExpanded="True"
+            Margin="8,0,0,0"
+            MinHeight="600"
+            Background="#FFD6D6D6"
+            Foreground="Black"
+            Style="{StaticResource ExpanderStyleFiltro}">
+                                <DockPanel Width="332">
+                                    <Border DockPanel.Dock="Top" Height="158" Margin="8,8,0,0">
+                                        <DockPanel>
+                                            <Border DockPanel.Dock="Left">
+                                                <StackPanel>
+                                                    <Button 
+                                    Width="160"
+                                    Height="120" 
+                                    materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                                    Style="{DynamicResource BtnClear}" Background="#FFCBCBCB" BorderBrush="#FFCBCBCB">
+                                                        <custom:ItemName_Image
+                                            x:Name="imgProducto"
+                                            Width="160" 
+                                            Height="120"/>
+                                                    </Button>
+                                                    <Button 
+                                    x:Name="btnBuscaImagen" 
+                                    IsEnabled="False"
+                                    VerticalAlignment="Bottom"
+                                    Click="btnBuscaImagen_Click"
+                                    Margin="0,0,0,32"
+                                    Background="#FF212121" 
+                                    BorderBrush="#FF212121" 
+                                    Foreground="#FFF0F0F0">
+                                                        <materialDesign:PackIcon Kind="Camera" Height="18" Width="18"/>
+                                                    </Button>
+                                                </StackPanel>
+                                            </Border>
+                                            <Border>
+                                                <DockPanel>
+                                                    <Border DockPanel.Dock="Right">
+                                                    </Border>
+                                                    <Border>
+                                                        <StackPanel x:Name="spProductItems1" VerticalAlignment="Bottom">
+
+                                                            <StackPanel x:Name="spStock" Orientation="Horizontal">
+                                                                <TextBox
+                                                x:Name="txtStock"
+                                                Width="92"
+                                                Margin="8"
+                                            VerticalAlignment="Top"
+                                            HorizontalAlignment="Left"
+                                                Foreground="Black"
+                                                materialDesign:HintAssist.Hint="STOCK"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                                                <Button 
+                                                    x:Name="btnStock"
+                                                    Background="#FF212121" 
+                                                    BorderBrush="#FF212121" 
+                                                    Foreground="#FFF0F0F0" Click="btnStock_Click">
+                                                                    <materialDesign:PackIcon Kind="Information" />
+                                                                </Button>
+                                                            </StackPanel>
+
+
+
+                                                            <TextBox
+                                            x:Name="txtNombre"
+                                            Foreground="Black"
+                                            Width="150"
+                                            Margin="8"
+                                            VerticalAlignment="Top"
+                                            HorizontalAlignment="Left"
+                                            materialDesign:HintAssist.Hint="NOMBRE"
+                                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextInput="txtNombre_TextInput" KeyDown="txtNombre_KeyDown" TextChanged="txtNombre_TextChanged" />
+                                                            <TextBox
+                                                x:Name="txtBarCode"
+                                                Width="150"
+                                                Foreground="Black"
+                                                Margin="8"
+                                            VerticalAlignment="Top"
+                                            HorizontalAlignment="Left"
+                                                materialDesign:HintAssist.Hint="CODIGO BARRAS"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                                            <TextBox
+                                                x:Name="txtStockInicial"
+                                                Width="150"
+                                                Foreground="Black"
+                                                Margin="8"
+                                            VerticalAlignment="Top"
+                                            HorizontalAlignment="Left"
+                                                materialDesign:HintAssist.Hint="STOCK INICIAL"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                                            <!--<TextBox
+                                            x:Name="txtImage"
+                                            Foreground="Black"
+                                            IsReadOnly="True"
+                                            Margin="8,8,0,0"
+                                            materialDesign:HintAssist.Hint="IMAGEN"
+                                            TextChanged="txtImagen_TextChanged"
+                                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" >
+                                        </TextBox>-->
+                                                        </StackPanel>
+                                                    </Border>
+                                                </DockPanel>
+                                            </Border>
+                                        </DockPanel>
+                                    </Border>
+                                    <Border DockPanel.Dock="Bottom" Background="#FFD6D6D6">
+                                        <DockPanel>
+                                            <Border DockPanel.Dock="Top">
+                                                <StackPanel>
+                                                    <DockPanel>
+                                                        <Border Margin="0,0,0,8">
+                                                            <WrapPanel x:Name="spProductItems2" HorizontalAlignment="Left">
+                                                                <TextBox
+                                                x:Name="txtCost"
+                                                Width="150"
+                                                Margin="8"
+                                                Foreground="Black"
+                                                materialDesign:HintAssist.Hint="PRECIO COMPRA BRUTO"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                                                <StackPanel x:Name="spPrice" Orientation="Horizontal">
+                                                                    <TextBox
+                                                    x:Name="txtPrice"
+                                                    Width="105"
+                                                    Margin="8,8,0,8"
+                                                    Foreground="Black"
+                                                    materialDesign:HintAssist.Hint="PRECIO VENTA BRUTO"
+                                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                                                    <Button 
+                                                    x:Name="btnPriceInfo"
+                                                    Background="#FF212121" 
+                                                    BorderBrush="#FF212121" 
+                                                    Foreground="#FFF0F0F0" Click="btnStock_Click">
+                                                                        <materialDesign:PackIcon Kind="Information" />
+                                                                    </Button>
+                                                                </StackPanel>
+                                                                <!--<TextBox
+                                                x:Name="txtUtilidadPct"
+                                                Width="150"
+                                                Margin="8"
+                                                IsReadOnly="True"
+                                                Foreground="Black"
+                                                materialDesign:HintAssist.Hint="% UTILIDAD"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextChanged="txtUtilidadPct_TextChanged"/>
+                                            <TextBox
+                                                x:Name="txtUtilidad"
+                                                IsReadOnly="True"
+                                                Width="150"
+                                                Margin="8,8,0,8"
+                                                Foreground="Black"
+                                                materialDesign:HintAssist.Hint="UTILIDAD"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextChanged="txtUtilidad_TextChanged"/>-->
+                                                                <TextBox
+                                                x:Name="txtPoints"
+                                                Width="150"
+                                                Margin="8"
+                                                Foreground="Black"
+                                                materialDesign:HintAssist.Hint="PUNTOS"
+                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                                                <StackPanel Orientation="Horizontal" Width="150" Margin="8">
+                                                                    <custom:ItemName_TextBox
+                                                    x:Name="txtCategory"
+                                                    Width="110"
+                                                    IsReadOnly="True"
+                                                    Foreground="Black"
+                                                    materialDesign:HintAssist.Hint="CATEGORIA"
+                                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                                                                    <Button 
+                                                    x:Name="btnCategory"
+                                                    Content="..." 
+                                                    Background="#FF212121" 
+                                                    BorderBrush="#FF212121" 
+                                                    Foreground="#FFF0F0F0"/>
+                                                                </StackPanel>
+                                                                <StackPanel Orientation="Horizontal" Width="150" Margin="8">
+                                                                    <custom:ItemName_TextBox
+                                                    x:Name="txtSubCategory"
+                                                    Width="110"
+                                                    Foreground="Black"
+                                                    IsReadOnly="True"
+                                                    materialDesign:HintAssist.Hint="SUB CATEGORIA"
+                                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                                                    <Button 
+                                                    x:Name="btnSubCategory"
+                                                    Content="..." 
+                                                    Background="#FF212121" 
+                                                    BorderBrush="#FF212121" 
+                                                    Foreground="#FFF0F0F0"/>
+                                                                </StackPanel>
+                                                                <StackPanel Orientation="Horizontal" Width="150" Margin="8">
+                                                                    <custom:ItemName_TextBox
+                                                    x:Name="txtSupplier"
+                                                    Width="110"
+                                                    Foreground="Black"
+                                                    IsReadOnly="True"
+                                                    materialDesign:HintAssist.Hint="PROVEEDOR"
+                                                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                                                    <Button 
+                                                    x:Name="btnProveedor"
+                                                    Content="..." 
+                                                    Background="#FF212121" 
+                                                    BorderBrush="#FF212121" 
+                                                    Foreground="#FFF0F0F0"/>
+                                                                </StackPanel>
+                                                            </WrapPanel>
+                                                        </Border>
+                                                    </DockPanel>
+                                                    <StackPanel x:Name="spBtnCrearEliminar" Orientation="Horizontal" HorizontalAlignment="Center">
+                                                        <Button 
+                                        x:Name="btnEditarCrear" 
+                                        Content="CREAR"
+                                        Margin="8" Width="120"
+                                        Background="#FF212121" 
+                                        BorderBrush="#FF212121" 
+                                        Foreground="#FFF0F0F0" Click="btnEditarCrear_Click"/>
+                                                    </StackPanel>
+                                                    <!--<Label 
+                                    x:Name="lbInfo"
+                                    Content="(SELECCIONA UN PRODUCTO PARA EDITARLO)"
+                                    Foreground="Black"
+                                    HorizontalAlignment="Center"/>-->
+                                                </StackPanel>
+                                            </Border>
+                                        </DockPanel>
+                                    </Border>
+                                </DockPanel>
+                            </Expander>
+                        </DockPanel>
+                    </Border>
+                    <Border DockPanel.Dock="Left">
+                        <DockPanel Background="#040404">
+                            <Border DockPanel.Dock="Top">
+                                <DockPanel Margin="0 0 8 0">
+                                    <Border DockPanel.Dock="Right">
+                                        <Button x:Name="btnTecladoToggle" Margin="16,0,8,0" FontSize="10" Width="40" Height="60" Background="{x:Null}" Foreground="#FFE6E6E6" BorderThickness="0" Style="{DynamicResource BtnClear}" materialDesign:ShadowAssist.ShadowDepth="Depth0" BorderBrush="{x:Null}">
+                                            <materialDesign:PackIcon Kind="Keyboard" Height="36" Width="36"/>
+                                        </Button>
+                                    </Border>
+                                    <Border DockPanel.Dock="Right" Background="{x:Null}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button x:Name="btnLimpiarBusqueda" Width="100" Height="60" HorizontalAlignment="Right" Background="{x:Null}" Foreground="#FFBD2A2A" BorderBrush="{x:Null}" >
+                                                <materialDesign:PackIcon Kind="Recycle" Height="36" Width="36" Foreground="#FFE6E6E6"/>
+                                            </Button>
+                                            <Button x:Name="btnBusquedaProductos_fav" Background="{x:Null}" Margin="8 0 16 0" BorderBrush="{x:Null}" Foreground="#FFFF9600" Style="{StaticResource BtnClear}">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <materialDesign:PackIcon x:Name="masVendidos_estrella" Kind="Star" Height="36" Width="36" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Button>
+                                        </StackPanel>
+                                    </Border>
+                                    <Border DockPanel.Dock="Left" Height="56" Margin="0,0,0,0">
+                                        <TextBox x:Name="txtBuscar" Height="60" FontSize="26" Background="#020202" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="BUSCAR" materialDesign:HintAssist.HintOpacity=".9" VerticalContentAlignment="Center"/>
+                                    </Border>
+                                </DockPanel>
+                            </Border>
+                            <Border x:Name="borderTeclado" DockPanel.Dock="Bottom" Background="#020202" >
+                            </Border>
+                            <Border DockPanel.Dock="Top" Margin="0">
+                                <ScrollViewer HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto">
+                                    <WrapPanel x:Name="wrapProductos" HorizontalAlignment="Center">
+                                    </WrapPanel>
+                                </ScrollViewer>
+                            </Border>
+                        </DockPanel>
+                    </Border>
+                </DockPanel>
+            </Border>
+            <Grid x:Name="gridGray" Background="#FC000002" Visibility="Hidden" Cursor="Hand"/>
+
+            <Border Visibility="Visible">
+                <Expander x:Name="expPopup" Background="{x:Null}" Style="{StaticResource ExpanderStyleSinHeader}" VerticalContentAlignment="Bottom"/>
+            </Border>
+
+            <Border Visibility="Visible">
+                <Expander x:Name="expTecladoPopup" Background="{x:Null}" Style="{StaticResource ExpanderStyleSinHeader}" VerticalContentAlignment="Bottom"/>
+            </Border>
+        </Grid>
+    </DockPanel>
+</UserControl>

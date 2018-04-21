@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="posk.Controls.ItemMedioPago"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto">
+    <Grid>
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+            <ComboBox x:Name="cbMedioPago" Width="120" materialDesign:HintAssist.Hint="MEDIO DE PAGO" Foreground="Black" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

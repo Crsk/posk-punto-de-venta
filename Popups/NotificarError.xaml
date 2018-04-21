@@ -1,0 +1,35 @@
+﻿<Window x:Class="posk.Popups.NotificarError"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:posk.Popups"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+        Title="WindowMensajePopup" Height="190" Width="380" AllowsTransparency="True" WindowStyle="None">
+    <Button x:Name="btnCerrar" Height="190" Width="380" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{StaticResource BtnClear}" Background="{x:Null}">
+        <Grid>
+            <Border x:Name="borderFondo" Height="190" Width="380" Background="#a82100">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Name="lbMensaje" Text="OCURRIÓ UN ERROR" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" Foreground="#fafafa" TextWrapping="Wrap"/>
+                    <TextBlock Name="tbMensajeSecundario" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" MaxWidth="340" Foreground="#fafafa" TextWrapping="Wrap"/>
+                    <Label Content="¿Que deseas hacer?" HorizontalAlignment="Center" Foreground="#020202" Margin="0 16 0 0"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="btnNada" Content="NADA" Margin="4" FontSize="12" Background="#c93d14" BorderBrush="{x:Null}"/>
+                        <Button x:Name="btnEnviarCorreo" Margin="4" Height="40" Background="#c93d14" BorderBrush="{x:Null}">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Email" VerticalAlignment="Center"/>
+                                <StackPanel>
+                                    <Label Content="NOTIFICAR A SOPORTE (SOLO UN CLICK)" Foreground="#020202" FontSize="12" Margin="0 -2 0 0"/>
+                                    <Label Content="REQUIERE CONEXIÓN A INTERNET" FontSize="9" HorizontalContentAlignment="Center" Foreground="#020202" Margin="0 -4 0 0" Padding="0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Button>
+</Window>

@@ -1,0 +1,8 @@
+﻿<UserControl x:Class="posk.Controls.ItemAccion"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+    <Button x:Name="btnAccion" Content="ACCIÓN" Margin="8" Style="{StaticResource BtnClear}" Background="#19000000" Foreground="#fafafa" Padding="4"/>
+</UserControl>
