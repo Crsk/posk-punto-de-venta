@@ -316,26 +316,51 @@ namespace posk.Controls
             if (Promocion != null)
                 total += Promocion.precio * Cantidad;
 
-            int cantidadIngredientes = 0;
+            int cantidadIngr = 0;
+            int limiteIngr = 0;
+            int valorIngExtra = 500;
             if (listaAgregadosSushi != null)
             {
                 if (Producto.es_handroll == true)
                 {
-                    listaAgregadosSushi.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => cantidadIngredientes += x.Cantidad);
-                    if (cantidadIngredientes >= 2) cobroExtra = 500 * (cantidadIngredientes - 2);
+                    limiteIngr = 2;
+                    listaAgregadosSushi.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => cantidadIngr += x.Cantidad);
+                    if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
                 }
                 else if (Producto.es_superhandroll == true)
                 {
-                    listaAgregadosSushi.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => cantidadIngredientes += x.Cantidad);
-                    if (cantidadIngredientes >= 3) cobroExtra = 500 * (cantidadIngredientes - 3);
+                    limiteIngr = 3;
+                    listaAgregadosSushi.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => cantidadIngr += x.Cantidad);
+                    if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
                 }
                 else
                 {
-                    listaAgregadosSushi.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => cantidadIngredientes += x.Cantidad);
-                    if (cantidadIngredientes >= 5) cobroExtra = 500 * (cantidadIngredientes - 5);
+                    limiteIngr = 5;
+                    listaAgregadosSushi.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => cantidadIngr += x.Cantidad);
+                    if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
                 }
             }
-            
+            int cantidadIngrTabla = 0; // la cantidad de ingredientes que tiene la tabla contando todos sus rollos
+            int? limiteIngrTabla = 0; // la cantidad de ingredientes que debería tener una tabla contando todos sus rollos (sin ing extra)
+            int? ingredienteExtraTabla = 0; // la cantidad de ingredientes extra que tiene una tabla considerando todos los rollos
+            int limiteIngrRolloTabla = 5; // el numero de ingredientes que debería tener cada rollo de la tabla (sin ing extra)
+            int valorIngrExrtaTabla = 500; // el valor de un ingrediente extra en un rollo de tabla
+
+            if (ListaRollosTabla != null)
+            {
+                cobroExtra = 0;
+                ListaRollosTabla.ForEach(iv => iv.listaAgregadosSushi.ForEach(x => cantidadIngrTabla += x.Cantidad));
+                limiteIngrTabla = Producto.cantidad_rollos_tabla * limiteIngrRolloTabla;
+                ingredienteExtraTabla = cantidadIngrTabla - limiteIngrTabla;
+                if (cantidadIngrTabla >= limiteIngrTabla) cobroExtra = valorIngrExrtaTabla * (ingredienteExtraTabla);
+
+                if (total % 1 == 0)
+                    txtTotal.Text = $"{total + cobroExtra}";
+                else
+                    txtTotal.Text = $"${Convert.ToInt32(total) + cobroExtra}";
+                return (int)total;
+            }
+
 
             if (total % 1 == 0)
                 txtTotal.Text = $"{total + cobroExtra}";

@@ -19,6 +19,7 @@ namespace posk.Controls
 {
     public partial class ItemRolloArmarTabla : UserControl
     {
+        public string EnvolturaSeleccionada { get; set; }
         public ItemRolloArmarTabla()
         {
             InitializeComponent();
