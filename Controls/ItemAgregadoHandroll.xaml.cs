@@ -1,4 +1,5 @@
 ﻿using posk.Models;
+using System;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -9,6 +10,7 @@ namespace posk.Controls
         public agregado Agregado { get; set; }
         public int CobroExtra { get; set; }
         public int Cantidad { get; set; }
+        //public event EventHandler AlModificarCantidad;
 
         public ItemAgregadoHandroll(bool bEsconderContador = false)
         {
@@ -35,11 +37,16 @@ namespace posk.Controls
                     btnAgregado.Background = (Brush)bc.ConvertFrom("#004F2B");
                 }
             };
-            btnAgregado.Click += (se, a) => lbCantidad.Content = $"{++Cantidad}";
+            btnAgregado.Click += (se, a) =>
+            {
+                lbCantidad.Content = $"{++Cantidad}";
+                //AlModificarCantidad.Invoke(this, null);
+            };
             btnQuitarUnidad.Click += (se, a) => 
             {
                 if (Cantidad >= 1)
                     lbCantidad.Content = $"{--Cantidad}";
+                //AlModificarCantidad.Invoke(this, null);
             };
         }
     }

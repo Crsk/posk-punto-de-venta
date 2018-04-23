@@ -23,11 +23,14 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0" Margin="0 8 0 8">
-                <ComboBox x:Name="cbEnvolturas" MinWidth="100" Margin="4 0 0 0" materialDesign:HintAssist.Hint="Envoltura" Width="220" Style="{StaticResource MaterialDesignFloatingHintComboBox}" HorizontalAlignment="Left"/>
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                    <Label x:Name="lbSeleccionaMsg" Content="SELECCIONA " Foreground="ForestGreen" VerticalAlignment="Center"/>
-                    <Label x:Name="lbSeleccion" Foreground="ForestGreen" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </StackPanel>
+                    <StackPanel>
+                        <Label x:Name="lbEnvolturaDefecto" Content="Envoltura por defecto: Palta" Foreground="#FF5E5E5E" Padding="0"/>
+                        <ComboBox x:Name="cbEnvolturas" MinWidth="100" Margin="4 0 0 0" materialDesign:HintAssist.Hint="Envoltura" Width="220" Style="{StaticResource MaterialDesignFloatingHintComboBox}" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Label x:Name="lbSeleccionaMsg" Content="SELECCIONA " Foreground="ForestGreen" VerticalAlignment="Center"/>
+                        <Label x:Name="lbSeleccion" Foreground="ForestGreen" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </StackPanel>
                 </Grid>
             </Grid>
             <Grid Grid.Row="1">

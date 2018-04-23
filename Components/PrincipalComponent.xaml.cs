@@ -1977,11 +1977,12 @@ namespace posk.Components
                 };
                 //borderAccionCentro.Child = btnImprimir;
 
-                if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.RESTAURANT.ToString()))
+                if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.RESTAURANT.ToString()) || GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.SUSHI.ToString()))
                 {
                     if (spMensaje.Children.OfType<ItemMensajeCocina>().ToList().Count == 0)
                         spMensaje.Children.Add(imc);
 
+                    /*
                     if (!Settings.Usuario.tipo.ToLower().Equals("g"))
                     {
                         if (spGarzonMesa.Children.OfType<ItemEscogerGarzonSeccionVenta>().ToList().Count == 0)
@@ -1993,6 +1994,7 @@ namespace posk.Components
                     {
                         spMedioDePago.Children.Add(imp);
                     }
+                    */
                 }
 
                 if (!Settings.Usuario.tipo.ToLower().Equals("g"))
@@ -3187,20 +3189,32 @@ namespace posk.Components
                                 ticket.TextoIzquierda($"*** ROLLO #{count}:");
                                 ticket.TextoIzquierda($"ENVOLTURA: {rolloTablaIV.Envoltura.nombre}");
                                 ticket.TextoIzquierda($"{rolloTablaIV.ObtenerAgregadosStr()}");
+
+                                if (item.Envoltura != null)
+                                    ticket.TextoIzquierda($"ENVOLTURA: {item.Envoltura.nombre}");
+                                if (item.listaAgregadosSushi != null)
+                                    ticket.TextoIzquierda($"{item?.ObtenerAgregadosStr()}");
+                                if (!string.IsNullOrEmpty(item.txtNota?.Text))
+                                    ticket.TextoIzquierda("   " + item.txtNota?.Text.ToUpper());
+                                ticket.TextoIzquierda("");
+
                                 ticket.TextoIzquierda($"***");
                                 count++;
                             });
                         }
-                        if (item.Envoltura != null)
-                            ticket.TextoIzquierda($"ENVOLTURA: {item.Envoltura.nombre}");
-                        if (item.listaAgregadosSushi != null)
-                            ticket.TextoIzquierda($"{item?.ObtenerAgregadosStr()}");
-                        if (!string.IsNullOrEmpty(item.txtNota?.Text))
-                            ticket.TextoIzquierda("   " + item.txtNota?.Text.ToUpper());
-                        ticket.TextoIzquierda("");
+                        else
+                        {
+                            if (item.Envoltura != null)
+                                ticket.TextoIzquierda($"ENVOLTURA: {item.Envoltura.nombre}");
+                            if (item.listaAgregadosSushi != null)
+                                ticket.TextoIzquierda($"{item?.ObtenerAgregadosStr()}");
+                            if (!string.IsNullOrEmpty(item.txtNota?.Text))
+                                ticket.TextoIzquierda("   " + item.txtNota?.Text.ToUpper());
+                            ticket.TextoIzquierda("");
 
-                        if (bEsPedido == true)
-                            ticket.lineasGuion();
+                            if (bEsPedido == true)
+                                ticket.lineasGuion();
+                        }
                     }
                     ticket.TextoIzquierda("");
                     //ticket.lineasGuion();
@@ -3242,7 +3256,8 @@ namespace posk.Components
                         ticket.linea.Clear();
                         ticket.TextoCentro($"TICKET CAJA");
                         ticket.TextoIzquierda("");
-                        ticket.TextoExtremos($"MESA: {mesa}".ToUpper(), $"PEDIDO ID: {pedidoId}".ToUpper());
+                        // ticket.TextoExtremos($"MESA: {mesa}".ToUpper(), $"PEDIDO ID: {pedidoId}".ToUpper());
+                        ticket.TextoIzquierda($"MESA: {mesa}".ToUpper());
                         if (!string.IsNullOrEmpty(garzon))
                             ticket.TextoIzquierda($"GARZON: {garzon}".ToUpper());
                         ticket.TextoExtremos("FECHA: " + DateTime.Now.ToShortDateString(), "HORA: " + DateTime.Now.ToShortTimeString());
@@ -3352,8 +3367,7 @@ namespace posk.Components
 
                 //Imprimir.PrintText("Texto de prueba a bar", Settings.ImpresoraBar);
                 //Imprimir.PrintText("Texto de prueba a cocina", Settings.ImpresoraCocina);
-
-                ticket.ImprimirTicket(Settings.ImpresoraBar, "Ticket Caja");
+    
                 if (contadorProductosCocina != 0 && bEsPedido && !bParaBar)
                     ticket.ImprimirTicket(Settings.ImpresoraCocina, "Ticket Cocina");
 
@@ -3362,6 +3376,7 @@ namespace posk.Components
                 if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.SUSHI.ToString()) && bYaRealizado == false)
                 {
                     bYaRealizado = true;
+                    ticket.ImprimirTicket(Settings.ImpresoraBar, "Ticket Caja");
                     GenerarTicket(subTotal, garzon, mesa, "-1", docName, di);
                     bYaRealizado = false;
                 }

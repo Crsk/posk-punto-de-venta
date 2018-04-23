@@ -16,9 +16,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition />
-            <RowDefinition  Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" >
+        <StackPanel Grid.Row="0">
             <Label Content="ARMAR TABLA" Foreground="Black" HorizontalContentAlignment="Center"/>
             <Label x:Name="lbTotal" Content="" Foreground="Black" HorizontalContentAlignment="Center"/>
         </StackPanel>

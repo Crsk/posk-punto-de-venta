@@ -16,6 +16,9 @@ namespace posk.Controls
         public int ProductoID { get; set; }
         public int? Cantidad { get; set; }
 
+        public int TotalIV { get; set; }
+
+
         public List<ItemVenta> ListaRollosTabla { get; set; }
 
         public bool Entrada { get; set; }
@@ -287,6 +290,12 @@ namespace posk.Controls
 
         public int CalcularTotal()
         {
+            //if (TotalIV != 0)
+            //{
+            //    txtTotal.Text = $"{TotalIV + Extra}";
+            //    return TotalIV + Extra;
+            //}
+
             //int? totalAgregados = 0;
 
             //if (AgregadoUno == null && AgregadoDos == null)
@@ -340,26 +349,33 @@ namespace posk.Controls
                     if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
                 }
             }
-            int cantidadIngrTabla = 0; // la cantidad de ingredientes que tiene la tabla contando todos sus rollos
-            int? limiteIngrTabla = 0; // la cantidad de ingredientes que debería tener una tabla contando todos sus rollos (sin ing extra)
-            int? ingredienteExtraTabla = 0; // la cantidad de ingredientes extra que tiene una tabla considerando todos los rollos
-            int limiteIngrRolloTabla = 5; // el numero de ingredientes que debería tener cada rollo de la tabla (sin ing extra)
-            int valorIngrExrtaTabla = 500; // el valor de un ingrediente extra en un rollo de tabla
 
             if (ListaRollosTabla != null)
             {
+                int cantidadIngrTabla = 0; // la cantidad de ingredientes que tiene la tabla contando todos sus rollos
+                int? limiteIngrTabla = 0; // la cantidad de ingredientes que debería tener una tabla contando todos sus rollos (sin ing extra)
+                int? ingredienteExtraTabla = 0; // la cantidad de ingredientes extra que tiene una tabla considerando todos los rollos
+                int limiteIngrRolloTabla = 5; // el numero de ingredientes que debería tener cada rollo de la tabla (sin ing extra)
+                int valorIngrExrtaTabla = 500; // el valor de un ingrediente extra en un rollo de tabla
+
                 cobroExtra = 0;
                 ListaRollosTabla.ForEach(iv => iv.listaAgregadosSushi.ForEach(x => cantidadIngrTabla += x.Cantidad));
                 limiteIngrTabla = Producto.cantidad_rollos_tabla * limiteIngrRolloTabla;
                 ingredienteExtraTabla = cantidadIngrTabla - limiteIngrTabla;
                 if (cantidadIngrTabla >= limiteIngrTabla) cobroExtra = valorIngrExrtaTabla * (ingredienteExtraTabla);
 
+                if (TotalIV != 0 && cobroExtra != null)
+                {
+                    txtTotal.Text = $"{TotalIV + cobroExtra}";
+                    return TotalIV + (int)cobroExtra;
+                }
                 if (total % 1 == 0)
                     txtTotal.Text = $"{total + cobroExtra}";
                 else
                     txtTotal.Text = $"${Convert.ToInt32(total) + cobroExtra}";
                 return (int)total;
             }
+
 
 
             if (total % 1 == 0)
