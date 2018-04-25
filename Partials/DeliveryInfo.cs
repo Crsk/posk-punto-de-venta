@@ -14,6 +14,8 @@ namespace posk.Partials
         public int Otro { get; set; }
         public int Propina { get; set; }
         public string NombreCliente { get; set; }
+        public string ServirLlevar { get; set; }
+        public string MensajeTicket { get; set; }
         public string Incluye { get; set; }
         public string IncluyeStrUnaLinea { get; set; }
 

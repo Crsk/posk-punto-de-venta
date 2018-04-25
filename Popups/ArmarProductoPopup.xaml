@@ -12,7 +12,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         
-        Title="DctoPopup" Height="420" Width="720"  AllowsTransparency="True" WindowStyle="None" Background="#FF060606" Foreground="#FFB9B9B9">
+        Title="DctoPopup" Height="580" Width="900"  AllowsTransparency="True" WindowStyle="None" Background="#FF060606" Foreground="#FFB9B9B9">
     <Grid Margin="8">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -41,7 +41,7 @@
             </Grid>
         <Grid Grid.Row="1"/>
         <Grid Grid.Row="2" Background="#FF060606" HorizontalAlignment="Center">
-            <Expander Name="expItemsUno" MaxHeight="170" Background="#FF060606" Foreground="#FFF0F0F0" ExpandDirection="Down" HorizontalAlignment="Left" Style="{StaticResource ExpanderStyleSinHeader}">
+            <Expander Name="expItemsUno" Background="#FF060606" Foreground="#FFF0F0F0" ExpandDirection="Down" HorizontalAlignment="Left" Style="{StaticResource ExpanderStyleSinHeader}">
                 <ScrollViewer>
                     <ScrollViewer.Resources>
                         <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">50</sys:Double>
@@ -51,7 +51,7 @@
             </Expander>
         </Grid>
         <Grid Grid.Row="3" Background="#FF060606" HorizontalAlignment="Center">
-            <Expander Name="expItemsDos" MaxHeight="170" Background="#FF060606" ExpandDirection="Down" HorizontalAlignment="Left" Style="{StaticResource ExpanderStyleSinHeader}">
+            <Expander Name="expItemsDos" Background="#FF060606" ExpandDirection="Down" HorizontalAlignment="Left" Style="{StaticResource ExpanderStyleSinHeader}">
                 <ScrollViewer>
                     <ScrollViewer.Resources>
                         <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">50</sys:Double>
@@ -61,7 +61,7 @@
             </Expander>
         </Grid>
         <Grid Grid.Row="4" Background="#FF060606" HorizontalAlignment="Center">
-            <Expander Name="expItemsTres" MaxHeight="170" Background="#FF060606" ExpandDirection="Down" HorizontalAlignment="Left" Style="{StaticResource ExpanderStyleSinHeader}">
+            <Expander Name="expItemsTres" Background="#FF060606" ExpandDirection="Down" HorizontalAlignment="Left" Style="{StaticResource ExpanderStyleSinHeader}">
                 <ScrollViewer>
                     <ScrollViewer.Resources>
                         <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">50</sys:Double>

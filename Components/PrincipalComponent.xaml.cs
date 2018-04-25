@@ -61,6 +61,9 @@ namespace posk.Components
 
         private ItemDcto itemDcto { get; set; }
 
+        public int Propina { get; set; }
+
+
         #endregion
 
         #region Constructor
@@ -1979,8 +1982,9 @@ namespace posk.Components
 
                 if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.RESTAURANT.ToString()) || GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.SUSHI.ToString()))
                 {
-                    if (spMensaje.Children.OfType<ItemMensajeCocina>().ToList().Count == 0)
-                        spMensaje.Children.Add(imc);
+                    // cambiado a popup
+                    //if (spMensaje.Children.OfType<ItemMensajeCocina>().ToList().Count == 0)
+                    //    spMensaje.Children.Add(imc);
 
                     /*
                     if (!Settings.Usuario.tipo.ToLower().Equals("g"))
@@ -2876,7 +2880,10 @@ namespace posk.Components
                         ticket.TextoIzquierda($"MESA: {mesa}".ToUpper());
                 }
                 else
-                    ticket.TextoExtremos($"MESA: {mesa}".ToUpper(), $"PEDIDO ID: {pedidoId}".ToUpper());
+                {
+                    //ticket.TextoExtremos($"MESA: {mesa}".ToUpper(), $"PEDIDO ID: {pedidoId}".ToUpper());
+                    ticket.TextoIzquierda($"MESA: {mesa}".ToUpper());
+                }
 
                 if (!string.IsNullOrEmpty(garzon))
                     ticket.TextoIzquierda($"GARZON: {garzon}".ToUpper());
@@ -3196,7 +3203,7 @@ namespace posk.Components
                                     ticket.TextoIzquierda($"{item?.ObtenerAgregadosStr()}");
                                 if (!string.IsNullOrEmpty(item.txtNota?.Text))
                                     ticket.TextoIzquierda("   " + item.txtNota?.Text.ToUpper());
-                                ticket.TextoIzquierda("");
+                                //ticket.TextoIzquierda("");
 
                                 ticket.TextoIzquierda($"***");
                                 count++;
@@ -3235,8 +3242,12 @@ namespace posk.Components
                     ticket.TextoCentro("");
                     if (di.NombreCliente != "")
                         ticket.TextoCentro($"Cliente: {di.NombreCliente}");
+                    if (di.ServirLlevar != "")
+                        ticket.TextoCentro($"Para {di.ServirLlevar.ToLower()}");
                     if (di.Incluye != "")
                         ticket.TextoCentro($"Salsas: {di.IncluyeStrUnaLinea}");
+                    if (di.MensajeTicket != "")
+                        ticket.TextoCentro($"Mensaje cocina: {di.MensajeTicket}");
                     ticket.TextoCentro("");
                 }
 
@@ -3332,11 +3343,17 @@ namespace posk.Components
                 if (!bEsPedido)
                 {
                     ticket.TextoIzquierda("");
-                    int propinaSugerida = Convert.ToInt32(subTotal * 0.10);
-                    int? total = propinaSugerida + subTotal;
-                    ticket.TextoIzquierda($"SubTotal:                     ${subTotal}".ToUpper());
-                    ticket.TextoIzquierda($"Propina sugerida (10%):       $ {propinaSugerida}".ToUpper());
-                    ticket.TextoIzquierda($"Total:                        ${total}".ToUpper());
+                    if (di.Propina != 0)
+                    {
+                        int? total = di.Propina + subTotal;
+                        ticket.TextoIzquierda($"SubTotal:                     ${subTotal}".ToUpper());
+                        ticket.TextoIzquierda($"Propina:                      $ {di.Propina}".ToUpper());
+                        ticket.TextoIzquierda($"Total:                        ${total}".ToUpper());
+                    }
+                    else
+                    {
+                        ticket.TextoIzquierda($"Total:                        ${subTotal}".ToUpper());
+                    }
                 }
                 else
                 {

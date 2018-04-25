@@ -26,6 +26,8 @@ namespace posk.Popups
         public int MontoJunaeb { get; set; }
         public int MontoOtro { get; set; }
 
+        private string ServirLlevarStr { get; set; }
+
         public string verde = "#FF0A7562";
         public string gris = "#FFC9C9C9";
         public string blanco = "#fff";
@@ -37,14 +39,42 @@ namespace posk.Popups
             InitializeComponent();
             this.MontoTotalSinPropina = montoTotalSinPropina;
 
-            bPropinaIncluida = true;
+            ServirLlevarStr = "SERVIR";
+
+            var bc = new BrushConverter();
+            btnServir.Background = (Brush)bc.ConvertFrom(verde);
+            btnServir.Foreground = (Brush)bc.ConvertFrom(blanco);
+            btnLlevar.Background = (Brush)bc.ConvertFrom(gris);
+            btnLlevar.Foreground = (Brush)bc.ConvertFrom(blanco);
+
+            btnServir.Click += (se, a) =>
+            {
+                ServirLlevarStr = "SERVIR";
+                btnServir.Background = (Brush)bc.ConvertFrom(verde);
+                btnServir.Foreground = (Brush)bc.ConvertFrom(blanco);
+                btnLlevar.Background = (Brush)bc.ConvertFrom(gris);
+                btnLlevar.Foreground = (Brush)bc.ConvertFrom(blanco);
+            };
+
+            btnLlevar.Click += (se, a) =>
+            {
+                ServirLlevarStr = "LLEVAR";
+                btnLlevar.Background = (Brush)bc.ConvertFrom(verde);
+                btnLlevar.Foreground = (Brush)bc.ConvertFrom(blanco);
+                btnServir.Background = (Brush)bc.ConvertFrom(gris);
+                btnServir.Foreground = (Brush)bc.ConvertFrom(blanco);
+            };
+
+            bPropinaIncluida = false;
+            tooglePropina.IsChecked = false;
             if (montoTotalSinPropina == 0) return;
 
             Propina = (montoTotalSinPropina * 10) / 100;
             MontoTotalConPropina = montoTotalSinPropina + Propina;
             MontoTotalSinPropina = montoTotalSinPropina;
 
-            lbTotal.Content = $"{MontoTotalConPropina}";
+            lbTotal.Content = $"{MontoTotalSinPropina}";
+            PropinaToogle(false, Propina);
 
             tooglePropina.Checked += (se, a) => PropinaToogle(true, Propina);
             tooglePropina.Unchecked += (se, a) => PropinaToogle(false, Propina);
@@ -92,8 +122,8 @@ namespace posk.Popups
                     if (impc.MedioPago.nombre.ToLower().Equals("efectivo"))
                     {
                         impc.txtMonto.TabIndex = 1;
-                        impc.txtMonto.Text = $"{MontoTotalConPropina}";
-                        MontoEfectivo = MontoTotalConPropina;
+                        impc.txtMonto.Text = $"{MontoTotalSinPropina}";
+                        MontoEfectivo = MontoTotalSinPropina;
                         CalcularMontos();
                         impc.txtMonto.TextChanged += (se2, a2) =>
                         {
@@ -236,6 +266,8 @@ namespace posk.Popups
                         Otro = otro,
                         Propina = propina,
                         NombreCliente = txtNombreCliente.Text,
+                        ServirLlevar = ServirLlevarStr,
+                        MensajeTicket = txtMensajeTicket.Text,
                         Incluye = incluyeStr,
                         IncluyeStrUnaLinea = incluyeStrUnaLinea
                     };

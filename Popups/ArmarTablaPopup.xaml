@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
             <Label Content="ARMAR TABLA" Foreground="Black" HorizontalContentAlignment="Center"/>
-            <Label x:Name="lbTotal" Content="" Foreground="Black" HorizontalContentAlignment="Center"/>
+            <Label x:Name="lbTotal" Content="" Foreground="Black" HorizontalContentAlignment="Center" Visibility="Hidden"/>
         </StackPanel>
         <ScrollViewer Grid.Row="1">
             <ScrollViewer.Resources>

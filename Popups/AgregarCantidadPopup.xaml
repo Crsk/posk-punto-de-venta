@@ -25,7 +25,7 @@
                     <materialDesign:PackIcon Kind="Close" />
                 </Button>
                 <Border Height="46">
-                    <TextBox x:Name="txtCantidad" Height="50" HorizontalContentAlignment="Center" Background="#FF060606" FontSize="24" VerticalContentAlignment="Center" Padding="16 0 16 0" />
+                    <TextBox x:Name="txtCantidad" Height="50" HorizontalContentAlignment="Center" Background="#FF202020" FontSize="24" VerticalContentAlignment="Center" Padding="16 0 16 0" />
                 </Border>
                 <Button x:Name="btnListo" Margin="16 0 0 0" Foreground="ForestGreen" Background="{x:Null}" Style="{StaticResource BtnClear}">
                     <materialDesign:PackIcon Kind="Check" />

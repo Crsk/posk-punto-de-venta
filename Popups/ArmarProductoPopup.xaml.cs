@@ -76,6 +76,8 @@ namespace posk.Popups
                         ActualizarLabelSeleccion();
                     }
                 }
+                wrapItemsTres.Children.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => x.lbCantidad.Content = "0");
+
             };
 
             AgregadoBLL.ObtenerPaltaCebollin().ForEach(agr =>
@@ -84,7 +86,6 @@ namespace posk.Popups
                 iah.btnAgregado.Click += (se, a) =>
                 {
                     Posicion = 3;
-                    PaltaCebollin = iah.Agregado;
                     expItemsDos.IsExpanded = false;
                     expItemsTres.IsExpanded = true;
                     PaltaCebollin = agr;
@@ -172,7 +173,8 @@ namespace posk.Popups
                 if (PaltaCebollin != null)
                     listaAgregados.Insert(0, new ItemAgregadoHandroll() { Agregado = PaltaCebollin, Cantidad = 1 });
 
-                ItemVenta iv = new ItemVenta() { Producto = p, listaAgregadosSushi =  listaAgregados, Envoltura = Envoltura };
+                ItemVenta iv = new ItemVenta() { Producto = p, listaAgregadosSushi =  listaAgregados, Envoltura = Envoltura, PaltaCebollin = PaltaCebollin };
+
                 AlIngresarProductoArmado.Invoke(this, iv);
                 bCerrado = true;
                 Close();

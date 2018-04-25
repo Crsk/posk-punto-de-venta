@@ -27,6 +27,8 @@ namespace posk.Controls
 
         public int Extra { get; set; }
 
+        public agregado PaltaCebollin {get; set; }
+
         public promocione Promocion { get; set; }
 
         public List<ItemAgregadoHandroll> listaAgregadosSushi { get; set; }
@@ -76,8 +78,7 @@ namespace posk.Controls
 
             Loaded += (se, ev) =>
             {
-                btnUnagi.Click += (se2, a2) => txtNota.Text += $" UNAGI";
-                btnSoya.Click += (se2, a2) => txtNota.Text += $" SOYA";
+                btnSinQuesoCrema.Click += (se2, a2) => txtNota.Text += $" SIN QUESO CREMA";
 
                 /*
                 if (Producto.nombre.Equals("COBRO EXTRA"))
@@ -273,13 +274,19 @@ namespace posk.Controls
 
         public string ObtenerAgregadosStr()
         {
+            //string agregadosTemp = $"{PaltaCebollin.nombre}";
+
             string agregadosTemp = "";
+
+            //if (PaltaCebollin != null)
+            //    agregadosTemp += $"{PaltaCebollin.nombre} - ";
+
             listaAgregadosSushi.ForEach(a =>
             {
                 if (a.Cantidad == 1)
-                    agregadosTemp += $"{a.txtNombre.Text}, ";
+                    agregadosTemp += $"{a.Agregado.nombre}, ";
                 else
-                    agregadosTemp += $"{a.txtNombre.Text} x{a.Cantidad}, ";
+                    agregadosTemp += $"{a.Agregado.nombre} x{a.Cantidad}, ";
 
             });
             if (agregadosTemp != "")
@@ -338,13 +345,13 @@ namespace posk.Controls
                 }
                 else if (Producto.es_superhandroll == true)
                 {
-                    limiteIngr = 3;
+                    limiteIngr = 4;
                     listaAgregadosSushi.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => cantidadIngr += x.Cantidad);
                     if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
                 }
                 else
                 {
-                    limiteIngr = 5;
+                    limiteIngr = 2;
                     listaAgregadosSushi.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => cantidadIngr += x.Cantidad);
                     if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
                 }
@@ -355,7 +362,7 @@ namespace posk.Controls
                 int cantidadIngrTabla = 0; // la cantidad de ingredientes que tiene la tabla contando todos sus rollos
                 int? limiteIngrTabla = 0; // la cantidad de ingredientes que debería tener una tabla contando todos sus rollos (sin ing extra)
                 int? ingredienteExtraTabla = 0; // la cantidad de ingredientes extra que tiene una tabla considerando todos los rollos
-                int limiteIngrRolloTabla = 5; // el numero de ingredientes que debería tener cada rollo de la tabla (sin ing extra)
+                int limiteIngrRolloTabla = 2; // el numero de ingredientes que debería tener cada rollo de la tabla (sin ing extra)
                 int valorIngrExrtaTabla = 500; // el valor de un ingrediente extra en un rollo de tabla
 
                 cobroExtra = 0;

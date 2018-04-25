@@ -81,8 +81,7 @@
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBox x:Name="txtNota" Grid.Column="0" Background="#FF005F4B" Foreground="White" Padding="4 0 0 0" materialDesign:HintAssist.Hint="COMENTARIO"/>
-                                <Button x:Name="btnUnagi" Content="Unagi" Grid.Column="1" Style="{StaticResource BtnClear}" Margin="4 0 0 0" Padding="8 0 8 0" Background="#FF005F4B" Foreground="White" FontWeight="Light"/>
-                                <Button x:Name="btnSoya" Content="Soya" Grid.Column="2" Style="{StaticResource BtnClear}" Margin="4 0 8 0" Padding="8 0 8 0" Background="#FF005F4B" Foreground="white" FontWeight="Light"/>
+                                <Button x:Name="btnSinQuesoCrema" Content="SIN QUESO CREMA" Grid.Column="1" Style="{StaticResource BtnClear}" Margin="4 0 0 0" Padding="8 0 8 0" Background="#FF005F4B" Foreground="White" FontWeight="Light"/>
                             </Grid>
                         </Expander>
                     </StackPanel>
