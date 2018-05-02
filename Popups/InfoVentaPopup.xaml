@@ -111,7 +111,8 @@
                 <Label Content="Ventas Trans Bank" Foreground="#FF0A7562" Height="32" FontSize="16"/>
                 <Label Content="Ventas Junaeb" Foreground="#FF0A7562" Height="32" FontSize="16"/>
                 <Label Content="Ventas Otro" Foreground="#FF0A7562" Height="32" FontSize="16"/>
-                <Label Content="Propinas" Foreground="#FFB40B00" Height="32" FontSize="16"/>
+                <Label Content="Propinas transbank" Foreground="#FFB40B00" Height="32" FontSize="16"/>
+                <Label Content="Ventas" FontSize="26" Foreground="#FF0A7562"/>
                 <Label Content="Caja" FontSize="26" Foreground="#FF0A7562"/>
             </StackPanel>
             <StackPanel Grid.Column="3" Width="290">
@@ -132,6 +133,7 @@
                 <Label x:Name="lbInfoVentasJunaeb" Content="$" Foreground="#FF0A7562" Height="32" FontSize="16"/>
                 <Label x:Name="lbInfoVentasOtro" Content="$" Foreground="#FF0A7562" Height="32" FontSize="16"/>
                 <Label x:Name="lbInfoPropinas" Content="$" Foreground="#FFB40B00" Height="32" FontSize="16"/>
+                <Label x:Name="lbInfoVentas" Content="$" FontSize="26" Foreground="#FF0A7562"/>
                 <Label x:Name="lbInfoCaja" Content="$" FontSize="26" Foreground="#FF0A7562"/>
 
             </StackPanel>

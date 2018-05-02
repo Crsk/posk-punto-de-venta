@@ -42,7 +42,11 @@ namespace posk.Popups
 
         private void RecalcularCaja()
         {
-            lbInfoCaja.Content = $"{ -Devoluciones - Gastos + CajaInicial + VentasEfectivo + VentasTransBank + VentasJunaeb + VentasOtro - Propinas }";
+            lbInfoVentas.Content = $"{ -Devoluciones - Gastos + VentasEfectivo + VentasTransBank + VentasJunaeb + VentasOtro - Propinas }";
+            lbInfoVentas.ToolTip = "-Devoluciones - Gastos + VentasEfectivo + VentasTransBank + VentasJunaeb + VentasOtro - Propinas";
+
+            lbInfoCaja.Content = $"{ -Devoluciones - Gastos + CajaInicial + VentasEfectivo - Propinas }";
+            lbInfoCaja.ToolTip = "-Devoluciones - Gastos + CajaInicial + VentasEfectivo - Propinas";
         }
 
         public InfoVentaPopup()
@@ -306,7 +310,7 @@ namespace posk.Popups
             lbInfoVentasJunaeb.Content = "";
             lbInfoVentasOtro.Content = "";
             lbInfoPropinas.Content = "";
-            lbInfoCaja.Content = "";
+            lbInfoVentas.Content = "";
         }
     }
 }
