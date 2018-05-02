@@ -2881,8 +2881,7 @@ namespace posk.Components
                 }
                 else
                 {
-                    //ticket.TextoExtremos($"MESA: {mesa}".ToUpper(), $"PEDIDO ID: {pedidoId}".ToUpper());
-                    ticket.TextoIzquierda($"MESA: {mesa}".ToUpper());
+                    ticket.TextoExtremos($"MESA: {mesa}".ToUpper(), $"ID: {BoletaBLL.ObtenerUltimoNumeroBleta()}");
                 }
 
                 if (!string.IsNullOrEmpty(garzon))

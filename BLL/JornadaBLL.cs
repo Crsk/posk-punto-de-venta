@@ -61,6 +61,7 @@ namespace posk.BLL
                 bool bEspecial = mensaje == "" ? false : true;
                 //TerminarJornadaSiEstaIniciada(UltimaJornada(), DateTime.Now, false, 0, "");
                 db.jornadas.Add(new jornada() { fecha_apertura = DateTime.Now, fecha_cierre = null, especial = bEspecial, ingresos = 0, mensaje = mensaje, usuario_id = Settings.Usuario.id });
+                db.boletas.OrderBy(x => x.id).ToList().LastOrDefault().numero_boleta = 0;
                 db.SaveChanges();
             }
         }
@@ -83,6 +84,7 @@ namespace posk.BLL
                 j.especial = bEspecial;
                 j.ingresos = ingresos;
                 j.mensaje = mensaje;
+                db.boletas.OrderBy(x => x.id).ToList().LastOrDefault().numero_boleta = 0;
                 db.SaveChanges();
             }
         }

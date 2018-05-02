@@ -22,6 +22,8 @@ namespace posk.BLL
 
         public static boleta Set(int client_id, int userId, int points_amount, int total, int propina)
         {
+            int numeroUltimaBoleta = ObtenerUltimoNumeroBleta();
+
             boleta ts = new boleta();
             if (client_id != 0)
                 ts.cliente_id = client_id;
@@ -32,9 +34,24 @@ namespace posk.BLL
             ts.usuario_id = userId;
             ts.total = total;
             ts.propina = propina;
+            ts.numero_boleta = ++numeroUltimaBoleta;
             db.boletas.Add(ts);
             db.SaveChanges();
             return ts;
+        }
+
+        public static int ObtenerUltimoNumeroBleta()
+        {
+            int numeroUltimaBoleta = 0;
+            boleta ultimaboleta = db.boletas.AsNoTracking().OrderBy(x => x.id).ToList().LastOrDefault();
+
+
+            if (ultimaboleta.numero_boleta == null)
+                numeroUltimaBoleta = 0;
+            else
+                numeroUltimaBoleta = (int)ultimaboleta.numero_boleta;
+
+            return numeroUltimaBoleta;
         }
 
         public static void Delete(int id)

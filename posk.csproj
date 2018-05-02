@@ -31,7 +31,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://posk.cl/public_ftp/posk/ruabar/</UpdateUrl>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>84</ApplicationRevision>
+    <ApplicationRevision>85</ApplicationRevision>
     <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
