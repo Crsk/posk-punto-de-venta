@@ -238,7 +238,7 @@ namespace posk.Popups
                     */
                     lbInfoVentasEfectivo.Content = $"{VentasEfectivo}";
                     lbInfoVentasJunaeb.Content = $"{VentasJunaeb}";
-                    lbInfoVentasTransBank.Content = $"{VentasTransBank}";
+                    lbInfoVentasTransBank.Content = $"{VentasTransBank - Propinas}";
                     lbInfoVentasOtro.Content = $"{VentasOtro}";
                     lbInfoPropinas.Content = $"{Propinas}";
 
@@ -270,7 +270,7 @@ namespace posk.Popups
                     */
                     lbInfoVentasEfectivo.Content = $"{VentasEfectivo}";
                     lbInfoVentasJunaeb.Content = $"{VentasJunaeb}";
-                    lbInfoVentasTransBank.Content = $"{VentasTransBank}";
+                    lbInfoVentasTransBank.Content = $"{VentasTransBank - Propinas}";
                     lbInfoVentasOtro.Content = $"{VentasOtro}";
                     lbInfoPropinas.Content = $"{Propinas}";
                     RecalcularCaja();

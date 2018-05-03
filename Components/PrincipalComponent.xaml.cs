@@ -924,7 +924,7 @@ namespace posk.Components
                 ip.AlSeleccionar += (se, a) =>
                 {
                     ArmarProductoPopup app = new ArmarProductoPopup(p);
-                    app.Deactivated += (se2, a2) => 
+                    app.Deactivated += (se2, a2) =>
                     {
                         app.bCerrado = true;
                         MostrarOverlay(false);
@@ -932,13 +932,13 @@ namespace posk.Components
                     };
                     MostrarOverlay(true);
                     app.Show();
-                    app.AlIngresarProductoArmado += (se2, ivArmado) => 
+                    app.AlIngresarProductoArmado += (se2, ivArmado) =>
                     {
                         CrearItemVentaDesdeItemVenta(ivArmado);
                         MostrarOverlay(false);
                     };
                 };
-                
+
                 wrapProductos.Children.Add(ip);
 
                 return;
@@ -2878,6 +2878,7 @@ namespace posk.Components
                 {
                     if (!string.IsNullOrEmpty(mesa))
                         ticket.TextoIzquierda($"MESA: {mesa}".ToUpper());
+                    ticket.TextoDerecha($"ID: {BoletaBLL.ObtenerUltimoNumeroBleta()}");
                 }
                 else
                 {
@@ -3383,7 +3384,7 @@ namespace posk.Components
 
                 //Imprimir.PrintText("Texto de prueba a bar", Settings.ImpresoraBar);
                 //Imprimir.PrintText("Texto de prueba a cocina", Settings.ImpresoraCocina);
-    
+
                 if (contadorProductosCocina != 0 && bEsPedido && !bParaBar)
                     ticket.ImprimirTicket(Settings.ImpresoraCocina, "Ticket Cocina");
 

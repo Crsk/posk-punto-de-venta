@@ -93,7 +93,6 @@
                                     <MenuItem x:Name="miTerminarJornada" Header="Terminar jornada" Height="36" FontSize="12" Foreground="#7FFFB200"/>
                                     <Separator Height="8" Width="100" Background="#FF000104"/>
                                     <Button x:Name="btnCerrar" Content="Cerrar programa" Style="{StaticResource BtnClear}" Background="{x:Null}" HorizontalAlignment="Center" Foreground="#7FDC250C" />
-                                    <Label Content="posk v2.4.13 2017" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
                                 <Expander x:Name="expMenuGlobalExtension" Style="{StaticResource ExpMenu}" Background="{x:Null}" ExpandDirection="Right">
