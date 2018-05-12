@@ -45,7 +45,7 @@
                 <Grid Grid.Row="1" Background="#FF0C0C0C">
                     <StackPanel Margin="16" HorizontalAlignment="Center" Orientation="Horizontal">
                         <Border Height="46" Width="200">
-                            <TextBox x:Name="txtNuevoSector" Height="50" HorizontalContentAlignment="Center" Background="#FF020202" FontSize="24" VerticalContentAlignment="Center" Padding="16 0 16 0" />
+                            <TextBox x:Name="txtNuevoSector" Height="50" HorizontalContentAlignment="Center" Background="#FF1A1A1A" FontSize="24" VerticalContentAlignment="Center" Padding="16 0 16 0" />
                         </Border>
                         <Button x:Name="btnAgregarSector" Margin="16 0 0 0" Foreground="ForestGreen" Background="{x:Null}" Style="{StaticResource BtnClear}">
                             <materialDesign:PackIcon Kind="Plus" Height="32" Width="32"/>
@@ -70,7 +70,7 @@
                 <Grid Grid.Row="1" Background="#FF0A0A0A">
                     <StackPanel Margin="16" HorizontalAlignment="Center" Orientation="Horizontal">
                         <Border Height="46" Width="200">
-                            <TextBox x:Name="txtNuevaCategoria" Height="50" HorizontalContentAlignment="Center" Background="#FF020202" FontSize="24" VerticalContentAlignment="Center" Padding="16 0 16 0" />
+                            <TextBox x:Name="txtNuevaCategoria" Height="50" HorizontalContentAlignment="Center" Background="#FF1A1A1A" FontSize="24" VerticalContentAlignment="Center" Padding="16 0 16 0" />
                         </Border>
                         <Button x:Name="btnAgregarCategoria" Margin="16 0 0 0" Foreground="ForestGreen" Background="{x:Null}" Style="{StaticResource BtnClear}">
                             <materialDesign:PackIcon Kind="Plus" Height="32" Width="32"/>
@@ -95,7 +95,7 @@
                 <Grid Grid.Row="1" Background="#FF0C0C0C">
                     <StackPanel Margin="16" HorizontalAlignment="Center" Orientation="Horizontal">
                         <Border Height="46" Width="200">
-                            <TextBox x:Name="txtNuevaSubcategoria" Height="50" HorizontalContentAlignment="Center" Background="#FF020202" FontSize="24" VerticalContentAlignment="Center" Padding="16 0 16 0" />
+                            <TextBox x:Name="txtNuevaSubcategoria" Height="50" HorizontalContentAlignment="Center" Background="#FF1A1A1A" FontSize="24" VerticalContentAlignment="Center" Padding="16 0 16 0" />
                         </Border>
                         <Button x:Name="btnAgregarSubCategoria" Margin="16 0 0 0" Foreground="ForestGreen" Background="{x:Null}" Style="{StaticResource BtnClear}">
                             <materialDesign:PackIcon Kind="Plus" Height="32" Width="32"/>

@@ -3844,26 +3844,28 @@ namespace posk.Components
 
                 itemEnviar.btnEnviar.Click += (se2, a2) =>
                 {
-                    using (ComprarPopup cp = new ComprarPopup(spVentaItems))
-                    {
-                        expPopup.Content = cp;
-                        cp.AlComprar += (se3, spCompras) =>
-                        {
-                            LimpiarTodo();
-                            string contenidoCorreo = "* * * * C O M P R A * * * *\n\n";
-                            foreach (PurchaseLineControl item in spCompras.Children)
-                            {
-                                contenidoCorreo += $"{item.lbProducto.Content}\nUnitario bruto: ${item.txtCostoUnitarioBruto.Text}\nTotal bruto: ${item.txtTotalBruto.Text}\n\n";
-                            }
-                            EnviarCorreo.Enviar(contenidoCorreo);
-                        };
-                        cp.AlCerrar += (se3, a3) =>
-                        {
-                            MostrarOverlay(false);
-                            expPopup.IsExpanded = false;
-                        };
-                    }
+                    ComprarPopup2 cp = new ComprarPopup2(spVentaItems);
+                    cp.Show();
+
+                    //expPopup.Content = cp;
                     MostrarOverlay(true);
+
+                    cp.AlComprar += (se3, spCompras) =>
+                    {
+                        LimpiarTodo();
+                        string contenidoCorreo = "* * * * C O M P R A * * * *\n\n";
+                        foreach (PurchaseLineControl item in spCompras.Children)
+                        {
+                            contenidoCorreo += $"{item.lbProducto.Content}\nUnitario bruto: ${item.txtCostoUnitarioBruto.Text}\nTotal bruto: ${item.txtTotalBruto.Text}\n\n";
+                        }
+                        //EnviarCorreo.Enviar(contenidoCorreo);
+                    };
+                    cp.AlCerrar += (se3, a3) =>
+                    {
+                        MostrarOverlay(false);
+                        expPopup.IsExpanded = false;
+                    };
+
                 };
             };
         }
@@ -3974,6 +3976,7 @@ namespace posk.Components
                     else
                     {
                         new Notification("No encontrado", $"Codigo {txtBarCode.Text}");
+                        txtBarCode.Clear();
                         txtBarCode.Focus();
                     }
                 }

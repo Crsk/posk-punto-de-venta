@@ -1120,6 +1120,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Popups\ComprarPopup2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Popups\DctoPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1597,6 +1601,9 @@
     </Compile>
     <Compile Include="Popups\CategoriaPopup.xaml.cs">
       <DependentUpon>CategoriaPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\ComprarPopup2.xaml.cs">
+      <DependentUpon>ComprarPopup2.xaml</DependentUpon>
     </Compile>
     <Compile Include="Popups\DctoPopup.xaml.cs">
       <DependentUpon>DctoPopup.xaml</DependentUpon>

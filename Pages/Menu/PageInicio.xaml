@@ -13,7 +13,7 @@
       TextElement.FontSize="13"
       TextOptions.TextFormattingMode="Ideal"
       TextOptions.TextRenderingMode="Auto"
-      Background="#FF0F0F0F"
+      Background="#FF020202"
       Title="PageLogin2">
     <Grid Background="#FF020202">
         <Button x:Name="btnCerrar" Style="{StaticResource BtnClear}" Background="{x:Null}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="16">
@@ -37,7 +37,7 @@
                     <Button Name="btnLogin" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="22" Height="80" Width="80" Style="{StaticResource BtnClear}" Background="{x:Null}" Foreground="#FFAAAAAA" Margin="8">
                         <materialDesign:PackIcon Kind="Account" Height="60" Width="60"/>
                     </Button>
-                    <Image x:Name="imageLogo" Height="380" Margin="0 0 0 200"/>
+                    <Image x:Name="imageLogo" Height="380" Margin="80 80 80 200"/>
                 </Grid>
             </Border>
         </DockPanel>

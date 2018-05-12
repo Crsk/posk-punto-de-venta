@@ -265,23 +265,25 @@
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="60"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="60"/>
                         </Grid.ColumnDefinitions>
                         <Button x:Name="btnLimpiarVenta" Grid.Column="0" Background="{x:Null}" Margin="4 0 4 0" BorderBrush="{x:Null}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Foreground="#FF020206" Style="{StaticResource BtnClear}" Height="52">
                             <materialDesign:PackIcon Kind="Broom" Height="52" Width="52"/>
                         </Button>
-                        <Grid Visibility="Hidden" Height="0">
-                            <TextBox x:Name="txtCantidad" Grid.Column="1" Text="1" materialDesign:HintAssist.Hint="CANTIDAD" Padding="0 0 0 1" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" PreviewTextInput="NumberValidationTextBox"/>
-                            <TextBox materialDesign:HintAssist.Hint="CÓDIGO" x:Name="txtBarCode" Grid.Column="2" FontSize="18" Padding="4 0 0 0 " Foreground="black" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                        </Grid>
+
+                        <TextBox x:Name="txtCantidad" Grid.Column="1" Width="40" Text="1" materialDesign:HintAssist.Hint="CANTIDAD" Padding="0 0 0 1" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left"/>
+                        <TextBox materialDesign:HintAssist.Hint="CÓDIGO" x:Name="txtBarCode" Grid.Column="2" FontSize="18" Padding="4 0 0 0 " Foreground="black" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalAlignment="Stretch"/>
+
                         <!--
                         <Button Grid.Column="2" Style="{StaticResource BtnClear}" Background="{x:Null}">
                             <materialDesign:PackIcon Kind="BarcodeScan" Height="32" Width="32"/>
                         </Button>
-                        -->
                         <Label x:Name="lbNombreLista" Grid.Column="1" Content="VENTA" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontSize="22" Margin="20 0 0 0"/>
-                        <Border x:Name="borderSuperiorDerecha" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Height="52"/>
+                        -->
+                        
+                        <Border x:Name="borderSuperiorDerecha" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center" Height="52"/>
                     </Grid>
 
                     <Grid Grid.Row="1" Visibility="Hidden" Height="0">
