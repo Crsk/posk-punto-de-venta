@@ -150,6 +150,8 @@ namespace posk.Pages.Menu
                 {
                     string constring = "server=localhost;user=root;pwd=MyTempPass.12;database=posk_db;";
                     string file = $"C:\\posk\\db\\dbbackup_{DateTime.Now.Date.Day}-{DateTime.Now.Month}-{DateTime.Now.Year}_{DateTime.Now.Hour}-{DateTime.Now.Minute}-{DateTime.Now.Second}.sql";
+                    string file2 = $@"../../db/dbbackup_{DateTime.Now.Date.Day}-{DateTime.Now.Month}-{DateTime.Now.Year}_{DateTime.Now.Hour}-{DateTime.Now.Minute}-{DateTime.Now.Second}.sql";
+
                     using (MySqlConnection conn = new MySqlConnection(constring))
                     {
                         using (MySqlCommand cmd = new MySqlCommand())
@@ -159,6 +161,7 @@ namespace posk.Pages.Menu
                                 cmd.Connection = conn;
                                 conn.Open();
                                 mb.ExportToFile(file);
+                                mb.ExportToFile(file2);
                                 conn.Close();
                             }
                         }
