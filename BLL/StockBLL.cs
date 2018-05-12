@@ -53,6 +53,13 @@ namespace posk.BLL
             db.SaveChanges();
         }
 
+        public static void Devolver(int productoId, decimal cantidad)
+        {
+            stock_pr spr = db.stock_pr.AsNoTracking().Where(x => x.producto_id == productoId).FirstOrDefault();
+            spr.salida -= cantidad;
+            db.SaveChanges();
+        }
+
         public static void Aumentar(int productoId, decimal cantidad)
         {
             stock_pr spr = db.stock_pr.AsNoTracking().Where(x => x.producto_id == productoId).FirstOrDefault();

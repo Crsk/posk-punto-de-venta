@@ -97,7 +97,9 @@ namespace posk.BLL
             ppList = (from x in ppList orderby x.compra.fecha select x).ToList();
             producto_compra cp = ppList.LastOrDefault();
             cp.cantidad_disponible += cantidadAgregar;
-            StockBLL.Aumentar(productoId, cantidadAgregar);
+
+            db.stock_pr.Where(x => x.producto_id == productoId).FirstOrDefault().salida -= cantidadAgregar;
+
             db.SaveChanges();
         }
 

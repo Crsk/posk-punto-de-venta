@@ -18,7 +18,6 @@ namespace posk.BLL
                 {
                     db.devolucions.Add(new devolucion() { producto_id = (int)productoId, cantidad = (decimal)cantidad, fecha = DateTime.Now, monto = monto });
                     CompraBLL.AumentarStock((int)productoId, (decimal)cantidad);
-
                 }
                 else if (promoId != null)
                 {
