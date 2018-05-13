@@ -1,4 +1,5 @@
 ﻿using posk.BLL;
+using posk.Models;
 using System;
 using System.Windows;
 
@@ -9,13 +10,14 @@ namespace posk.Popups
         public bool bCerrado = false;
         public event EventHandler AlEntregar;
 
-        public DeliveryPopup(int id, string nombreCliente, DateTime? fecha, string incluye)
+        public DeliveryPopup(int id, string nombreCliente, DateTime? fecha, string incluye, boleta boleta)
         {
             InitializeComponent();
 
             Loaded += (se, a) => 
             {
                 lbCliente.Content = $"{nombreCliente}";
+                lbNumeroBoleta.Content = $"#{boleta.numero_boleta}";
                 txtSalsas.Text = $"{incluye}";
                 lbFecha.Content = $"{fecha.Value.ToShortDateString()} a las {fecha.Value.ToShortTimeString()}";
             };

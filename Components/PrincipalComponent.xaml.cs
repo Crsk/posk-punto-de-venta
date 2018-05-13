@@ -2402,7 +2402,7 @@ namespace posk.Components
 
                 id.btnItem.Click += (se, a) =>
                 {
-                    DeliveryPopup dp = new DeliveryPopup(d.id, d.nombre_cliente, d.boleta.fecha, d.incluye);
+                    DeliveryPopup dp = new DeliveryPopup(d.id, d.nombre_cliente, d.boleta.fecha, d.incluye, id.Boleta);
                     dp.AlEntregar += (se2, a2) =>
                     {
                         MostrarOverlay(false);

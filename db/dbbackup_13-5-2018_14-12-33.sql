@@ -527,6 +527,7 @@ CREATE TABLE IF NOT EXISTS `delivery_item` (
   `incluye` varchar(60) DEFAULT NULL,
   `fecha_entrega` datetime DEFAULT NULL,
   `boleta_id` int(11) DEFAULT NULL,
+  `servir` tinyint(1) DEFAULT 1,
   PRIMARY KEY (`id`),
   KEY `cliente_fk_idx` (`cliente_id`),
   KEY `boleta_fk_idx` (`boleta_id`),

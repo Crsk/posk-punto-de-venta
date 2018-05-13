@@ -1720,6 +1720,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="db\dbbackup_12-5-2018_19-16-26.sql" />
+    <Content Include="db\dbbackup_13-5-2018_14-12-33.sql" />
     <Content Include="Models\PoskDB6.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PoskDB6.edmx</DependentUpon>

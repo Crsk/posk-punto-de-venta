@@ -21,6 +21,7 @@
             <Grid Grid.Row="0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Label x:Name="lbCliente" Content="Nombre cliente" Foreground="Black"/>
+                    <Label x:Name="lbNumeroBoleta" Content="#00" Foreground="Black"/>
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1">
