@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:posk.Popup"
       mc:Ignorable="d" 
-      Width="630"
+      Width="220"
       xmlns:custom="clr-namespace:posk.Globals"
       xmlns:controls="clr-namespace:posk.Controls"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -20,16 +20,19 @@
     <DockPanel>
         <Border x:Name="borderTecladoNumerico" DockPanel.Dock="Bottom"/>
         <Border DockPanel.Dock="Top">
-            <StackPanel Margin="16" HorizontalAlignment="Center" Orientation="Horizontal">
-                <Button x:Name="btnCancelar" Margin="0 0 16 0" Style="{StaticResource BtnClear}" Background="{x:Null}" Foreground="#FFC50A0A">
-                    <materialDesign:PackIcon Kind="Close" />
-                </Button>
-                <Border Height="46">
-                    <TextBox x:Name="txtCantidad" Height="50" HorizontalContentAlignment="Center" Background="#FF202020" FontSize="24" VerticalContentAlignment="Center" Padding="16 0 16 0" />
-                </Border>
-                <Button x:Name="btnListo" Margin="16 0 0 0" Foreground="ForestGreen" Background="{x:Null}" Style="{StaticResource BtnClear}">
-                    <materialDesign:PackIcon Kind="Check" />
-                </Button>
+            <StackPanel>
+                <Label Content="CANTIDAD" HorizontalAlignment="Center"/>
+                <StackPanel Margin="16" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Button x:Name="btnCancelar" Margin="0 0 16 0" Style="{StaticResource BtnClear}" Background="{x:Null}" Foreground="#FFC50A0A">
+                        <materialDesign:PackIcon Kind="Close" />
+                    </Button>
+                    <Border Height="46">
+                        <TextBox x:Name="txtCantidad" Height="50" HorizontalContentAlignment="Center" Background="#FF202020" FontSize="24" VerticalContentAlignment="Center" Padding="16 0 16 0" />
+                    </Border>
+                    <Button x:Name="btnListo" Margin="16 0 0 0" Foreground="ForestGreen" Background="{x:Null}" Style="{StaticResource BtnClear}">
+                        <materialDesign:PackIcon Kind="Check" />
+                    </Button>
+                </StackPanel>
             </StackPanel>
         </Border>
     </DockPanel>

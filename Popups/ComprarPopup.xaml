@@ -17,6 +17,8 @@
       TextElement.FontSize="13"
       TextOptions.TextFormattingMode="Ideal"
       TextOptions.TextRenderingMode="Auto"
+             BorderBrush="#FFFF9800"
+             BorderThickness="1"
       Background="#FF0F0F0F" >
 
     <DockPanel Margin="4">
@@ -60,18 +62,20 @@
                         <StackPanel Width="65" HorizontalAlignment="Right">
                             <Label Content="Sub Total" FontSize="11" Height="23"/>
                             <Label Content="IVA" FontSize="11" Height="23"/>
-                            <Label Content="ILA" FontSize="11" Height="23"/>
+                            <!--<Label Content="ILA" FontSize="11" Height="23"/>-->
                             <Label Content="Total" FontSize="13" Height="26"/>
                         </StackPanel>
                         <StackPanel >
                             <Label Content="{Binding SubTotal}" Height="26" Foreground="#FF0A689E" HorizontalContentAlignment="Right"/>
                             <Label Content="{Binding IVA}" Height="26" Foreground="#FFBD2A2A" HorizontalContentAlignment="Right"/>
-                            <Label Content="{Binding ILA}" Height="26" Foreground="#FFBD2A2A" HorizontalContentAlignment="Right"/>
+                            <!--<Label Content="{Binding ILA}" Height="26" Foreground="#FFBD2A2A" HorizontalContentAlignment="Right"/>-->
                             <Label Content="{Binding Total}" Height="26" Foreground="#FF0A689E" HorizontalContentAlignment="Right"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
+                
                 <Border DockPanel.Dock="Left" Background="#FF020202" IsEnabled="False">
+                    <!--
                     <Grid>
                         <Label Panel.ZIndex="1" Content="NO IMPLEMENTADO" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="red" FontSize="26" RenderTransformOrigin="0.5,0.5" Background="Black">
                             <Label.RenderTransform>
@@ -98,6 +102,7 @@
                             </StackPanel>
                         </StackPanel>
                     </Grid>
+                    -->
                 </Border>
             </DockPanel>
         </Border>

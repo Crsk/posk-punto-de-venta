@@ -7,14 +7,14 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" >
     <StackPanel Orientation="Horizontal" Height="25" Margin="2">
-        <TextBox x:Name="txtCostoUnitarioBruto" Width="65" Height="26" Background="#FF020202"/>
+        <TextBox x:Name="txtCostoUnitarioNeto" Width="65" Height="26" Background="#FF717171" Padding="2 0 0 0"/>
         <Separator Width="16" Visibility="Hidden"/>
-        <TextBox x:Name="txtCostoUnitarioNeto" Width="65" Height="26" Background="#FF020202"/>
+        <TextBox x:Name="txtCostoUnitarioBruto" Width="65" Height="26" Background="#FF717171" Padding="2 0 0 0"/>
         <Separator Width="16" Visibility="Hidden"/>
         <Label x:Name="lbProducto" Width="200" VerticalContentAlignment="Bottom"/>
         <Separator Width="16" Visibility="Hidden"/>
-        <TextBox x:Name="txtTotalBruto" Width="65" Height="26" Background="#FF020202"/>
+        <TextBox x:Name="txtTotalNeto" Width="65" Foreground="#FFFF9800" Height="26" Background="#FF717171" Padding="2 0 0 0"/>
         <Separator Width="16" Visibility="Hidden"/>
-        <TextBox x:Name="txtTotalNeto" Width="65" Foreground="#FF0A689E" Height="26" Background="#FF020202"/>
+        <TextBox x:Name="txtTotalBruto" Width="65" Height="26" Background="#FF717171" Padding="2 0 0 0"/>
     </StackPanel>
 </UserControl>

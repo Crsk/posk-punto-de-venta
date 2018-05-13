@@ -750,11 +750,18 @@ namespace posk.Components
                                         ivpNuevo.btnCantidad.Click += (se3, a3) =>
                                         {
                                             MostrarOverlay(true);
-                                            AgregarCantidadPopup acp = new AgregarCantidadPopup(null, ivpNuevo);
+                                            ModificarCantidadPopup acp = new ModificarCantidadPopup(null, ivpNuevo);
+                                            acp.Show();
+                                            /*
                                             acp.OnAgregarCantidad += (se4, ev4) => ivpNuevo.AgregarCantidad(ev4);
                                             acp.OnQuitarCantidad += (se4, ev4) => ivpNuevo.AgregarCantidad(-ev4);
-                                            acp.OnFinish += (se4, a4) => MostrarOverlay(false);
-                                            expPopup.Content = acp;
+                                            */
+                                            acp.OnFinish += (se4, a4) => 
+                                            {
+                                                MostrarOverlay(false);
+                                                acp.bCerrado = true;
+                                                acp.Close();
+                                            };
                                         };
                                         spVentaItems.Children.Add(ivpNuevo);
                                         CalcularTotal();
@@ -3864,6 +3871,8 @@ namespace posk.Components
                     {
                         MostrarOverlay(false);
                         expPopup.IsExpanded = false;
+                        cp.bCerrado = true;
+                        cp.Close();
                     };
 
                 };

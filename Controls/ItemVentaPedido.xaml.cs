@@ -46,6 +46,15 @@ namespace posk.Controls
             };
         }
 
+        public void AsignarCantidad(decimal? cantidad)
+        {
+            Cantidad = cantidad;
+            if (Cantidad % 1 == 0)
+                lbCantidad.Content = $"x{Convert.ToInt32(Cantidad)}";
+            else
+                lbCantidad.Content = Cantidad;
+        }
+
         public void AgregarCantidad(decimal? cantidad)
         {
             Cantidad += cantidad;

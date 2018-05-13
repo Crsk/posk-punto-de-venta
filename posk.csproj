@@ -1136,6 +1136,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Popups\ModificarCantidadPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Popups\NotificarError.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1613,6 +1617,9 @@
     </Compile>
     <Compile Include="Popups\InfoVentaPopup.xaml.cs">
       <DependentUpon>InfoVentaPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\ModificarCantidadPopup.xaml.cs">
+      <DependentUpon>ModificarCantidadPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Popups\NotificarError.xaml.cs">
       <DependentUpon>NotificarError.xaml</DependentUpon>

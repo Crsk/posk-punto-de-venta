@@ -10,10 +10,7 @@ using System.Windows;
 
 namespace posk.Popups
 {
-    /// <summary>
-    /// Interaction logic for ComprarPopup2.xaml
-    /// </summary>
-    public partial class ComprarPopup2 : Window, IDisposable
+    public partial class ComprarPopup2 : Window, IDisposable, INotifyPropertyChanged
     {
         #region Methods
         public event PropertyChangedEventHandler PropertyChanged;
