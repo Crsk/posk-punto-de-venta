@@ -3866,6 +3866,8 @@ namespace posk.Components
                             contenidoCorreo += $"{item.lbProducto.Content}\nUnitario bruto: ${item.txtCostoUnitarioBruto.Text}\nTotal bruto: ${item.txtTotalBruto.Text}\n\n";
                         }
                         //EnviarCorreo.Enviar(contenidoCorreo);
+                        cp.bCerrado = true;
+                        cp.Close();
                     };
                     cp.AlCerrar += (se3, a3) =>
                     {

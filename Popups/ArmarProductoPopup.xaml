@@ -11,7 +11,8 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        
+                             BorderBrush="#FFFF9800"
+             BorderThickness="1"
         Title="DctoPopup" Height="580" Width="900"  AllowsTransparency="True" WindowStyle="None" Background="#FF060606" Foreground="#FFB9B9B9">
     <Grid Margin="8">
         <Grid.RowDefinitions>
