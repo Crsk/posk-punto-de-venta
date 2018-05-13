@@ -2158,6 +2158,8 @@ namespace posk.Components
                                     rvs.Show();
                                     MostrarOverlay(true);
 
+                                    rvs.Deactivated += (se3, a3) => { MostrarOverlay(false); };
+
                                     rvs.AlVender += (se3, di) =>
                                     {
                                         int _calcularTotal = 0;
@@ -2226,8 +2228,8 @@ namespace posk.Components
                                         GenerarTicket(_subTotal, ((usuario)ieg.cbGarzones.SelectedItem)?.nombre, ((mesa)iem.cbMesas.SelectedValue)?.codigo, "", "Ticket Caja", di);
 
                                         LimpiarTodo();
-
-                                        DeliveryItemBLL.Crear(ultimaBoleta.id, null, "", di.NombreCliente, null, "", di.Incluye);
+                                        bool bServir = di.ServirLlevar.ToUpper() == "SERVIR" ? true : false;
+                                        DeliveryItemBLL.Crear(ultimaBoleta.id, null, "", di.NombreCliente, null, "", di.Incluye, bServir);
                                         CargarDeliveryPndientesDeEntrega();
                                     };
                                     return;
@@ -2397,12 +2399,14 @@ namespace posk.Components
                     Comentario = d.comentario,
                     Incluye = d.incluye,
                     FechaEntrega = d.fecha_entrega,
-                    Boleta = d.boleta
+                    Boleta = d.boleta,
+                    DeliveryItem = d
                 };
 
                 id.btnItem.Click += (se, a) =>
                 {
                     DeliveryPopup dp = new DeliveryPopup(d.id, d.nombre_cliente, d.boleta.fecha, d.incluye, id.Boleta);
+                    dp.Deactivated += (se2, a2) => MostrarOverlay(false);
                     dp.AlEntregar += (se2, a2) =>
                     {
                         MostrarOverlay(false);

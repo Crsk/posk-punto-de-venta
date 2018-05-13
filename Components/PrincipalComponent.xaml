@@ -344,7 +344,7 @@
                 <!-- Fin ItemsVenta -->
 
                 <Grid Grid.Column="2">
-                    <Expander x:Name="expDerecha" HorizontalAlignment="Right" ExpandDirection="Left" Style="{StaticResource ExpanderStyleSinHeader}" Background="#FF020206">
+                    <Expander x:Name="expDerecha" HorizontalAlignment="Right" ExpandDirection="Left" Style="{StaticResource ExpanderStyleSinHeader}" Background="#FF020206" Margin="0 0 4 0">
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <ScrollViewer.Resources>
                                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">50</sys:Double>

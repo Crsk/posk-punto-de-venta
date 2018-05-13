@@ -17,6 +17,7 @@ namespace posk.Controls
         public string Incluye { get; set; }
         public DateTime? FechaEntrega { get; set; }
         public boleta Boleta { get; set; }
+        public delivery_item DeliveryItem { get; set; }
 
         public ItemDelivery()
         {
@@ -24,6 +25,7 @@ namespace posk.Controls
             Loaded += (se, a) =>
             {
                 lbNombre.Content = $"{NombreCliente}";
+                lbServirLlevar.Content = DeliveryItem.servir == true ? "S" : "L";
             };
         }
     }

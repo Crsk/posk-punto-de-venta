@@ -22,6 +22,7 @@ namespace posk.Models
         public string incluye { get; set; }
         public Nullable<System.DateTime> fecha_entrega { get; set; }
         public Nullable<int> boleta_id { get; set; }
+        public Nullable<bool> servir { get; set; }
     
         public virtual boleta boleta { get; set; }
         public virtual cliente cliente { get; set; }
