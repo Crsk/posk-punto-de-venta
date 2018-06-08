@@ -12,7 +12,7 @@
             TextOptions.TextRenderingMode="Auto"
             xmlns:sys="clr-namespace:System;assembly=mscorlib" 
             d:DesignHeight="640" d:DesignWidth="1200"
-            Background="#FF05070C">
+            Background="#FF0C1119">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -21,7 +21,7 @@
             </Grid.RowDefinitions>
 
             <!-- Teclado numérico Pagar-->
-            <Expander x:Name="expTecladoPagar" Background="#FF020206" Panel.ZIndex="1" Grid.Row="1" VerticalAlignment="Bottom" Style="{StaticResource ExpanderStyleSinHeader}">
+            <Expander x:Name="expTecladoPagar" Background="#FF080B0F" Panel.ZIndex="1" Grid.Row="1" VerticalAlignment="Bottom" Style="{StaticResource ExpanderStyleSinHeader}">
                 <StackPanel>
                     <StackPanel x:Name="spMoneda1" Orientation="Horizontal" HorizontalAlignment="Right">
                         <Button x:Name="btnCerraTecladoMoneda" Background="{x:Null}" Style="{StaticResource BtnClear}">
@@ -50,7 +50,7 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <!-- Inicio Botones Busqueda -->
-                        <Grid Grid.Row="0" Background="#FF020206">
+                        <Grid Grid.Row="0" Background="#FF080B0F">
                             <Button x:Name="btnVolver" Background="{x:Null}" Margin="54 0 4 0" BorderBrush="{x:Null}" VerticalAlignment="Center" Foreground="#FFE6E6E6" Style="{StaticResource BtnClear}" Height="72" Width="60" HorizontalAlignment="Left" Visibility="Hidden">
                                 <materialDesign:PackIcon Kind="ChevronLeft" Height="60" Width="60" VerticalAlignment="Center"/>
                             </Button>
@@ -70,6 +70,10 @@
                                     <materialDesign:PackIcon x:Name="iconFavorito" Kind="Star" Height="54" Width="54" VerticalAlignment="Center"/>
                                 </Button>
 
+                                <Button x:Name="btnNumero" Background="{x:Null}" Margin="8 0 8 0" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Style="{StaticResource BtnClear}" Height="60" Width="60">
+                                    <materialDesign:PackIcon x:Name="iconNumero" Kind="Numeric1Box" Height="54" Width="54" VerticalAlignment="Center"/>
+                                </Button>
+                                
                                 <Border Visibility="Hidden" Width="0">
                                     <Button x:Name="btnPromo" Background="{x:Null}" Margin="8 0 8 0" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Style="{StaticResource BtnClear}" Height="60" Width="60">
                                         <materialDesign:PackIcon x:Name="iconPromo" Kind="Sale" Height="48" Width="48" VerticalAlignment="Center"/>
@@ -91,7 +95,7 @@
                             </Grid.ColumnDefinitions>
                             <!-- Inicio Categorias -->
                             <Grid Grid.Column="0">
-                                <Expander Name="expLeft" Background="#FF020206" ExpandDirection="Left" HorizontalAlignment="Left" Style="{StaticResource ExpanderStyleSinHeader}" Padding="22 0 0 0" Cursor="Hand">
+                                <Expander Name="expLeft" Background="#FF080B0F" ExpandDirection="Left" HorizontalAlignment="Left" Style="{StaticResource ExpanderStyleSinHeader}" Padding="22 0 0 0" Cursor="Hand">
                                     <ScrollViewer>
                                         <ScrollViewer.Resources>
                                             <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">50</sys:Double>
@@ -147,7 +151,7 @@
                                 <!-- Inicio Agregados Handroll-->
 
                                 <Grid Grid.Row="2" Background="#FF020206">
-                                    <Expander x:Name="expAgregadoSushiSuperior" Background="#FF020206" ExpandDirection="Down" HorizontalAlignment="Right" Style="{StaticResource ExpanderStyleSinHeader}">
+                                    <Expander x:Name="expAgregadoSushiSuperior" Background="#FF080B0F" ExpandDirection="Down" HorizontalAlignment="Right" Style="{StaticResource ExpanderStyleSinHeader}">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
@@ -358,10 +362,10 @@
             <!-- Fin Principal -->
 
             <!-- Inicio Barra información -->
-            <Grid Grid.Row="1" Background="#FF04050A">
+            <Grid Grid.Row="1" Background="#FF080B0F">
                 <Expander x:Name="expInfo" Style="{StaticResource ExpanderStyleSinHeader}" IsExpanded="True">
 
-                    <DockPanel Background="#FF020206">
+                    <DockPanel Background="#FF080B0F">
                         <Border DockPanel.Dock="Right" HorizontalAlignment="Right" Height="30" Background="{x:Null}" BorderBrush="{x:Null}">
                             <StackPanel x:Name="spInfo" Orientation="Horizontal" HorizontalAlignment="Right">
 

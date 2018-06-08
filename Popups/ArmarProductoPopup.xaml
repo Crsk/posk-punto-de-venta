@@ -31,6 +31,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
+                <ComboBox x:Name="asd"></ComboBox>
                     <Button x:Name="btnAtras" HorizontalAlignment="Left" Style="{StaticResource BtnClear}" Background="{x:Null}" Foreground="White" VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="ArrowLeft" Height="36" Width="36"/>
                     </Button>

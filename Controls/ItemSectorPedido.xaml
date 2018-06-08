@@ -13,7 +13,7 @@
             TextOptions.TextFormattingMode="Ideal"
             TextOptions.TextRenderingMode="Auto"
              >
-    <Button x:Name="btnSector" Padding="0" Margin="4" MinWidth="60">
-        <Label x:Name="lbSector"/>
+    <Button Name="btnSector" Height="40" Padding="8 0 8 0" Margin="8 0 8 8" MinWidth="60" Background="#ecf0f1" BorderBrush="#ecf0f1" Style="{StaticResource BtnClear}" FontSize="18">
+        <Label x:Name="lbSector" Foreground="#020202"/>
     </Button>
 </UserControl>

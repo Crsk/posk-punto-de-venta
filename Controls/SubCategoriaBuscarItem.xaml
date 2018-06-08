@@ -13,8 +13,7 @@
       TextElement.FontWeight="Regular"
       TextElement.FontSize="13"
       TextOptions.TextFormattingMode="Ideal"
-      TextOptions.TextRenderingMode="Auto"
-      Background="#020202">
+      TextOptions.TextRenderingMode="Auto">
     <Grid>
         <Button Name="btnSubCategoria" Content="" Height="50" Style="{StaticResource BtnClear}" Background="{x:Null}" Foreground="#f9f9f9"/>
     </Grid>

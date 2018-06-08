@@ -217,6 +217,11 @@ namespace posk.Pages.Menu
                             MainWindow.MainFrame.Content = new PrincipalComponent("VENTA");
                             //AlIniciarSesion.Invoke(this, "G");
                             break;
+                        case "R":
+                            MainWindow.LbRol.Content = "Cajero Restaurant";
+                            JornadaBLL.CrearJornadaSiNoExiste();
+                            MainWindow.MainFrame.Content = new PageMesas();
+                            break;
                     }
                     MainWindow.BtnMenu.Visibility = Visibility.Visible;
                     MainWindow.BtnMenu.IsEnabled = true;

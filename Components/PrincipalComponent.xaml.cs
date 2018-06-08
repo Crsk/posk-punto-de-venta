@@ -1911,6 +1911,44 @@ namespace posk.Components
 
 
 
+                ItemMesa_pedido itemMesa = new ItemMesa_pedido() { Mesa = mesa };
+                borderAccionCentro.Child = itemMesa;
+                itemMesa.btnMesa.Click += (se2, a2) => 
+                {
+                    //var rpp = new RealizarPedidoPopup(spVentaItems.Children.OfType<ItemVenta>().ToList(), spVentaItems.Children.OfType<ItemVentaPlatoFondo>().ToList());
+                    var rpp = new RealizarPedidoPopup(
+                        spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == true).ToList(),
+                        spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList(),
+                        spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "otro").ToList(), Settings.Usuario.tipo
+                    );
+                    rpp.Show();
+
+                    rpp.ReciclarEvent += (se3, usuarioMesa) =>
+                    {
+                        spDerecha.Children.Clear();
+                        if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.RESTAURANT.ToString()))
+                        {
+                            CargarPendientesRestaurant();
+                            CargarItemVerPendientes();
+
+                            SyncBLL.AumentarSyncId("pedido");
+                        }
+                        else if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.KUPAL.ToString()))
+                        {
+                            CargarArriendos();
+                            CargarItemVerPendientes();
+                        }
+                        else //if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.RUA.ToString()))
+                        {
+                            CargarPendientes();
+                            CargarItemVerPendientes();
+                        }
+                        rpp.Close();
+                        GenerarTicket(0, usuarioMesa[0], usuarioMesa[1], usuarioMesa[2]);
+                        LimpiarTodo();
+                    };
+                };
+
 
                 // esconder seccion pendiete a garzón
                 //if (!Settings.Usuario.tipo.ToLower().Equals("g"))

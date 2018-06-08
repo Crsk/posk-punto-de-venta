@@ -26,6 +26,7 @@ namespace posk.Popups
         public int? idMesaClickeada = null;
         private ItemMesaPedido _ItemMesaPedido { get; set; }
 
+
         /// <summary>
         /// Recibe modo para saber como operar
         /// REST = crea un pendiente asociado a la mesa
@@ -71,7 +72,7 @@ namespace posk.Popups
                 isp.AlClickear += (se, a) =>
                 {
                     PonerMesasPorSector(sectorMesa.id);
-                    lbSector.Content = $"SECTOR: {sectorMesa.nombre}";
+                    lbSector.Content = $"SECTOR: {sectorMesa.nombre}".ToString();
                 };
                 wrapSector.Children.Add(isp);
             });
@@ -79,6 +80,7 @@ namespace posk.Popups
 
         private void PonerMesasPorSector(int sectorMesaID)
         {
+            var bc = new BrushConverter();
             wrapMesas.Children.Clear();
             if (sectorMesaID == 0)
             {
@@ -90,7 +92,6 @@ namespace posk.Popups
                         if (_ItemMesaPedido != null)
                             _ItemMesaPedido.Colorear();
                         _ItemMesaPedido = imp;
-                        _ItemMesaPedido.btnMesa.Background = new SolidColorBrush(Color.FromRgb(11, 91, 165));
                         _ItemMesaPedido.lbMesa.Content = _ItemMesaPedido.Mesa.codigo;
                         _ItemMesaPedido.lbEstado.Content = "selección";
                         lbMesa.Content = $"MESA: { _ItemMesaPedido.Mesa.codigo }";
@@ -111,7 +112,6 @@ namespace posk.Popups
                         if (_ItemMesaPedido != null)
                             _ItemMesaPedido.Colorear();
                         _ItemMesaPedido = imp;
-                        _ItemMesaPedido.btnMesa.Background = new SolidColorBrush(Color.FromRgb(11, 91, 165));
                         _ItemMesaPedido.lbMesa.Content = _ItemMesaPedido.Mesa.codigo;
                         _ItemMesaPedido.lbEstado.Content = "selección";
                         lbMesa.Content = $"MESA: { _ItemMesaPedido.Mesa.codigo }";

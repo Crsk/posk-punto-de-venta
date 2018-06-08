@@ -17,7 +17,7 @@
       Title="PageMesas">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
@@ -26,8 +26,11 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Name="btnSector1" Grid.Column="0" Content="PRIMER PISO" Height="80" Margin="8 0 8 8" Background="#ecf0f1" BorderBrush="#ecf0f1" Foreground="#020202" Style="{StaticResource BtnClear}" FontSize="18"/>
-            <Button Name="btnSector2" Grid.Column="1" Content="SUBTERRANEO" Height="80" Margin="8 0 8 8" Background="#ecf0f1" BorderBrush="#ecf0f1" Foreground="#020202" Style="{StaticResource BtnClear}" FontSize="18"/>
+            <Button Name="btnSector1" Grid.Column="0" Content="PRIMER PISO" Height="40" Margin="8 0 8 8" Background="#ecf0f1" BorderBrush="#ecf0f1" Foreground="#020202" Style="{StaticResource BtnClear}" FontSize="18" VerticalAlignment="Top"/>
+            <Button Name="btnSector2" Grid.Column="1" Content="SUBTERRANEO" Height="40" Margin="8 0 8 8" Background="#ecf0f1" BorderBrush="#ecf0f1" Foreground="#020202" Style="{StaticResource BtnClear}" FontSize="18" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid>
+            
         </Grid>
         <Frame Name="frameMesas"  Grid.Row="1" NavigationUIVisibility="Hidden" VerticalAlignment="Center"/>
         <Grid Grid.Row="2">
