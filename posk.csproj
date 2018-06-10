@@ -1414,6 +1414,9 @@
     <Compile Include="Pages\Menu\PageAdministrarCliente.xaml.cs">
       <DependentUpon>PageAdministrarCliente.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Menu\PagePrimerInicio.xaml.cs">
+      <DependentUpon>PagePrimerInicio.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Menu\PageVerInventario.xaml.cs">
       <DependentUpon>PageVerInventario.xaml</DependentUpon>
     </Compile>
@@ -1521,9 +1524,6 @@
     </Compile>
     <Compile Include="Pages\Menu\PagePedidoGarzon.xaml.cs">
       <DependentUpon>PagePedidoGarzon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Menu\PagePrimerInicio.xaml.cs">
-      <DependentUpon>PagePrimerInicio.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Menu\PageProveedor.xaml.cs">
       <DependentUpon>PageProveedor.xaml</DependentUpon>

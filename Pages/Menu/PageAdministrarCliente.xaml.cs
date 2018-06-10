@@ -281,7 +281,7 @@ namespace posk.Pages.Menu
                         nombre = txtNombre.Text,
                         rut = txtRut.Text,
                         contacto = txtContacto.Text,
-                        favorito = checkFavorito.IsChecked,
+                        favorito = checkFavorito.IsChecked == true ? true : false,
                         imagen = itemFoto.NombreFoto,
                         puntos_id = 1,
                         comentario = "",
@@ -296,6 +296,11 @@ namespace posk.Pages.Menu
 
                 if (btnCrearEditar.Content.Equals("CREAR"))
                 {
+                    // Crear puntos
+                    punto p = PuntoBLL.Crear();
+                    // Asignar puntos a cliente
+                    c.puntos_id = p.id;
+
                     // Crear cliente
                     try
                     {

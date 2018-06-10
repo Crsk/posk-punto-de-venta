@@ -7,6 +7,14 @@ namespace posk.BLL
     {
         static PoskDB6 db = new PoskDB6();
 
+        public static punto Crear()
+        {
+            punto p = new punto() { puntos_activos = 100, puntos_expirados = 0, fecha_expiracion = DateTime.Now.AddDays(30) };
+            db.puntos.Add(p);
+            db.SaveChanges();
+            return p;
+        }
+
         public static void Update(punto points, int amount)
         {
             // nunca hacer un update a un objeto encontrado por id con linq

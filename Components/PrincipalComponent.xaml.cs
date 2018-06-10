@@ -415,7 +415,7 @@ namespace posk.Components
         /// <param name="mensajeSecundario"></param>
         private void MostrarNotificacion(string mensaje, string mensajeSecundario)
         {
-            new Notification(mensaje, mensajeSecundario, Notification.Type.Successful, 1);
+            new Notification(mensaje, mensajeSecundario, Notification.Type.Successful, 1, Notification.Size.Sm, Notification.Position.Top);
         }
 
         /// <summary>
@@ -693,6 +693,7 @@ namespace posk.Components
                                     {
                                         ivpExistente.AgregarCantidad(1);
                                         MostrarNotificacion($"{itemProductoSeleccionado.Producto.nombre.ToUpper()}", "+1");
+                                        // new Notification($"{itemProductoSeleccionado.Producto.nombre.ToUpper()}", "+1", Notification.Type.Successful, 1, Notification.Size.Sm, Notification.Position.Top);
                                     }
                                     else
                                     {

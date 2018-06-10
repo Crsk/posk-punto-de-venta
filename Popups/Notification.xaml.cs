@@ -10,13 +10,14 @@ namespace posk.Popup
     {
         public enum Type { Successful, Warning, Danger };
         public enum Size { Default, Sm, Md, Lg };
+        public enum Position { Top, Center };
         private static SolidColorBrush colorVerde;
         private static SolidColorBrush colorAmarillo;
         private static SolidColorBrush colorRojo;
         DispatcherTimer dtClockTime;
 
 
-        public Notification(string mensaje, string mensajeSecundario = "", Type type = Type.Successful, int duracion = 2, Size size = Size.Default)
+        public Notification(string mensaje, string mensajeSecundario = "", Type type = Type.Successful, int duracion = 2, Size size = Size.Default, Position position = Position.Center )
         {
             bool alwaysShow = false;
             colorVerde = new SolidColorBrush(Color.FromRgb(5, 91, 37));
@@ -26,7 +27,19 @@ namespace posk.Popup
 
             btnCerrar.Click += (se, a) => Cerrar();
 
-            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+            switch (position)
+            {
+                case Position.Top:
+                    WindowStartupLocation = WindowStartupLocation.Manual;
+                    break;
+                case Position.Center:
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                    break;
+                default:
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                    break;
+            }
             //WindowStartupLocation = WindowStartupLocation.Manual;
 
             lbMensaje.Text = mensaje.ToUpper();

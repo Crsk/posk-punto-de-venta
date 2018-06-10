@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:posk.Popup"
         mc:Ignorable="d"
         HorizontalAlignment="Center"
-        VerticalAlignment="Center"
-        Title="WindowMensajePopup" Height="80" Width="360" AllowsTransparency="True" WindowStyle="None">
-    <Button x:Name="btnCerrar" Height="80" Width="360" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{StaticResource BtnClear}" Background="{x:Null}">
+        VerticalAlignment="Center" Left="8" Top="8"
+        Title="WindowMensajePopup" Height="70" Width="360" AllowsTransparency="True" WindowStyle="None">
+    <Button x:Name="btnCerrar" Height="70" Width="360" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{StaticResource BtnClear}" Background="{x:Null}">
         <Grid>
             <Label Content="x" Panel.ZIndex="1" Margin="0 -6 0 0"/>
-        <Border x:Name="borderFondo" Height="80" Width="360" Background="#FF055B25">
+        <Border x:Name="borderFondo" Height="70" Width="360" Background="#FF055B25">
             <StackPanel VerticalAlignment="Center">
-                <TextBlock Name="lbMensaje" Text="MENSAJE" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" Foreground="#fafafa" TextWrapping="Wrap"/>
+                <TextBlock Name="lbMensaje" Text="MENSAJE" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" Foreground="#fafafa" TextWrapping="Wrap" Margin="0 -8 0 0"/>
                 <TextBlock Name="tbMensajeSecundario" Text="Mensaje secundario" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" MaxWidth="340" Foreground="#fafafa" TextWrapping="Wrap"/>
             </StackPanel>
         </Border>
