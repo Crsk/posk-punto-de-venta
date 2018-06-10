@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="posk_dbModel6.categoria_sector" Width="1.5" PointX="9" PointY="22.125" />
         <EntityTypeShape EntityType="posk_dbModel6.categoria_subcategoria" Width="1.5" PointX="6" PointY="33.125" />
         <EntityTypeShape EntityType="posk_dbModel6.categoria" Width="1.5" PointX="3.75" PointY="24.125" />
-        <EntityTypeShape EntityType="posk_dbModel6.cliente" Width="1.5" PointX="6" PointY="13.25" />
+        <EntityTypeShape EntityType="posk_dbModel6.cliente" Width="1.5" PointX="3.25" PointY="13" />
         <EntityTypeShape EntityType="posk_dbModel6.compra" Width="1.5" PointX="8" PointY="19" />
         <EntityTypeShape EntityType="posk_dbModel6.config" Width="1.5" PointX="1.5" PointY="19.25" />
         <EntityTypeShape EntityType="posk_dbModel6.detalle_boleta" Width="1.5" PointX="8.25" PointY="44.75" />
@@ -38,7 +38,7 @@
         <EntityTypeShape EntityType="posk_dbModel6.productoscomplejo" Width="1.5" PointX="5.25" PointY="67" />
         <EntityTypeShape EntityType="posk_dbModel6.promocione" Width="1.5" PointX="3" PointY="49" />
         <EntityTypeShape EntityType="posk_dbModel6.proveedore" Width="1.5" PointX="0.75" PointY="30.125" />
-        <EntityTypeShape EntityType="posk_dbModel6.punto" Width="1.5" PointX="3.75" PointY="14.125" />
+        <EntityTypeShape EntityType="posk_dbModel6.punto" Width="1.5" PointX="1" PointY="14" />
         <EntityTypeShape EntityType="posk_dbModel6.registro" Width="1.5" PointX="6" PointY="9.5" />
         <EntityTypeShape EntityType="posk_dbModel6.reserva" Width="1.5" PointX="11" PointY="36.25" />
         <EntityTypeShape EntityType="posk_dbModel6.sectormesa" Width="1.5" PointX="1.5" PointY="58.5" />

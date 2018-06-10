@@ -10,7 +10,7 @@ namespace posk.Controls
         public sectormesa SectorMesa
         {
             get { return sectorMesa; }
-            set { sectorMesa = value; lbSector.Content = value.nombre; }
+            set { sectorMesa = value; lbSector.Content = value.nombre.ToUpper(); }
         }
 
         public event EventHandler AlClickear;

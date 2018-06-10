@@ -280,6 +280,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ItemEscogerGarzonMesa.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ItemEscogerGarzonSeccionVenta.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -641,6 +645,9 @@
     </Compile>
     <Compile Include="Controls\ItemEnvoltura.xaml.cs">
       <DependentUpon>ItemEnvoltura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemEscogerGarzonMesa.xaml.cs">
+      <DependentUpon>ItemEscogerGarzonMesa.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ItemEscogerGarzonSeccionVenta.xaml.cs">
       <DependentUpon>ItemEscogerGarzonSeccionVenta.xaml</DependentUpon>

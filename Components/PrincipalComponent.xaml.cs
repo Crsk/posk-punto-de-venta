@@ -43,6 +43,7 @@ namespace posk.Components
         private ItemAgregadoHandroll itemPaltaCebollin;
         private ItemMensajeCocina imc;
         private int ultimoSyncIdPedido;
+        private ItemEscogerGarzonMesa iegm;
         private ItemEscogerGarzonSeccionVenta ieg;
         private ItemEscogerMesaSeccionVenta iem;
         private ItemMedioPago imp;
@@ -92,6 +93,7 @@ namespace posk.Components
             itemPaltaCebollin = new ItemAgregadoHandroll();
             imc = new ItemMensajeCocina();
 
+            iegm = new ItemEscogerGarzonMesa();
             ieg = new ItemEscogerGarzonSeccionVenta() { Usuarios = UsuarioBLL.ObtenerGarzones() };
             iem = new ItemEscogerMesaSeccionVenta() { Mesas = MesaBLL.ObtenerTodas() };
             imp = new ItemMedioPago() { MediosPago = MedioPagoBLL.ObtenerTodos() };
@@ -756,7 +758,7 @@ namespace posk.Components
                                             acp.OnAgregarCantidad += (se4, ev4) => ivpNuevo.AgregarCantidad(ev4);
                                             acp.OnQuitarCantidad += (se4, ev4) => ivpNuevo.AgregarCantidad(-ev4);
                                             */
-                                            acp.OnFinish += (se4, a4) => 
+                                            acp.OnFinish += (se4, a4) =>
                                             {
                                                 MostrarOverlay(false);
                                                 acp.bCerrado = true;
@@ -1909,47 +1911,6 @@ namespace posk.Components
                 if (Settings.Usuario.tipo.ToLower().Equals("g"))
                     lbInfo.Content = "SECCIÓN PEDIDOS";
 
-
-
-                ItemMesa_pedido itemMesa = new ItemMesa_pedido() { Mesa = mesa };
-                borderAccionCentro.Child = itemMesa;
-                itemMesa.btnMesa.Click += (se2, a2) => 
-                {
-                    //var rpp = new RealizarPedidoPopup(spVentaItems.Children.OfType<ItemVenta>().ToList(), spVentaItems.Children.OfType<ItemVentaPlatoFondo>().ToList());
-                    var rpp = new RealizarPedidoPopup(
-                        spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == true).ToList(),
-                        spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList(),
-                        spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "otro").ToList(), Settings.Usuario.tipo
-                    );
-                    rpp.Show();
-
-                    rpp.ReciclarEvent += (se3, usuarioMesa) =>
-                    {
-                        spDerecha.Children.Clear();
-                        if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.RESTAURANT.ToString()))
-                        {
-                            CargarPendientesRestaurant();
-                            CargarItemVerPendientes();
-
-                            SyncBLL.AumentarSyncId("pedido");
-                        }
-                        else if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.KUPAL.ToString()))
-                        {
-                            CargarArriendos();
-                            CargarItemVerPendientes();
-                        }
-                        else //if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.RUA.ToString()))
-                        {
-                            CargarPendientes();
-                            CargarItemVerPendientes();
-                        }
-                        rpp.Close();
-                        GenerarTicket(0, usuarioMesa[0], usuarioMesa[1], usuarioMesa[2]);
-                        LimpiarTodo();
-                    };
-                };
-
-
                 // esconder seccion pendiete a garzón
                 //if (!Settings.Usuario.tipo.ToLower().Equals("g"))
                 CargarItemVerPendientes();
@@ -2044,6 +2005,25 @@ namespace posk.Components
                         spMedioDePago.Children.Add(imp);
                     }
                     */
+                    iegm.btnEscogerMesaGarzon.Click += (se2, a2) =>
+                    {
+                        var rpp = new RealizarPedidoPopup(
+                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == true).ToList(),
+                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList(),
+                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "otro").ToList(), Settings.Usuario.tipo
+                        );
+                        rpp.AlEscogerMesa += (se3, mesaEscogida) => iem.cbMesas.Text = mesaEscogida.codigo;
+                        rpp.Show();
+                    };
+                    if (!Settings.Usuario.tipo.ToLower().Equals("g"))
+                    {
+                        if (spGarzonMesa.Children.OfType<ItemEscogerGarzonSeccionVenta>().ToList().Count == 0)
+                            spGarzonMesa.Children.Add(ieg);
+                        if (spGarzonMesa.Children.OfType<ItemEscogerMesaSeccionVenta>().ToList().Count == 0)
+                            spGarzonMesa.Children.Add(iem);
+                        if (spGarzonMesa.Children.OfType<ItemEscogerGarzonMesa>().ToList().Count == 0)
+                            spGarzonMesa.Children.Add(iegm);
+                    }
                 }
 
                 if (!Settings.Usuario.tipo.ToLower().Equals("g"))

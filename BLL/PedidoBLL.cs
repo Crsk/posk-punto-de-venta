@@ -22,6 +22,10 @@ namespace posk.BLL
                 db.pedidos.Remove(ped);
             db.SaveChanges();
         }
+        public static pedido ObtenerPorMesa(string codigo)
+        {
+            return db.pedidos.AsNoTracking().Include("pedidos_productos").Include("usuario").Include("mesa").Where(x => x.mesa.codigo == codigo).FirstOrDefault();
+        }
 
         public static void EstablecerMesa(int pedidoId, int mesaId)
         {

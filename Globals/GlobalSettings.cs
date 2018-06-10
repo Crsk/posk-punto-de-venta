@@ -29,5 +29,7 @@ namespace posk.Globals
         {
             Modo = modo.ToString().ToUpper();
         }
+
+        public static bool ToggleGarzonSeleccionado { get; set; } = false;
     }
 }

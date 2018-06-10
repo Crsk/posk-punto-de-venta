@@ -8,6 +8,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.config
+Globals/EnviarCorreo.cs
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

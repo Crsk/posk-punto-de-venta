@@ -25,6 +25,7 @@ namespace posk.Popups
         public pedido Ped { get; set; }
         public int? idMesaClickeada = null;
         private ItemMesaPedido _ItemMesaPedido { get; set; }
+        public event EventHandler<mesa> AlEscogerMesa;
 
 
         /// <summary>
@@ -37,6 +38,18 @@ namespace posk.Popups
         public RealizarPedidoPopup(List<ItemVenta> listaItemsVentaEntrada, List<ItemVenta> listaItemsVentaPlatoFondo, List<ItemVenta> listaItemsVentaOtro, string tipoUsuario)
         {
             InitializeComponent();
+
+            if (GlobalSettings.ToggleGarzonSeleccionado == true)
+            {
+                toggleGarzon.IsChecked = true;
+                expEscogerGarzon.IsExpanded = true;
+            }
+            else
+            {
+                toggleGarzon.IsChecked = false;
+                expEscogerGarzon.IsExpanded = false;
+            }
+
             if (tipoUsuario.ToLower() == "g")
             {
                 gridPadre.Children.Remove(gridUsuarios);
@@ -52,6 +65,18 @@ namespace posk.Popups
             PonerMesasPorSector(0); // todas
             PonerSectores();
             btnCancelar.Click += (se, a) => { this.Close(); };
+            toggleGarzon.Click += (se, a) =>
+            {
+                expEscogerGarzon.IsExpanded = toggleGarzon.IsChecked == true ? true : false;
+                if (toggleGarzon.IsChecked == true)
+                {
+                    GlobalSettings.ToggleGarzonSeleccionado = true;
+                }
+                else
+                {
+                    GlobalSettings.ToggleGarzonSeleccionado = false;
+                }
+            };
         }
 
         private void PonerSectores()
@@ -96,8 +121,20 @@ namespace posk.Popups
                         _ItemMesaPedido.lbEstado.Content = "selección";
                         lbMesa.Content = $"MESA: { _ItemMesaPedido.Mesa.codigo }";
                         Mesa = _ItemMesaPedido.Mesa;
-                        if (Settings.Usuario.tipo.ToLower() == "g")
-                            CrearPedido(Settings.Usuario);
+                        //if (Settings.Usuario.tipo.ToLower() == "g")
+                        //    CrearPedido(Settings.Usuario);
+
+                        if (mesa.libre == false)
+                        {
+                            pedido pedido = PedidoBLL.ObtenerPorMesa(mesa.codigo);
+                            var sipp = new SeleccionarItemsPedidoPopup(pedido);
+                            sipp.Show();
+                        }
+                        else
+                        {
+                            AlEscogerMesa.Invoke(this, mesa);
+                            Close();
+                        }
                     };
                     wrapMesas.Children.Add(imp);
                 });

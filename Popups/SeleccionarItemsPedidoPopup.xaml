@@ -34,8 +34,8 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" x:Name="btnPedirCuenta" Height="50" Background="#FF05481E" BorderBrush="{x:Null}" Content="PEDIR CUENTA" Foreground="#FFECECEC" Margin="4 4 2 4"/>
-            <Button Grid.Column="1" x:Name="btnActualizarPedido" Height="50" Background="#FF05481E" BorderBrush="{x:Null}" Content="REGENERAR PEDIDO" Foreground="#FFECECEC" Margin="4 4 2 4"/>
-            <Button Grid.Column="2" x:Name="btnIngresarVenta" Height="50" Background="#FF05481E" BorderBrush="{x:Null}" Content="INGRESAR A VENTA" Foreground="#FFECECEC" Margin="2 4 4 4"/>
+            <Button Grid.Column="1" x:Name="btnIngresarVenta" Height="50" Background="#FF05481E" BorderBrush="{x:Null}" Content="AGREGAR ALGO" Foreground="#FFECECEC" Margin="2 4 4 4"/>
+            <Button Grid.Column="2" x:Name="btnActualizarPedido" Height="50" Background="#FF05481E" BorderBrush="{x:Null}" Content="VENDER" Foreground="#FFECECEC" Margin="4 4 2 4"/>
         </Grid>
     </Grid>
 </Window>
