@@ -805,7 +805,6 @@
     <Compile Include="Entities\SupplierEntity.cs" />
     <Compile Include="Globals\AppSettings.cs" />
     <Compile Include="Globals\CrearTicket.cs" />
-    <Compile Include="Globals\EnviarCorreo.cs" />
     <Compile Include="Globals\Estadisticas.cs" />
     <Compile Include="Globals\GlobalSettings.cs" />
     <Compile Include="Globals\Imprimir.cs" />
