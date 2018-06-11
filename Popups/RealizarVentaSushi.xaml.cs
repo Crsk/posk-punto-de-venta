@@ -34,7 +34,10 @@ namespace posk.Popups
         public string gris = "#FFC9C9C9";
         public string blanco = "#fff";
 
+        private bool bEscribiendoEnCliente;
+
         public event EventHandler<DeliveryInfo> AlVender;
+        public event EventHandler<DeliveryInfo> AlCerrar;
 
         public RealizarVentaSushi(int montoTotalSinPropina, int puntos)
         {
@@ -42,6 +45,7 @@ namespace posk.Popups
             this.MontoTotalSinPropina = montoTotalSinPropina;
 
             ServirLlevarStr = "SERVIR";
+            bEscribiendoEnCliente = false;
 
             var bc = new BrushConverter();
             btnServir.Background = (Brush)bc.ConvertFrom(verde);
@@ -91,16 +95,80 @@ namespace posk.Popups
 
             List<cliente> listaClientes = ClienteBLL.ObtenerTodo();
 
+            btnCerrar.Click += (se, a) =>
+            {
+                AlCerrar?.Invoke(this, null);
+            };
 
+            cbClientes.ItemsSource = listaClientes;
+            cbClientes.DisplayMemberPath = "nombre";
+            cbClientes.SelectionChanged += (se, a) =>
+            {
+                try
+                {
+                    cliente cli = cbClientes.SelectedItem as cliente;
+                    lbClienteEncontrado.Content = $"{cli.nombre} acumula {puntos} y quedará con {cli.punto.puntos_activos + puntos} puntos";
+                    if (!bEscribiendoEnCliente)
+                        txtNombreCliente.Text = cli.nombre;
+                }
+                catch
+                {
+                    lbClienteEncontrado.Content = $"(Acumularía {puntos} puntos)";
+                    cbClientes.SelectedIndex = -1;
+                }
+            };
+
+            btnLimpiarCliente.Click += (se, a) => 
+            {
+                cbClientes.SelectedIndex = -1;
+                txtNombreCliente.Text = "";
+                txtNombreCliente.Focus();
+            };
 
             lbClienteEncontrado.Content = $"(Acumularía {puntos} puntos)";
             txtNombreCliente.TextChanged += (se, a) =>
             {
-                cliente cli = listaClientes.Where(x => x.rut == txtNombreCliente.Text).FirstOrDefault();
-                if (cli != null)
-                    lbClienteEncontrado.Content = $"{cli.nombre} acumula {puntos} y queda con {cli.punto.puntos_activos + puntos} puntos";
+                bEscribiendoEnCliente = true;
+                cliente cli = listaClientes.Where(x => x.rut == txtNombreCliente.Text || x.nombre.ToUpper() == txtNombreCliente.Text.ToUpper()).FirstOrDefault();
+                cliente cliPorRut = listaClientes.Where(x => x.rut == txtNombreCliente.Text).FirstOrDefault();
+                List<cliente> listaClientesEncontrados = listaClientes.Where(x => x.rut.Contains(txtNombreCliente.Text) || x.nombre.ToUpper().Contains(txtNombreCliente.Text.ToUpper())).ToList();
+
+                if (listaClientesEncontrados != null)
+                {
+                    cbClientes.ItemsSource = listaClientesEncontrados;
+                    cbClientes.DisplayMemberPath = "nombre";
+
+                    if (listaClientesEncontrados.Count == 1)
+                    {
+                        //cliente cliEncontrado = listaClientesEncontrados.FirstOrDefault() as cliente;
+                        //cbClientes.Text = cliEncontrado.nombre;
+                        //lbClienteEncontrado.Content = $"{cliEncontrado.nombre} acumula {puntos} y queda con {cliEncontrado.punto.puntos_activos + puntos} puntos";
+
+                    }
+                    //else
+                        //cbClientes.SelectedIndex = -1;
+                }
                 else
+                {
                     lbClienteEncontrado.Content = $"(Acumularía {puntos} puntos)";
+                    cbClientes.ItemsSource = listaClientes;
+                    cbClientes.DisplayMemberPath = "nombre";
+                    cbClientes.SelectedIndex = -1;
+                }
+                if (cliPorRut != null)
+                {
+                    cbClientes.Text = cliPorRut.nombre;
+                }
+                else
+                {
+                    /*
+                    lbClienteEncontrado.Content = $"(Acumularía {puntos} puntos)";
+                    cbClientes.ItemsSource = listaClientes;
+                    cbClientes.DisplayMemberPath = "nombre";
+                    cbClientes.SelectedIndex = -1;
+                    */
+                }
+                bEscribiendoEnCliente = false;
             };
 
             Loaded += (se, a) =>

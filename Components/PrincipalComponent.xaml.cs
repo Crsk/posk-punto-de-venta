@@ -2184,7 +2184,12 @@ namespace posk.Components
                                     MostrarOverlay(true);
 
                                     rvs.Deactivated += (se3, a3) => { MostrarOverlay(false); };
-
+                                    rvs.AlCerrar += (se3, a3) =>
+                                    {
+                                        rvs.bCerrado = true;
+                                        rvs.Close();
+                                        MostrarOverlay(false);
+                                    };
                                     rvs.AlVender += (se3, di) =>
                                     {
                                         int _calcularTotal = 0;
