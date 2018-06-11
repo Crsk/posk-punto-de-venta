@@ -9,6 +9,8 @@ using posk.BLL;
 using System.Windows.Media;
 using System.Windows.Controls;
 using posk.Partials;
+using posk.Models;
+using posk.Popup;
 
 namespace posk.Popups
 {
@@ -34,7 +36,7 @@ namespace posk.Popups
 
         public event EventHandler<DeliveryInfo> AlVender;
 
-        public RealizarVentaSushi(int montoTotalSinPropina)
+        public RealizarVentaSushi(int montoTotalSinPropina, int puntos)
         {
             InitializeComponent();
             this.MontoTotalSinPropina = montoTotalSinPropina;
@@ -86,6 +88,20 @@ namespace posk.Popups
 
             txtPropina.GotFocus += (se, a) => txtPropina.Text = "";
             txtPropina.MouseDown += (se, a) => txtPropina.Text = "";
+
+            List<cliente> listaClientes = ClienteBLL.ObtenerTodo();
+
+
+
+            lbClienteEncontrado.Content = $"(Acumularía {puntos} puntos)";
+            txtNombreCliente.TextChanged += (se, a) =>
+            {
+                cliente cli = listaClientes.Where(x => x.rut == txtNombreCliente.Text).FirstOrDefault();
+                if (cli != null)
+                    lbClienteEncontrado.Content = $"{cli.nombre} acumula {puntos} y queda con {cli.punto.puntos_activos + puntos} puntos";
+                else
+                    lbClienteEncontrado.Content = $"(Acumularía {puntos} puntos)";
+            };
 
             Loaded += (se, a) =>
             {
@@ -271,6 +287,9 @@ namespace posk.Popups
                         Incluye = incluyeStr,
                         IncluyeStrUnaLinea = incluyeStrUnaLinea
                     };
+
+                    string nombre = txtNombreCliente.Text;
+                    string nombredos = nombre + "asd";
 
                     AlVender.Invoke(this, di);
                 }

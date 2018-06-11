@@ -1,5 +1,6 @@
 ﻿using posk.Models;
 using System;
+using System.Linq;
 
 namespace posk.BLL
 {
@@ -28,6 +29,17 @@ namespace posk.BLL
                 points.puntos_activos = amount;
             points.fecha_expiracion = DateTime.Now.AddDays(30);
             db.SaveChanges();
+        }
+
+        public static void Sumar(int? puntosId, int cantidad)
+        {
+            if (puntosId != null)
+            {
+                punto p = db.puntos.Where(x => x.id == puntosId).FirstOrDefault();
+                p.puntos_activos += cantidad;
+                p.fecha_expiracion = DateTime.Now.AddDays(30);
+                db.SaveChanges();
+            }
         }
     }
 }

@@ -19,6 +19,11 @@ namespace posk.BLL
                 return db.clientes.Include("punto").Where(x => x.nombre.Contains(filtro)).ToList();
         }
 
+        public static List<cliente> ObtenerTodo()
+        {
+            return db.clientes.Include("punto").AsNoTracking().ToList();
+        }
+
         public static void Actualizar(cliente clienteNuevo)
         {
             cliente clienteViejo = db.clientes.Where(x => x.id == clienteNuevo.id).FirstOrDefault();

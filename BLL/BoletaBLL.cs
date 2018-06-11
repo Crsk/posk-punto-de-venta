@@ -20,7 +20,7 @@ namespace posk.BLL
             return db.boletas.ToList().OrderBy(x => x.id).LastOrDefault();
         }
 
-        public static boleta Set(int client_id, int userId, int points_amount, int total, int propina)
+        public static boleta Set(int client_id, int userId, int points_amount, int total, int propina, int? cliente_id = null)
         {
             int numeroUltimaBoleta = ObtenerUltimoNumeroBleta();
 
@@ -35,6 +35,7 @@ namespace posk.BLL
             ts.total = total;
             ts.propina = propina;
             ts.numero_boleta = ++numeroUltimaBoleta;
+            ts.cliente_id = cliente_id;
             db.boletas.Add(ts);
             db.SaveChanges();
             return ts;

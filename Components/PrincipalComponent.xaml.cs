@@ -2173,7 +2173,13 @@ namespace posk.Components
                             {
                                 try
                                 {
-                                    RealizarVentaSushi rvs = new RealizarVentaSushi(Convert.ToInt32(itemCalcularTotal.txtTotalVenta.Text));
+                                    int puntos = 0;
+                                    foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().ToList())
+                                    {
+                                        if (item.Producto?.puntos_cantidad != null)
+                                            puntos += (int)item.Producto.puntos_cantidad;
+                                    }
+                                    RealizarVentaSushi rvs = new RealizarVentaSushi(Convert.ToInt32(itemCalcularTotal.txtTotalVenta.Text), puntos);
                                     rvs.Show();
                                     MostrarOverlay(true);
 
@@ -2187,8 +2193,10 @@ namespace posk.Components
 
                                         List<boleta_mediopago> listaBMP = new List<boleta_mediopago>();
 
-                                        BoletaBLL.Set(0, Settings.Usuario.id, 0, _calcularTotal, di.Propina);
 
+                                        cliente cli = ClienteBLL.GetClient(di.NombreCliente);
+                                        BoletaBLL.Set(0, Settings.Usuario.id, puntos, _calcularTotal, di.Propina, cli?.id);
+                                        PuntoBLL.Sumar(cli?.puntos_id, puntos);
                                         boleta ultimaBoleta = BoletaBLL.ObtenerUltima();
 
                                         if (di.Efectivo != 0)
@@ -2890,6 +2898,8 @@ namespace posk.Components
                 bool bImprimirEnCocina = false;
                 bool bEsPedido = false;
                 bool bParaBar = false;
+                bool bImprimir = false;
+
                 bool bContieneParaCocina = false;
                 if (!string.IsNullOrEmpty(pedidoId))
                     bEsPedido = true;
@@ -3025,15 +3035,17 @@ namespace posk.Components
                         }
                         if (!string.IsNullOrEmpty(item.txtNota.Text)) ticket.TextoIzquierda("   " + item.txtNota.Text.ToUpper());
                     }
-
                     ticket.TextoIzquierda("");
                     //ticket.lineasGuion();
                     //ticket.TextoCentro("DETALLE");
                     //foreach (ItemVentaPlatoFondo item in spVentaItems.Children.OfType<ItemVentaPlatoFondo>().ToList())
                     foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList())
                     {
+                        if (item.Producto.sector_impresion?.nombre != "NINGUNO")
+                            bImprimir = true;
+
                         bContieneParaCocina = true;
-                        if (item.Producto.sector_impresion.nombre == "COCINA")
+                        if (item.Producto.sector_impresion?.nombre == "COCINA")
                             bImprimirEnCocina = true;
 
                         string espaciosStr = "";
@@ -3415,12 +3427,13 @@ namespace posk.Components
                 //Imprimir.PrintText("Texto de prueba a bar", Settings.ImpresoraBar);
                 //Imprimir.PrintText("Texto de prueba a cocina", Settings.ImpresoraCocina);
 
-                if (contadorProductosCocina != 0 && bEsPedido && !bParaBar)
+
+                if (contadorProductosCocina != 0 && bEsPedido && !bParaBar && bImprimir == true)
                     ticket.ImprimirTicket(Settings.ImpresoraCocina, "Ticket Cocina");
 
                 //Imprimir.PrintText("Texto de prueba a cocina", Settings.ImpresoraCocina);
 
-                if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.SUSHI.ToString()) && bYaRealizado == false)
+                if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.SUSHI.ToString()) && bYaRealizado == false && bImprimir == true)
                 {
                     bYaRealizado = true;
                     ticket.ImprimirTicket(Settings.ImpresoraBar, "Ticket Caja");

@@ -160,16 +160,16 @@
                         <ScrollViewer Grid.Column="0">
                             <StackPanel x:Name="spIzquierda" Grid.Column="0" Margin="8">
                                 <Border x:Name="borderNombre" Height="36" Margin="0 8 0 0">
-                                    <TextBox x:Name="txtNombre" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="NOMBRE"/>
+                                    <TextBox x:Name="txtNombre" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="NOMBRE" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                                 </Border>
                                 <Border x:Name="borderCodigo" Height="36" Margin="0 8 0 0">
-                                    <TextBox x:Name="txtCodigo" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="CÓDIGO"/>
+                                    <TextBox x:Name="txtCodigo" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="CÓDIGO" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                                 </Border>
                                 <Border x:Name="borderPrecioVenta" Height="36" Margin="0 8 0 0">
-                                    <TextBox x:Name="txtPrecioVenta" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="PRECIO VENTA"/>
+                                    <TextBox x:Name="txtPrecioVenta" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="PRECIO VENTA" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                                 </Border>
                                 <Border x:Name="borderPuntos" Height="36" Margin="0 8 0 0">
-                                    <TextBox x:Name="txtPuntos" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="PUNTOS"/>
+                                    <TextBox x:Name="txtPuntos" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="PUNTOS" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                                 </Border>
                                 <Border x:Name="borderFav" Height="36" Margin="0 8 0 0">
                                     <CheckBox x:Name="checkFavorito" Content="FAVORITO" FontSize="14" IsChecked="True"/>
@@ -188,13 +188,13 @@
                         <ScrollViewer Grid.Column="1">
                             <StackPanel x:Name="spDerecha" Grid.Column="1" Margin="8">
                                 <Border x:Name="borderSector" Height="36" Margin="0 8 0 0">
-                                    <ComboBox x:Name="cbSector" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="SECTOR"/>
+                                    <ComboBox x:Name="cbSector" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="SECTOR" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
                                 </Border>
                                 <Border x:Name="borderCategoria" Height="36" Margin="0 8 0 0">
-                                    <ComboBox x:Name="cbCategoria" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="CATEGORIA"/>
+                                    <ComboBox x:Name="cbCategoria" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="CATEGORIA" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
                                 </Border>
                                 <Border x:Name="borderSubcategoria" Height="36" Margin="0 8 0 0">
-                                    <ComboBox x:Name="cbSubCategoria" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="SUB CATEG"/>
+                                    <ComboBox x:Name="cbSubCategoria" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="SUB CATEG" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
                                 </Border>
                                 <StackPanel x:Name="spOpcionales" Background="#FFD1D1D1">
                                     <Border x:Name="borderRetornable" Height="36" Margin="0 8 0 0">
@@ -207,7 +207,7 @@
                                         <CheckBox x:Name="checkPreparadoEspecial" Content="PREPARADO ESP." FontSize="14"/>
                                     </Border>
                                     <Border x:Name="borderTipoItemVenta" Margin="0 8 0 0">
-                                        <ComboBox x:Name="cbTipoItemVenta" FontSize="14" materialDesign:HintAssist.Hint="TIPO ITEM VENTA" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+                                        <ComboBox x:Name="cbTipoItemVenta" FontSize="14" materialDesign:HintAssist.Hint="TIPO ITEM VENTA" Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectedIndex="1"/>
                                     </Border>
                                     
                                     <Border x:Name="borderSectorImpresion" Margin="0 8 0 0">
@@ -215,7 +215,7 @@
                                     </Border>
                                     
                                     <Border x:Name="borderZindex" Margin="0 8 0 0">
-                                        <TextBox x:Name="txtZindex" materialDesign:HintAssist.Hint="Z-Index"/>
+                                        <TextBox x:Name="txtZindex" materialDesign:HintAssist.Hint="Orden" ToolTip="Número el cual será utilizado para ordenar los productos al mostrarlos" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                                     </Border>
                                 </StackPanel>
                             </StackPanel>

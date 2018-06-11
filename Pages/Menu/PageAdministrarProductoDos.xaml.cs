@@ -636,6 +636,17 @@ namespace posk.Pages.Menu
 
                     LimpiarTodo();
 
+                    try
+                    {
+                        txtPuntos.Text = "0";
+                        txtZindex.Text = "0";
+                        cbTipoItemVenta.Text = "plato fondo";
+                        cbTipoItemVenta.Visibility = Visibility.Hidden;
+                    }
+                    catch
+                    {
+                    }
+
                     // cargar ComboBox al cambiar selección
                     try
                     {
