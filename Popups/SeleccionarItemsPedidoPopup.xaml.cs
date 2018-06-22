@@ -35,7 +35,7 @@ namespace posk.Popups
 
             cbGarzon.ItemsSource = UsuarioBLL.ObtenerGarzones();
             cbGarzon.DisplayMemberPath = "nombre";
-            cbGarzon.Text = ped.usuario.nombre;
+            cbGarzon.Text = ped.usuario?.nombre;
 
             cbMesa.ItemsSource = MesaBLL.ObtenerTodas();
             cbMesa.DisplayMemberPath = "codigo";

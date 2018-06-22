@@ -42,11 +42,11 @@ namespace posk.Popups
 
         private void RecalcularCaja()
         {
-            lbInfoVentas.Content = $"{ -Devoluciones - Gastos + VentasEfectivo + VentasTransBank + VentasJunaeb + VentasOtro - Propinas }";
-            lbInfoVentas.ToolTip = "-Devoluciones - Gastos + VentasEfectivo + VentasTransBank + VentasJunaeb + VentasOtro - Propinas";
+            lbInfoVentas.Content = $"{ VentasEfectivo + VentasTransBank + VentasJunaeb + VentasOtro - Devoluciones}";
+            lbInfoVentas.ToolTip = "VentasEfectivo + VentasTransBank + VentasJunaeb + VentasOtro - Devoluciones";
 
-            lbInfoCaja.Content = $"{ -Devoluciones - Gastos + CajaInicial + VentasEfectivo - Propinas }";
-            lbInfoCaja.ToolTip = "-Devoluciones - Gastos + CajaInicial + VentasEfectivo - Propinas";
+            lbInfoCaja.Content = $"{ VentasEfectivo + CajaInicial - Propinas - Gastos - Devoluciones }";
+            lbInfoCaja.ToolTip = "VentasEfectivo + CajaInicial - Propinas - Gastos - Devoluciones";
         }
 
         public InfoVentaPopup()

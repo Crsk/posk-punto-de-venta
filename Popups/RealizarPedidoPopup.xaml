@@ -51,8 +51,8 @@
                     <Label Content="LIBRE" Foreground="ForestGreen"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="16 0 0 0">
-                    <Border Background="ForestGreen" Height="20" Width="40" VerticalAlignment="Top" Margin="4"></Border>
-                    <Label Content="OCUPADA" Foreground="ForestGreen"/>
+                    <Border Background="#c0392b" Height="20" Width="40" VerticalAlignment="Top" Margin="4"></Border>
+                    <Label Content="OCUPADA" Foreground="#c0392b"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

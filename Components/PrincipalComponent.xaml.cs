@@ -2013,7 +2013,11 @@ namespace posk.Components
                             spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList(),
                             spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "otro").ToList(), Settings.Usuario.tipo
                         );
-                        rpp.AlEscogerMesa += (se3, mesaEscogida) => iem.cbMesas.Text = mesaEscogida.codigo;
+                        rpp.AlEscogerMesa += (se3, mesa_usuario) =>
+                        {
+                            iem.cbMesas.Text = mesa_usuario.Mesa.codigo;
+                            ieg.cbGarzones.Text = mesa_usuario.Usuario?.nombre;
+                        };
                         rpp.Show();
                     };
                     if (!Settings.Usuario.tipo.ToLower().Equals("g"))

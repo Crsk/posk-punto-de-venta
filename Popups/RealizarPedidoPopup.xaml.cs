@@ -12,8 +12,14 @@ using System.Windows.Media;
 
 namespace posk.Popups
 {
+    public class MesaUsuario
+    {
+        public mesa Mesa { get; set; }
+        public usuario Usuario { get; set; }
+    }
     public partial class RealizarPedidoPopup : Window
     {
+        public bool bCerrado = false;
         // Global
         public event EventHandler<string[]> ReciclarEvent;
         private List<ItemVenta> listaItemsVentaEntrada;
@@ -25,8 +31,8 @@ namespace posk.Popups
         public pedido Ped { get; set; }
         public int? idMesaClickeada = null;
         private ItemMesaPedido _ItemMesaPedido { get; set; }
-        public event EventHandler<mesa> AlEscogerMesa;
-
+        public event EventHandler<MesaUsuario> AlEscogerMesa;
+        public usuario Usuario { get; set; }
 
         /// <summary>
         /// Recibe modo para saber como operar
@@ -38,6 +44,8 @@ namespace posk.Popups
         public RealizarPedidoPopup(List<ItemVenta> listaItemsVentaEntrada, List<ItemVenta> listaItemsVentaPlatoFondo, List<ItemVenta> listaItemsVentaOtro, string tipoUsuario)
         {
             InitializeComponent();
+
+            // Deactivated += (se, ev) => { if (!bCerrado) Close(); };
 
             if (GlobalSettings.ToggleGarzonSeleccionado == true)
             {
@@ -64,7 +72,7 @@ namespace posk.Popups
             Events();
             PonerMesasPorSector(0); // todas
             PonerSectores();
-            btnCancelar.Click += (se, a) => { this.Close(); };
+            btnCancelar.Click += (se, a) => { bCerrado = true; this.Close(); };
             toggleGarzon.Click += (se, a) =>
             {
                 expEscogerGarzon.IsExpanded = toggleGarzon.IsChecked == true ? true : false;
@@ -126,13 +134,16 @@ namespace posk.Popups
 
                         if (mesa.libre == false)
                         {
+                            // TODO terminar
                             pedido pedido = PedidoBLL.ObtenerPorMesa(mesa.codigo);
                             var sipp = new SeleccionarItemsPedidoPopup(pedido);
                             sipp.Show();
                         }
                         else
                         {
-                            AlEscogerMesa.Invoke(this, mesa);
+                            MesaUsuario mu = new MesaUsuario() { Mesa = mesa, Usuario = Usuario };
+                            AlEscogerMesa.Invoke(this, mu);
+                            //AlEscogerMesa.Invoke(this, mesa);
                             Close();
                         }
                     };
@@ -253,11 +264,14 @@ namespace posk.Popups
                         }
                         else
                         {
-                            CrearPedido(u);
+                            // CrearPedido(u);
+                            Usuario = u;
                         }
                     }
                     else
                     {
+                        Usuario = u;
+
                         //if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.KUPAL.ToString()))
                         //{
                         //    if (dateDesde.SelectedDate == null || timeDesde.SelectedTime == null || dateHasta.SelectedDate == null || timeHasta.SelectedTime == null)
