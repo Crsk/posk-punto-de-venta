@@ -16,6 +16,10 @@ namespace posk.Partials
         public string NombreCliente { get; set; }
         public string ServirLlevar { get; set; }
         public string MensajeTicket { get; set; }
+        public string Telefono { get; set; }
+        public string Direccion { get; set; }
+        public string MensajeDeliveryUno { get; set; }
+        public string MensajeDeliveryDos { get; set; }
         public string Incluye { get; set; }
         public string IncluyeStrUnaLinea { get; set; }
 

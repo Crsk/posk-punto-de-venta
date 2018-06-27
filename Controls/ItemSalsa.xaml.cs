@@ -33,11 +33,14 @@ namespace posk.Controls
                 lbCantidad.Content = Cantidad;
             };
             btnAgregado.Click += (se, a) => lbCantidad.Content = $"{++Cantidad}";
-            btnQuitarUnidad.Click += (se, a) =>
-            {
-                if (Cantidad >= 1)
-                    lbCantidad.Content = $"{--Cantidad}";
-            };
+            btnQuitarUnidad.Click += (se, a) => QuitarUnidad();
+            borderCantidad.MouseLeftButtonUp += (se, a) => QuitarUnidad();
+        }
+
+        public void QuitarUnidad()
+        {
+            if (Cantidad >= 1)
+                lbCantidad.Content = $"{--Cantidad}";
         }
     }
 }

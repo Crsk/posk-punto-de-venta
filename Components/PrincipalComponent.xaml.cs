@@ -3291,15 +3291,26 @@ namespace posk.Components
                 if (di != null && bEsPedido)
                 {
                     ticket.TextoCentro("");
-                    if (di.NombreCliente != "")
-                        ticket.TextoCentro($"Cliente: {di.NombreCliente}");
                     if (di.ServirLlevar != "")
                         ticket.TextoCentro($"Para {di.ServirLlevar.ToLower()}");
                     if (di.Incluye != "")
-                        ticket.TextoCentro($"Salsas: {di.IncluyeStrUnaLinea}");
+                        ticket.TextoCentro($"{di.IncluyeStrUnaLinea}");
                     if (di.MensajeTicket != "")
                         ticket.TextoCentro($"Mensaje cocina: {di.MensajeTicket}");
                     ticket.TextoCentro("");
+                }
+                if (di != null && !bEsPedido)
+                {
+                    if (di.NombreCliente != "")
+                        ticket.TextoCentro($"Cliente: {di.NombreCliente}");
+                    if (di.Telefono != "")
+                        ticket.TextoCentro($"Teléfono: {di.Telefono}");
+                    if (di.Direccion != "")
+                        ticket.TextoCentro($"Direccion: {di.Direccion}");
+                    if (di.MensajeDeliveryUno != "")
+                        ticket.TextoCentro($"{di.MensajeDeliveryUno}");
+                    if (di.MensajeDeliveryDos != "")
+                        ticket.TextoCentro($"{di.MensajeDeliveryDos}");
                 }
 
                 if (spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "otro").ToList().Count != 0)

@@ -32,7 +32,6 @@ namespace posk.Models
         public virtual DbSet<categoria_sector> categoria_sector { get; set; }
         public virtual DbSet<categoria_subcategoria> categoria_subcategoria { get; set; }
         public virtual DbSet<categoria> categorias { get; set; }
-        public virtual DbSet<cliente> clientes { get; set; }
         public virtual DbSet<compra> compras { get; set; }
         public virtual DbSet<config> configs { get; set; }
         public virtual DbSet<detalle_boleta> detalle_boleta { get; set; }
@@ -84,5 +83,6 @@ namespace posk.Models
         public virtual DbSet<envoltura> envolturas { get; set; }
         public virtual DbSet<delivery_item> delivery_item { get; set; }
         public virtual DbSet<producto> productos { get; set; }
+        public virtual DbSet<cliente> clientes { get; set; }
     }
 }

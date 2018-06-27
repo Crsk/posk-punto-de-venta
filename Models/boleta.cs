@@ -31,7 +31,6 @@ namespace posk.Models
         public Nullable<int> usuario_id { get; set; }
         public int propina { get; set; }
     
-        public virtual cliente cliente { get; set; }
         public virtual usuario usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<detalle_boleta> detalle_boleta { get; set; }
@@ -39,5 +38,6 @@ namespace posk.Models
         public virtual ICollection<boleta_mediopago> boleta_mediopago { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<delivery_item> delivery_item { get; set; }
+        public virtual cliente cliente { get; set; }
     }
 }

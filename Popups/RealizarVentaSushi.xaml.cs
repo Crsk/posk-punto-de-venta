@@ -107,9 +107,14 @@ namespace posk.Popups
                 try
                 {
                     cliente cli = cbClientes.SelectedItem as cliente;
-                    lbClienteEncontrado.Content = $"{cli.nombre} acumula {puntos} y quedará con {cli.punto.puntos_activos + puntos} puntos";
+                    lbClienteEncontrado.Content = $"{cli?.nombre} acumula {puntos} y quedará con {cli?.punto?.puntos_activos + puntos} puntos";
                     if (!bEscribiendoEnCliente)
-                        txtNombreCliente.Text = cli.nombre;
+                    {
+                        txtBuscarCliente.Text = cli.nombre;
+                        txtNombre.Text = cli.nombre;
+                        txtTelefono.Text = cli.telefono;
+                        txtDireccion.Text = cli.direccion;
+                    }
                 }
                 catch
                 {
@@ -118,20 +123,33 @@ namespace posk.Popups
                 }
             };
 
-            btnLimpiarCliente.Click += (se, a) => 
+            btnLimpiarCliente.Click += (se, a) =>
             {
                 cbClientes.SelectedIndex = -1;
-                txtNombreCliente.Text = "";
-                txtNombreCliente.Focus();
+                txtBuscarCliente.Text = "";
+                txtBuscarCliente.Focus();
             };
 
             lbClienteEncontrado.Content = $"(Acumularía {puntos} puntos)";
-            txtNombreCliente.TextChanged += (se, a) =>
+            txtBuscarCliente.TextChanged += (se, a) =>
             {
+                if (cbClientes.SelectedIndex != -1)
+                {
+                    lbClienteEncontrado.Content = $"(Acumularía {puntos} puntos)";
+                    cbClientes.ItemsSource = listaClientes;
+                    cbClientes.DisplayMemberPath = "nombre";
+                    cbClientes.SelectedIndex = -1;
+                    cbClientes.Text = "";
+                    txtNombre.Text = "";
+                    txtTelefono.Text = "";
+                    txtDireccion.Text = "";
+                }
+
                 bEscribiendoEnCliente = true;
-                cliente cli = listaClientes.Where(x => x.rut == txtNombreCliente.Text || x.nombre.ToUpper() == txtNombreCliente.Text.ToUpper()).FirstOrDefault();
-                cliente cliPorRut = listaClientes.Where(x => x.rut == txtNombreCliente.Text).FirstOrDefault();
-                List<cliente> listaClientesEncontrados = listaClientes.Where(x => x.rut.Contains(txtNombreCliente.Text) || x.nombre.ToUpper().Contains(txtNombreCliente.Text.ToUpper())).ToList();
+                // cliente cli_test = listaClientes.Where(x => x.nombre.ToUpper() == txtBuscarCliente.Text.ToUpper()).FirstOrDefault();
+                cliente cliPorRut = listaClientes.Where(x => x.rut == txtBuscarCliente.Text).FirstOrDefault();
+                cliente cliPorTelefono = listaClientes.Where(x => x.telefono == txtBuscarCliente.Text).FirstOrDefault();
+                List<cliente> listaClientesEncontrados = listaClientes.Where(x => x.rut.Contains(txtBuscarCliente.Text) || x.telefono.Contains(txtBuscarCliente.Text) || x.direccion.ToUpper().Contains(txtBuscarCliente.Text.ToUpper()) || x.nombre.ToUpper().Contains(txtBuscarCliente.Text.ToUpper())).ToList();
 
                 if (listaClientesEncontrados != null)
                 {
@@ -146,18 +164,32 @@ namespace posk.Popups
 
                     }
                     //else
-                        //cbClientes.SelectedIndex = -1;
+                    //cbClientes.SelectedIndex = -1;
                 }
-                else
+                else // resetear
                 {
                     lbClienteEncontrado.Content = $"(Acumularía {puntos} puntos)";
                     cbClientes.ItemsSource = listaClientes;
                     cbClientes.DisplayMemberPath = "nombre";
                     cbClientes.SelectedIndex = -1;
+                    cbClientes.Text = "";
+                    txtNombre.Text = "";
+                    txtTelefono.Text = "";
+                    txtDireccion.Text = "";
                 }
                 if (cliPorRut != null)
                 {
                     cbClientes.Text = cliPorRut.nombre;
+                    txtNombre.Text = cliPorRut.nombre;
+                    txtTelefono.Text = cliPorRut.telefono;
+                    txtDireccion.Text = cliPorRut.direccion;
+                }
+                else if (cliPorTelefono != null)
+                {
+                    cbClientes.Text = cliPorTelefono.nombre;
+                    txtNombre.Text = cliPorTelefono.nombre;
+                    txtTelefono.Text = cliPorTelefono.telefono;
+                    txtDireccion.Text = cliPorTelefono.direccion;
                 }
                 else
                 {
@@ -332,12 +364,14 @@ namespace posk.Popups
 
                     wrapSalsas.Children.OfType<ItemSalsa>().ToList().ForEach(salsa =>
                     {
-                        incluyeStr += $"{salsa.txtNombre.Text} x{salsa.Cantidad}\n";
+                        if (salsa.Cantidad != 0)
+                            incluyeStr += $"{salsa.txtNombre.Text} x{salsa.Cantidad}\n";
                     });
 
                     wrapSalsas.Children.OfType<ItemSalsa>().ToList().ForEach(salsa =>
                     {
-                        incluyeStrUnaLinea += $"{salsa.txtNombre.Text} x{salsa.Cantidad}, ";
+                        if (salsa.Cantidad != 0)
+                            incluyeStrUnaLinea += $"{salsa.txtNombre.Text} x{salsa.Cantidad}, ";
                     });
                     if (incluyeStrUnaLinea != "")
                         incluyeStrUnaLinea = incluyeStrUnaLinea.Substring(0, incluyeStrUnaLinea.Length - 2);
@@ -349,14 +383,18 @@ namespace posk.Popups
                         Junaeb = junaeb,
                         Otro = otro,
                         Propina = propina,
-                        NombreCliente = txtNombreCliente.Text,
+                        NombreCliente = txtNombre.Text,
                         ServirLlevar = ServirLlevarStr,
                         MensajeTicket = txtMensajeTicket.Text,
+                        Telefono = txtTelefono.Text,
+                        Direccion = txtDireccion.Text,
+                        MensajeDeliveryUno = txtMensajeDeliveryUno.Text,
+                        MensajeDeliveryDos = txtMensajeDeliverDos.Text,
                         Incluye = incluyeStr,
                         IncluyeStrUnaLinea = incluyeStrUnaLinea
                     };
 
-                    string nombre = txtNombreCliente.Text;
+                    string nombre = txtBuscarCliente.Text;
                     string nombredos = nombre + "asd";
 
                     AlVender.Invoke(this, di);

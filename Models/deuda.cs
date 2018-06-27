@@ -22,7 +22,7 @@ namespace posk.Models
         public Nullable<int> cliente_id { get; set; }
         public string comentario { get; set; }
     
-        public virtual cliente cliente { get; set; }
         public virtual producto producto { get; set; }
+        public virtual cliente cliente { get; set; }
     }
 }

@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="posk_dbModel6.categoria_sector" Width="1.5" PointX="9" PointY="22.125" />
         <EntityTypeShape EntityType="posk_dbModel6.categoria_subcategoria" Width="1.5" PointX="6" PointY="33.125" />
         <EntityTypeShape EntityType="posk_dbModel6.categoria" Width="1.5" PointX="3.75" PointY="24.125" />
-        <EntityTypeShape EntityType="posk_dbModel6.cliente" Width="1.5" PointX="3.25" PointY="13" />
         <EntityTypeShape EntityType="posk_dbModel6.compra" Width="1.5" PointX="8" PointY="19" />
         <EntityTypeShape EntityType="posk_dbModel6.config" Width="1.5" PointX="1.5" PointY="19.25" />
         <EntityTypeShape EntityType="posk_dbModel6.detalle_boleta" Width="1.5" PointX="8.25" PointY="44.75" />
@@ -54,10 +53,6 @@
         <AssociationConnector Association="posk_dbModel6.categoria_sector_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.categoria_subcategoria_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.categoria_subcategoria_ibfk_2" />
-        <AssociationConnector Association="posk_dbModel6.clientes_ibfk_1" />
-        <AssociationConnector Association="posk_dbModel6.deudas_ibfk_2" />
-        <AssociationConnector Association="posk_dbModel6.fiados_ibfk_1" />
-        <AssociationConnector Association="posk_dbModel6.prestamo_envases_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.compras_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.producto_compra_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.usuarios_ibfk_1" />
@@ -101,7 +96,6 @@
         <EntityTypeShape EntityType="posk_dbModel6.medio_pago" Width="1.5" PointX="8.375" PointY="7.75" />
         <EntityTypeShape EntityType="posk_dbModel6.salsa" Width="1.5" PointX="9.375" PointY="0.75" />
         <EntityTypeShape EntityType="posk_dbModel6.boleta" Width="1.5" PointX="10.25" PointY="17.25" />
-        <AssociationConnector Association="posk_dbModel6.boletas_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.boletas_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.detalle_boleta_ibfk_1" />
         <EntityTypeShape EntityType="posk_dbModel6.boleta_mediopago" Width="1.5" PointX="12.5" PointY="13.875" />
@@ -114,7 +108,6 @@
         <EntityTypeShape EntityType="posk_dbModel6.envoltura" Width="1.5" PointX="5.25" PointY="50.25" />
         <EntityTypeShape EntityType="posk_dbModel6.delivery_item" Width="1.5" PointX="13.125" PointY="17.5" />
         <AssociationConnector Association="posk_dbModel6.boleta_fk" />
-        <AssociationConnector Association="posk_dbModel6.cliente_fk" />
         <EntityTypeShape EntityType="posk_dbModel6.producto" Width="1.5" PointX="3" PointY="28.375" />
         <AssociationConnector Association="posk_dbModel6.bodega_movimiento_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.bodega_stock_ibfk_1" />
@@ -138,6 +131,13 @@
         <AssociationConnector Association="posk_dbModel6.productoscomplejos_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.stock_pr_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.ventas_jornada_ibfk_1" />
+        <EntityTypeShape EntityType="posk_dbModel6.cliente" Width="1.5" PointX="3.25" PointY="11.875" />
+        <AssociationConnector Association="posk_dbModel6.boletas_ibfk_1" />
+        <AssociationConnector Association="posk_dbModel6.cliente_fk" />
+        <AssociationConnector Association="posk_dbModel6.clientes_ibfk_1" />
+        <AssociationConnector Association="posk_dbModel6.deudas_ibfk_2" />
+        <AssociationConnector Association="posk_dbModel6.fiados_ibfk_1" />
+        <AssociationConnector Association="posk_dbModel6.prestamo_envases_ibfk_1" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

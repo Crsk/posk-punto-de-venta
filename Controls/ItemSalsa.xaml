@@ -11,19 +11,19 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto">
     <Grid Height="78">
-        <Border Panel.ZIndex="1" CornerRadius="20" Width="32" Height="32" Background="#FFD2D2D2" Margin="32 0 72 50" HorizontalAlignment="Left">
+        <Border x:Name="borderCantidad" Panel.ZIndex="1" CornerRadius="20" Width="32" Height="32" Background="#FFD2D2D2" Margin="0 0 72 50" HorizontalAlignment="Left">
             <Label x:Name="lbCantidad" Content="2" HorizontalAlignment="Center" Margin="0 0 1 0" Foreground="#FFF26102" FontSize="16" FontWeight="Bold"/>
         </Border>
         <Grid Height="36">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="btnQuitarUnidad" Grid.Column="0" Height="36" Width="36" Margin="4 0 0 0" Background="#FFE35403" Style="{StaticResource BtnClear}" Content="-" Foreground="White" FontSize="20" Padding="0 0 0 4"/>
+            <Button x:Name="btnQuitarUnidad" Grid.Column="0" Height="36" Width="16" Margin="4 0 0 0" Background="#FFE35403" Style="{StaticResource BtnClear}" Content="-" Foreground="White" FontSize="20" Padding="0 0 0 4"/>
             <Button Grid.Column="1" x:Name="btnAgregado" Background="#FFF26102" Height="36" Style="{StaticResource BtnClear}">
                 <Grid>
                     <Border HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0 0 0 0">
-                        <TextBlock x:Name="txtNombre" Grid.Column="1" Text="UNAGI" TextWrapping="Wrap" Foreground="#FFDDE0E2" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="4 0 4 0"/>
+                        <TextBlock x:Name="txtNombre" Grid.Column="1" Text="UNAGI" TextWrapping="Wrap" Foreground="#FFDDE0E2" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="4 0 4 0"/>
                     </Border>
                 </Grid>
             </Button>

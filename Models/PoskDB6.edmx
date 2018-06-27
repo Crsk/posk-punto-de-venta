@@ -111,6 +111,8 @@
           <Property Name="puntos_id" Type="int" Nullable="false" />
           <Property Name="comentario" Type="varchar" MaxLength="200" />
           <Property Name="imagen" Type="varchar" MaxLength="1024" />
+          <Property Name="telefono" Type="varchar" MaxLength="50" />
+          <Property Name="direccion" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="compras">
           <Key>
@@ -1936,7 +1938,6 @@
           <EntitySet Name="categoria_sector" EntityType="posk_dbModel6.categoria_sector" />
           <EntitySet Name="categoria_subcategoria" EntityType="posk_dbModel6.categoria_subcategoria" />
           <EntitySet Name="categorias" EntityType="posk_dbModel6.categoria" />
-          <EntitySet Name="clientes" EntityType="posk_dbModel6.cliente" />
           <EntitySet Name="compras" EntityType="posk_dbModel6.compra" />
           <EntitySet Name="configs" EntityType="posk_dbModel6.config" />
           <EntitySet Name="detalle_boleta" EntityType="posk_dbModel6.detalle_boleta" />
@@ -1995,22 +1996,6 @@
           <AssociationSet Name="categoria_subcategoria_ibfk_2" Association="posk_dbModel6.categoria_subcategoria_ibfk_2">
             <End Role="subcategoria" EntitySet="subcategorias" />
             <End Role="categoria_subcategoria" EntitySet="categoria_subcategoria" />
-          </AssociationSet>
-          <AssociationSet Name="clientes_ibfk_1" Association="posk_dbModel6.clientes_ibfk_1">
-            <End Role="punto" EntitySet="puntos" />
-            <End Role="cliente" EntitySet="clientes" />
-          </AssociationSet>
-          <AssociationSet Name="deudas_ibfk_2" Association="posk_dbModel6.deudas_ibfk_2">
-            <End Role="cliente" EntitySet="clientes" />
-            <End Role="deuda" EntitySet="deudas" />
-          </AssociationSet>
-          <AssociationSet Name="fiados_ibfk_1" Association="posk_dbModel6.fiados_ibfk_1">
-            <End Role="cliente" EntitySet="clientes" />
-            <End Role="fiado" EntitySet="fiados" />
-          </AssociationSet>
-          <AssociationSet Name="prestamo_envases_ibfk_1" Association="posk_dbModel6.prestamo_envases_ibfk_1">
-            <End Role="cliente" EntitySet="clientes" />
-            <End Role="prestamo_envases" EntitySet="prestamo_envases" />
           </AssociationSet>
           <AssociationSet Name="compras_ibfk_1" Association="posk_dbModel6.compras_ibfk_1">
             <End Role="usuario" EntitySet="usuarios" />
@@ -2151,10 +2136,6 @@
           <EntitySet Name="medio_pago" EntityType="posk_dbModel6.medio_pago" />
           <EntitySet Name="salsas" EntityType="posk_dbModel6.salsa" />
           <EntitySet Name="boletas" EntityType="posk_dbModel6.boleta" />
-          <AssociationSet Name="boletas_ibfk_1" Association="posk_dbModel6.boletas_ibfk_1">
-            <End Role="cliente" EntitySet="clientes" />
-            <End Role="boleta" EntitySet="boletas" />
-          </AssociationSet>
           <AssociationSet Name="boletas_ibfk_2" Association="posk_dbModel6.boletas_ibfk_2">
             <End Role="usuario" EntitySet="usuarios" />
             <End Role="boleta" EntitySet="boletas" />
@@ -2189,10 +2170,6 @@
           <EntitySet Name="delivery_item" EntityType="posk_dbModel6.delivery_item" />
           <AssociationSet Name="boleta_fk" Association="posk_dbModel6.boleta_fk">
             <End Role="boleta" EntitySet="boletas" />
-            <End Role="delivery_item" EntitySet="delivery_item" />
-          </AssociationSet>
-          <AssociationSet Name="cliente_fk" Association="posk_dbModel6.cliente_fk">
-            <End Role="cliente" EntitySet="clientes" />
             <End Role="delivery_item" EntitySet="delivery_item" />
           </AssociationSet>
           <EntitySet Name="productos" EntityType="posk_dbModel6.producto" />
@@ -2284,6 +2261,31 @@
             <End Role="producto" EntitySet="productos" />
             <End Role="ventas_jornada" EntitySet="ventas_jornada" />
           </AssociationSet>
+          <EntitySet Name="clientes" EntityType="posk_dbModel6.cliente" />
+          <AssociationSet Name="boletas_ibfk_1" Association="posk_dbModel6.boletas_ibfk_1">
+            <End Role="cliente" EntitySet="clientes" />
+            <End Role="boleta" EntitySet="boletas" />
+          </AssociationSet>
+          <AssociationSet Name="cliente_fk" Association="posk_dbModel6.cliente_fk">
+            <End Role="cliente" EntitySet="clientes" />
+            <End Role="delivery_item" EntitySet="delivery_item" />
+          </AssociationSet>
+          <AssociationSet Name="clientes_ibfk_1" Association="posk_dbModel6.clientes_ibfk_1">
+            <End Role="punto" EntitySet="puntos" />
+            <End Role="cliente" EntitySet="clientes" />
+          </AssociationSet>
+          <AssociationSet Name="deudas_ibfk_2" Association="posk_dbModel6.deudas_ibfk_2">
+            <End Role="cliente" EntitySet="clientes" />
+            <End Role="deuda" EntitySet="deudas" />
+          </AssociationSet>
+          <AssociationSet Name="fiados_ibfk_1" Association="posk_dbModel6.fiados_ibfk_1">
+            <End Role="cliente" EntitySet="clientes" />
+            <End Role="fiado" EntitySet="fiados" />
+          </AssociationSet>
+          <AssociationSet Name="prestamo_envases_ibfk_1" Association="posk_dbModel6.prestamo_envases_ibfk_1">
+            <End Role="cliente" EntitySet="clientes" />
+            <End Role="prestamo_envases" EntitySet="prestamo_envases" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="bodega_movimiento">
           <Key>
@@ -2356,26 +2358,6 @@
           <NavigationProperty Name="categoria_sector" Relationship="posk_dbModel6.categoria_sector_ibfk_1" FromRole="categoria" ToRole="categoria_sector" />
           <NavigationProperty Name="categoria_subcategoria" Relationship="posk_dbModel6.categoria_subcategoria_ibfk_1" FromRole="categoria" ToRole="categoria_subcategoria" />
         </EntityType>
-        <EntityType Name="cliente">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="rut" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="pass" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="contacto" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="favorito" Type="Boolean" />
-          <Property Name="puntos_id" Type="Int32" Nullable="false" />
-          <Property Name="comentario" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="imagen" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="punto" Relationship="posk_dbModel6.clientes_ibfk_1" FromRole="cliente" ToRole="punto" />
-          <NavigationProperty Name="deudas" Relationship="posk_dbModel6.deudas_ibfk_2" FromRole="cliente" ToRole="deuda" />
-          <NavigationProperty Name="fiados" Relationship="posk_dbModel6.fiados_ibfk_1" FromRole="cliente" ToRole="fiado" />
-          <NavigationProperty Name="prestamo_envases" Relationship="posk_dbModel6.prestamo_envases_ibfk_1" FromRole="cliente" ToRole="prestamo_envases" />
-          <NavigationProperty Name="boletas" Relationship="posk_dbModel6.boletas_ibfk_1" FromRole="cliente" ToRole="boleta" />
-          <NavigationProperty Name="delivery_item" Relationship="posk_dbModel6.cliente_fk" FromRole="cliente" ToRole="delivery_item" />
-        </EntityType>
         <EntityType Name="compra">
           <Key>
             <PropertyRef Name="id" />
@@ -2421,8 +2403,8 @@
           <Property Name="producto_id" Type="Int32" />
           <Property Name="cliente_id" Type="Int32" />
           <Property Name="comentario" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="cliente" Relationship="posk_dbModel6.deudas_ibfk_2" FromRole="deuda" ToRole="cliente" />
           <NavigationProperty Name="producto" Relationship="posk_dbModel6.deudas_ibfk_1" FromRole="deuda" ToRole="producto" />
+          <NavigationProperty Name="cliente" Relationship="posk_dbModel6.deudas_ibfk_2" FromRole="deuda" ToRole="cliente" />
         </EntityType>
         <EntityType Name="devolucion">
           <Key>
@@ -2444,9 +2426,9 @@
           <Property Name="total" Type="Int32" />
           <Property Name="cliente_id" Type="Int32" />
           <Property Name="usuario_id" Type="Int32" />
-          <NavigationProperty Name="cliente" Relationship="posk_dbModel6.fiados_ibfk_1" FromRole="fiado" ToRole="cliente" />
           <NavigationProperty Name="usuario" Relationship="posk_dbModel6.fiados_ibfk_2" FromRole="fiado" ToRole="usuario" />
           <NavigationProperty Name="lineas_fiado" Relationship="posk_dbModel6.lineas_fiado_ibfk_2" FromRole="fiado" ToRole="lineas_fiado" />
+          <NavigationProperty Name="cliente" Relationship="posk_dbModel6.fiados_ibfk_1" FromRole="fiado" ToRole="cliente" />
         </EntityType>
         <EntityType Name="gasto">
           <Key>
@@ -2867,54 +2849,6 @@
             </Principal>
             <Dependent Role="categoria_subcategoria">
               <PropertyRef Name="subcategoria_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="clientes_ibfk_1">
-          <End Type="posk_dbModel6.punto" Role="punto" Multiplicity="1" />
-          <End Type="posk_dbModel6.cliente" Role="cliente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="punto">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="cliente">
-              <PropertyRef Name="puntos_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="deudas_ibfk_2">
-          <End Type="posk_dbModel6.cliente" Role="cliente" Multiplicity="0..1" />
-          <End Type="posk_dbModel6.deuda" Role="deuda" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="cliente">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="deuda">
-              <PropertyRef Name="cliente_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fiados_ibfk_1">
-          <End Type="posk_dbModel6.cliente" Role="cliente" Multiplicity="0..1" />
-          <End Type="posk_dbModel6.fiado" Role="fiado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="cliente">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="fiado">
-              <PropertyRef Name="cliente_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="prestamo_envases_ibfk_1">
-          <End Type="posk_dbModel6.cliente" Role="cliente" Multiplicity="1" />
-          <End Type="posk_dbModel6.prestamo_envases" Role="prestamo_envases" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="cliente">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="prestamo_envases">
-              <PropertyRef Name="cliente_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3461,24 +3395,12 @@
           <Property Name="cliente_id" Type="Int32" />
           <Property Name="usuario_id" Type="Int32" />
           <Property Name="propina" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="cliente" Relationship="posk_dbModel6.boletas_ibfk_1" FromRole="boleta" ToRole="cliente" />
           <NavigationProperty Name="usuario" Relationship="posk_dbModel6.boletas_ibfk_2" FromRole="boleta" ToRole="usuario" />
           <NavigationProperty Name="detalle_boleta" Relationship="posk_dbModel6.detalle_boleta_ibfk_1" FromRole="boleta" ToRole="detalle_boleta" />
           <NavigationProperty Name="boleta_mediopago" Relationship="posk_dbModel6.boletamediopago_fk" FromRole="boleta" ToRole="boleta_mediopago" />
           <NavigationProperty Name="delivery_item" Relationship="posk_dbModel6.boleta_fk" FromRole="boleta" ToRole="delivery_item" />
+          <NavigationProperty Name="cliente" Relationship="posk_dbModel6.boletas_ibfk_1" FromRole="boleta" ToRole="cliente" />
         </EntityType>
-        <Association Name="boletas_ibfk_1">
-          <End Type="posk_dbModel6.cliente" Role="cliente" Multiplicity="0..1" />
-          <End Type="posk_dbModel6.boleta" Role="boleta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="cliente">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="boleta">
-              <PropertyRef Name="cliente_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="boletas_ibfk_2">
           <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1" />
           <End Type="posk_dbModel6.boleta" Role="boleta" Multiplicity="*" />
@@ -3634,18 +3556,6 @@
             </Principal>
             <Dependent Role="delivery_item">
               <PropertyRef Name="boleta_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="cliente_fk">
-          <End Type="posk_dbModel6.cliente" Role="cliente" Multiplicity="0..1" />
-          <End Type="posk_dbModel6.delivery_item" Role="delivery_item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="cliente">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="delivery_item">
-              <PropertyRef Name="cliente_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3995,6 +3905,100 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rut" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pass" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="contacto" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="favorito" Type="Boolean" />
+          <Property Name="puntos_id" Type="Int32" Nullable="false" />
+          <Property Name="comentario" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="imagen" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="boletas" Relationship="posk_dbModel6.boletas_ibfk_1" FromRole="cliente" ToRole="boleta" />
+          <NavigationProperty Name="delivery_item" Relationship="posk_dbModel6.cliente_fk" FromRole="cliente" ToRole="delivery_item" />
+          <NavigationProperty Name="punto" Relationship="posk_dbModel6.clientes_ibfk_1" FromRole="cliente" ToRole="punto" />
+          <NavigationProperty Name="deudas" Relationship="posk_dbModel6.deudas_ibfk_2" FromRole="cliente" ToRole="deuda" />
+          <NavigationProperty Name="fiados" Relationship="posk_dbModel6.fiados_ibfk_1" FromRole="cliente" ToRole="fiado" />
+          <NavigationProperty Name="prestamo_envases" Relationship="posk_dbModel6.prestamo_envases_ibfk_1" FromRole="cliente" ToRole="prestamo_envases" />
+        </EntityType>
+        <Association Name="boletas_ibfk_1">
+          <End Type="posk_dbModel6.cliente" Role="cliente" Multiplicity="0..1" />
+          <End Type="posk_dbModel6.boleta" Role="boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="cliente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cliente_fk">
+          <End Type="posk_dbModel6.cliente" Role="cliente" Multiplicity="0..1" />
+          <End Type="posk_dbModel6.delivery_item" Role="delivery_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="delivery_item">
+              <PropertyRef Name="cliente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="clientes_ibfk_1">
+          <End Type="posk_dbModel6.punto" Role="punto" Multiplicity="1" />
+          <End Type="posk_dbModel6.cliente" Role="cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="punto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cliente">
+              <PropertyRef Name="puntos_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="deudas_ibfk_2">
+          <End Type="posk_dbModel6.cliente" Role="cliente" Multiplicity="0..1" />
+          <End Type="posk_dbModel6.deuda" Role="deuda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="deuda">
+              <PropertyRef Name="cliente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fiados_ibfk_1">
+          <End Type="posk_dbModel6.cliente" Role="cliente" Multiplicity="0..1" />
+          <End Type="posk_dbModel6.fiado" Role="fiado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="fiado">
+              <PropertyRef Name="cliente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="prestamo_envases_ibfk_1">
+          <End Type="posk_dbModel6.cliente" Role="cliente" Multiplicity="1" />
+          <End Type="posk_dbModel6.prestamo_envases" Role="prestamo_envases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="prestamo_envases">
+              <PropertyRef Name="cliente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4063,21 +4067,6 @@
               <MappingFragment StoreEntitySet="categorias">
                 <ScalarProperty Name="seleccionable" ColumnName="seleccionable" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="clientes">
-            <EntityTypeMapping TypeName="posk_dbModel6.cliente">
-              <MappingFragment StoreEntitySet="clientes">
-                <ScalarProperty Name="imagen" ColumnName="imagen" />
-                <ScalarProperty Name="comentario" ColumnName="comentario" />
-                <ScalarProperty Name="puntos_id" ColumnName="puntos_id" />
-                <ScalarProperty Name="favorito" ColumnName="favorito" />
-                <ScalarProperty Name="contacto" ColumnName="contacto" />
-                <ScalarProperty Name="pass" ColumnName="pass" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="rut" ColumnName="rut" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -4650,6 +4639,23 @@
                 <ScalarProperty Name="precio" ColumnName="precio" />
                 <ScalarProperty Name="codigo_barras" ColumnName="codigo_barras" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientes">
+            <EntityTypeMapping TypeName="posk_dbModel6.cliente">
+              <MappingFragment StoreEntitySet="clientes">
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="comentario" ColumnName="comentario" />
+                <ScalarProperty Name="puntos_id" ColumnName="puntos_id" />
+                <ScalarProperty Name="favorito" ColumnName="favorito" />
+                <ScalarProperty Name="contacto" ColumnName="contacto" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="rut" ColumnName="rut" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
