@@ -35,7 +35,10 @@ namespace posk.BLL
         public static void Entregar(int id)
         {
             delivery_item di = db.delivery_item.Where(x => x.id == id).FirstOrDefault();
-            di.fecha_entrega = DateTime.Now;
+            if (di != null)
+            {
+                di.fecha_entrega = DateTime.Now;
+            }
             db.SaveChanges();
         }
     }

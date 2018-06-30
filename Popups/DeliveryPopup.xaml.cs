@@ -17,9 +17,12 @@ namespace posk.Popups
             Loaded += (se, a) => 
             {
                 lbCliente.Content = $"{nombreCliente}";
-                lbNumeroBoleta.Content = $"#{boleta.numero_boleta}";
+                lbNumeroBoleta.Content = $"#{boleta?.numero_boleta}";
                 txtSalsas.Text = $"{incluye}";
-                lbFecha.Content = $"{fecha.Value.ToShortDateString()} a las {fecha.Value.ToShortTimeString()}";
+                if (fecha != null)
+                {
+                    lbFecha.Content = $"{fecha.Value.ToShortDateString()} a las {fecha.Value.ToShortTimeString()}";
+                }
             };
             btnAceptar.Click += (se, a) => 
             {

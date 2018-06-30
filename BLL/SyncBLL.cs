@@ -13,8 +13,8 @@ namespace posk.BLL
 
         public static int ObtenerUltimoSyncId(string nombre)
         {
-            return 0;
-            //return db.syncs.AsNoTracking().Where(x => x.nombre == nombre).FirstOrDefault().sync_id;
+            //return 0;
+            return db.syncs.AsNoTracking().Where(x => x.nombre == nombre).FirstOrDefault().sync_id;
         }
 
         public static void AumentarSyncId(string nombre)

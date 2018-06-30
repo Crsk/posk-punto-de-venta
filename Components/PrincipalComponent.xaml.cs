@@ -43,6 +43,7 @@ namespace posk.Components
         private ItemAgregadoHandroll itemPaltaCebollin;
         private ItemMensajeCocina imc;
         private int ultimoSyncIdPedido;
+        private int ultimoSyncIdDelivery;
         private ItemEscogerGarzonMesa iegm;
         private ItemEscogerGarzonSeccionVenta ieg;
         private ItemEscogerMesaSeccionVenta iem;
@@ -103,6 +104,7 @@ namespace posk.Components
             btnExpanderLeft.Foreground = colorDorado;
             expLeft.IsExpanded = true;
             ultimoSyncIdPedido = 0;
+            ultimoSyncIdDelivery = SyncBLL.ObtenerUltimoSyncId("delivery");
 
 
             listaItemsMoneda1 = new List<ItemMoneda>()
@@ -304,7 +306,8 @@ namespace posk.Components
         {
             try
             {
-                Sync("pedido");
+                //Sync("pedido");
+                Sync("delivery");
                 lbFecha.Content = $"{DateTime.Now.ToShortDateString()} {DateTime.Now.ToLongTimeString()}";
                 if (InternetChecker.IsConnectedToInternet())
                     internetStatus.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(46, 139, 87));
@@ -338,6 +341,23 @@ namespace posk.Components
                             expDerecha.IsExpanded = true;
                             PlaySound(@"C:/posk/sound/campana.mp3");
                         }
+                    }
+                    break;
+                case "delivery":
+                    if (ultimoSyncIdPedido == SyncBLL.ObtenerUltimoSyncId("delivery")) return;
+                    else
+                    {
+                        ultimoSyncIdPedido = SyncBLL.ObtenerUltimoSyncId("delivery");
+                        // if (!Settings.Usuario.tipo.ToLower().Equals("g"))
+                        // {
+                        new Notification("NUEVO PEDIDO");
+                        spDerecha.Children.Clear();
+                        // CargarPendientes();
+                        // CargarItemVerPendientes();
+                        CargarDeliveryPndientesDeEntrega();
+                        expDerecha.IsExpanded = true;
+                        PlaySound(@"C:/posk/sound/campana.mp3");
+                        // }
                     }
                     break;
                 default:
@@ -1906,6 +1926,7 @@ namespace posk.Components
             Loaded += (se, e) =>
             {
                 ultimoSyncIdPedido = SyncBLL.ObtenerUltimoSyncId("pedido");
+                ultimoSyncIdDelivery = SyncBLL.ObtenerUltimoSyncId("delivery");
 
                 lbInfo.Content = "SECCIÓN VENTA";
 
@@ -2219,7 +2240,8 @@ namespace posk.Components
 
                                         foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().ToList())
                                         {
-                                            if (item.Producto.precio == 0) continue;
+                                            // ejemplo: ensalada de cortesía para restaurant
+                                            if (item.Producto?.precio == 0) continue;
 
                                             detalle_boleta dl = new detalle_boleta()
                                             {
@@ -2233,11 +2255,11 @@ namespace posk.Components
                                             DB.AddDetailLine(dl);
 
                                             // al almar una tabla creo productos cuya imagen es 'rollo tabla', los cuales no se deben descontar de stock
-                                            if (item.Producto.imagen != "rollo_tabla")
+                                            if (item.Producto?.imagen != "rollo_tabla")
                                                 CompraBLL.ReduceStockByProduct(item.Producto?.id, item.Promocion?.id, (int)item.Cantidad);
 
                                             int? cobroExtra = 0;
-                                            if (item.Producto.contiene_agregado == true)
+                                            if (item.Producto?.contiene_agregado == true)
                                             {
                                                 if (item.AgregadoUno?.cobro_extra != null)
                                                     cobroExtra += item.AgregadoUno?.cobro_extra;
@@ -2245,7 +2267,7 @@ namespace posk.Components
                                                     cobroExtra += item.AgregadoDos?.cobro_extra;
                                             }
 
-                                            if (item.Producto.imagen != "rollo_tabla")
+                                            if (item.Producto?.imagen != "rollo_tabla")
                                                 VentasJornadaBLL.Agregar(JornadaBLL.UltimaJornada().id, item.Producto?.id, item.Promocion?.id, item.Cantidad, (int)cobroExtra);
                                         }
                                         int? _subTotal = 0;
@@ -2441,7 +2463,7 @@ namespace posk.Components
 
                 id.btnItem.Click += (se, a) =>
                 {
-                    DeliveryPopup dp = new DeliveryPopup(d.id, d.nombre_cliente, d.boleta.fecha, d.incluye, id.Boleta);
+                    DeliveryPopup dp = new DeliveryPopup(d.id, d.nombre_cliente, d.boleta?.fecha, d.incluye, id.Boleta);
                     dp.Deactivated += (se2, a2) => MostrarOverlay(false);
                     dp.AlEntregar += (se2, a2) =>
                     {
@@ -2941,16 +2963,16 @@ namespace posk.Components
                 ticket.TextoIzquierda("");
 
                 //if (spVentaItems.Children.OfType<ItemVentaPlatoFondo>().ToList().Count != 0)
-                if (spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "entrada").ToList().Count != 0)
+                if (spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "entrada").ToList().Count != 0)
                 {
                     ticket.lineasGuion();
                     ticket.TextoCentro("ENTRADAS");
                 }
 
-                foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "entrada").ToList())
+                foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "entrada").ToList())
                 {
                     bContieneParaCocina = true;
-                    if (item.Producto.sector_impresion.nombre == "COCINA")
+                    if (item.Producto?.sector_impresion.nombre == "COCINA")
                         bImprimirEnCocina = true;
 
                     string espaciosStr = "";
@@ -2971,21 +2993,21 @@ namespace posk.Components
                     }
 
                     string cortesiaStr = "";
-                    if (item.Producto.precio == 0) cortesiaStr = " (CORTESIA)";
+                    if (item.Producto?.precio == 0) cortesiaStr = " (CORTESIA)";
 
                     for (int i = 0; i < 33 - $"00 {item.Producto?.nombre}".Length; i++)
                         espaciosStr += ".";
 
                     if (item.Cantidad < 10)
                     {
-                        if (bEsPedido || item.Producto.precio == 0)
+                        if (bEsPedido || item.Producto?.precio == 0)
                             ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}".ToUpper());
                         else
                             ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
                     }
                     else
                     {
-                        if (bEsPedido || item.Producto.precio == 0)
+                        if (bEsPedido || item.Producto?.precio == 0)
                             ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}".ToUpper());
                         else
                             ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
@@ -2995,11 +3017,11 @@ namespace posk.Components
 
                 }
 
-                if (spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo").ToList().Count != 0)
+                if (spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo").ToList().Count != 0)
                 {
                     //ticket.lineasGuion();
                     //ticket.TextoCentro("ENTRADAS");
-                    foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == true).ToList())
+                    foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == true).ToList())
                     {
                         bContieneParaCocina = true;
                         if (item.Producto.sector_impresion.nombre == "COCINA")
