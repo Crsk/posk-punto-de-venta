@@ -463,7 +463,7 @@ namespace posk.Components
             {
                 if (ProductoYaSeleccionado() && AgregadosSeleccionados() == 2)
                 {
-                    if (itemProductoSeleccionado.Producto.preparado_especial == true)
+                    if (itemProductoSeleccionado.Producto?.preparado_especial == true)
                     {
                         expBottom.IsExpanded = false;
                         expBottomPreparadoEspecial.IsExpanded = true;
@@ -474,7 +474,7 @@ namespace posk.Components
                         agregadoStr = $"{itemAgregadoUno.Agregado.nombre}";
                     else
                         agregadoStr = $"{itemAgregadoUno.Agregado.nombre} y {itemAgregadoDos.Agregado.nombre}";
-                    MostrarNotificacion($"{itemProductoSeleccionado.Producto.nombre}", agregadoStr);
+                    MostrarNotificacion($"{itemProductoSeleccionado.Producto?.nombre}", agregadoStr);
 
                     //var itemVentaExtendido = new ItemVentaPlatoFondo() { Producto = itemProductoSeleccionado.Producto, AgregadoUno = itemAgregadoUno.Agregado, AgregadoDos = itemAgregadoDos.Agregado };
                     var itemVentaExtendido = new ItemVenta() { Producto = itemProductoSeleccionado.Producto, AgregadoUno = itemAgregadoUno.Agregado, AgregadoDos = itemAgregadoDos.Agregado };
@@ -512,7 +512,7 @@ namespace posk.Components
                     if (_envoltura == null)
                     {
                         // no tiene envoltura y requiere una, abrir popup para solicitar
-                        if (_producto.es_envoltura == true && itemEnvoltura.Envoltura.nombre == null)
+                        if (_producto?.es_envoltura == true && itemEnvoltura.Envoltura.nombre == null)
                         {
                             expBottom.IsExpanded = false;
                             expBottomPreparadoEspecial.IsExpanded = false;
@@ -541,7 +541,7 @@ namespace posk.Components
                         PoskException.Make(ex, "ERROR AL QUITAR ULTIMA COMA");
                     }
 
-                    MostrarNotificacion($"{_producto.nombre}", "");
+                    MostrarNotificacion($"{_producto?.nombre}", "");
 
 
 
@@ -707,13 +707,13 @@ namespace posk.Components
                                     if (itemProductoSeleccionado != null)
                                         itemProductoSeleccionado.Reiniciar();
 
-                                    ItemVentaPedido ivpExistente = spVentaItems.Children.OfType<ItemVentaPedido>().ToList().Where(ivp => ivp.Producto.id == ip.Producto.id).FirstOrDefault();
+                                    ItemVentaPedido ivpExistente = spVentaItems.Children.OfType<ItemVentaPedido>().ToList().Where(ivp => ivp.Producto?.id == ip.Producto?.id).FirstOrDefault();
 
                                     if (ivpExistente != null)
                                     {
                                         ivpExistente.AgregarCantidad(1);
-                                        MostrarNotificacion($"{itemProductoSeleccionado.Producto.nombre.ToUpper()}", "+1");
-                                        // new Notification($"{itemProductoSeleccionado.Producto.nombre.ToUpper()}", "+1", Notification.Type.Successful, 1, Notification.Size.Sm, Notification.Position.Top);
+                                        MostrarNotificacion($"{itemProductoSeleccionado.Producto?.nombre.ToUpper()}", "+1");
+                                        // new Notification($"{itemProductoSeleccionado.Producto?.nombre.ToUpper()}", "+1", Notification.Type.Successful, 1, Notification.Size.Sm, Notification.Position.Top);
                                     }
                                     else
                                     {
@@ -737,7 +737,7 @@ namespace posk.Components
                                         spVentaItems.Children.Add(ivpNuevo);
                                         CalcularTotal();
 
-                                        MostrarNotificacion($"{itemProductoSeleccionado.Producto.nombre.ToUpper()}", "");
+                                        MostrarNotificacion($"{itemProductoSeleccionado.Producto?.nombre.ToUpper()}", "");
                                     }
                                     teclado.expTeclado.IsExpanded = false;
                                 };
@@ -755,12 +755,12 @@ namespace posk.Components
 
                                 ip.btnProducto.Click += (se, a) =>
                                 {
-                                    ItemVentaPedido ivpExistente = spVentaItems.Children.OfType<ItemVentaPedido>().ToList().Where(ivp => ivp.Producto.id == ip.Producto.id).FirstOrDefault();
+                                    ItemVentaPedido ivpExistente = spVentaItems.Children.OfType<ItemVentaPedido>().ToList().Where(ivp => ivp.Producto?.id == ip.Producto?.id).FirstOrDefault();
 
                                     if (ivpExistente != null)
                                     {
                                         ivpExistente.AgregarCantidad(1);
-                                        MostrarNotificacion($"{ivpExistente.Producto.nombre.ToUpper()}", "+1");
+                                        MostrarNotificacion($"{ivpExistente.Producto?.nombre.ToUpper()}", "+1");
                                     }
                                     else
                                     {
@@ -789,7 +789,7 @@ namespace posk.Components
                                         spVentaItems.Children.Add(ivpNuevo);
                                         CalcularTotal();
 
-                                        MostrarNotificacion($"{ivpNuevo.Producto.nombre.ToUpper()}", "");
+                                        MostrarNotificacion($"{ivpNuevo.Producto?.nombre.ToUpper()}", "");
                                     }
                                     teclado.expTeclado.IsExpanded = false;
                                 };
@@ -1145,7 +1145,7 @@ namespace posk.Components
                 if (ivExistente != null)
                 {
                     ivExistente.AgregarCantidad(cantidad);
-                    MostrarNotificacion($"{ivExistente.Producto.nombre.ToUpper()}", "+" + cantidad);
+                    MostrarNotificacion($"{ivExistente.Producto?.nombre.ToUpper()}", "+" + cantidad);
                 }
                 else
                 {
@@ -1167,7 +1167,7 @@ namespace posk.Components
                     ivNuevo.AlModificarCantidad += (se3, a3) => CalcularTotal();
                     ivNuevo.AlModificarTotal += (se3, a3) => CalcularTotal();
                     spVentaItems.Children.Add(ivNuevo);
-                    MostrarNotificacion($"{ivNuevo.Producto.nombre.ToUpper()}", "");
+                    MostrarNotificacion($"{ivNuevo.Producto?.nombre.ToUpper()}", "");
                     CalcularTotal();
                 }
             }
@@ -1217,7 +1217,7 @@ namespace posk.Components
             _iv.AlModificarCantidad += (se3, a3) => CalcularTotal();
             _iv.AlModificarTotal += (se3, a3) => CalcularTotal();
             spVentaItems.Children.Add(_iv);
-            MostrarNotificacion($"{_iv.Producto.nombre.ToUpper()}", "");
+            MostrarNotificacion($"{_iv.Producto?.nombre.ToUpper()}", "");
             CalcularTotal();
         }
 
@@ -1394,7 +1394,7 @@ namespace posk.Components
                     {
                         itemVentaExistente = spVentaItems.Children.OfType<ItemVenta>().ToList().Where(x => x.Producto == itemPend.Producto).FirstOrDefault();
                         if (itemVentaExistente?.Producto?.id != null)
-                            p = ProductoBLL.GetProduct(itemPend.Producto.id);
+                            p = ProductoBLL.GetProduct(itemPend.Producto?.id);
                     }
                     else
                     {
@@ -1540,7 +1540,7 @@ namespace posk.Components
                         listaPPDesdePopup.ForEach(pp =>
                         {
                             if (pp.producto != null)
-                                subTotal += pp.producto.precio;
+                                subTotal += pp.producto?.precio;
                             else if (pp.promocione != null)
                                 subTotal += pp.promocione.precio;
                         });
@@ -1571,7 +1571,7 @@ namespace posk.Components
                         listaPP_Seleccionados.ForEach(pp =>
                         {
                             if (pp.producto != null)
-                                subTotal += pp.producto.precio;
+                                subTotal += pp.producto?.precio;
                             else if (pp.promocione != null)
                                 subTotal += pp.promocione.precio;
                         });
@@ -1619,9 +1619,9 @@ namespace posk.Components
                                 {
                                     producto prod = new producto();
                                     if (ppFromDB.precio != 0)
-                                        prod = new producto() { nombre = ppFromDB.producto.nombre, precio = ppFromDB.precio, sector_impresion_id = ppFromDB.producto.sector_impresion_id, tipo_itemventa_id = ppFromDB.producto.tipo_itemventa_id };
+                                        prod = new producto() { nombre = ppFromDB.producto?.nombre, precio = ppFromDB.precio, sector_impresion_id = ppFromDB.producto?.sector_impresion_id, tipo_itemventa_id = ppFromDB.producto?.tipo_itemventa_id };
                                     else
-                                        prod = new producto() { nombre = ppFromDB.producto.nombre, precio = ppFromDB.producto.precio, sector_impresion_id = ppFromDB.producto.sector_impresion_id, tipo_itemventa_id = ppFromDB.producto.tipo_itemventa_id };
+                                        prod = new producto() { nombre = ppFromDB.producto?.nombre, precio = ppFromDB.producto.precio, sector_impresion_id = ppFromDB.producto?.sector_impresion_id, tipo_itemventa_id = ppFromDB.producto?.tipo_itemventa_id };
 
 
                                     var ivpNuevo = new ItemVenta() { Producto = ppFromDB.producto, Cantidad = Convert.ToInt32(ppFromDB.cantidad)/*, TotalModificado = ppFromDB.precio */};
@@ -1907,12 +1907,12 @@ namespace posk.Components
             spVentaItems.Children.OfType<ItemVenta>().ToList().ForEach(item =>
             {
                 int count = 1;
-                //text = $"{item.Producto.nombre}\t\t${item.Producto.precio}";
+                //text = $"{item.Producto?.nombre}\t\t${item.Producto?.precio}";
                 //e.Graphics.DrawString(text, drawFontArial10Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                 //y += e.Graphics.MeasureString(text, drawFontArial10Regular).Height;
 
 
-                e.Graphics.DrawString(item.Producto.nombre.ToString(), drawFontArial10Regular, System.Drawing.Brushes.Black, 20, 150 + count * 20);
+                e.Graphics.DrawString(item.Producto?.nombre.ToString(), drawFontArial10Regular, System.Drawing.Brushes.Black, 20, 150 + count * 20);
                 count++;
             });
 
@@ -2030,9 +2030,9 @@ namespace posk.Components
                     iegm.btnEscogerMesaGarzon.Click += (se2, a2) =>
                     {
                         var rpp = new RealizarPedidoPopup(
-                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == true).ToList(),
-                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList(),
-                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "otro").ToList(), Settings.Usuario.tipo
+                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == true).ToList(),
+                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList(),
+                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "otro").ToList(), Settings.Usuario.tipo
                         );
                         rpp.AlEscogerMesa += (se3, mesa_usuario) =>
                         {
@@ -2160,7 +2160,7 @@ namespace posk.Components
                                 {
                                     if (iv.Producto?.id != null)
                                     {
-                                        producto prod = ProductoBLL.GetProduct(iv.Producto.id);
+                                        producto prod = ProductoBLL.GetProduct(iv.Producto?.id);
                                         // ingresar pendiente a base de datos
                                         PendienteBLL.IngresarPendienteProducto(prod, u, DateTime.Now);
                                     }
@@ -2202,7 +2202,7 @@ namespace posk.Components
                                     foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().ToList())
                                     {
                                         if (item.Producto?.puntos_cantidad != null)
-                                            puntos += (int)item.Producto.puntos_cantidad;
+                                            puntos += (int)item.Producto?.puntos_cantidad;
                                     }
                                     RealizarVentaSushi rvs = new RealizarVentaSushi(Convert.ToInt32(itemCalcularTotal.txtTotalVenta.Text), puntos);
                                     rvs.Show();
@@ -2307,7 +2307,7 @@ namespace posk.Components
 
                             foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().ToList())
                             {
-                                if (item.Producto.precio == 0) continue;
+                                if (item.Producto?.precio == 0) continue;
 
                                 detalle_boleta dl = new detalle_boleta()
                                 {
@@ -2323,7 +2323,7 @@ namespace posk.Components
                                 CompraBLL.ReduceStockByProduct(item.Producto?.id, item.Promocion?.id, (int)item.Cantidad);
 
                                 int? cobroExtra = 0;
-                                if (item.Producto.contiene_agregado == true)
+                                if (item.Producto?.contiene_agregado == true)
                                 {
                                     if (item.AgregadoUno?.cobro_extra != null)
                                         cobroExtra += item.AgregadoUno?.cobro_extra;
@@ -2397,9 +2397,9 @@ namespace posk.Components
                     {
                         //var rpp = new RealizarPedidoPopup(spVentaItems.Children.OfType<ItemVenta>().ToList(), spVentaItems.Children.OfType<ItemVentaPlatoFondo>().ToList());
                         var rpp = new RealizarPedidoPopup(
-                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == true).ToList(),
-                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList(),
-                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "otro").ToList(), Settings.Usuario.tipo
+                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == true).ToList(),
+                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList(),
+                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "otro").ToList(), Settings.Usuario.tipo
                         );
                         rpp.Show();
 
@@ -2575,13 +2575,13 @@ namespace posk.Components
                 ticket.TextoIzquierda("");
 
                 //if (spVentaItems.Children.OfType<ItemVentaPlatoFondo>().ToList().Count != 0)
-                if (listaIV.Where(x => x.Producto.tipo_itemventa?.nombre == "entrada").ToList().Count != 0)
+                if (listaIV.Where(x => x.Producto?.tipo_itemventa?.nombre == "entrada").ToList().Count != 0)
                 {
                     ticket.lineasGuion();
                     ticket.TextoCentro("ENTRADAS");
                 }
 
-                foreach (ItemVenta item in listaIV.Where(x => x.Producto.tipo_itemventa?.nombre == "entrada").ToList())
+                foreach (ItemVenta item in listaIV.Where(x => x.Producto?.tipo_itemventa?.nombre == "entrada").ToList())
                 {
                     string espaciosStr = "";
                     string espaciosValor = "";
@@ -2601,34 +2601,34 @@ namespace posk.Components
                     }
 
                     string cortesiaStr = "";
-                    if (item.Producto.precio == 0) cortesiaStr = " (CORTESIA)";
+                    if (item.Producto?.precio == 0) cortesiaStr = " (CORTESIA)";
 
                     for (int i = 0; i < 33 - $"00 {item.Producto?.nombre}".Length; i++)
                         espaciosStr += ".";
 
                     if (item.Cantidad < 10)
                     {
-                        if (bEsPedido || item.Producto.precio == 0)
+                        if (bEsPedido || item.Producto?.precio == 0)
                             ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}".ToUpper());
                         else
                             ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
                     }
                     else
                     {
-                        if (bEsPedido || item.Producto.precio == 0)
+                        if (bEsPedido || item.Producto?.precio == 0)
                             ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}".ToUpper());
                         else
                             ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
                     }
                 }
 
-                if (listaIV.Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo").ToList().Count != 0)
+                if (listaIV.Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo").ToList().Count != 0)
                 {
                     ticket.TextoIzquierda("");
                     //ticket.lineasGuion();
                     ticket.TextoCentro("DETALLE");
                     //foreach (ItemVentaPlatoFondo item in spVentaItems.Children.OfType<ItemVentaPlatoFondo>().ToList())
-                    foreach (ItemVenta item in listaIV.Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList())
+                    foreach (ItemVenta item in listaIV.Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList())
                     {
                         string espaciosStr = "";
                         string espaciosValor = "";
@@ -2825,7 +2825,7 @@ namespace posk.Components
                 }
 
 
-                if (listaIV.Where(x => x.Producto.tipo_itemventa?.nombre == "otro").ToList().Count != 0)
+                if (listaIV.Where(x => x.Producto?.tipo_itemventa?.nombre == "otro").ToList().Count != 0)
                 {
                     bool bParaBar = false;
                     if (!string.IsNullOrEmpty(pedidoId))
@@ -2835,7 +2835,7 @@ namespace posk.Components
                     ticket.TextoCentro($"OTROS");
 
 
-                    foreach (ItemVenta item in listaIV.Where(x => x.Producto.tipo_itemventa?.nombre == "otro" && x.Producto.precio != 0).ToList())
+                    foreach (ItemVenta item in listaIV.Where(x => x.Producto?.tipo_itemventa?.nombre == "otro" && x.Producto?.precio != 0).ToList())
                     {
                         string espaciosStr = "";
                         string espaciosValor = "";
@@ -2859,21 +2859,21 @@ namespace posk.Components
 
                         if (item.Cantidad < 10)
                         {
-                            if (bParaBar || item.Producto.precio == 0)
+                            if (bParaBar || item.Producto?.precio == 0)
                                 ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}".ToUpper());
                             else
                                 ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
                         }
                         else
                         {
-                            if (bParaBar || item.Producto.precio == 0)
+                            if (bParaBar || item.Producto?.precio == 0)
                                 ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}".ToUpper());
                             else
                                 ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
                         }
                     }
 
-                    if (listaIV.Where(x => x.Producto.tipo_itemventa?.nombre == "otro").ToList().Count != 0)
+                    if (listaIV.Where(x => x.Producto?.tipo_itemventa?.nombre == "otro").ToList().Count != 0)
                     {
                         ticket.TextoIzquierda("");
                         ticket.lineasGuion();
@@ -3024,7 +3024,7 @@ namespace posk.Components
                     foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == true).ToList())
                     {
                         bContieneParaCocina = true;
-                        if (item.Producto.sector_impresion.nombre == "COCINA")
+                        if (item.Producto?.sector_impresion.nombre == "COCINA")
                             bImprimirEnCocina = true;
 
                         string espaciosStr = "";
@@ -3045,21 +3045,21 @@ namespace posk.Components
                         }
 
                         string cortesiaStr = "";
-                        if (item.Producto.precio == 0) cortesiaStr = " (CORTESIA)";
+                        if (item.Producto?.precio == 0) cortesiaStr = " (CORTESIA)";
 
                         for (int i = 0; i < 33 - $"00 {item.Producto?.nombre}".Length; i++)
                             espaciosStr += ".";
 
                         if (item.Cantidad < 10)
                         {
-                            if (bEsPedido || item.Producto.precio == 0)
+                            if (bEsPedido || item.Producto?.precio == 0)
                                 ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}".ToUpper());
                             else
                                 ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
                         }
                         else
                         {
-                            if (bEsPedido || item.Producto.precio == 0)
+                            if (bEsPedido || item.Producto?.precio == 0)
                                 ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}".ToUpper());
                             else
                                 ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
@@ -3070,13 +3070,13 @@ namespace posk.Components
                     //ticket.lineasGuion();
                     //ticket.TextoCentro("DETALLE");
                     //foreach (ItemVentaPlatoFondo item in spVentaItems.Children.OfType<ItemVentaPlatoFondo>().ToList())
-                    foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList())
+                    foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList())
                     {
-                        if (item.Producto.sector_impresion?.nombre != "NINGUNO")
+                        if (item.Producto?.sector_impresion?.nombre != "NINGUNO")
                             bImprimir = true;
 
                         bContieneParaCocina = true;
-                        if (item.Producto.sector_impresion?.nombre == "COCINA")
+                        if (item.Producto?.sector_impresion?.nombre == "COCINA")
                             bImprimirEnCocina = true;
 
                         string espaciosStr = "";
@@ -3335,7 +3335,7 @@ namespace posk.Components
                         ticket.TextoCentro($"{di.MensajeDeliveryDos}");
                 }
 
-                if (spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "otro").ToList().Count != 0)
+                if (spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "otro").ToList().Count != 0)
                 {
                     if (!string.IsNullOrEmpty(pedidoId))
                         bParaBar = true;
@@ -3365,9 +3365,9 @@ namespace posk.Components
                     }
 
 
-                    foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "otro" && x.Producto.precio != 0).ToList())
+                    foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "otro" && x.Producto?.precio != 0).ToList())
                     {
-                        if (item.Producto.sector_impresion.nombre == "COCINA")
+                        if (item.Producto?.sector_impresion.nombre == "COCINA")
                             bImprimirEnCocina = true;
 
                         string espaciosStr = "";
@@ -3392,14 +3392,14 @@ namespace posk.Components
 
                         if (item.Cantidad < 10)
                         {
-                            if (bParaBar || item.Producto.precio == 0)
+                            if (bParaBar || item.Producto?.precio == 0)
                                 ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}".ToUpper());
                             else
                                 ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
                         }
                         else
                         {
-                            if (bParaBar || item.Producto.precio == 0)
+                            if (bParaBar || item.Producto?.precio == 0)
                                 ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}".ToUpper());
                             else
                                 ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
@@ -3407,7 +3407,7 @@ namespace posk.Components
                         if (!string.IsNullOrEmpty(item.txtNota.Text)) ticket.TextoIzquierda("   " + item.txtNota.Text.ToUpper());
                     }
 
-                    if (spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "otro").ToList().Count != 0)
+                    if (spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "otro").ToList().Count != 0)
                     {
                         ticket.TextoIzquierda("");
                         ticket.lineasGuion();
@@ -3448,19 +3448,19 @@ namespace posk.Components
                 ticket.CortaTicket();
 
                 int contadorProductosCocina = 0;
-                foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == true).ToList())
+                foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == true).ToList())
                 {
-                    if (item.Producto.sector_impresion.nombre == "COCINA")
+                    if (item.Producto?.sector_impresion.nombre == "COCINA")
                         contadorProductosCocina++;
                 }
-                foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList())
+                foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList())
                 {
-                    if (item.Producto.sector_impresion.nombre == "COCINA")
+                    if (item.Producto?.sector_impresion.nombre == "COCINA")
                         contadorProductosCocina++;
                 }
-                foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "otro").ToList())
+                foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "otro").ToList())
                 {
-                    if (item.Producto.sector_impresion.nombre == "COCINA")
+                    if (item.Producto?.sector_impresion.nombre == "COCINA")
                         contadorProductosCocina++;
                 }
 
@@ -3525,7 +3525,7 @@ namespace posk.Components
                 if (listaPP.Count != 0)
                     ticket.lineasGuion();
 
-                foreach (pedidos_productos item in listaPP.Where(x => x.producto.contiene_agregado == true).ToList())
+                foreach (pedidos_productos item in listaPP.Where(x => x.Producto?.contiene_agregado == true).ToList())
                 {
                     string espaciosStr = "";
                     string espaciosValor = "";
@@ -3708,13 +3708,13 @@ namespace posk.Components
 
                     // platos de fondo con sus agregados
                     //List<ItemVentaPlatoFondo> listaPlatosFondo = spVentaItems.Children.OfType<ItemVentaPlatoFondo>().ToList();
-                    List<ItemVenta> listaPlatosFondo = spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo").ToList();
+                    List<ItemVenta> listaPlatosFondo = spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo").ToList();
                     if (listaPlatosFondo.Count != 0)
                     {
                         listaPlatosFondo.ForEach(ive =>
                         {
                             //pedidos_productos pedido_producto = PedidosProductosBLL.Crear(ped.id, ive.Producto?.id, ive.Promocion?.id, ive.Cantidad, Convert.ToInt32(ive.txtTotal.Text), );
-                            //PedidosAgregadosBLL.Crear(pedido_producto.id, ive.AgregadoUno.id, ive.AgregadoDos.id);
+                            //PedidosAgregadosBLL.Crear(pedido_Producto?.id, ive.AgregadoUno.id, ive.AgregadoDos.id);
                             //PedidosAgregadosBLL.Crear(pedido_producto, ive.AgregadoDos);
                         });
                     }
@@ -3739,18 +3739,18 @@ namespace posk.Components
                                     PedidosProductosBLL.AgregarCantidad(pp.id, diferenciaCantidad);
                                     if (diferenciaCantidad < 0)
                                     {
-                                        listaProductosImprimir_Quitar += $"{pp.producto.nombre} x{Math.Abs((decimal)diferenciaCantidad)}\n";
+                                        listaProductosImprimir_Quitar += $"{pp.producto?.nombre} x{Math.Abs((decimal)diferenciaCantidad)}\n";
                                     }
                                     else
                                     {
-                                        listaProductosImprimir_Agregar += $"{pp.producto.nombre} x{diferenciaCantidad}\n";
+                                        listaProductosImprimir_Agregar += $"{pp.producto?.nombre} x{diferenciaCantidad}\n";
                                     }
                                 }
                             }
                             else
                             {
-                                //PedidosProductosBLL.Crear(ped.id, ivp.Producto.id, ivp.Promo.id, ivp.Cantidad);
-                                listaProductosImprimir_Nuevo += $"{ivp.Producto.nombre} x{ivp.Cantidad}\n";
+                                //PedidosProductosBLL.Crear(ped.id, ivp.Producto?.id, ivp.Promo.id, ivp.Cantidad);
+                                listaProductosImprimir_Nuevo += $"{ivp.Producto?.nombre} x{ivp.Cantidad}\n";
                             }
                         });
                     }
@@ -3785,7 +3785,7 @@ namespace posk.Components
                     List<pedidos_productos> listaPedidosProductosEliminar = new List<pedidos_productos>();
                     listaItemsPedidoEliminarDesdeBD.ForEach(x =>
                     {
-                        listaProductosImprimir_QuitarTodasLasUnidades += $"{x.Producto.nombre}\n";
+                        listaProductosImprimir_QuitarTodasLasUnidades += $"{x.Producto?.nombre}\n";
                         listaPedidosProductosEliminar.Add(new pedidos_productos() { id = x.PedidoProductoID });
                     });
                     if (listaPedidosProductosEliminar != null)
@@ -3807,17 +3807,17 @@ namespace posk.Components
 
                     string imprimirActualización = $"TICKET COCINA {DateTime.Now.ToShortDateString().ToUpper()} - {DateTime.Now.ToShortTimeString()}\nACTUALIZACIÓN DE PEDIDO N°{ ped.id }\n \nSolicitado por: { Settings.Usuario.nombre }\npara mesa: {mesa.codigo} sector: {mesa.sectormesa.nombre}\n\n";
                     //spVentaItems.Children.OfType<ItemVentaPlatoFondo>().ToList().ForEach(x =>
-                    spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto.tipo_itemventa?.nombre == "plato fondo").ToList().ForEach(x =>
+                    spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo").ToList().ForEach(x =>
                     {
                         if (x.AgregadoUno == x.AgregadoDos)
-                            imprimirActualización += $"{x.Producto.nombre} con {x.AgregadoUno.nombre}\n";
+                            imprimirActualización += $"{x.Producto?.nombre} con {x.AgregadoUno.nombre}\n";
                         else
-                            imprimirActualización += $"{x.Producto.nombre} con {x.AgregadoUno.nombre} y {x.AgregadoDos.nombre}\n";
+                            imprimirActualización += $"{x.Producto?.nombre} con {x.AgregadoUno.nombre} y {x.AgregadoDos.nombre}\n";
                         contadorItems++;
                     });
                     spVentaItems.Children.OfType<ItemVentaPedido>().ToList().ForEach(x =>
                     {
-                        imprimirActualización += $"x{x.Cantidad}    {x.Producto.nombre}\n";
+                        imprimirActualización += $"x{x.Cantidad}    {x.Producto?.nombre}\n";
                         contadorItems += Convert.ToInt32(x.Cantidad);
                     });
 
@@ -3941,7 +3941,7 @@ namespace posk.Components
                         string contenidoCorreo = "* * * * C O M P R A * * * *\n\n";
                         foreach (PurchaseLineControl item in spCompras.Children)
                         {
-                            contenidoCorreo += $"{item.lbProducto.Content}\nUnitario bruto: ${item.txtCostoUnitarioBruto.Text}\nTotal bruto: ${item.txtTotalBruto.Text}\n\n";
+                            contenidoCorreo += $"{item.lbProducto?.Content}\nUnitario bruto: ${item.txtCostoUnitarioBruto.Text}\nTotal bruto: ${item.txtTotalBruto.Text}\n\n";
                         }
                         //EnviarCorreo.Enviar(contenidoCorreo);
                         cp.bCerrado = true;
