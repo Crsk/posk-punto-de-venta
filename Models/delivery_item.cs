@@ -21,6 +21,7 @@ namespace posk.Models
         public string comentario { get; set; }
         public string incluye { get; set; }
         public Nullable<System.DateTime> fecha_entrega { get; set; }
+        public System.DateTime fecha_pedido { get; set; }
         public Nullable<int> boleta_id { get; set; }
         public Nullable<bool> servir { get; set; }
     

@@ -307,7 +307,7 @@ namespace posk.Components
             try
             {
                 //Sync("pedido");
-                Sync("delivery");
+                //Sync("delivery");
                 lbFecha.Content = $"{DateTime.Now.ToShortDateString()} {DateTime.Now.ToLongTimeString()}";
                 if (InternetChecker.IsConnectedToInternet())
                     internetStatus.Foreground = new SolidColorBrush(System.Windows.Media.Color.FromRgb(46, 139, 87));
@@ -2287,7 +2287,7 @@ namespace posk.Components
 
                                         LimpiarTodo();
                                         bool bServir = di.ServirLlevar.ToUpper() == "SERVIR" ? true : false;
-                                        DeliveryItemBLL.Crear(ultimaBoleta.id, null, "", di.NombreCliente, null, "", di.Incluye, bServir);
+                                        DeliveryItemBLL.Crear(ultimaBoleta.id, null, DateTime.Now, di.Direccion, di.NombreCliente, null, "", di.Incluye, bServir);
                                         CargarDeliveryPndientesDeEntrega();
                                     };
                                     return;
@@ -2360,7 +2360,7 @@ namespace posk.Components
                                 iuv.btnBoleta.Click += (se3, a3) =>
                                 {
                                     string detalleBoleta = $"Boleta ID: {iuv.Boleta.id}  GENERADA A LAS  {iuv.Boleta.fecha.ToLongTimeString()}\n\n";
-                                    LineaDetalleBLL.Get(iuv.Boleta.id).ForEach(detalle =>
+                                    LineaDetalleBLL.ObtenerPorBoletaId(iuv.Boleta.id).ForEach(detalle =>
                                     {
                                         int detalleCantidad = 1;
                                         if (detalle.cantidad == 0) detalleCantidad = 1;
@@ -2457,13 +2457,14 @@ namespace posk.Components
                     Comentario = d.comentario,
                     Incluye = d.incluye,
                     FechaEntrega = d.fecha_entrega,
+                    FechaPedido = d.fecha_pedido,
                     Boleta = d.boleta,
                     DeliveryItem = d
                 };
 
                 id.btnItem.Click += (se, a) =>
                 {
-                    DeliveryPopup dp = new DeliveryPopup(d.id, d.nombre_cliente, d.boleta?.fecha, d.incluye, id.Boleta);
+                    DeliveryPopup dp = new DeliveryPopup(d);
                     dp.Deactivated += (se2, a2) => MostrarOverlay(false);
                     dp.AlEntregar += (se2, a2) =>
                     {

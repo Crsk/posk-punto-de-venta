@@ -39,7 +39,7 @@ namespace posk.BLL
             ActualizarBoletaDespuesDeModificarDetalle(ld);
         }
 
-        public static List<detalle_boleta> Get(int boletaID)
+        public static List<detalle_boleta> ObtenerPorBoletaId(int? boletaID)
         {
             return db.detalle_boleta.AsNoTracking().Include("producto").Include("boleta").Where(x => x.boleta_id == boletaID).ToList();
         }

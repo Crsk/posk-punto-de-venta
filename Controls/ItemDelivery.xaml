@@ -8,11 +8,11 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Grid Width="180" Margin="0 0 0 8">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="16"/>
+            <ColumnDefinition Width="58"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Width="16" Grid.Column="0" Background="LightGray" Height="36">
-            <Label x:Name="lbServirLlevar" Content="S" VerticalAlignment="Center" Foreground="#FFDF6D0E"/>
+        <Grid Width="58" Grid.Column="0" Background="LightGray" Height="36">
+            <Label x:Name="lbMinutosTranscurridos" Content="00.0 min" VerticalAlignment="Center" Foreground="#FFDF6D0E"/>
         </Grid>
         <Button x:Name="btnItem" Grid.Column="1" Background="#FFDF6D0E" Height="36" Style="{StaticResource BtnClear}">
             <Label x:Name="lbNombre" Content="Christopher" Grid.Column="1" Foreground="#FFDDE0E2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Light"/>

@@ -11,12 +11,13 @@ namespace posk.BLL
     {
         private static PoskDB6 db = new PoskDB6();
 
-        public static void Crear(int boleta_id, DateTime? fechaentrega = null, string direccion = "", string nombreCliente = "", int? cliente_id = null, string comentario = "", string incluye = "", bool bServir = true)
+        public static void Crear(int boleta_id, DateTime? fechaEntrega = null, DateTime fechaPedido = new DateTime(), string direccion = "", string nombreCliente = "", int? cliente_id = null, string comentario = "", string incluye = "", bool bServir = true)
         {
             db.delivery_item.Add(new delivery_item()
             {
                 boleta_id = boleta_id,
-                fecha_entrega = fechaentrega,
+                fecha_entrega = fechaEntrega,
+                fecha_pedido = fechaPedido,
                 direccion = direccion,
                 nombre_cliente = nombreCliente,
                 cliente_id = cliente_id,

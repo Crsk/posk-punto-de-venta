@@ -97,7 +97,7 @@ namespace posk.Popup
                     {
                         //ibf.ExpDetalle.IsExpanded ^= true;
                         ibf.spDetalle.Children.Clear();
-                        foreach (detalle_boleta lineaDetalle in LineaDetalleBLL.Get(ibf.ID))
+                        foreach (detalle_boleta lineaDetalle in LineaDetalleBLL.ObtenerPorBoletaId(ibf.ID))
                         {
                             ItemLineaBoleta lb = new ItemLineaBoleta();
                             ConfigurarItemBoletaFactura(lb, lb.txtCodigo, lb.cbProductos);

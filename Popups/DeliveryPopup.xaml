@@ -10,7 +10,7 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Title="Delivery" Height="260" Width="250"  AllowsTransparency="True" WindowStyle="None" Background="#FFE7E7E7">
+        Title="Delivery" Height="460" Width="380"  AllowsTransparency="True" WindowStyle="None" Background="#FFE7E7E7">
     <Grid Margin="8">
         <Grid>
             <Grid.RowDefinitions>
@@ -20,16 +20,22 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label x:Name="lbCliente" Content="Nombre cliente" Foreground="Black"/>
+                    <Label Content="Nombre cliente:" Foreground="Black"/>
+                    <Label x:Name="lbNombreCliente" Foreground="Black"/>
                     <Label x:Name="lbNumeroBoleta" Content="#00" Foreground="Black"/>
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1">
                 <StackPanel HorizontalAlignment="Center">
                     <StackPanel HorizontalAlignment="Center">
-                        <Label x:Name="lbFecha" Content="asdasdsad" Foreground="Black" HorizontalAlignment="Center"/>
-                        <Label Content="Salsas: " Foreground="Black" HorizontalAlignment="Center" Margin="0 12 0 0"/>
-                        <TextBlock x:Name="txtSalsas" Text="nombre de las salsas" TextWrapping="Wrap" Foreground="Black" MaxWidth="150" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label Content="Detalle:" Foreground="Black" HorizontalAlignment="Center"/>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel x:Name="spDetalleBoleta" Margin="0 8 0 16"/>
+                        </ScrollViewer>
+                        <Label x:Name="lbFecha" Foreground="Black" HorizontalAlignment="Center"/>
+                        <Label Content="Adicional: " Foreground="Black" HorizontalAlignment="Center" Margin="0 12 0 0"/>
+                        <TextBlock x:Name="txtAdicional" TextWrapping="Wrap" Foreground="Black" MaxWidth="150" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="txtServirLlevar" TextWrapping="Wrap" Foreground="Black" MaxWidth="150" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>

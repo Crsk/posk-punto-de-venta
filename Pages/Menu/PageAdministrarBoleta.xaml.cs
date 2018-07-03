@@ -54,7 +54,7 @@ namespace posk.Pages.Menu
                     ibf.btnBoletaFactura.Click += (se2, a2) =>
                     {
                         ibf.SpDetalle.Children.Clear();
-                        LineaDetalleBLL.Get(boleta.id).ForEach(detalle =>
+                        LineaDetalleBLL.ObtenerPorBoletaId(boleta.id).ForEach(detalle =>
                         {
                             ibf.spDetalle.Children.Add(new ItemLineaBoleta() { Producto = detalle.producto, Boleta = boleta, Cantidad = Convert.ToInt32(detalle.cantidad), PrecioUnitario = (int) detalle.producto.precio });
                         });
