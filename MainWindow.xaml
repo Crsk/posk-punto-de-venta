@@ -98,7 +98,7 @@
                                 <Expander x:Name="expMenuGlobalExtension" Style="{StaticResource ExpMenu}" Background="{x:Null}" ExpandDirection="Right">
                                     <StackPanel x:Name="spMenuGlobalExtension">
                                         <Separator Height="178" Width="100" Background="#F2080808" Visibility="Hidden"/>
-                                        <MenuItem x:Name="miVerInventario" Header="Inventario" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miVerInventario" Header="Inventario" Height="36" FontSize="12" Visibility="Hidden"/>
                                         <Separator Height="8" Width="100" Background="#FF000104"/>
                                         <MenuItem x:Name="miGasto" Header="Gasto" Height="36" FontSize="12"/>
                                         <Separator Height="8" Width="100" Background="#FF000104"/>
@@ -109,8 +109,8 @@
                                 <Expander x:Name="expMenuJornadaExtension" Style="{StaticResource ExpMenu}" Background="{x:Null}" ExpandDirection="Right">
                                     <StackPanel x:Name="spMenuJornadaExtension">
                                         <Separator Height="178" Width="100" Background="#F2080808" Visibility="Hidden"/>
-                                        <MenuItem x:Name="miJornadaVentas" Header="Ventas realizadas" Height="36" FontSize="12"/>
                                         <MenuItem x:Name="miJornadaResumen" Header="Resúmen" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miJornadaVentas" Header="Ventas realizadas" Height="36" FontSize="12" Visibility="Hidden"/>
                                     </StackPanel>
                                 </Expander>
 
@@ -142,9 +142,9 @@
                                         <MenuItem x:Name="miEstadisticasPeriodo" Header="Periodo" Height="36" FontSize="12"/>
                                         <MenuItem x:Name="miEstadisticasGlobalIngresos" Header="Global Ingresos" Height="36" FontSize="12"/>
                                         <MenuItem x:Name="miEstadisticasFecha" Header="Fecha" Height="36" FontSize="12"/>
-                                        <MenuItem x:Name="miEstadisticasUsuario" Header="Usuario" Height="36" FontSize="12"/>
-                                        <MenuItem x:Name="miEstadisticasCliente" Header="Cliente" Height="36" FontSize="12"/>
                                         <MenuItem x:Name="miEstadisticasStock" Header="Stock" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miEstadisticasCliente" Header="Cliente" Height="36" FontSize="12" Visibility="Hidden"/>
+                                        <MenuItem x:Name="miEstadisticasUsuario" Header="Usuario" Height="36" FontSize="12" Visibility="Hidden"/>
                                     </StackPanel>
                                 </Expander>
 

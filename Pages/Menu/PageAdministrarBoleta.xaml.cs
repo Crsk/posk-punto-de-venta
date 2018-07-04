@@ -23,7 +23,7 @@ namespace posk.Pages.Menu
         public PageAdministrarBoleta()
         {
             InitializeComponent();
-            btnVerPorPeriodo.IsEnabled = false;
+            //btnVerPorPeriodo.IsEnabled = false;
 
             btnVerUltimas.Click += (se, a) =>
             {
@@ -34,7 +34,7 @@ namespace posk.Pages.Menu
                 }
                 catch (Exception ex)
                 {
-                    PoskException.Make(ex, "ERROR AL VER ULTIMAS BOLETAS");
+                    //PoskException.Make(ex, "ERROR AL VER ULTIMAS BOLETAS");
                 }
             };
         }
@@ -49,8 +49,10 @@ namespace posk.Pages.Menu
                     ibf.btnBorrar.Click += (se2, a2) =>
                     {
                         BoletaBLL.Delete(boleta.id);
+                        spBoletas.Children.Clear();
                         CargarBoletas(cantidad);
                     };
+                    /*
                     ibf.btnBoletaFactura.Click += (se2, a2) =>
                     {
                         ibf.SpDetalle.Children.Clear();
@@ -59,6 +61,7 @@ namespace posk.Pages.Menu
                             ibf.spDetalle.Children.Add(new ItemLineaBoleta() { Producto = detalle.producto, Boleta = boleta, Cantidad = Convert.ToInt32(detalle.cantidad), PrecioUnitario = (int) detalle.producto.precio });
                         });
                     };
+                    */
                     spBoletas.Children.Add(ibf);
                 });
             }

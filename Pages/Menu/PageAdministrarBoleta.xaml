@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <StackPanel>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Visibility="Hidden" Height="0">
                     <StackPanel>
                         <Label Content="Desde" HorizontalAlignment="Center"/>
                         <DatePicker x:Name="dpDesde" Width="100" Height="30" Margin="8"/>
@@ -32,7 +32,7 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center">
-                    <Button x:Name="btnVerPorPeriodo" Content="VER POR PERIODO" Margin="8" Width="200"/>
+                    <Button x:Name="btnVerPorPeriodo" Content="VER POR PERIODO" Margin="8" Width="200" Visibility="Hidden"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button x:Name="btnVerUltimas" Content="VER ÚLTIMAS"/>
                         <TextBox x:Name="txtCantidad" Text="25" HorizontalContentAlignment="Center" Width="48" Background="#FF1F1F1F" Margin="8 0 0 0"/>
@@ -43,7 +43,7 @@
         </Grid>
         <Grid Grid.Row="1">
             <ScrollViewer HorizontalAlignment="Center">
-                <StackPanel x:Name="spBoletas" HorizontalAlignment="Center"/>
+                <StackPanel x:Name="spBoletas" HorizontalAlignment="Center" Width="600"/>
             </ScrollViewer>
         </Grid>
     </Grid>

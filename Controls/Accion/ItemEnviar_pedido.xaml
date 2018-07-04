@@ -10,14 +10,14 @@
             TextElement.FontSize="13"
             TextOptions.TextFormattingMode="Ideal"
             TextOptions.TextRenderingMode="Auto">
-    <Button x:Name="btnEnviar" Style="{StaticResource BtnClear}" Background="{x:Null}" Height="58" FontWeight="Regular">
-        <Grid Margin="16 0 0 0" Width="152">
+    <Button x:Name="btnEnviar" Style="{StaticResource BtnClear}" Background="{x:Null}" Height="58" FontWeight="Regular" HorizontalAlignment="Stretch">
+        <Grid Margin="0 0 0 0">
             <!--
             <Border Panel.ZIndex="1" Background="#4C000000">
                 <Label Content="PAGAR" Panel.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="White" FontSize="12"/>
             </Border>
             -->
-            <Button Height="58" FontSize="26" Background="#FF06704D" Style="{StaticResource BtnClear}" Margin="0 0 0 0">
+            <Button Height="58" FontSize="26" Background="#FF06704D" Style="{StaticResource BtnClear}" Margin="0 0 0 0" Width="360">
                 <materialDesign:PackIcon Kind="Send" Height="48" Width="48" Foreground="#fafafa" VerticalContentAlignment="Center"/>
             </Button>
         </Grid>

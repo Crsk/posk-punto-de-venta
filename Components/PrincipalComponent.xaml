@@ -54,11 +54,11 @@
                             <Button x:Name="btnVolver" Background="{x:Null}" Margin="54 0 4 0" BorderBrush="{x:Null}" VerticalAlignment="Center" Foreground="#FFE6E6E6" Style="{StaticResource BtnClear}" Height="72" Width="60" HorizontalAlignment="Left" Visibility="Hidden">
                                 <materialDesign:PackIcon Kind="ChevronLeft" Height="60" Width="60" VerticalAlignment="Center"/>
                             </Button>
-                            <Button x:Name="btnLimpiarBusqueda" Height="60" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="{x:Null}" Foreground="#FFBD2A2A" BorderBrush="{x:Null}" >
+                            <Button x:Name="btnLimpiarBusqueda" Height="60" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="{x:Null}" Foreground="#FFBD2A2A" BorderBrush="{x:Null}" Visibility="Hidden">
                                 <materialDesign:PackIcon Kind="Broom" Height="54" Width="54" Foreground="#FFE6E6E6"/>
                             </Button>
                             <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Button x:Name="btnExpanderLeft" Background="{x:Null}" Margin="8 0 8 0" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Style="{StaticResource BtnClear}" Height="60" Width="60">
+                                <Button x:Name="btnExpanderLeft" Background="{x:Null}" Margin="8 0 8 0" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Style="{StaticResource BtnClear}" Height="60" Width="0" Visibility="Hidden">
                                     <materialDesign:PackIcon Name="iconLeftExpander" Kind="ViewList" Height="54" Width="54" VerticalAlignment="Center"/>
                                 </Button>
                                 <!--
@@ -70,9 +70,11 @@
                                     <materialDesign:PackIcon x:Name="iconFavorito" Kind="Star" Height="54" Width="54" VerticalAlignment="Center"/>
                                 </Button>
 
+                                <!--
                                 <Button x:Name="btnNumero" Background="{x:Null}" Margin="8 0 8 0" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Style="{StaticResource BtnClear}" Height="60" Width="60">
                                     <materialDesign:PackIcon x:Name="iconNumero" Kind="Numeric1Box" Height="54" Width="54" VerticalAlignment="Center"/>
                                 </Button>
+                                -->
                                 
                                 <Border Visibility="Hidden" Width="0">
                                     <Button x:Name="btnPromo" Background="{x:Null}" Margin="8 0 8 0" BorderBrush="{x:Null}" Foreground="#FFE6E6E6" Style="{StaticResource BtnClear}" Height="60" Width="60">
@@ -255,7 +257,7 @@
                 <!-- Fin Buscar Producto-->
 
                 <!-- Inicio ItemsVenta -->
-                <Grid Grid.Column="1" Background="#FFDADEE0">
+                <Grid Grid.Column="1" Background="#FFF0F0F0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -277,8 +279,8 @@
                             <materialDesign:PackIcon Kind="Broom" Height="52" Width="52"/>
                         </Button>
 
-                        <TextBox x:Name="txtCantidad" Grid.Column="1" Width="40" Text="1" materialDesign:HintAssist.Hint="CANTIDAD" Padding="0 0 0 1" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left"/>
-                        <TextBox materialDesign:HintAssist.Hint="CÓDIGO" x:Name="txtBarCode" Grid.Column="2" FontSize="18" Padding="4 0 0 0 " Foreground="black" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalAlignment="Stretch"/>
+                        <TextBox x:Name="txtCantidad" Grid.Column="1" Width="40" Text="1" materialDesign:HintAssist.Hint="CANTIDAD" Padding="0 0 0 1" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Visibility="Hidden"/>
+                        <TextBox materialDesign:HintAssist.Hint="CÓDIGO" x:Name="txtBarCode" Grid.Column="2" FontSize="18" Padding="4 0 0 0 " Foreground="black" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalAlignment="Stretch" Visibility="Hidden"/>
 
                         <!--
                         <Button Grid.Column="2" Style="{StaticResource BtnClear}" Background="{x:Null}">
@@ -320,7 +322,7 @@
                     <Grid Grid.Row="3" x:Name="gridDcto" HorizontalAlignment="Right" Margin="0 0 8 0"/>
 
 
-                    <Grid x:Name="gridMensajeCocina" Grid.Row="4">
+                    <Grid x:Name="gridMensajeCocina" Grid.Row="4" Visibility="Hidden">
                         <StackPanel x:Name="spDetalleVenta" HorizontalAlignment="Right">
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel x:Name="spGarzonMesa" Orientation="Horizontal" Margin="4" HorizontalAlignment="Right"/>
@@ -336,8 +338,8 @@
 
                     <Grid Grid.Row="6">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="90"/>
-                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="0"/>
+                            <ColumnDefinition Width="0"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Border x:Name="borderAccionIzquierda" Grid.Column="0"/>
@@ -347,9 +349,9 @@
                 </Grid>
                 <!-- Fin ItemsVenta -->
 
-                <Grid Grid.Column="2">
-                    <Expander x:Name="expDerecha" HorizontalAlignment="Right" ExpandDirection="Left" Style="{StaticResource ExpanderStyleSinHeader}" Background="#FF020206" Margin="0 0 4 0">
-                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Grid Grid.Column="2" Margin="0 0 0 0">
+                    <Expander x:Name="expDerecha" HorizontalAlignment="Right" ExpandDirection="Left" Style="{StaticResource ExpanderStyleSinHeader}" Background="#FF020206" Padding="22 0 0 0" Margin="0 0 4 0">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="0">
                             <ScrollViewer.Resources>
                                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">50</sys:Double>
                             </ScrollViewer.Resources>
@@ -378,8 +380,8 @@
                         </Border>
                         <Border Background="{x:Null}">
                             <DockPanel>
-                                <Border DockPanel.Dock="Left">
-                                    <Label x:Name="lbInfo" Content="" Margin="4,0,16,0" FontSize="14" VerticalContentAlignment="Center" FontWeight="Medium" Foreground="#DDE8E8E8"/>
+                                <Border DockPanel.Dock="Left" Width="20">
+                                    <Label x:Name="lbInfo" Content="" Margin="4,0,16,0" FontSize="10" VerticalContentAlignment="Center" FontWeight="Medium" Foreground="#DDE8E8E8" Visibility="Hidden"/>
                                 </Border>
                                 <Border DockPanel.Dock="Right">
                                     <Button x:Name="btnInfo" HorizontalAlignment="Right" Foreground="#f9f9f9" Background="{x:Null}" Style="{StaticResource BtnClear}" Margin="16 0 16 0">
@@ -392,7 +394,7 @@
                                 <Border DockPanel.Dock="Right">
                                     <Label x:Name="lbUsuario" Content="Garzón: Christopher Kiessling" Margin="4,0,4,0" FontSize="14" VerticalContentAlignment="Center" FontWeight="Medium" Foreground="#DDE8E8E8" HorizontalContentAlignment="Right"/>
                                 </Border>
-                                <Border x:Name="borderUltimaVenta" DockPanel.Dock="Right" HorizontalAlignment="Center" />
+                                <Border x:Name="borderUltimaVenta" DockPanel.Dock="Right" HorizontalAlignment="Right" />
                             </DockPanel>
                         </Border>
                     </DockPanel>

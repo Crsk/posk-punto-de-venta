@@ -1820,7 +1820,6 @@ namespace posk.Components
                 //        CargarPendientes();
                 //        itemVerPendientes.lbVerEntregasNumero.Content = $"{PendienteBLL.GetAll().Count}";
                 //    }
-
                 expDerecha.IsExpanded ^= true;
             };
 
@@ -1955,7 +1954,7 @@ namespace posk.Components
                 try
                 {
                     boleta _ts = BoletaBLL.ObtenerUltima();
-                    ItemUltimaVenta _iuv = new ItemUltimaVenta() { Mensaje = $"ÚLTIMA: ${_ts?.total}  EL {_ts?.fecha.ToShortDateString()}  A LAS  {_ts?.fecha.ToLongTimeString()} ", Boleta = _ts };
+                    ItemUltimaVenta _iuv = new ItemUltimaVenta() { Mensaje = $"ÚLTIMA VENTA: ${_ts?.total}  EL {_ts?.fecha.ToShortDateString()}  A LAS  {_ts?.fecha.ToLongTimeString()} ", Boleta = _ts };
                     borderUltimaVenta.Child = null;
                     if (!Settings.Usuario.tipo.ToLower().Equals("g"))
                         borderUltimaVenta.Child = _iuv;
@@ -4278,6 +4277,9 @@ namespace posk.Components
 
             expLeft.MouseEnter += (se, a) => AbrirCategorias(true);
             expLeft.MouseLeave += (se, a) => AbrirCategorias(false);
+
+            expDerecha.MouseEnter += (se, a) => AbrirPendientes(true);
+            expDerecha.MouseLeave += (se, a) => AbrirPendientes(false);
         }
 
         #endregion Eventos
@@ -4289,6 +4291,11 @@ namespace posk.Components
                 btnExpanderLeft.Foreground = colorDorado;
             else
                 btnExpanderLeft.Foreground = colorNeutro;
+        }
+
+        private void AbrirPendientes(bool b)
+        {
+            expDerecha.IsExpanded = b;
         }
 
         private void AbrirCategoriasToogle()
