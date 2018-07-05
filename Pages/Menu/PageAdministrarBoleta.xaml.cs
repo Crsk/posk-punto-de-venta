@@ -50,6 +50,7 @@ namespace posk.Pages.Menu
                     {
                         BoletaBLL.Delete(boleta.id);
                         spBoletas.Children.Clear();
+
                         CargarBoletas(cantidad);
                     };
                     /*

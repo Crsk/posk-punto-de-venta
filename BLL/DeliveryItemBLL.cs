@@ -11,7 +11,7 @@ namespace posk.BLL
     {
         private static PoskDB6 db = new PoskDB6();
 
-        public static void Crear(int boleta_id, DateTime? fechaEntrega = null, DateTime fechaPedido = new DateTime(), string direccion = "", string nombreCliente = "", int? cliente_id = null, string comentario = "", string incluye = "", bool bServir = true)
+        public static void Crear(int boleta_id, DateTime? fechaEntrega = null, DateTime fechaPedido = new DateTime(), string direccion = "", string nombreCliente = "", int? cliente_id = null, string comentario = "", string incluye = "", bool bServir = true, int pagaCon = 0, string vuelto = "")
         {
             db.delivery_item.Add(new delivery_item()
             {
@@ -23,7 +23,9 @@ namespace posk.BLL
                 cliente_id = cliente_id,
                 comentario = comentario,
                 incluye = incluye,
-                servir = bServir
+                servir = bServir,
+                paga_con = pagaCon,
+                vuelto = vuelto
             });
             db.SaveChanges();
         }

@@ -207,6 +207,8 @@ namespace posk.Popups
             {
                 txtPropina.Text = $"{Propina}";
 
+                MostrarPagaCon(true);
+
                 txtPropina.TextChanged += (se2, a2) =>
                 {
                     try
@@ -237,6 +239,7 @@ namespace posk.Popups
 
                     if (impc.MedioPago.nombre.ToLower().Equals("efectivo"))
                     {
+                        impc.btnMedioPago.Click += (se2, a2) => MostrarPagaCon(true);
                         impc.txtMonto.TabIndex = 1;
                         impc.txtMonto.Text = $"{MontoTotalSinPropina}";
                         MontoEfectivo = MontoTotalSinPropina;
@@ -260,6 +263,7 @@ namespace posk.Popups
                     }
                     if (impc.MedioPago.nombre.ToLower().Equals("trans bank"))
                     {
+                        impc.btnMedioPago.Click += (se2, a2) => MostrarPagaCon(false);
                         impc.txtMonto.TabIndex = 2;
                         impc.txtMonto.TextChanged += (se2, a2) =>
                         {
@@ -280,6 +284,7 @@ namespace posk.Popups
                     }
                     if (impc.MedioPago.nombre.ToLower().Equals("junaeb"))
                     {
+                        impc.btnMedioPago.Click += (se2, a2) => MostrarPagaCon(false);
                         impc.txtMonto.TabIndex = 3;
 
                         impc.txtMonto.TextChanged += (se2, a2) =>
@@ -301,6 +306,7 @@ namespace posk.Popups
                     }
                     if (impc.MedioPago.nombre.ToLower().Equals("otro"))
                     {
+                        impc.btnMedioPago.Click += (se2, a2) => MostrarPagaCon(false);
                         impc.txtMonto.TabIndex = 4;
 
                         impc.txtMonto.TextChanged += (se2, a2) =>
@@ -359,6 +365,10 @@ namespace posk.Popups
 
                     int propina = tooglePropina.IsChecked == true ? Convert.ToInt32(txtPropina.Text) : 0;
 
+                    var itemPagaCon = gridPagaCon.Children.OfType<ItemPagaCon>().FirstOrDefault();
+                    int pagaCon = itemPagaCon.PagaCon;
+                    string vuelto = itemPagaCon.Vuelto;
+
                     string incluyeStr = "";
                     string incluyeStrUnaLinea = "";
 
@@ -391,7 +401,9 @@ namespace posk.Popups
                         MensajeDeliveryUno = txtMensajeDeliveryUno.Text,
                         MensajeDeliveryDos = txtMensajeDeliverDos.Text,
                         Incluye = incluyeStr,
-                        IncluyeStrUnaLinea = incluyeStrUnaLinea
+                        IncluyeStrUnaLinea = incluyeStrUnaLinea,
+                        PagaCon = pagaCon,
+                        Vuelto = vuelto
                     };
 
                     string nombre = txtBuscarCliente.Text;
@@ -406,6 +418,30 @@ namespace posk.Popups
             };
 
             Deactivated += (se, ev) => { if (!bCerrado) Close(); };
+        }
+
+        private void MostrarPagaCon(bool b)
+        {
+            gridPagaCon.Children.Clear();
+
+            if (!b) return;
+
+            int montoCobrar = tooglePropina.IsChecked == true ? MontoTotalConPropina : MontoTotalSinPropina;
+            var itemPagaCon = new ItemPagaCon() { Total = montoCobrar };
+            itemPagaCon.txtPagaCon.TextChanged += (se2, a2) =>
+            {
+                try
+                {
+                    // usa RegEx para aceptar solo valores numéricos
+                    itemPagaCon.PagaCon = Convert.ToInt32(itemPagaCon.txtPagaCon.Text);
+                }
+                catch (Exception)
+                {
+
+                }
+            };
+
+            gridPagaCon.Children.Add(itemPagaCon);
         }
 
         private void CalcularMontos()
@@ -423,6 +459,7 @@ namespace posk.Popups
                 }
                 catch
                 {
+
                 }
             }
             _montoTotal = Convert.ToInt32(lbTotal.Content);

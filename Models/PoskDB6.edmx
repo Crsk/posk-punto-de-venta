@@ -149,12 +149,6 @@
           <Property Name="correo_secundario" Type="varchar" MaxLength="45" />
           <Property Name="teclado_tactil_integrado" Type="bool" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'def.posk_db.debug' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="debug">
-          <Property Name="clave" Type="varchar" MaxLength="100" />
-          <Property Name="valor" Type="varchar" MaxLength="100" />
-        </EntityType>-->
         <EntityType Name="delivery_item">
           <Key>
             <PropertyRef Name="id" />
@@ -169,6 +163,8 @@ warning 6013: The table/view 'def.posk_db.debug' does not have a primary key def
           <Property Name="fecha_pedido" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="boleta_id" Type="int" />
           <Property Name="servir" Type="bool" />
+          <Property Name="paga_con" Type="int" Nullable="false" />
+          <Property Name="vuelto" Type="varchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <EntityType Name="detalle_boleta">
           <Key>
@@ -3980,6 +3976,8 @@ warning 6013: The table/view 'def.posk_db.debug' does not have a primary key def
           <Property Name="fecha_pedido" Type="DateTime" Nullable="false" />
           <Property Name="boleta_id" Type="Int32" />
           <Property Name="servir" Type="Boolean" />
+          <Property Name="paga_con" Type="Int32" Nullable="false" />
+          <Property Name="vuelto" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="boleta" Relationship="posk_dbModel6.boleta_fk" FromRole="delivery_item" ToRole="boleta" />
           <NavigationProperty Name="cliente" Relationship="posk_dbModel6.cliente_fk" FromRole="delivery_item" ToRole="cliente" />
         </EntityType>
@@ -4656,6 +4654,8 @@ warning 6013: The table/view 'def.posk_db.debug' does not have a primary key def
           <EntitySetMapping Name="delivery_item">
             <EntityTypeMapping TypeName="posk_dbModel6.delivery_item">
               <MappingFragment StoreEntitySet="delivery_item">
+                <ScalarProperty Name="vuelto" ColumnName="vuelto" />
+                <ScalarProperty Name="paga_con" ColumnName="paga_con" />
                 <ScalarProperty Name="servir" ColumnName="servir" />
                 <ScalarProperty Name="boleta_id" ColumnName="boleta_id" />
                 <ScalarProperty Name="fecha_pedido" ColumnName="fecha_pedido" />

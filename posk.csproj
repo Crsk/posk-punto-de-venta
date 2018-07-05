@@ -352,6 +352,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ItemPagaCon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ItemPendienteMesa.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -699,6 +703,9 @@
     </Compile>
     <Compile Include="Controls\ItemMoneda.xaml.cs">
       <DependentUpon>ItemMoneda.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemPagaCon.xaml.cs">
+      <DependentUpon>ItemPagaCon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ItemPendienteMesa.xaml.cs">
       <DependentUpon>ItemPendienteMesa.xaml</DependentUpon>

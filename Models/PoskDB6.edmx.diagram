@@ -135,7 +135,7 @@
         <AssociationConnector Association="posk_dbModel6.deudas_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.fiados_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.prestamo_envases_ibfk_1" />
-        <EntityTypeShape EntityType="posk_dbModel6.delivery_item" Width="1.5" PointX="12.5" PointY="17.625" />
+        <EntityTypeShape EntityType="posk_dbModel6.delivery_item" Width="1.5" PointX="12.5" PointY="17.5" />
         <AssociationConnector Association="posk_dbModel6.boleta_fk" />
         <AssociationConnector Association="posk_dbModel6.cliente_fk" />
         </Diagram>

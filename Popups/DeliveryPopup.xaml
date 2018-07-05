@@ -36,6 +36,8 @@
                         <Label Content="Adicional: " Foreground="Black" HorizontalAlignment="Center" Margin="0 12 0 0"/>
                         <TextBlock x:Name="txtAdicional" TextWrapping="Wrap" Foreground="Black" MaxWidth="150" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <TextBlock x:Name="txtServirLlevar" TextWrapping="Wrap" Foreground="Black" MaxWidth="150" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="txtPagaCon" Margin="0 16 0 0" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="txtVuelto" Margin="0 0 0 0" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>

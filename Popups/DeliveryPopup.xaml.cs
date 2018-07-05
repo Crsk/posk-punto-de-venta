@@ -23,6 +23,9 @@ namespace posk.Popups
                 lbNombreCliente.Content = $"{di.nombre_cliente}";
                 txtAdicional.Text = $"{di.incluye}";
                 txtServirLlevar.Text = di.servir == true ? "SERVIR" : "LLEVAR";
+                txtPagaCon.Text = $"Paga Con: {di.paga_con}";
+                txtVuelto.Text = "Vuelto: " + di.vuelto;
+
                 if (di.fecha_entrega != null)
                 {
                     lbFecha.Content = $"{di.fecha_entrega.Value.ToShortDateString()} a las {di.fecha_entrega.Value.ToShortTimeString()}";

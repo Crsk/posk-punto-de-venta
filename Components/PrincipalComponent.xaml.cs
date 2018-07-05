@@ -354,7 +354,7 @@ namespace posk.Components
                         spDerecha.Children.Clear();
                         // CargarPendientes();
                         // CargarItemVerPendientes();
-                        CargarDeliveryPndientesDeEntrega();
+                        CargarDeliveryPendientesDeEntrega();
                         expDerecha.IsExpanded = true;
                         PlaySound(@"C:/posk/sound/campana.mp3");
                         // }
@@ -1937,7 +1937,7 @@ namespace posk.Components
                 CargarItemVerPendientes();
 
                 if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.SUSHI.ToString()))
-                    CargarDeliveryPndientesDeEntrega();
+                    CargarDeliveryPendientesDeEntrega();
 
                 /*
                 lbNombreLista.Content = "VENTA";
@@ -2286,8 +2286,8 @@ namespace posk.Components
 
                                         LimpiarTodo();
                                         bool bServir = di.ServirLlevar.ToUpper() == "SERVIR" ? true : false;
-                                        DeliveryItemBLL.Crear(ultimaBoleta.id, null, DateTime.Now, di.Direccion, di.NombreCliente, null, "", di.Incluye, bServir);
-                                        CargarDeliveryPndientesDeEntrega();
+                                        DeliveryItemBLL.Crear(ultimaBoleta.id, null, DateTime.Now, di.Direccion, di.NombreCliente, null, "", di.Incluye, bServir, di.PagaCon, di.Vuelto);
+                                        CargarDeliveryPendientesDeEntrega();
                                     };
                                     return;
                                 }
@@ -2443,7 +2443,7 @@ namespace posk.Components
             };
         }
 
-        private void CargarDeliveryPndientesDeEntrega()
+        private void CargarDeliveryPendientesDeEntrega()
         {
             spDerecha.Children.Clear();
             DeliveryItemBLL.ObtenerPendientesDeEntrega().ForEach(d =>
@@ -2469,7 +2469,7 @@ namespace posk.Components
                     {
                         MostrarOverlay(false);
                         dp.Cerrar();
-                        CargarDeliveryPndientesDeEntrega();
+                        CargarDeliveryPendientesDeEntrega();
                     };
                     dp.Show();
                     MostrarOverlay(true);
@@ -3333,6 +3333,10 @@ namespace posk.Components
                         ticket.TextoCentro($"{di.MensajeDeliveryUno}");
                     if (di.MensajeDeliveryDos != "")
                         ticket.TextoCentro($"{di.MensajeDeliveryDos}");
+                    if (di.PagaCon != 0)
+                        ticket.TextoCentro($"PagaCon: {di.PagaCon}");
+                    if (di.Vuelto != "")
+                        ticket.TextoCentro($"Vuelto: {di.Vuelto}");
                 }
 
                 if (spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "otro").ToList().Count != 0)

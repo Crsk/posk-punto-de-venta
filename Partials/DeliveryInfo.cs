@@ -22,6 +22,8 @@ namespace posk.Partials
         public string MensajeDeliveryDos { get; set; }
         public string Incluye { get; set; }
         public string IncluyeStrUnaLinea { get; set; }
+        public int PagaCon { get; set; }
+        public string Vuelto { get; set; }
 
     }
 }
