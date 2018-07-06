@@ -357,6 +357,8 @@ namespace posk.Components
                         CargarDeliveryPendientesDeEntrega();
                         expDerecha.IsExpanded = true;
                         PlaySound(@"C:/posk/sound/campana.mp3");
+                        DeliveryInfo di = new DeliveryInfo() { NombreCliente = "Pedido qr", PagaCon = 1000 };
+                        GenerarTicket(1000, ((usuario)ieg.cbGarzones.SelectedItem)?.nombre, ((mesa)iem.cbMesas.SelectedValue)?.codigo, "", "Ticket Caja", di);
                         // }
                     }
                     break;
@@ -2286,6 +2288,7 @@ namespace posk.Components
 
                                         LimpiarTodo();
                                         bool bServir = di.ServirLlevar.ToUpper() == "SERVIR" ? true : false;
+
                                         DeliveryItemBLL.Crear(ultimaBoleta.id, null, DateTime.Now, di.Direccion, di.NombreCliente, null, "", di.Incluye, bServir, di.PagaCon, di.Vuelto);
                                         CargarDeliveryPendientesDeEntrega();
                                     };
@@ -3284,16 +3287,32 @@ namespace posk.Components
                         }
                         else
                         {
-                            if (item.Envoltura != null)
-                                ticket.TextoIzquierda($"ENVOLTURA: {item.Envoltura.nombre}");
-                            if (item.listaAgregadosSushi != null)
-                                ticket.TextoIzquierda($"{item?.ObtenerAgregadosStr()}");
-                            if (!string.IsNullOrEmpty(item.txtNota?.Text))
-                                ticket.TextoIzquierda("   " + item.txtNota?.Text.ToUpper());
-                            ticket.TextoIzquierda("");
+                            if (item.Producto.es_shawarma == true)
+                            {
+                                if (item.Envoltura != null)
+                                    ticket.TextoIzquierda($"TAMANO: {item.Envoltura.nombre}");
+                                if (item.listaAgregadosSushi != null)
+                                    ticket.TextoIzquierda($"{item?.ObtenerAgregadosStr()}");
+                                if (!string.IsNullOrEmpty(item.txtNota?.Text))
+                                    ticket.TextoIzquierda("   " + item.txtNota?.Text.ToUpper());
+                                ticket.TextoIzquierda("");
 
-                            if (bEsPedido == true)
-                                ticket.lineasGuion();
+                                if (bEsPedido == true)
+                                    ticket.lineasGuion();
+                            }
+                            else
+                            {
+                                if (item.Envoltura != null)
+                                    ticket.TextoIzquierda($"ENVOLTURA: {item.Envoltura.nombre}");
+                                if (item.listaAgregadosSushi != null)
+                                    ticket.TextoIzquierda($"{item?.ObtenerAgregadosStr()}");
+                                if (!string.IsNullOrEmpty(item.txtNota?.Text))
+                                    ticket.TextoIzquierda("   " + item.txtNota?.Text.ToUpper());
+                                ticket.TextoIzquierda("");
+
+                                if (bEsPedido == true)
+                                    ticket.lineasGuion();
+                            }
                         }
                     }
                     ticket.TextoIzquierda("");

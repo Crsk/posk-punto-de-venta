@@ -366,8 +366,8 @@ namespace posk.Popups
                     int propina = tooglePropina.IsChecked == true ? Convert.ToInt32(txtPropina.Text) : 0;
 
                     var itemPagaCon = gridPagaCon.Children.OfType<ItemPagaCon>().FirstOrDefault();
-                    int pagaCon = itemPagaCon.PagaCon;
-                    string vuelto = itemPagaCon.Vuelto;
+                    int pagaCon = itemPagaCon == null ? 0 : itemPagaCon.PagaCon;
+                    string vuelto = itemPagaCon?.Vuelto;
 
                     string incluyeStr = "";
                     string incluyeStrUnaLinea = "";

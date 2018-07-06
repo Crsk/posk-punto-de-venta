@@ -2169,7 +2169,6 @@
             <End Role="agregado" EntitySet="agregados" />
             <End Role="pedidos_agregados" EntitySet="pedidos_agregados" />
           </AssociationSet>
-          <EntitySet Name="envolturas" EntityType="posk_dbModel6.envoltura" />
           <EntitySet Name="productos" EntityType="posk_dbModel6.producto" />
           <AssociationSet Name="bodega_movimiento_ibfk_1" Association="posk_dbModel6.bodega_movimiento_ibfk_1">
             <End Role="producto" EntitySet="productos" />
@@ -2190,10 +2189,6 @@
           <AssociationSet Name="devolucion_ibfk_1" Association="posk_dbModel6.devolucion_ibfk_1">
             <End Role="producto" EntitySet="productos" />
             <End Role="devolucion" EntitySet="devolucions" />
-          </AssociationSet>
-          <AssociationSet Name="envoltura_producto_ibfk_1" Association="posk_dbModel6.envoltura_producto_ibfk_1">
-            <End Role="producto" EntitySet="productos" />
-            <End Role="envoltura" EntitySet="envolturas" />
           </AssociationSet>
           <AssociationSet Name="lineas_fiado_ibfk_1" Association="posk_dbModel6.lineas_fiado_ibfk_1">
             <End Role="producto" EntitySet="productos" />
@@ -2288,6 +2283,11 @@
           <AssociationSet Name="cliente_fk" Association="posk_dbModel6.cliente_fk">
             <End Role="cliente" EntitySet="clientes" />
             <End Role="delivery_item" EntitySet="delivery_item" />
+          </AssociationSet>
+          <EntitySet Name="envolturas" EntityType="posk_dbModel6.envoltura" />
+          <AssociationSet Name="envoltura_producto_ibfk_1" Association="posk_dbModel6.envoltura_producto_ibfk_1">
+            <End Role="producto" EntitySet="productos" />
+            <End Role="envoltura" EntitySet="envolturas" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="bodega_movimiento">
@@ -3522,18 +3522,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="envoltura">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="costo_adicional" Type="Int32" />
-          <Property Name="producto_id" Type="Int32" />
-          <Property Name="para_handroll" Type="Boolean" Nullable="false" />
-          <Property Name="para_superhandroll" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="producto" Relationship="posk_dbModel6.envoltura_producto_ibfk_1" FromRole="envoltura" ToRole="producto" />
-        </EntityType>
         <EntityType Name="producto">
           <Key>
             <PropertyRef Name="id" />
@@ -3568,7 +3556,6 @@
           <NavigationProperty Name="detalle_boleta" Relationship="posk_dbModel6.detalle_boleta_ibfk_2" FromRole="producto" ToRole="detalle_boleta" />
           <NavigationProperty Name="deudas" Relationship="posk_dbModel6.deudas_ibfk_1" FromRole="producto" ToRole="deuda" />
           <NavigationProperty Name="devolucions" Relationship="posk_dbModel6.devolucion_ibfk_1" FromRole="producto" ToRole="devolucion" />
-          <NavigationProperty Name="envolturas" Relationship="posk_dbModel6.envoltura_producto_ibfk_1" FromRole="producto" ToRole="envoltura" />
           <NavigationProperty Name="lineas_fiado" Relationship="posk_dbModel6.lineas_fiado_ibfk_1" FromRole="producto" ToRole="lineas_fiado" />
           <NavigationProperty Name="mermas" Relationship="posk_dbModel6.mermas_ibfk_1" FromRole="producto" ToRole="merma" />
           <NavigationProperty Name="pedidos_productos" Relationship="posk_dbModel6.pedidos_productos_ibfk_2" FromRole="producto" ToRole="pedidos_productos" />
@@ -3585,6 +3572,7 @@
           <NavigationProperty Name="productoscomplejos" Relationship="posk_dbModel6.productoscomplejos_ibfk_1" FromRole="producto" ToRole="productoscomplejo" />
           <NavigationProperty Name="stock_pr" Relationship="posk_dbModel6.stock_pr_ibfk_1" FromRole="producto" ToRole="stock_pr" />
           <NavigationProperty Name="ventas_jornada" Relationship="posk_dbModel6.ventas_jornada_ibfk_1" FromRole="producto" ToRole="ventas_jornada" />
+          <NavigationProperty Name="envolturas" Relationship="posk_dbModel6.envoltura_producto_ibfk_1" FromRole="producto" ToRole="envoltura" />
         </EntityType>
         <Association Name="bodega_movimiento_ibfk_1">
           <End Type="posk_dbModel6.producto" Role="producto" Multiplicity="0..1">
@@ -3650,20 +3638,6 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="devolucion">
-              <PropertyRef Name="producto_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="envoltura_producto_ibfk_1">
-          <End Type="posk_dbModel6.producto" Role="producto" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="posk_dbModel6.envoltura" Role="envoltura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="producto">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="envoltura">
               <PropertyRef Name="producto_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -4002,6 +3976,32 @@
             </Principal>
             <Dependent Role="delivery_item">
               <PropertyRef Name="cliente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="envoltura">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="costo_adicional" Type="Int32" />
+          <Property Name="producto_id" Type="Int32" />
+          <Property Name="para_handroll" Type="Boolean" />
+          <Property Name="para_superhandroll" Type="Boolean" />
+          <NavigationProperty Name="producto" Relationship="posk_dbModel6.envoltura_producto_ibfk_1" FromRole="envoltura" ToRole="producto" />
+        </EntityType>
+        <Association Name="envoltura_producto_ibfk_1">
+          <End Type="posk_dbModel6.producto" Role="producto" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="posk_dbModel6.envoltura" Role="envoltura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="envoltura">
+              <PropertyRef Name="producto_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4591,18 +4591,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="envolturas">
-            <EntityTypeMapping TypeName="posk_dbModel6.envoltura">
-              <MappingFragment StoreEntitySet="envolturas">
-                <ScalarProperty Name="para_superhandroll" ColumnName="para_superhandroll" />
-                <ScalarProperty Name="para_handroll" ColumnName="para_handroll" />
-                <ScalarProperty Name="producto_id" ColumnName="producto_id" />
-                <ScalarProperty Name="costo_adicional" ColumnName="costo_adicional" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="productos">
             <EntityTypeMapping TypeName="posk_dbModel6.producto">
               <MappingFragment StoreEntitySet="productos">
@@ -4665,6 +4653,18 @@
                 <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
                 <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="envolturas">
+            <EntityTypeMapping TypeName="posk_dbModel6.envoltura">
+              <MappingFragment StoreEntitySet="envolturas">
+                <ScalarProperty Name="para_superhandroll" ColumnName="para_superhandroll" />
+                <ScalarProperty Name="para_handroll" ColumnName="para_handroll" />
+                <ScalarProperty Name="producto_id" ColumnName="producto_id" />
+                <ScalarProperty Name="costo_adicional" ColumnName="costo_adicional" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

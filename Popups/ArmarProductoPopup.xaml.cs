@@ -93,7 +93,6 @@ namespace posk.Popups
                 };
                 wrapItemsDos.Children.Add(iah);
             });
-
             if (p.es_handroll == true)
             {
                 EnvolturaBLL.ObtenerTodasParaHandroll().ForEach(env =>
@@ -167,13 +166,13 @@ namespace posk.Popups
                 });
             }
 
-            btnIngresar.Click += (se, a) => 
+            btnIngresar.Click += (se, a) =>
             {
                 var listaAgregados = wrapItemsTres.Children.OfType<ItemAgregadoHandroll>().Where(x => x.Cantidad > 0).ToList();
                 if (PaltaCebollin != null)
                     listaAgregados.Insert(0, new ItemAgregadoHandroll() { Agregado = PaltaCebollin, Cantidad = 1 });
 
-                ItemVenta iv = new ItemVenta() { Producto = p, listaAgregadosSushi =  listaAgregados, Envoltura = Envoltura, PaltaCebollin = PaltaCebollin };
+                ItemVenta iv = new ItemVenta() { Producto = p, listaAgregadosSushi = listaAgregados, Envoltura = Envoltura, PaltaCebollin = PaltaCebollin };
 
                 AlIngresarProductoArmado.Invoke(this, iv);
                 bCerrado = true;
@@ -183,11 +182,11 @@ namespace posk.Popups
             AgregadoBLL.ObtenerTodos().ForEach(agr =>
             {
                 ItemAgregadoHandroll iah = new ItemAgregadoHandroll() { Agregado = agr };
-                iah.btnAgregado.Click += (se2, a2) => 
+                iah.btnAgregado.Click += (se2, a2) =>
                 {
                     ActualizarLabelSeleccion();
                 };
-                iah.btnQuitarUnidad.Click += (se2, a2) => 
+                iah.btnQuitarUnidad.Click += (se2, a2) =>
                 {
                     ActualizarLabelSeleccion();
                 };

@@ -18,8 +18,8 @@ namespace posk.Models
         public string nombre { get; set; }
         public Nullable<int> costo_adicional { get; set; }
         public Nullable<int> producto_id { get; set; }
-        public bool para_handroll { get; set; }
-        public bool para_superhandroll { get; set; }
+        public Nullable<bool> para_handroll { get; set; }
+        public Nullable<bool> para_superhandroll { get; set; }
     
         public virtual producto producto { get; set; }
     }

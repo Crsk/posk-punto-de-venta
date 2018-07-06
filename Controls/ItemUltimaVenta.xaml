@@ -6,6 +6,6 @@
              xmlns:local="clr-namespace:posk.Controls"
              mc:Ignorable="d">
     <Button x:Name="btnBoleta" Style="{StaticResource BtnClear}" Background="{x:Null}">
-        <Label x:Name="lbUltimaVenta" Margin="4,0,4,0" FontSize="12" VerticalContentAlignment="Center" FontWeight="Medium" Foreground="#DDC0C0C0" HorizontalContentAlignment="Center"/>
+        <Label x:Name="lbUltimaVenta" Margin="4,0,4,0" FontSize="12" VerticalContentAlignment="Center" FontWeight="Medium" Foreground="#DDC0C0C0" HorizontalContentAlignment="Center" Visibility="Hidden"/>
     </Button>
 </UserControl>

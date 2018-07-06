@@ -27,7 +27,7 @@ namespace posk.Controls
 
         public int Extra { get; set; }
 
-        public agregado PaltaCebollin {get; set; }
+        public agregado PaltaCebollin { get; set; }
 
         public promocione Promocion { get; set; }
 
@@ -337,23 +337,32 @@ namespace posk.Controls
             int valorIngExtra = 500;
             if (listaAgregadosSushi != null)
             {
-                if (Producto.es_handroll == true)
+                if (Producto.es_shawarma == true)
                 {
-                    limiteIngr = 2;
+                    limiteIngr = 5;
                     listaAgregadosSushi.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => cantidadIngr += x.Cantidad);
                     if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
                 }
-                else if (Producto.es_superhandroll == true)
+                if (Producto.es_handroll == true)
                 {
-                    limiteIngr = 4;
+                    limiteIngr = 3;
+                    listaAgregadosSushi.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => cantidadIngr += x.Cantidad);
+                    if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
+                }
+                else if (Producto.es_superhandroll == true && Producto.es_shawarma != true)
+                {
+                    limiteIngr = 3;
                     listaAgregadosSushi.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => cantidadIngr += x.Cantidad);
                     if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
                 }
                 else
                 {
-                    limiteIngr = 2;
-                    listaAgregadosSushi.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => cantidadIngr += x.Cantidad);
-                    if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
+                    if (Producto.es_shawarma != true)
+                    {
+                        limiteIngr = 3;
+                        listaAgregadosSushi.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => cantidadIngr += x.Cantidad);
+                        if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
+                    }
                 }
             }
 
