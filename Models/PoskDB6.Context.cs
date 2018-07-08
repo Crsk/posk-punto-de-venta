@@ -80,7 +80,6 @@ namespace posk.Models
         public virtual DbSet<boleta> boletas { get; set; }
         public virtual DbSet<boleta_mediopago> boleta_mediopago { get; set; }
         public virtual DbSet<agregado> agregados { get; set; }
-        public virtual DbSet<producto> productos { get; set; }
         public virtual DbSet<cliente> clientes { get; set; }
         public virtual DbSet<delivery_item> delivery_item { get; set; }
         public virtual DbSet<envoltura> envolturas { get; set; }
@@ -89,5 +88,6 @@ namespace posk.Models
         public virtual DbSet<opcionales_ingredientes> opcionales_ingredientes { get; set; }
         public virtual DbSet<tipo_producto> tipo_producto { get; set; }
         public virtual DbSet<tipo_producto_opcionales> tipo_producto_opcionales { get; set; }
+        public virtual DbSet<producto> productos { get; set; }
     }
 }

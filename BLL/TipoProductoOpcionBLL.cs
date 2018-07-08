@@ -20,7 +20,7 @@ namespace posk.BLL
         public static void Eliminar(int tipoProductoId, int opcionId)
         {
             db.tipo_producto_opcionales.Remove(db.tipo_producto_opcionales.Where(x => 
-            x.tipo_producto_id == tipoProductoId && x.opcional_id == opcionId).FirstOrDefault());
+            x.tipo_producto_id == tipoProductoId && x.opcional_id == opcionId).FirstOrDefault()); // TODO - borrar por relación id
             db.SaveChanges();
         }
 

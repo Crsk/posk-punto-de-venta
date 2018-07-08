@@ -308,6 +308,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ItemIngrediente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ItemInventario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -353,6 +357,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ItemMoneda.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemOpcion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -684,6 +692,9 @@
     <Compile Include="Controls\ItemIdMasNombreItemVenta.xaml.cs">
       <DependentUpon>ItemIdMasNombreItemVenta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ItemIngrediente.xaml.cs">
+      <DependentUpon>ItemIngrediente.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ItemInventario.xaml.cs">
       <DependentUpon>ItemInventario.xaml</DependentUpon>
     </Compile>
@@ -719,6 +730,9 @@
     </Compile>
     <Compile Include="Controls\ItemMoneda.xaml.cs">
       <DependentUpon>ItemMoneda.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemOpcion.xaml.cs">
+      <DependentUpon>ItemOpcion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ItemPagaCon.xaml.cs">
       <DependentUpon>ItemPagaCon.xaml</DependentUpon>
@@ -1151,6 +1165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Popups\AgregarCantidadPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\ArmarProductoEspecialPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1663,6 +1681,9 @@
     <Compile Include="Partials\unidades_medida.cs" />
     <Compile Include="Popups\AgregarCantidadPopup.xaml.cs">
       <DependentUpon>AgregarCantidadPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\ArmarProductoEspecialPopup.xaml.cs">
+      <DependentUpon>ArmarProductoEspecialPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Popups\ArmarProductoPopup.xaml.cs">
       <DependentUpon>ArmarProductoPopup.xaml</DependentUpon>

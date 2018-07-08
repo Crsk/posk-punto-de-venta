@@ -22,6 +22,7 @@ namespace posk.Models
             this.detalle_boleta = new HashSet<detalle_boleta>();
             this.deudas = new HashSet<deuda>();
             this.devolucions = new HashSet<devolucion>();
+            this.envolturas = new HashSet<envoltura>();
             this.lineas_fiado = new HashSet<lineas_fiado>();
             this.mermas = new HashSet<merma>();
             this.pedidos_productos = new HashSet<pedidos_productos>();
@@ -34,7 +35,6 @@ namespace posk.Models
             this.productoscomplejos = new HashSet<productoscomplejo>();
             this.stock_pr = new HashSet<stock_pr>();
             this.ventas_jornada = new HashSet<ventas_jornada>();
-            this.envolturas = new HashSet<envoltura>();
         }
     
         public int id { get; set; }
@@ -62,6 +62,7 @@ namespace posk.Models
         public Nullable<bool> es_tabla { get; set; }
         public Nullable<int> cantidad_rollos_tabla { get; set; }
         public Nullable<bool> es_superhandroll { get; set; }
+        public Nullable<int> tipo_producto_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<bodega_movimiento> bodega_movimiento { get; set; }
@@ -73,6 +74,8 @@ namespace posk.Models
         public virtual ICollection<deuda> deudas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<devolucion> devolucions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<envoltura> envolturas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<lineas_fiado> lineas_fiado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -93,6 +96,7 @@ namespace posk.Models
         public virtual ICollection<producto_promocion> producto_promocion { get; set; }
         public virtual subcategoria subcategoria { get; set; }
         public virtual tipo_itemventa tipo_itemventa { get; set; }
+        public virtual tipo_producto tipo_producto { get; set; }
         public virtual proveedore proveedore { get; set; }
         public virtual sector_impresion sector_impresion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -101,7 +105,5 @@ namespace posk.Models
         public virtual ICollection<stock_pr> stock_pr { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ventas_jornada> ventas_jornada { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<envoltura> envolturas { get; set; }
     }
 }

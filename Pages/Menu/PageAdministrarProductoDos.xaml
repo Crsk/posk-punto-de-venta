@@ -196,6 +196,11 @@
                                 <Border x:Name="borderSubcategoria" Height="36" Margin="0 8 0 0">
                                     <ComboBox x:Name="cbSubCategoria" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="SUB CATEG" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
                                 </Border>
+
+                                <Border x:Name="borderTipoProducto" Height="36" Margin="0 8 0 8">
+                                    <ComboBox x:Name="cbTipoProducto" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="TIPO PRODUCTO" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+                                </Border>
+                                
                                 <StackPanel x:Name="spOpcionales" Background="#FFD1D1D1">
                                     <Border x:Name="borderRetornable" Height="36" Margin="0 8 0 0">
                                         <CheckBox x:Name="checkRetornable" Content="RETORNABLE" FontSize="14"/>

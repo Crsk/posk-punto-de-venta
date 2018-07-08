@@ -148,6 +148,7 @@ namespace posk.Pages.Menu
                 spDerecha.Children.Add(borderSector);
                 spDerecha.Children.Add(borderCategoria);
                 spDerecha.Children.Add(borderSubcategoria);
+                spDerecha.Children.Add(borderTipoProducto);
                 spDerecha.Children.Add(borderAgregado);
                 spDerecha.Children.Add(borderPreparadoEspecial);
                 spDerecha.Children.Add(borderTipoItemVenta);
@@ -325,6 +326,17 @@ namespace posk.Pages.Menu
                     cbTipoItemVenta.Text = "";
                 }
 
+                if (p.tipo_producto_id != null)
+                {
+                    cbTipoProducto.ItemsSource = TipoProductoBLL.ObtenerTodo();
+                    cbTipoProducto.DisplayMemberPath = "nombre";
+                    cbTipoProducto.Text = $"{p.tipo_producto?.nombre}";
+                }
+                else
+                {
+                    cbTipoProducto.ItemsSource = null;
+                }
+
                 if (p.subcategoria != null)
                 {
                     // Cargar ComboBox al escoger item venta
@@ -427,6 +439,7 @@ namespace posk.Pages.Menu
             cbSector.SelectedIndex = -1;
             cbCategoria.ItemsSource = null;
             cbSubCategoria.ItemsSource = null;
+            cbTipoProducto.ItemsSource = null;
             checkRetornable.IsChecked = false;
             checkContieneAgregado.IsChecked = false;
             cbSectorImpresion.SelectedIndex = -1;
@@ -552,6 +565,7 @@ namespace posk.Pages.Menu
                         puntos_cantidad = 0,
                         imagen = itemFoto.NombreFoto,
                         sub_categoria_id = (cbSubCategoria.SelectedItem as subcategoria).id,
+                        tipo_producto_id = (cbTipoProducto.SelectedItem as tipo_producto).id,
                         proveedor_id = null,
                         contiene_agregado = checkContieneAgregado.IsChecked,
                         solo_venta = rbSoloVenta.IsChecked,
@@ -634,7 +648,11 @@ namespace posk.Pages.Menu
                     cbSectorImpresion.ItemsSource = SectorImpresionBLL.ObtenerTodo();
                     cbSectorImpresion.DisplayMemberPath = "nombre";
 
+
                     LimpiarTodo();
+
+                    cbTipoProducto.ItemsSource = TipoProductoBLL.ObtenerTodo();
+                    cbTipoProducto.DisplayMemberPath = "nombre";
 
                     try
                     {

@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="posk.Controls.ItemOpcion"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls"
+             mc:Ignorable="d" 
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto">
+    <Grid Height="36" Margin="4">
+        <Button x:Name="btnOpcion" Padding="4" Background="#FFE35403" Style="{StaticResource BtnClear}" Height="36">
+            <Label x:Name="lbNombre" Content="Opcion"/>
+        </Button>
+    </Grid>
+</UserControl>

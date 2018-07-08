@@ -950,6 +950,32 @@ namespace posk.Components
                 return;
             }
 
+            if (p.tipo_producto_id != null)
+            {
+                var ip = new ItemProducto() { Producto = p };
+                ip.AlSeleccionar += (se, a) =>
+                {
+                    ArmarProductoEspecialPopup apep = new ArmarProductoEspecialPopup(p);
+                    apep.Deactivated += (se2, a2) =>
+                    {
+                        apep.bCerrado = true;
+                        MostrarOverlay(false);
+                        ip.Reiniciar();
+                    };
+                    MostrarOverlay(true);
+                    apep.Show();
+                    apep.AlTerminarArmado += (se2, ivArmado) =>
+                    {
+                        CrearItemVentaDesdeItemVenta(ivArmado);
+                        MostrarOverlay(false);
+                    };
+                };
+                wrapProductos.Children.Add(ip);
+            }
+
+            return;
+
+            // TODO - borrar
             if (p.es_handroll == true || p.es_superhandroll == true || p.es_envoltura == true)
             {
                 var ip = new ItemProducto() { Producto = p };
@@ -973,7 +999,6 @@ namespace posk.Components
 
                 wrapProductos.Children.Add(ip);
 
-                return;
                 ip.AlDeseleccionar += (se3, a3) =>
                 {
                     expBottomEnvolturasHandroll.IsExpanded = false;
@@ -3304,8 +3329,12 @@ namespace posk.Components
                             {
                                 if (item.Envoltura != null)
                                     ticket.TextoIzquierda($"ENVOLTURA: {item.Envoltura.nombre}");
+                                if (item.Opcion != null)
+                                    ticket.TextoIzquierda($"TIPO: {item.Opcion.nombre}");
                                 if (item.listaAgregadosSushi != null)
                                     ticket.TextoIzquierda($"{item?.ObtenerAgregadosStr()}");
+                                if (item.listaIngredientes != null)
+                                    ticket.TextoIzquierda($"{item?.ObtenerIngredientesStr()}");
                                 if (!string.IsNullOrEmpty(item.txtNota?.Text))
                                     ticket.TextoIzquierda("   " + item.txtNota?.Text.ToUpper());
                                 ticket.TextoIzquierda("");

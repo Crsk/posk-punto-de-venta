@@ -40,6 +40,10 @@ namespace posk.Controls
             set { producto = value; }
         }
 
+        public opcionale Opcion { get; set; }
+
+
+        public List<ItemIngrediente> listaIngredientes { get; set; }
 
         private agregado agregadoUno;
         public agregado AgregadoUno
@@ -99,6 +103,14 @@ namespace posk.Controls
                 else
                     expEnvoltura.IsExpanded = false;
 
+                if (Opcion != null)
+                {
+                    txtOpcion.Text = Opcion.nombre;
+                    expOpcion.IsExpanded = true;
+                }
+                else
+                    expOpcion.IsExpanded = false;
+
                 if (Cantidad == null) Cantidad = 1;
                 else lbCantidad.Content = $"x{Cantidad}";
 
@@ -113,6 +125,7 @@ namespace posk.Controls
                     lbDetalle.Text = Promocion.nombre.ToUpper();
                 }
 
+                /* TODO - eliminar
                 if (listaAgregadosSushi == null)
                 {
                     if (AgregadoUno?.id == 0 && AgregadoDos?.id == 0)
@@ -134,11 +147,12 @@ namespace posk.Controls
                         }
                     }
                 }
+                */
 
                 if (Preparacion != null)
                     lbDetalle.Text += $" / {Preparacion.nombre}".ToUpper();
 
-
+                /* TODO - eliminar
                 listaAgregadosSushi.OrderBy(x => x.Cantidad).ToList().ForEach(a =>
                 {
                     if (a.Cantidad == 1)
@@ -153,6 +167,25 @@ namespace posk.Controls
                 catch (Exception ex)
                 {
                     PoskException.Make(ex, "ERROR AL GENERAR LISTA AGREGADOS");
+                }
+                */
+
+
+
+                listaIngredientes.OrderBy(x => x.Cantidad).ToList().ForEach(a =>
+                {
+                    if (a.Cantidad == 1)
+                        tbAgregados.Text += $"{a.Ingrediente.nombre}, ";
+                    else
+                        tbAgregados.Text += $"{a.Ingrediente.nombre} x{a.Cantidad}, ";
+                });
+                try
+                {
+                    tbAgregados.Text = tbAgregados.Text.Substring(0, tbAgregados.Text.Length - 2);
+                }
+                catch (Exception ex)
+                {
+                    PoskException.Make(ex, "ERROR AL GENERAR LISTA INGREDIENTES");
                 }
 
 
@@ -295,6 +328,24 @@ namespace posk.Controls
             return agregadosTemp;
         }
 
+        public string ObtenerIngredientesStr()
+        {
+            string ingredientesTemp = "";
+
+            listaIngredientes.ForEach(a =>
+            {
+                if (a.Cantidad == 1)
+                    ingredientesTemp += $"{a.Ingrediente.nombre}, ";
+                else
+                    ingredientesTemp += $"{a.Ingrediente.nombre} x{a.Cantidad}, ";
+
+            });
+            if (ingredientesTemp != "")
+                ingredientesTemp = ingredientesTemp.Substring(0, ingredientesTemp.Length - 2);
+            ingredientesTemp.ToUpper();
+            return ingredientesTemp;
+        }
+
         public int CalcularTotal()
         {
             //if (TotalIV != 0)
@@ -334,7 +385,16 @@ namespace posk.Controls
 
             int cantidadIngr = 0;
             int limiteIngr = 0;
-            int valorIngExtra = 500;
+            int valorIngExtra = 500; // TODO - obtener valor de bd
+
+            if (listaIngredientes != null)
+            {
+                limiteIngr = 5; // TODO - configurar límite de ingredientes (según tipo de producto) aceptados antes de cobrar adicional (según ingrediente)
+                listaIngredientes.OfType<ItemIngrediente>().ToList().ForEach(x => cantidadIngr += x.Cantidad);
+                if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
+            }
+
+
             if (listaAgregadosSushi != null)
             {
                 if (Producto.es_shawarma == true)
