@@ -1,10 +1,12 @@
 # posk-punto-de-venta
 Punto de venta simple, potente y moderno
 
-Programando funcionalidad -> Asociar venta a cliente: https://youtu.be/Z_fvmWIUIlU
+https://youtu.be/eXSwujbNzJk Creación de producto especial (handroll, pizza, rollo sushi, shawarma, etc.)
 
-Programando funcionalidad -> Contador de demora en pedido: https://youtu.be/cuwabvXYx10
+https://youtu.be/cuwabvXYx10 Contador de demora en pedido
 
-Programando funcionalidad -> Paga con y Vuelto para delivery: https://youtu.be/CfaI0ZTo3CM
+https://youtu.be/Z_fvmWIUIlU Asociar venta a cliente
 
-Mostrando funcionalidades -> Pedido y venta en restaurant: https://youtu.be/AsbejwMban8
+https://youtu.be/CfaI0ZTo3CM Paga con y Vuelto para delivery
+
+https://youtu.be/AsbejwMban8 Mostrando funcionalidades de pedido y venta en restaurant
