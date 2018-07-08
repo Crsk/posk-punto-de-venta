@@ -230,6 +230,14 @@
           <Property Name="monto" Type="decimal" Precision="12" Scale="2" />
           <Property Name="fecha" Type="datetime" Precision="0" />
         </EntityType>
+        <EntityType Name="ingredientes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="precio" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="ingresos">
           <Key>
             <PropertyRef Name="id" />
@@ -299,6 +307,22 @@
           <Property Name="sector_id" Type="int" />
           <Property Name="usuario_id" Type="int" />
           <Property Name="items" Type="int" />
+        </EntityType>
+        <EntityType Name="opcionales">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="precio" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="opcionales_ingredientes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="opcional_id" Type="int" Nullable="false" />
+          <Property Name="ingrediente_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="pedidos">
           <Key>
@@ -572,6 +596,22 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="tipo_producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="precio" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tipo_producto_opcionales">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo_producto_id" Type="int" Nullable="false" />
+          <Property Name="opcional_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="unidades_medida">
           <Key>
@@ -1034,6 +1074,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="opcionales_ingredientes_ibfk_1">
+          <End Role="opcionales" Type="Self.opcionales" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="opcionales_ingredientes" Type="Self.opcionales_ingredientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="opcionales">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="opcionales_ingredientes">
+              <PropertyRef Name="opcional_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="opcionales_ingredientes_ibfk_2">
+          <End Role="ingredientes" Type="Self.ingredientes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="opcionales_ingredientes" Type="Self.opcionales_ingredientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ingredientes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="opcionales_ingredientes">
+              <PropertyRef Name="ingrediente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="pedidos_agregados_ibfk_1">
           <End Role="pedidos_productos" Type="Self.pedidos_productos" Multiplicity="0..1" />
           <End Role="pedidos_agregados" Type="Self.pedidos_agregados" Multiplicity="*" />
@@ -1492,6 +1560,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="tipo_producto_opcionales_ibfk_1">
+          <End Role="tipo_producto" Type="Self.tipo_producto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tipo_producto_opcionales" Type="Self.tipo_producto_opcionales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tipo_producto_opcionales">
+              <PropertyRef Name="tipo_producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tipo_producto_opcionales_ibfk_2">
+          <End Role="opcionales" Type="Self.opcionales" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tipo_producto_opcionales" Type="Self.tipo_producto_opcionales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="opcionales">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tipo_producto_opcionales">
+              <PropertyRef Name="opcional_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="usuario_fk">
           <End Role="usuarios" Type="Self.usuarios" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -1594,6 +1690,7 @@
           <EntitySet Name="envolturas" EntityType="Self.envolturas" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="fiados" EntityType="Self.fiados" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="gastos" EntityType="Self.gastos" Schema="posk_db" store:Type="Tables" />
+          <EntitySet Name="ingredientes" EntityType="Self.ingredientes" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="ingresos" EntityType="Self.ingresos" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="jornadas" EntityType="Self.jornadas" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="lineas_fiado" EntityType="Self.lineas_fiado" Schema="posk_db" store:Type="Tables" />
@@ -1601,6 +1698,8 @@
           <EntitySet Name="medio_pago" EntityType="Self.medio_pago" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="mermas" EntityType="Self.mermas" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="mesas" EntityType="Self.mesas" Schema="posk_db" store:Type="Tables" />
+          <EntitySet Name="opcionales" EntityType="Self.opcionales" Schema="posk_db" store:Type="Tables" />
+          <EntitySet Name="opcionales_ingredientes" EntityType="Self.opcionales_ingredientes" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="pedidos" EntityType="Self.pedidos" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="pedidos_agregados" EntityType="Self.pedidos_agregados" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="pedidos_preparaciones" EntityType="Self.pedidos_preparaciones" Schema="posk_db" store:Type="Tables" />
@@ -1629,6 +1728,8 @@
           <EntitySet Name="subcategorias" EntityType="Self.subcategorias" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="syncs" EntityType="Self.syncs" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="tipo_itemventa" EntityType="Self.tipo_itemventa" Schema="posk_db" store:Type="Tables" />
+          <EntitySet Name="tipo_producto" EntityType="Self.tipo_producto" Schema="posk_db" store:Type="Tables" />
+          <EntitySet Name="tipo_producto_opcionales" EntityType="Self.tipo_producto_opcionales" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="unidades_medida" EntityType="Self.unidades_medida" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="ventas_jornada" EntityType="Self.ventas_jornada" Schema="posk_db" store:Type="Tables" />
@@ -1763,6 +1864,14 @@
           <AssociationSet Name="mesas_ibfk_1" Association="Self.mesas_ibfk_1">
             <End Role="sectormesas" EntitySet="sectormesas" />
             <End Role="mesas" EntitySet="mesas" />
+          </AssociationSet>
+          <AssociationSet Name="opcionales_ingredientes_ibfk_1" Association="Self.opcionales_ingredientes_ibfk_1">
+            <End Role="opcionales" EntitySet="opcionales" />
+            <End Role="opcionales_ingredientes" EntitySet="opcionales_ingredientes" />
+          </AssociationSet>
+          <AssociationSet Name="opcionales_ingredientes_ibfk_2" Association="Self.opcionales_ingredientes_ibfk_2">
+            <End Role="ingredientes" EntitySet="ingredientes" />
+            <End Role="opcionales_ingredientes" EntitySet="opcionales_ingredientes" />
           </AssociationSet>
           <AssociationSet Name="pedidos_agregados_ibfk_1" Association="Self.pedidos_agregados_ibfk_1">
             <End Role="pedidos_productos" EntitySet="pedidos_productos" />
@@ -1903,6 +2012,14 @@
           <AssociationSet Name="stock_pr_ibfk_1" Association="Self.stock_pr_ibfk_1">
             <End Role="productos" EntitySet="productos" />
             <End Role="stock_pr" EntitySet="stock_pr" />
+          </AssociationSet>
+          <AssociationSet Name="tipo_producto_opcionales_ibfk_1" Association="Self.tipo_producto_opcionales_ibfk_1">
+            <End Role="tipo_producto" EntitySet="tipo_producto" />
+            <End Role="tipo_producto_opcionales" EntitySet="tipo_producto_opcionales" />
+          </AssociationSet>
+          <AssociationSet Name="tipo_producto_opcionales_ibfk_2" Association="Self.tipo_producto_opcionales_ibfk_2">
+            <End Role="opcionales" EntitySet="opcionales" />
+            <End Role="tipo_producto_opcionales" EntitySet="tipo_producto_opcionales" />
           </AssociationSet>
           <AssociationSet Name="usuario_fk" Association="Self.usuario_fk">
             <End Role="usuarios" EntitySet="usuarios" />
@@ -2288,6 +2405,27 @@
           <AssociationSet Name="envoltura_producto_ibfk_1" Association="posk_dbModel6.envoltura_producto_ibfk_1">
             <End Role="producto" EntitySet="productos" />
             <End Role="envoltura" EntitySet="envolturas" />
+          </AssociationSet>
+          <EntitySet Name="ingredientes" EntityType="posk_dbModel6.ingrediente" />
+          <EntitySet Name="opcionales" EntityType="posk_dbModel6.opcionale" />
+          <EntitySet Name="opcionales_ingredientes" EntityType="posk_dbModel6.opcionales_ingredientes" />
+          <EntitySet Name="tipo_producto" EntityType="posk_dbModel6.tipo_producto" />
+          <EntitySet Name="tipo_producto_opcionales" EntityType="posk_dbModel6.tipo_producto_opcionales" />
+          <AssociationSet Name="opcionales_ingredientes_ibfk_2" Association="posk_dbModel6.opcionales_ingredientes_ibfk_2">
+            <End Role="ingrediente" EntitySet="ingredientes" />
+            <End Role="opcionales_ingredientes" EntitySet="opcionales_ingredientes" />
+          </AssociationSet>
+          <AssociationSet Name="opcionales_ingredientes_ibfk_1" Association="posk_dbModel6.opcionales_ingredientes_ibfk_1">
+            <End Role="opcionale" EntitySet="opcionales" />
+            <End Role="opcionales_ingredientes" EntitySet="opcionales_ingredientes" />
+          </AssociationSet>
+          <AssociationSet Name="tipo_producto_opcionales_ibfk_2" Association="posk_dbModel6.tipo_producto_opcionales_ibfk_2">
+            <End Role="opcionale" EntitySet="opcionales" />
+            <End Role="tipo_producto_opcionales" EntitySet="tipo_producto_opcionales" />
+          </AssociationSet>
+          <AssociationSet Name="tipo_producto_opcionales_ibfk_1" Association="posk_dbModel6.tipo_producto_opcionales_ibfk_1">
+            <End Role="tipo_producto" EntitySet="tipo_producto" />
+            <End Role="tipo_producto_opcionales" EntitySet="tipo_producto_opcionales" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="bodega_movimiento">
@@ -4005,6 +4143,110 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ingrediente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="opcionales_ingredientes" Relationship="posk_dbModel6.opcionales_ingredientes_ibfk_2" FromRole="ingrediente" ToRole="opcionales_ingredientes" />
+        </EntityType>
+        <EntityType Name="opcionale">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="opcionales_ingredientes" Relationship="posk_dbModel6.opcionales_ingredientes_ibfk_1" FromRole="opcionale" ToRole="opcionales_ingredientes" />
+          <NavigationProperty Name="tipo_producto_opcionales" Relationship="posk_dbModel6.tipo_producto_opcionales_ibfk_2" FromRole="opcionale" ToRole="tipo_producto_opcionales" />
+        </EntityType>
+        <EntityType Name="opcionales_ingredientes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="opcional_id" Type="Int32" Nullable="false" />
+          <Property Name="ingrediente_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ingrediente" Relationship="posk_dbModel6.opcionales_ingredientes_ibfk_2" FromRole="opcionales_ingredientes" ToRole="ingrediente" />
+          <NavigationProperty Name="opcionale" Relationship="posk_dbModel6.opcionales_ingredientes_ibfk_1" FromRole="opcionales_ingredientes" ToRole="opcionale" />
+        </EntityType>
+        <EntityType Name="tipo_producto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="precio" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tipo_producto_opcionales" Relationship="posk_dbModel6.tipo_producto_opcionales_ibfk_1" FromRole="tipo_producto" ToRole="tipo_producto_opcionales" />
+        </EntityType>
+        <EntityType Name="tipo_producto_opcionales">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo_producto_id" Type="Int32" Nullable="false" />
+          <Property Name="opcional_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="opcionale" Relationship="posk_dbModel6.tipo_producto_opcionales_ibfk_2" FromRole="tipo_producto_opcionales" ToRole="opcionale" />
+          <NavigationProperty Name="tipo_producto" Relationship="posk_dbModel6.tipo_producto_opcionales_ibfk_1" FromRole="tipo_producto_opcionales" ToRole="tipo_producto" />
+        </EntityType>
+        <Association Name="opcionales_ingredientes_ibfk_2">
+          <End Type="posk_dbModel6.ingrediente" Role="ingrediente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="posk_dbModel6.opcionales_ingredientes" Role="opcionales_ingredientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ingrediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="opcionales_ingredientes">
+              <PropertyRef Name="ingrediente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="opcionales_ingredientes_ibfk_1">
+          <End Type="posk_dbModel6.opcionale" Role="opcionale" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="posk_dbModel6.opcionales_ingredientes" Role="opcionales_ingredientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="opcionale">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="opcionales_ingredientes">
+              <PropertyRef Name="opcional_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tipo_producto_opcionales_ibfk_2">
+          <End Type="posk_dbModel6.opcionale" Role="opcionale" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="posk_dbModel6.tipo_producto_opcionales" Role="tipo_producto_opcionales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="opcionale">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tipo_producto_opcionales">
+              <PropertyRef Name="opcional_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tipo_producto_opcionales_ibfk_1">
+          <End Type="posk_dbModel6.tipo_producto" Role="tipo_producto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="posk_dbModel6.tipo_producto_opcionales" Role="tipo_producto_opcionales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_producto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tipo_producto_opcionales">
+              <PropertyRef Name="tipo_producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4665,6 +4907,51 @@
                 <ScalarProperty Name="producto_id" ColumnName="producto_id" />
                 <ScalarProperty Name="costo_adicional" ColumnName="costo_adicional" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ingredientes">
+            <EntityTypeMapping TypeName="posk_dbModel6.ingrediente">
+              <MappingFragment StoreEntitySet="ingredientes">
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="opcionales">
+            <EntityTypeMapping TypeName="posk_dbModel6.opcionale">
+              <MappingFragment StoreEntitySet="opcionales">
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="opcionales_ingredientes">
+            <EntityTypeMapping TypeName="posk_dbModel6.opcionales_ingredientes">
+              <MappingFragment StoreEntitySet="opcionales_ingredientes">
+                <ScalarProperty Name="ingrediente_id" ColumnName="ingrediente_id" />
+                <ScalarProperty Name="opcional_id" ColumnName="opcional_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_producto">
+            <EntityTypeMapping TypeName="posk_dbModel6.tipo_producto">
+              <MappingFragment StoreEntitySet="tipo_producto">
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_producto_opcionales">
+            <EntityTypeMapping TypeName="posk_dbModel6.tipo_producto_opcionales">
+              <MappingFragment StoreEntitySet="tipo_producto_opcionales">
+                <ScalarProperty Name="opcional_id" ColumnName="opcional_id" />
+                <ScalarProperty Name="tipo_producto_id" ColumnName="tipo_producto_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

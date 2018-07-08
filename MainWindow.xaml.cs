@@ -50,6 +50,8 @@ namespace posk
         public static PageAdministrarRelaciones PageAdmRelaciones { get; set; }
         public static PageAdministrarPromociones PageAdmPromociones { get; set; }
         public static PageAdministrarStock PageAdmStock { get; set; }
+        public static PageAdministrarTipoDeProducto PageAdmTipoProducto { get; set; }
+        public static PageRelacionarTipoProducto PageRelTipoProducto { get; set; }
 
 
         public MainWindow()
@@ -142,6 +144,8 @@ namespace posk
             miAdministrarRelaciones.Background = null;
             miAdministrarPromociones.Background = null;
             miAdministrarStock.Background = null;
+            miAdministrarTipoDeProducto.Background = null;
+            miAdministrarRelacionesTipoDeProducto.Background = null;
 
             miEstadisticas.Background = null;
             miAdministrar.Background = null;
@@ -525,6 +529,39 @@ namespace posk
                     menuFrame.Content = PageAdmStock;
                 }
                 SetMenuItemColor(miAdministrarStock);
+            };
+            miAdministrarTipoDeProducto.Click += (se, a) =>
+            {
+                if (!Settings.Usuario.tipo.ToLower().Equals("a"))
+                {
+                    new Notification("NO ESTAS AUTORIZADO", "", Notification.Type.Warning, 4);
+                    return;
+                }
+                if (PageAdmTipoProducto != null)
+                    menuFrame.Content = PageAdmTipoProducto;
+                else
+                {
+                    PageAdmTipoProducto = new PageAdministrarTipoDeProducto();
+                    menuFrame.Content = PageAdmTipoProducto;
+                }
+                SetMenuItemColor(miAdministrarTipoDeProducto);
+            };
+
+            miAdministrarRelacionesTipoDeProducto.Click += (se, a) =>
+            {
+                if (!Settings.Usuario.tipo.ToLower().Equals("a"))
+                {
+                    new Notification("NO ESTAS AUTORIZADO", "", Notification.Type.Warning, 4);
+                    return;
+                }
+                if (PageRelTipoProducto != null)
+                    menuFrame.Content = PageRelTipoProducto;
+                else
+                {
+                    PageRelTipoProducto = new PageRelacionarTipoProducto();
+                    menuFrame.Content = PageRelTipoProducto;
+                }
+                SetMenuItemColor(miAdministrarRelacionesTipoDeProducto);
             };
             #endregion paginas administrar
 

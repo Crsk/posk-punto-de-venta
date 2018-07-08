@@ -276,6 +276,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ItemEditable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ItemEnvoltura.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -377,6 +381,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ItemPromoVentaPedido.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ItemRelacionProducto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -538,6 +546,7 @@
     <Compile Include="BLL\GastoBLL.cs" />
     <Compile Include="BLL\ImpresoraBLL.cs" />
     <Compile Include="BLL\InformeBLL.cs" />
+    <Compile Include="BLL\IngredientesBLL.cs" />
     <Compile Include="BLL\ItemBodegaInventarioBLL.cs" />
     <Compile Include="BLL\JornadaBLL.cs" />
     <Compile Include="BLL\LineaDetalleBLL.cs" />
@@ -546,6 +555,8 @@
     <Compile Include="BLL\MedioPagoBLL.cs" />
     <Compile Include="BLL\MermaBLL.cs" />
     <Compile Include="BLL\MesaBLL.cs" />
+    <Compile Include="BLL\OpcionesBLL.cs" />
+    <Compile Include="BLL\OpcionIngredienteBLL.cs" />
     <Compile Include="BLL\PedidoAgregadoBLL.cs" />
     <Compile Include="BLL\PedidoBLL.cs" />
     <Compile Include="BLL\PedidosAgregadosBLL.cs" />
@@ -575,6 +586,8 @@
     <Compile Include="BLL\ProveedorBLL.cs" />
     <Compile Include="BLL\SyncBLL.cs" />
     <Compile Include="BLL\TipoItemVentaBLL.cs" />
+    <Compile Include="BLL\TipoProductoBLL.cs" />
+    <Compile Include="BLL\TipoProductoOpcionBLL.cs" />
     <Compile Include="BLL\UnidadMedidaVentaBLL.cs" />
     <Compile Include="BLL\UsuarioBLL.cs" />
     <Compile Include="BLL\VentasJornadaBLL.cs" />
@@ -646,6 +659,9 @@
     </Compile>
     <Compile Include="Controls\ItemDcto.xaml.cs">
       <DependentUpon>ItemDcto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemEditable.xaml.cs">
+      <DependentUpon>ItemEditable.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ItemEnvoltura.xaml.cs">
       <DependentUpon>ItemEnvoltura.xaml</DependentUpon>
@@ -724,6 +740,9 @@
     </Compile>
     <Compile Include="Controls\ItemPromoVentaPedido.xaml.cs">
       <DependentUpon>ItemPromoVentaPedido.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemRelacionProducto.xaml.cs">
+      <DependentUpon>ItemRelacionProducto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ItemRolloArmarTabla.xaml.cs">
       <DependentUpon>ItemRolloArmarTabla.xaml</DependentUpon>
@@ -872,6 +891,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Menu\PageAdministrarCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageAdministrarTipoDeProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Menu\PageRelacionarTipoProducto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1280,6 +1307,9 @@
     <Compile Include="Models\gasto.cs">
       <DependentUpon>PoskDB6.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ingrediente.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ingreso.cs">
       <DependentUpon>PoskDB6.tt</DependentUpon>
     </Compile>
@@ -1299,6 +1329,12 @@
       <DependentUpon>PoskDB6.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\mesa.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\opcionale.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\opcionales_ingredientes.cs">
       <DependentUpon>PoskDB6.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pedido.cs">
@@ -1400,6 +1436,12 @@
     <Compile Include="Models\tipo_itemventa.cs">
       <DependentUpon>PoskDB6.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tipo_producto.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tipo_producto_opcionales.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\unidades_medida.cs">
       <DependentUpon>PoskDB6.tt</DependentUpon>
     </Compile>
@@ -1421,8 +1463,14 @@
     <Compile Include="Pages\Menu\PageAdministrarCliente.xaml.cs">
       <DependentUpon>PageAdministrarCliente.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Menu\PageAdministrarTipoDeProducto.xaml.cs">
+      <DependentUpon>PageAdministrarTipoDeProducto.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Menu\PagePrimerInicio.xaml.cs">
       <DependentUpon>PagePrimerInicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageRelacionarTipoProducto.xaml.cs">
+      <DependentUpon>PageRelacionarTipoProducto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Menu\PageVerInventario.xaml.cs">
       <DependentUpon>PageVerInventario.xaml</DependentUpon>

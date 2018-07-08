@@ -1,0 +1,71 @@
+﻿<Page x:Class="posk.Pages.Menu.PageRelacionarTipoProducto"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:posk.Pages.Menu"
+      mc:Ignorable="d" 
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto"
+            xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+            d:DesignHeight="640" d:DesignWidth="1200"
+            Background="#FFF0F0F0"
+      Title="PageRelacionarTipoDeProducto">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Tipo de Producto" HorizontalAlignment="Center" Foreground="#FF545454" FontSize="18" Margin="0 0 0 8"/>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="spTipoProducto" HorizontalAlignment="Center"/>
+            </ScrollViewer>
+        </Grid>
+        <Border Width="4" Grid.Column="1" Background="#FFE4E4E4"/>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Opciones" HorizontalAlignment="Center" Foreground="#FF545454" FontSize="18" Margin="0 0 0 8"/>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="spOpciones" HorizontalAlignment="Center"/>
+            </ScrollViewer>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                <ComboBox x:Name="cbOpciones" materialDesign:HintAssist.Hint="OPCIÓN" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="12" MinWidth="200" />
+                <Button x:Name="btnAgregarOpcion" Content="+" Background="{x:Null}" Foreground="ForestGreen" FontSize="26" Style="{StaticResource BtnClear}" Margin="12,23,12,23.667"/>
+            </StackPanel>
+        </Grid>
+        <Border Width="4" Grid.Column="3" Background="#FFE4E4E4"/>
+        <Grid Grid.Column="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Ingredientes" HorizontalAlignment="Center" Foreground="#FF545454" FontSize="18" Margin="0 0 0 8"/>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="spIngredientes" HorizontalAlignment="Center"/>
+            </ScrollViewer>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                <ComboBox x:Name="cbIngredientes" materialDesign:HintAssist.Hint="INGREDIENTE" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="12" MinWidth="200"/>
+                <Button x:Name="btnAgregarIngrediente" Content="+" Background="{x:Null}" Foreground="ForestGreen" FontSize="26" Style="{StaticResource BtnClear}" Margin="12"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

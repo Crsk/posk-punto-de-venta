@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="posk.Controls.ItemRelacionProducto"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls"
+             mc:Ignorable="d" 
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto"
+            xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+            Background="#FFF0F0F0">
+    <Grid>
+        <StackPanel x:Name="spItems" Orientation="Horizontal">
+            <Button x:Name="btnBorrar" Background="{x:Null}" Foreground="#FFCB1F1F" Style="{StaticResource BtnClear}">
+                <materialDesign:PackIcon Kind="Delete"/>
+            </Button>
+            <Button x:Name="btnItem" Background="{x:Null}" HorizontalAlignment="Stretch" MinWidth="180" Style="{StaticResource BtnClear}">
+                <Label x:Name="lbNombre" Content="asdadasd hasjkdas ($200)" Foreground="Black" FontWeight="Normal"/>
+            </Button>
+        </StackPanel> 
+    </Grid>
+</UserControl>

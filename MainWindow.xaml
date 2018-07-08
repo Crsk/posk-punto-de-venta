@@ -131,9 +131,11 @@
                                         <MenuItem x:Name="miAdministrarCliente" Header="Clientes" Height="36" FontSize="12"/>
                                         <MenuItem x:Name="miAdministrarBoletas" Header="Boletas" Height="36" FontSize="12"/>
                                         <MenuItem x:Name="miAdministrarSectoresCategorias" Header="Sectores y Categorias" Height="36" FontSize="12"/>
-                                        <MenuItem x:Name="miAdministrarRelaciones" Header="Relaciones" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miAdministrarRelaciones" Header="Relaciones de Categorias" Height="36" FontSize="12"/>
                                         <MenuItem x:Name="miAdministrarPromociones" Header="Promociones" Height="36" FontSize="12"/>
                                         <MenuItem x:Name="miAdministrarStock" Header="Stock" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miAdministrarTipoDeProducto" Header="Tipo de Producto" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miAdministrarRelacionesTipoDeProducto" Header="Relaciones Tipo de Producto" Height="36" FontSize="12"/>
                                     </StackPanel>
                                 </Expander>
                                 <Expander x:Name="expMenuAdministrarExtensionEstadisticas" Style="{StaticResource ExpMenu}" Background="{x:Null}" ExpandDirection="Right">
