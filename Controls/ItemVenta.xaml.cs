@@ -42,6 +42,7 @@ namespace posk.Controls
 
         public opcionale Opcion { get; set; }
 
+        public int sumarAlTotal { get; set; }
 
         public List<ItemIngrediente> listaIngredientes { get; set; }
 
@@ -76,6 +77,7 @@ namespace posk.Controls
 
             InitializeComponent();
 
+            sumarAlTotal = 0;
 
 
             btnLapiz.Click += (se, a) => expNota.IsExpanded ^= true;
@@ -169,8 +171,6 @@ namespace posk.Controls
                     PoskException.Make(ex, "ERROR AL GENERAR LISTA AGREGADOS");
                 }
                 */
-
-
 
                 listaIngredientes.OrderBy(x => x.Cantidad).ToList().ForEach(a =>
                 {
@@ -390,7 +390,14 @@ namespace posk.Controls
             if (listaIngredientes != null)
             {
                 limiteIngr = 5; // TODO - configurar límite de ingredientes (según tipo de producto) aceptados antes de cobrar adicional (según ingrediente)
-                listaIngredientes.OfType<ItemIngrediente>().ToList().ForEach(x => cantidadIngr += x.Cantidad);
+
+                listaIngredientes.OfType<ItemIngrediente>().ToList().ForEach(x =>
+                {
+                    cantidadIngr += x.Cantidad;
+                    sumarAlTotal += x.Ingrediente.precio;
+                });
+                sumarAlTotal += Opcion.precio;
+
                 if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
             }
 
@@ -455,9 +462,9 @@ namespace posk.Controls
 
 
             if (total % 1 == 0)
-                txtTotal.Text = $"{total + cobroExtra}";
+                txtTotal.Text = $"{total + cobroExtra + sumarAlTotal}";
             else
-                txtTotal.Text = $"${Convert.ToInt32(total) + cobroExtra}";
+                txtTotal.Text = $"${Convert.ToInt32(total) + cobroExtra + sumarAlTotal}";
             return (int)total;
         }
 
