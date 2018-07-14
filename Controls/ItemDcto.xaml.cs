@@ -8,7 +8,7 @@ namespace posk.Controls
         public int DctoPesos
         {
             get { return dctoPesos; }
-            set { dctoPesos = value; }
+            set { dctoPesos = value; lbDescuento.Content = $"Descuento: ${value}"; }
         }
 
         private int dctoPct;
@@ -22,11 +22,6 @@ namespace posk.Controls
         public ItemDcto()
         {
             InitializeComponent();
-
-            Loaded += (se, a) =>
-            {
-                lbDescuento.Content = $"Descuento: ${DctoPesos}";
-            };
         }
 
         public void Reset()

@@ -25,7 +25,11 @@
                 <TextBox x:Name="txtPct" materialDesign:HintAssist.Hint="%" Margin="0 4 0 4" PreviewTextInput="NumberValidationTextBox" Width="95" IsReadOnly="True"/>
             </StackPanel>
             <Label x:Name="lbTotalOriginal" Content="Total original: " Foreground="Black"/>
-            <Label x:Name="lbTotalConDcto" Content="Total con descuento: " Foreground="Black"/>
+            <StackPanel Orientation="Horizontal">
+                <Label x:Name="lbTotalConDcto" Content="Total con descuento: $" Padding="6 6 2 6" Foreground="Black"/>
+                <Label x:Name="lbTotalConDctoValor" Content="300" Padding="0 6 6 6" Foreground="Black"/>
+            </StackPanel>
+            
             <Grid Margin="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

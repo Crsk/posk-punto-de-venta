@@ -29,6 +29,8 @@ namespace posk.Popups
         {
             InitializeComponent();
 
+            Deactivated += (se, a) => { if (!bCerrado) Close(); };
+
             DctoPct = (itemDcto.DctoPesos * 100) / totalOriginal;
             DctoPesos = itemDcto.DctoPesos;
 
@@ -73,7 +75,7 @@ namespace posk.Popups
                     {
                         int dctoPesosTemp = Convert.ToInt32(txtPesos?.Text);
                         TotalConDcto = totalOriginal - Convert.ToInt32(txtPesos.Text);
-                        lbTotalConDcto.Content = $"Total con descuento: ${TotalConDcto - DctoPesos}";
+                        lbTotalConDctoValor.Content = $"{TotalConDcto - DctoPesos}";
                         txtPct.Text = $"{dctoPesosTemp * 100 / totalOriginal}";
                     }
                 }
@@ -83,7 +85,6 @@ namespace posk.Popups
                 }
             };
 
-            Deactivated += (se, ev) => { if (!bCerrado) Close(); };
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)

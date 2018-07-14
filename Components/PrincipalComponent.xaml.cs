@@ -401,6 +401,9 @@ namespace posk.Components
             bFavorito = true;
             bPromo = false;
 
+            itemDcto.Reset();
+            gridDcto.Children.Clear();
+
             btnCrearDelimitador.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(218, 222, 224));
             bDelimitadorPresionado = false;
         }
@@ -2118,11 +2121,15 @@ namespace posk.Components
                             dctoPopup.Close();
                             MostrarOverlay(false);
                         };
+
+                        dctoPopup.Deactivated += (se3, a3) =>
+                        {
+                            dctoPopup.bCerrado = true;
+                            MostrarOverlay(false);
+                        };
+
                         dctoPopup.AlAplicarDcto += (se3, a3) =>
                         {
-                            itemCalcularTotal.txtTotalVenta.Text = dctoPopup.TotalConDcto.ToString();
-                            itemDcto.DctoPesos = dctoPopup.DctoPesos;
-                            itemDcto.DctoPct = dctoPopup.DctoPct;
                             itemDcto.btnCerrar.Click += (se4, a4) =>
                             {
                                 gridDcto.Children.Remove(itemDcto);
@@ -2130,6 +2137,10 @@ namespace posk.Components
                                 new Notification("DCTO BORRADO", "$" + dctoPopup.DctoPesos);
                                 ReCalcularTotal();
                             };
+                            itemDcto.DctoPesos = dctoPopup.DctoPesos;
+                            itemDcto.DctoPct = dctoPopup.DctoPct;
+                            itemCalcularTotal.txtTotalVenta.Text = dctoPopup.lbTotalConDctoValor.Content.ToString();
+
                             gridDcto.Children.Remove(itemDcto);
                             gridDcto.Children.Add(itemDcto);
 
