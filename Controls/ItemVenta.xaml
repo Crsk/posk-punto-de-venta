@@ -23,7 +23,7 @@
 
         <Grid Grid.Column="0" Visibility="Hidden">
             <Button x:Name="btnBorrarItem" Style="{StaticResource BtnClear}" Foreground="#FF8A1717" Background="{x:Null}">
-                <materialDesign:PackIcon x:Name="iconBorrar" Kind="Delete" Height="18" Width="18" VerticalContentAlignment="Center" Margin="0 6 0 0"/>
+                <materialDesign:PackIcon x:Name="iconBorrar" Kind="Minus" Height="18" Width="18" VerticalContentAlignment="Center" Margin="0 6 0 0"/>
             </Button>
         </Grid>
 
@@ -34,7 +34,7 @@
             </Grid.RowDefinitions>
             <Button Grid.Row="0" x:Name="btnAgregarUnidad" Background="{x:Null}" Width="20"  BorderBrush="{x:Null}" Foreground="#FF020202" FontSize="22" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource BtnClear}" VerticalAlignment="Center">+</Button>
             <Button Grid.Row="1" x:Name="btnQuitarUnidad" Background="{x:Null}" Width="20"  BorderBrush="{x:Null}" Foreground="#FF8A1717" FontSize="30" materialDesign:ShadowAssist.ShadowDepth="Depth0" Style="{StaticResource BtnClear}" VerticalAlignment="Center" Padding="0 -12 0 0">
-                <Label x:Name="iconQuitarUnidad" Content="-" Foreground="#FF8A1717"/>
+                <materialDesign:PackIcon x:Name="iconQuitarUnidad" Kind="Minus" Height="18" Width="18" VerticalContentAlignment="Center" Margin="0 6 0 0"/>
             </Button>
         </Grid>
 
@@ -64,7 +64,7 @@
                         </Expander>
 
                         <Expander Grid.Column="0" x:Name="expOpcion" Style="{StaticResource ExpanderStyleSinHeader}" Background="{x:Null}" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                            <TextBox x:Name="txtOpcion" materialDesign:HintAssist.Hint="OPCIÓN" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="8 0 4 0" HorizontalAlignment="Right" IsReadOnly="true" IsEnabled="False"/>
+                            <TextBox x:Name="txtOpcion" materialDesign:HintAssist.Hint="T I P O" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="8 0 4 0" HorizontalAlignment="Right" IsReadOnly="true" IsEnabled="False"/>
                         </Expander>
 
                         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 10 0 0">
@@ -85,7 +85,7 @@
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBox x:Name="txtNota" Grid.Column="0" Background="#FF005F4B" Foreground="White" Padding="4 0 0 0" materialDesign:HintAssist.Hint="COMENTARIO"/>
-                                <Button x:Name="btnSinQuesoCrema" Content="SIN QUESO CREMA" Grid.Column="1" Style="{StaticResource BtnClear}" Margin="4 0 0 0" Padding="8 0 8 0" Background="#FF005F4B" Foreground="White" FontWeight="Light"/>
+                                <Button x:Name="btnSinQuesoCrema" Content="SIN QUESO CREMA" Grid.Column="1" Style="{StaticResource BtnClear}" Margin="4 0 0 0" Padding="8 0 8 0" Background="#FF005F4B" Foreground="White" FontWeight="Light" Visibility="Hidden" Width="8"/>
                             </Grid>
                         </Expander>
                     </StackPanel>

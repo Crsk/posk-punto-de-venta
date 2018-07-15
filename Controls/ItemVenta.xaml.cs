@@ -93,7 +93,7 @@ namespace posk.Controls
                     txtTotal.IsReadOnly = true;
                 */
 
-                txtTotal.IsReadOnly = false;
+                //txtTotal.IsReadOnly = false;
 
                 if (Envoltura != null)
                 {
@@ -107,7 +107,14 @@ namespace posk.Controls
 
                 if (Opcion != null)
                 {
-                    txtOpcion.Text = Opcion.nombre;
+                    if (Opcion.nombre.Equals("N/A"))
+                    {
+                        txtOpcion.Text = "N/A";
+                    }
+                    else
+                    {
+                        txtOpcion.Text = Opcion.nombre;
+                    }
                     expOpcion.IsExpanded = true;
                 }
                 else
@@ -241,29 +248,38 @@ namespace posk.Controls
 
         public void AgregarCantidad(int? cantidad)
         {
+            var sumar = 0;
+            listaIngredientes.OfType<ItemIngrediente>().ToList().ForEach(x => sumar += x.Ingrediente.precio);
+            sumar += Opcion.precio;
             Cantidad += cantidad;
+
             if (Cantidad % 1 == 0)
                 lbCantidad.Content = $"x{Convert.ToInt32(Cantidad)}";
             if (Cantidad > 1)
             {
                 if (Producto != null)
                 {
-                    lbPrecioUnitario.Content = $"${Producto?.precio} c/u  ";
+                    lbPrecioUnitario.Content = $"${Producto?.precio + sumar} c/u  ";
+                    txtTotal.Text = $"{(Producto?.precio + sumar) * Cantidad}";
 
                 }
                 else if (Promocion != null)
                 {
-                    lbPrecioUnitario.Content = $"${Promocion?.precio} c/u  ";
-
+                    lbPrecioUnitario.Content = $"${Promocion?.precio + sumar} c/u  ";
+                    txtTotal.Text = $"{(Producto?.precio + sumar) * Cantidad}";
                 }
                 btnQuitarUnidad.Content = iconQuitarUnidad;
             }
             else
             {
+                if (Producto != null)
+                    txtTotal.Text = $"{Producto?.precio + sumar}";
+                else if (Promocion != null)
+                    txtTotal.Text = $"{Promocion?.precio + sumar}";
                 lbPrecioUnitario.Content = "";
                 btnQuitarUnidad.Content = iconBorrar;
             }
-            CalcularTotal();
+            //CalcularTotal();
             AlModificarCantidad?.Invoke(this, null);
         }
         //public int ObtenerTotal()

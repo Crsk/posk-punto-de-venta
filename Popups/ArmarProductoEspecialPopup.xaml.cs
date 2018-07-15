@@ -33,7 +33,7 @@ namespace posk.Popups
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             Deactivated += (se, a) => { if (!bCerrado) Close(); };
             if (p.tipo_producto_id != null)
-                CargarOpciones((int) p.tipo_producto_id);
+                CargarOpciones((int)p.tipo_producto_id);
 
             btnIngresar.Click += BtnIngresar_Click;
 
@@ -72,13 +72,21 @@ namespace posk.Popups
             wrapOpciones.Children.Clear();
             TipoProductoOpcionBLL.ObtenerOpciones(tipoProductoId).ForEach(opcion =>
             {
-                ItemOpcion io = new ItemOpcion() { Opcion = opcion };
-                io.AlSeleccionar += (se, a) =>
+                if (opcion.nombre.Equals("N/A"))
                 {
                     _opcion = opcion;
                     CargarIngredientes(_opcion.id);
-                };
-                wrapOpciones.Children.Add(io);
+                }
+                else
+                {
+                    ItemOpcion io = new ItemOpcion() { Opcion = opcion };
+                    io.AlSeleccionar += (se, a) =>
+                    {
+                        _opcion = opcion;
+                        CargarIngredientes(_opcion.id);
+                    };
+                    wrapOpciones.Children.Add(io);
+                }
             });
             expOpciones.IsExpanded = true;
             posicion = 1;
