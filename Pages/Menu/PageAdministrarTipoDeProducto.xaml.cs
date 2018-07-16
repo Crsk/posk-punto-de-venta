@@ -36,7 +36,7 @@ namespace posk.Pages.Menu
         {
             try
             {
-                Crear("TIPO_PRODUCTO", txtTipoProductoNombre.Text, Convert.ToInt32(txtTipoProductoPrecio.Text));
+                Crear("TIPO_PRODUCTO", txtTipoProductoNombre.Text, Convert.ToInt32(txtTipoProductoLimiteIngr.Text));
                 CargarTipoDeProducto();
             }
             catch (Exception ex)
@@ -56,7 +56,7 @@ namespace posk.Pages.Menu
             {
                 // envía un correo del problema al programador
                 PoskException.Make(ex, "Error al ingresar tipo de producto");
-            }            
+            }
         }
         private void BtnAgregarIngrediente_Click(object sender, RoutedEventArgs e)
         {
@@ -79,10 +79,10 @@ namespace posk.Pages.Menu
             spTipoProducto.Children.Clear();
             TipoProductoBLL.ObtenerTodo().ForEach(tp =>
             {
-                var ie = new ItemEditable() { Id = tp.id, Tipo = "TIPO_PRODUCTO", Nombre = tp.nombre, Precio = tp.precio };
-                ie.AlEliminar += (se, a) => Eliminar(ie);
+                var ie = new ItemEditableTipoProducto() { Id = tp.id, Tipo = "TIPO_PRODUCTO", Nombre = tp.nombre, LimiteIngr = tp.limite_ingr };
+                ie.AlEliminar += (se, a) => EliminarTipoProducto(ie);
                 ie.AlEditar += (se, a) => ie.MostrarBotonGuardar();
-                ie.AlGuardar += (se, a) => Actualizar(ie);
+                ie.AlGuardar += (se, a) => ActualizarTipoProducto(ie);
                 spTipoProducto.Children.Add(ie);
             });
         }
@@ -115,22 +115,22 @@ namespace posk.Pages.Menu
         #endregion cargar
 
         #region CRUD
-        private void Crear(string tipo, string nombre, int precio)
+        private void Crear(string tipo, string nombre, int valor)
         {
             switch (tipo)
             {
                 case "TIPO_PRODUCTO":
-                    TipoProductoBLL.Ingresar(nombre, precio);
+                    TipoProductoBLL.Ingresar(nombre, valor);
                     new Notification("Ingresado");
                     LimpiarCampos();
                     break;
                 case "OPCION":
-                    OpcionesBLL.Ingresar(nombre, precio);
+                    OpcionesBLL.Ingresar(nombre, valor);
                     new Notification("Ingresado");
                     LimpiarCampos();
                     break;
                 case "INGREDIENTE":
-                    IngredientesBLL.Ingresar(nombre, precio);
+                    IngredientesBLL.Ingresar(nombre, valor);
                     new Notification("Ingresado");
                     LimpiarCampos();
                     break;
@@ -138,23 +138,24 @@ namespace posk.Pages.Menu
                     break;
             }
         }
+        private void EliminarTipoProducto(ItemEditableTipoProducto ie)
+        {
+            try
+            {
+                TipoProductoBLL.Eliminar(ie.Id);
+                CargarTipoDeProducto();
+                new Notification("Borrado");
+            }
+            catch (Exception ex)
+            {
+                // envía un correo del problema al programador
+                PoskException.Make(ex, "Error al Borrar tipo producto");
+            }
+        }
         private void Eliminar(ItemEditable ie)
         {
             switch (ie.Tipo)
             {
-                case "TIPO_PRODUCTO":
-                    try
-                    {
-                        TipoProductoBLL.Eliminar(ie.Id);
-                        CargarTipoDeProducto();
-                        new Notification("Borrado");
-                    }
-                    catch (Exception ex)
-                    {
-                        // envía un correo del problema al programador
-                        PoskException.Make(ex, "Error al Borrar tipo producto");
-                    }
-                    break;
                 case "OPCION":
                     try
                     {
@@ -185,23 +186,24 @@ namespace posk.Pages.Menu
                     break;
             }
         }
+        private void ActualizarTipoProducto(ItemEditableTipoProducto ie)
+        {
+            try
+            {
+                TipoProductoBLL.Actualizar(ie.Id, ie.txtNombre.Text, Convert.ToInt32(ie.txtLimiteIngr.Text));
+                ie.MostrarBotonEditar();
+                new Notification("Actualizado");
+            }
+            catch (Exception ex)
+            {
+                // envía un correo del problema al programador
+                PoskException.Make(ex, "Error al actualizar tipo producto");
+            }
+        }
         private void Actualizar(ItemEditable ie)
         {
             switch (ie.Tipo)
             {
-                case "TIPO_PRODUCTO":
-                    try
-                    {
-                        TipoProductoBLL.Actualizar(ie.Id, ie.txtNombre.Text, Convert.ToInt32(ie.txtPrecio.Text));
-                        ie.MostrarBotonEditar();
-                        new Notification("Actualizado");
-                    }
-                    catch (Exception ex)
-                    {
-                        // envía un correo del problema al programador
-                        PoskException.Make(ex, "Error al actualizar tipo producto");
-                    }
-                    break;
                 case "OPCION":
                     try
                     {
@@ -237,7 +239,7 @@ namespace posk.Pages.Menu
         private void LimpiarCampos()
         {
             txtTipoProductoNombre.Clear();
-            txtTipoProductoPrecio.Clear();
+            txtTipoProductoLimiteIngr.Clear();
             txtOpcionesNombre.Clear();
             txtOpcionesPrecio.Clear();
             txtIngredientesNombre.Clear();

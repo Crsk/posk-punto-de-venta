@@ -280,6 +280,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ItemEditableTipoProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ItemEnvoltura.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -670,6 +674,9 @@
     </Compile>
     <Compile Include="Controls\ItemEditable.xaml.cs">
       <DependentUpon>ItemEditable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemEditableTipoProducto.xaml.cs">
+      <DependentUpon>ItemEditableTipoProducto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ItemEnvoltura.xaml.cs">
       <DependentUpon>ItemEnvoltura.xaml</DependentUpon>

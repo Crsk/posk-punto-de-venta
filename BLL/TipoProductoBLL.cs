@@ -11,9 +11,9 @@ namespace posk.BLL
     {
         private static PoskDB6 db = new PoskDB6();
 
-        public static void Ingresar(string nombre, int precio)
+        public static void Ingresar(string nombre, int limiteIngr)
         {
-            db.tipo_producto.Add(new tipo_producto() { nombre = nombre, precio = precio });
+            db.tipo_producto.Add(new tipo_producto() { nombre = nombre, limite_ingr = limiteIngr });
             db.SaveChanges();
         }
 
@@ -28,11 +28,18 @@ namespace posk.BLL
             db.SaveChanges();
         }
 
-        public static void Actualizar(int Id, string nombre, int precio)
+        public static void Actualizar(int Id, string nombre, int limiteIngr)
         {
             var tipoProducto = db.tipo_producto.Where(x => x.id == Id).FirstOrDefault();
             tipoProducto.nombre = nombre;
-            tipoProducto.precio = precio;
+            tipoProducto.limite_ingr = limiteIngr;
+            db.SaveChanges();
+        }
+
+        public static void MostrarOpciones(int tipoProductoId, bool b)
+        {
+            var tipoProducto = db.tipo_producto.Where(x => x.id == tipoProductoId).FirstOrDefault();
+            tipoProducto.mostrar_opciones = b;
             db.SaveChanges();
         }
     }

@@ -42,6 +42,8 @@ namespace posk.Controls
 
         public opcionale Opcion { get; set; }
 
+        public int LimiteIngrGlobal { get; set; }
+
         public int sumarAlTotal { get; set; }
 
         public List<ItemIngrediente> listaIngredientes { get; set; }
@@ -107,7 +109,7 @@ namespace posk.Controls
 
                 if (Opcion != null)
                 {
-                    if (Opcion.nombre.Equals("N/A"))
+                    if (Opcion.nombre.Contains("N/A"))
                     {
                         txtOpcion.Text = "N/A";
                     }
@@ -405,7 +407,10 @@ namespace posk.Controls
 
             if (listaIngredientes != null)
             {
-                limiteIngr = 5; // TODO - configurar límite de ingredientes (según tipo de producto) aceptados antes de cobrar adicional (según ingrediente)
+                if (LimiteIngrGlobal == 0)
+                    limiteIngr = 1000;
+                else
+                    limiteIngr = LimiteIngrGlobal;
 
                 listaIngredientes.OfType<ItemIngrediente>().ToList().ForEach(x =>
                 {

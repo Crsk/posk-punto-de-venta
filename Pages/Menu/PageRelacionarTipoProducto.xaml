@@ -41,6 +41,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="Opciones" HorizontalAlignment="Center" Foreground="#FF545454" FontSize="18" Margin="0 0 0 8"/>
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
@@ -50,12 +51,17 @@
                 <ComboBox x:Name="cbOpciones" materialDesign:HintAssist.Hint="OPCIÓN" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="12" MinWidth="200" />
                 <Button x:Name="btnAgregarOpcion" Content="+" Background="{x:Null}" Foreground="ForestGreen" FontSize="26" Style="{StaticResource BtnClear}" Margin="12,23,12,23.667"/>
             </StackPanel>
+            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Height="36" Margin="12">
+                <Label Content="MOSTRAR OPCIONES" Foreground="Black" VerticalAlignment="Center"/>
+                <ToggleButton x:Name="toggleMostrarOpciones" IsChecked="False" Background="#FF0A7562" Foreground="#fff" Style="{StaticResource MaterialDesignActionLightToggleButton}" Margin="8 0 0 0"/>
+            </StackPanel>
         </Grid>
         <Border Width="4" Grid.Column="3" Background="#FFE4E4E4"/>
         <Grid Grid.Column="4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="Ingredientes" HorizontalAlignment="Center" Foreground="#FF545454" FontSize="18" Margin="0 0 0 8"/>
@@ -66,6 +72,7 @@
                 <ComboBox x:Name="cbIngredientes" materialDesign:HintAssist.Hint="INGREDIENTE" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="12" MinWidth="200"/>
                 <Button x:Name="btnAgregarIngrediente" Content="+" Background="{x:Null}" Foreground="ForestGreen" FontSize="26" Style="{StaticResource BtnClear}" Margin="12"/>
             </StackPanel>
+            <Button Grid.Row="3" x:Name="btnAgregarIngredienteTodos" Content="AGREGAR TODOS" Background="#FFE1E1E1" Foreground="ForestGreen" FontSize="16" FontWeight="Light" Style="{StaticResource BtnClear}" Height="36" Margin="12"/>
         </Grid>
     </Grid>
 </Page>

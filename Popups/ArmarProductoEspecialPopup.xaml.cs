@@ -21,6 +21,7 @@ namespace posk.Popups
     {
         public bool bCerrado { get; set; }
         private opcionale _opcion { get; set; }
+        private int _limiteIngr{ get; set; }
         public event EventHandler<ItemVenta> AlTerminarArmado;
         private int posicion { get; set; }
         private producto _producto { get; set; }
@@ -29,6 +30,13 @@ namespace posk.Popups
         {
             InitializeComponent();
             _producto = p;
+            lbTitulo.Content = $"{p.nombre.ToUpper()}";
+
+            if (p.tipo_producto != null)
+                _limiteIngr = p.tipo_producto.limite_ingr;
+            else
+                _limiteIngr = 100;
+
             posicion = 1;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             Deactivated += (se, a) => { if (!bCerrado) Close(); };
@@ -59,7 +67,7 @@ namespace posk.Popups
         private void BtnIngresar_Click(object sender, RoutedEventArgs e)
         {
             var listaIngredientesEscogidos = wrapIngredientes.Children.OfType<ItemIngrediente>().ToList().Where(ing => ing.Cantidad > 0).ToList();
-            ItemVenta iv = new ItemVenta() { Producto = _producto, listaIngredientes = listaIngredientesEscogidos, Opcion = _opcion };
+            ItemVenta iv = new ItemVenta() { Producto = _producto, listaIngredientes = listaIngredientesEscogidos, Opcion = _opcion, LimiteIngrGlobal = _limiteIngr };
             AlTerminarArmado?.Invoke(this, iv); // el producto armado con sus ingredientes se integra a la sección de venta
             bCerrado = true;
             Close();
@@ -72,7 +80,7 @@ namespace posk.Popups
             wrapOpciones.Children.Clear();
             TipoProductoOpcionBLL.ObtenerOpciones(tipoProductoId).ForEach(opcion =>
             {
-                if (opcion.nombre.Equals("N/A"))
+                if (opcion.nombre.Contains("N/A"))
                 {
                     _opcion = opcion;
                     CargarIngredientes(_opcion.id);

@@ -36,7 +36,7 @@
             </ScrollViewer>
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBox x:Name="txtTipoProductoNombre" materialDesign:HintAssist.Hint="NOMBRE" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="12,12,12,11.667" MinWidth="200" Background="#FFE4E4E4" Padding="4"/>
-                <TextBox x:Name="txtTipoProductoPrecio" materialDesign:HintAssist.Hint="PRECIO" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="12" MinWidth="100" Background="#FFE4E4E4" Padding="4"/>
+                <TextBox x:Name="txtTipoProductoLimiteIngr" materialDesign:HintAssist.Hint="LÍMITE INGR." Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="12" MinWidth="100" Background="#FFE4E4E4" Padding="4"/>
                 <Button x:Name="btnAgregarTipoDeProducto" Content="+" Background="{x:Null}" Foreground="ForestGreen" FontSize="26" Style="{StaticResource BtnClear}" Margin="12"/>
             </StackPanel>
         </Grid>

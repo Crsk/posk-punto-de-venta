@@ -14,6 +14,9 @@
         <Border x:Name="borderCantidad" Panel.ZIndex="1" CornerRadius="20" Width="32" Height="32" Background="#FFD2D2D2" Margin="0 0 72 50" HorizontalAlignment="Left">
             <Label x:Name="lbCantidad" Content="0" HorizontalAlignment="Center" Margin="0 0 1 0" Foreground="#FFF26102" FontSize="16" FontWeight="Bold"/>
         </Border>
+        <Border x:Name="borderPrecio" Panel.ZIndex="1" CornerRadius="20" Width="48" Height="20" Background="#FFD2D2D2" Margin="72 0 0 36" HorizontalAlignment="Left" Visibility="Hidden">
+            <Label x:Name="lbPrecio" Content="$200" HorizontalAlignment="Center" Margin="0 0 1 0" Foreground="#FFF26102" FontSize="8" FontWeight="Bold"/>
+        </Border>
         <Grid Height="36">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>

@@ -10,7 +10,10 @@
             TextElement.FontSize="13"
             TextOptions.TextFormattingMode="Ideal"
             TextOptions.TextRenderingMode="Auto">
-    <Grid Height="36" Margin="4">
+    <Grid Height="58" Margin="4">
+        <Border x:Name="borderPrecio" Panel.ZIndex="1" CornerRadius="20" Width="48" Height="20" Background="#FFD2D2D2" Margin="72 0 0 36" HorizontalAlignment="Left" Visibility="Hidden">
+            <Label x:Name="lbPrecio" Content="$200" HorizontalAlignment="Center" Margin="0 0 1 0" Foreground="#FFF26102" FontSize="8" FontWeight="Bold"/>
+        </Border>
         <Button x:Name="btnOpcion" Padding="4" Background="#FFE35403" Style="{StaticResource BtnClear}" Height="36">
             <Label x:Name="lbNombre" Content="Opcion"/>
         </Button>

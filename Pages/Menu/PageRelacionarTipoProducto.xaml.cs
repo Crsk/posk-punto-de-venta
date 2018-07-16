@@ -30,14 +30,42 @@ namespace posk.Pages.Menu
             Loaded += PageRelacionarTipoProducto_Loaded;
             btnAgregarOpcion.Click += BtnAgregarOpcion_Click;
             btnAgregarIngrediente.Click += BtnAgregarIngrediente_Click;
+            btnAgregarIngredienteTodos.Click += BtnAgregarIngredienteTodos_Click;
+            toggleMostrarOpciones.Click += ToggleMostrarOpciones_Click;
             CargarTipoProducto();
+        }
+
+        private void ToggleMostrarOpciones_Click(object sender, RoutedEventArgs e)
+        {
+            if (_tipoProductoId == 0)
+            {
+                new Notification("Acción requerida", "Selecciona un tipo de producto", Notification.Type.Warning, 6);
+                return;
+            }
+            TipoProductoBLL.MostrarOpciones(_tipoProductoId, toggleMostrarOpciones.IsChecked == true ? true : false);
+            new Notification("Listo");
+        }
+
+        private void BtnAgregarIngredienteTodos_Click(object sender, RoutedEventArgs e)
+        {
+            if (_opcionId == 0)
+            {
+                new Notification("Acción requerida", "Selecciona una opción", Notification.Type.Warning, 6);
+                return;
+            }
+            IngredientesBLL.ObtenerTodo().ForEach(ing =>
+            {
+                OpcionIngredienteBLL.Ingresar(_opcionId, ing.id);
+            });
+            new Notification("Ingresados");
+            MostrarIngredientesRelacionados(_opcionId);
         }
 
         private void BtnAgregarIngrediente_Click(object sender, RoutedEventArgs e)
         {
             if (_opcionId == 0)
             {
-                new Notification("", "Escoje un ingrediente", Notification.Type.Warning);
+                new Notification("", "Opción requerida", Notification.Type.Warning);
                 return;
             }
 
@@ -79,19 +107,23 @@ namespace posk.Pages.Menu
 
             cbIngredientes.ItemsSource = IngredientesBLL.ObtenerTodo();
             cbIngredientes.DisplayMemberPath = "nombre";
+
+            CargarTipoProducto();
+            spOpciones.Children.Clear();
+            spIngredientes.Children.Clear();
         }
 
         private void CargarTipoProducto()
         {
+            spTipoProducto.Children.Clear();
             TipoProductoBLL.ObtenerTodo().ForEach(tp =>
             {
-                var itemRelacion = new ItemRelacionProducto() { Id = tp.id, Nombre = tp.nombre, Precio = tp.precio };
+                var itemRelacion = new ItemRelacionProducto() { Id = tp.id, Nombre = tp.nombre };
                 itemRelacion.QuitarBotonBorrar();
                 itemRelacion.AlSeleccionar += (se, a) =>
                 {
                     Seleccionar("TIPO_PRODUCTO", itemRelacion);
                     MostrarOpcionesRelacionadas(tp.id);
-                    // TODO - si no tiene opción, mostrar ingredientes directamente
                 };
                 spTipoProducto.Children.Add(itemRelacion);
             });
@@ -100,10 +132,10 @@ namespace posk.Pages.Menu
         private void MostrarOpcionesRelacionadas(int tipoProductoId)
         {
             spOpciones.Children.Clear();
-            TipoProductoOpcionBLL.ObtenerOpciones(tipoProductoId).ForEach(opcion => 
+            TipoProductoOpcionBLL.ObtenerOpciones(tipoProductoId).ForEach(opcion =>
             {
-                var itemRelacion = new ItemRelacionProducto() { Id = opcion.id, Nombre = opcion.nombre, Precio = opcion.precio };
-                itemRelacion.AlEliminar += (se, a) => 
+                var itemRelacion = new ItemRelacionProducto() { Id = opcion.id, Precio = opcion.precio, Nombre = opcion.nombre };
+                itemRelacion.AlEliminar += (se, a) =>
                 {
                     TipoProductoOpcionBLL.Eliminar(tipoProductoId, opcion.id);
                     new Notification("Borrado");
@@ -124,7 +156,7 @@ namespace posk.Pages.Menu
             spIngredientes.Children.Clear();
             OpcionIngredienteBLL.ObtenerIngredientes(opcionId).ForEach(ingrediente =>
             {
-                var itemRelacion = new ItemRelacionProducto() { Id = ingrediente.id, Nombre = ingrediente.nombre, Precio = ingrediente.precio };
+                var itemRelacion = new ItemRelacionProducto() { Id = ingrediente.id, Precio = ingrediente.precio, Nombre = ingrediente.nombre };
                 itemRelacion.AlEliminar += (se, a) =>
                 {
                     OpcionIngredienteBLL.Eliminar(opcionId, ingrediente.id);

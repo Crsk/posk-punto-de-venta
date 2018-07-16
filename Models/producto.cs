@@ -96,7 +96,6 @@ namespace posk.Models
         public virtual ICollection<producto_promocion> producto_promocion { get; set; }
         public virtual subcategoria subcategoria { get; set; }
         public virtual tipo_itemventa tipo_itemventa { get; set; }
-        public virtual tipo_producto tipo_producto { get; set; }
         public virtual proveedore proveedore { get; set; }
         public virtual sector_impresion sector_impresion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -105,5 +104,6 @@ namespace posk.Models
         public virtual ICollection<stock_pr> stock_pr { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ventas_jornada> ventas_jornada { get; set; }
+        public virtual tipo_producto tipo_producto { get; set; }
     }
 }

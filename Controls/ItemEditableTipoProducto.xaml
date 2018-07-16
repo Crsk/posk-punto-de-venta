@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="posk.Controls.ItemEditableTipoProducto"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:posk.Controls"
+             mc:Ignorable="d" 
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextElement.FontWeight="Regular"
+            TextElement.FontSize="13"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto"
+            Background="#FFF0F0F0">
+    <StackPanel x:Name="spContenido" Orientation="Horizontal">
+        <Button x:Name="btnBorrar" Margin="2" Padding="4" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFD32413" Style="{StaticResource BtnClear}">
+            <materialDesign:PackIcon Kind="Delete" />
+        </Button>
+        <TextBox x:Name="txtNombre" materialDesign:HintAssist.Hint="Nombre" Padding="2" MinWidth="100" Foreground="Black" Text="" VerticalAlignment="Center" Margin="4" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <TextBox x:Name="txtLimiteIngr" materialDesign:HintAssist.Hint="Límite ingr." Padding="2" MinWidth="100" Foreground="Black" Text="" VerticalAlignment="Center" Margin="4" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+        <Button x:Name="btnEditar" Margin="2" Padding="4" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFFF7C00" Style="{StaticResource BtnClear}">
+            <materialDesign:PackIcon Kind="Pencil" />
+        </Button>
+        <Button x:Name="btnGuardar" Margin="2" Padding="4" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF148745" Style="{StaticResource BtnClear}">
+            <materialDesign:PackIcon Kind="ContentSave" />
+        </Button>
+    </StackPanel>
+</UserControl>

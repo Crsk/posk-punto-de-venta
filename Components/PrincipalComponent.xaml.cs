@@ -3341,7 +3341,7 @@ namespace posk.Components
                                 if (item.Envoltura != null)
                                     ticket.TextoIzquierda($"ENVOLTURA: {item.Envoltura.nombre}");
                                 if (item.Opcion != null)
-                                    if (!item.Opcion.nombre.Equals("N/A"))
+                                    if (!item.Opcion.nombre.Contains("N/A"))
                                         ticket.TextoIzquierda($"TIPO: {item.Opcion.nombre}");
                                 if (item.listaAgregadosSushi != null)
                                     ticket.TextoIzquierda($"{item?.ObtenerAgregadosStr()}");

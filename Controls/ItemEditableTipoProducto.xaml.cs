@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace posk.Controls
 {
-    public partial class ItemEditable : UserControl
+    public partial class ItemEditableTipoProducto : UserControl
     {
         public int Id { get; set; }
 
@@ -29,19 +29,19 @@ namespace posk.Controls
             set { nombre = value; txtNombre.Text = value; }
         }
 
-        private int precio;
+        private int limiteIngr;
 
-        public int Precio
+        public int LimiteIngr
         {
-            get { return precio; }
-            set { precio = value; txtPrecio.Text = value + ""; }
+            get { return limiteIngr; }
+            set { limiteIngr = value; txtLimiteIngr.Text = value + ""; }
         }
 
         public event EventHandler AlEliminar;
         public event EventHandler AlEditar;
         public event EventHandler AlGuardar;
 
-        public ItemEditable()
+        public ItemEditableTipoProducto()
         {
             InitializeComponent();
             btnBorrar.Click += (se, a) => AlEliminar?.Invoke(this, null);
@@ -55,12 +55,12 @@ namespace posk.Controls
             spContenido.Children.Clear();
             spContenido.Children.Add(btnBorrar);
             spContenido.Children.Add(txtNombre);
-            spContenido.Children.Add(txtPrecio);
+            spContenido.Children.Add(txtLimiteIngr);
             spContenido.Children.Add(btnEditar);
             txtNombre.IsReadOnly = true;
-            txtPrecio.IsReadOnly = true;
+            txtLimiteIngr.IsReadOnly = true;
             txtNombre.IsEnabled = false;
-            txtPrecio.IsEnabled = false;
+            txtLimiteIngr.IsEnabled = false;
         }
 
         public void MostrarBotonGuardar()
@@ -68,12 +68,12 @@ namespace posk.Controls
             spContenido.Children.Clear();
             spContenido.Children.Add(btnBorrar);
             spContenido.Children.Add(txtNombre);
-            spContenido.Children.Add(txtPrecio);
+            spContenido.Children.Add(txtLimiteIngr);
             spContenido.Children.Add(btnGuardar);
             txtNombre.IsReadOnly = false;
-            txtPrecio.IsReadOnly = false;
+            txtLimiteIngr.IsReadOnly = false;
             txtNombre.IsEnabled = true;
-            txtPrecio.IsEnabled = true;
+            txtLimiteIngr.IsEnabled = true;
         }
     }
 }

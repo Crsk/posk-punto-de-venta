@@ -17,17 +17,18 @@ namespace posk.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tipo_producto()
         {
-            this.tipo_producto_opcionales = new HashSet<tipo_producto_opcionales>();
             this.productos = new HashSet<producto>();
+            this.tipo_producto_opcionales = new HashSet<tipo_producto_opcionales>();
         }
     
         public int id { get; set; }
         public string nombre { get; set; }
-        public int precio { get; set; }
+        public int limite_ingr { get; set; }
+        public bool mostrar_opciones { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tipo_producto_opcionales> tipo_producto_opcionales { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<producto> productos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tipo_producto_opcionales> tipo_producto_opcionales { get; set; }
     }
 }

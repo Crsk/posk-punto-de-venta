@@ -86,8 +86,8 @@ namespace posk.Models
         public virtual DbSet<ingrediente> ingredientes { get; set; }
         public virtual DbSet<opcionale> opcionales { get; set; }
         public virtual DbSet<opcionales_ingredientes> opcionales_ingredientes { get; set; }
-        public virtual DbSet<tipo_producto> tipo_producto { get; set; }
         public virtual DbSet<tipo_producto_opcionales> tipo_producto_opcionales { get; set; }
         public virtual DbSet<producto> productos { get; set; }
+        public virtual DbSet<tipo_producto> tipo_producto { get; set; }
     }
 }

@@ -10,3 +10,5 @@ https://youtu.be/Z_fvmWIUIlU Asociar venta a cliente
 https://youtu.be/CfaI0ZTo3CM Paga con y Vuelto para delivery
 
 https://youtu.be/AsbejwMban8 Mostrando funcionalidades de pedido y venta en restaurant
+
+![Screenshot](screenshot.png)

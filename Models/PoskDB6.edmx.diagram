@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f06cc1a141fe4ad39d39b2de2ae126c0" Name="Diagram1" ZoomLevel="68">
+      <Diagram DiagramId="f06cc1a141fe4ad39d39b2de2ae126c0" Name="Diagram1" ZoomLevel="78">
         <EntityTypeShape EntityType="posk_dbModel6.bodega_movimiento" Width="1.5" PointX="5.25" PointY="29.875" />
         <EntityTypeShape EntityType="posk_dbModel6.bodega_stock" Width="1.5" PointX="5.25" PointY="72.5" />
         <EntityTypeShape EntityType="posk_dbModel6.cantidadesvendida" Width="1.5" PointX="9" PointY="25.25" />
@@ -118,12 +118,10 @@
         <EntityTypeShape EntityType="posk_dbModel6.ingrediente" Width="1.5" PointX="10.375" PointY="52.5" />
         <EntityTypeShape EntityType="posk_dbModel6.opcionale" Width="1.5" PointX="10.375" PointY="9.375" />
         <EntityTypeShape EntityType="posk_dbModel6.opcionales_ingredientes" Width="1.5" PointX="12.625" PointY="9.375" />
-        <EntityTypeShape EntityType="posk_dbModel6.tipo_producto" Width="1.5" PointX="10.375" PointY="49.5" />
         <EntityTypeShape EntityType="posk_dbModel6.tipo_producto_opcionales" Width="1.5" PointX="12.625" PointY="6.375" />
         <AssociationConnector Association="posk_dbModel6.opcionales_ingredientes_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.opcionales_ingredientes_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.tipo_producto_opcionales_ibfk_2" />
-        <AssociationConnector Association="posk_dbModel6.tipo_producto_opcionales_ibfk_1" />
         <EntityTypeShape EntityType="posk_dbModel6.producto" Width="1.5" PointX="17.75" PointY="34.625" />
         <AssociationConnector Association="posk_dbModel6.bodega_movimiento_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.bodega_stock_ibfk_1" />
@@ -142,12 +140,14 @@
         <AssociationConnector Association="posk_dbModel6.producto_promocion_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.productos_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.productos_ibfk_4" />
-        <AssociationConnector Association="posk_dbModel6.productos_ibfk_5" />
         <AssociationConnector Association="posk_dbModel6.productos_ibkf_2" />
         <AssociationConnector Association="posk_dbModel6.productos_ibkf_3" />
         <AssociationConnector Association="posk_dbModel6.productoscomplejos_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.stock_pr_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.ventas_jornada_ibfk_1" />
+        <EntityTypeShape EntityType="posk_dbModel6.tipo_producto" Width="1.5" PointX="5.375" PointY="0.875" />
+        <AssociationConnector Association="posk_dbModel6.productos_ibfk_5" />
+        <AssociationConnector Association="posk_dbModel6.tipo_producto_opcionales_ibfk_1" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

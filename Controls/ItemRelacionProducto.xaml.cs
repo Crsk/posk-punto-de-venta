@@ -26,7 +26,15 @@ namespace posk.Controls
         public string Nombre
         {
             get { return nombre; }
-            set { nombre = value; lbNombre.Content = $"{value} (${Precio})"; }
+            set
+            {
+                nombre = value;
+                if (Precio != 0)
+                    lbNombre.Content = $"{value} (${Precio})";
+                else
+                    lbNombre.Content = $"{value}";
+
+            }
         }
         public bool Seleccionado { get; set; }
 

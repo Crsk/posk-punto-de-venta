@@ -44,6 +44,12 @@ namespace posk.Popups
             InitializeComponent();
             this.MontoTotalSinPropina = montoTotalSinPropina;
 
+
+            txtNombre.TextChanged += (se, a) => HabilitarBotonVender();
+            txtTelefono.TextChanged += (se, a) => HabilitarBotonVender();
+            txtDireccion.TextChanged += (se, a) => HabilitarBotonVender();
+
+
             ServirLlevarStr = "SERVIR";
             bEscribiendoEnCliente = false;
 
@@ -252,6 +258,8 @@ namespace posk.Popups
                                     MontoEfectivo = Convert.ToInt32(impc.txtMonto.Text);
                                 else
                                     MontoEfectivo = 0;
+                                HabilitarBotonVender();
+
                             }
                             catch
                             {
@@ -273,6 +281,8 @@ namespace posk.Popups
                                     MontoTransBank = Convert.ToInt32(impc.txtMonto.Text);
                                 else
                                     MontoTransBank = 0;
+                                HabilitarBotonVender();
+
                             }
                             catch
                             {
@@ -295,6 +305,8 @@ namespace posk.Popups
                                     MontoJunaeb = Convert.ToInt32(impc.txtMonto.Text);
                                 else
                                     MontoJunaeb = 0;
+                                HabilitarBotonVender();
+
                             }
                             catch
                             {
@@ -317,6 +329,7 @@ namespace posk.Popups
                                     MontoOtro = Convert.ToInt32(impc.txtMonto.Text);
                                 else
                                     MontoOtro = 0;
+                                HabilitarBotonVender();
                             }
                             catch
                             {
@@ -420,6 +433,17 @@ namespace posk.Popups
             Deactivated += (se, ev) => { if (!bCerrado) Close(); };
         }
 
+        private void HabilitarBotonVender()
+        {
+            if (CalcularMontos() && txtNombre.Text != "" && txtTelefono.Text != "" && txtDireccion.Text != "")
+            {
+                btnAceptar.IsEnabled = true;
+            }
+            else
+                btnAceptar.IsEnabled = false;
+
+        }
+
         private void MostrarPagaCon(bool b)
         {
             gridPagaCon.Children.Clear();
@@ -444,7 +468,7 @@ namespace posk.Popups
             gridPagaCon.Children.Add(itemPagaCon);
         }
 
-        private void CalcularMontos()
+        private bool CalcularMontos()
         {
             int _propina = 0;
             int _montoTotal = 0;
@@ -465,9 +489,9 @@ namespace posk.Popups
             _montoTotal = Convert.ToInt32(lbTotal.Content);
 
             if (MontoEfectivo + MontoTransBank + MontoJunaeb + MontoOtro == _montoTotal)
-                btnAceptar.IsEnabled = true;
+                return true;
             else
-                btnAceptar.IsEnabled = false;
+                return false;
         }
 
         private void PropinaToogle(bool bPropina, int propina)

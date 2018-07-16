@@ -7,19 +7,30 @@ namespace posk.Controls
 
     public partial class ItemOpcion : UserControl
     {
-        public opcionale Opcion { get; set; }
+        private opcionale opcionale;
+
+        public opcionale Opcion
+        {
+            get { return opcionale; }
+            set
+            {
+                opcionale = value;
+                lbNombre.Content = value.nombre;
+                if (value.precio != 0)
+                {
+                    lbPrecio.Content = $"${value.precio}";
+                    borderPrecio.Visibility = System.Windows.Visibility.Visible;
+                }
+            }
+        }
+
+
 
         public event EventHandler AlSeleccionar;
 
         public ItemOpcion()
         {
             InitializeComponent();
-
-            Loaded += (se, a) => 
-            {
-                if (Opcion != null)
-                    lbNombre.Content = Opcion.nombre;
-            };
             btnOpcion.Click += (se, a) => AlSeleccionar?.Invoke(this, null);
         }
     }

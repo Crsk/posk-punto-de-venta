@@ -18,21 +18,35 @@ namespace posk.Controls
 {
     public partial class ItemIngrediente : UserControl
     {
+        private int precio;
+
+        public int Precio
+        {
+            get { return precio; }
+            set
+            {
+                precio = value;
+            }
+        }
+
         private ingrediente ingrediente;
 
         public ingrediente Ingrediente
         {
             get { return ingrediente; }
-            set { ingrediente = value; txtNombre.Text = value.nombre.ToUpper(); }
+            set
+            {
+                ingrediente = value;
+                txtNombre.Text = value.nombre.ToUpper();
+                if (value.precio != 0)
+                {
+                    lbPrecio.Content = $"${value.precio}";
+                    borderPrecio.Visibility = Visibility.Visible;
+                }
+            }
         }
 
-        private int cantidad;
-
-        public int Cantidad
-        {
-            get { return cantidad; }
-            set { cantidad = value; lbCantidad.Content = value.ToString(); }
-        }
+        public int Cantidad { get; set; }
 
         public event EventHandler AlCambiarEstado;
 
