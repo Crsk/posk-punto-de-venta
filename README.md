@@ -1,7 +1,7 @@
 # posk-punto-de-venta
 Punto de venta simple, potente y moderno
 
-![Screenshot](screenshot01.png)
+![Screenshot](screenshot00.png)
 
 https://youtu.be/eXSwujbNzJk Creación de producto especial (handroll, pizza, rollo sushi, shawarma, etc.)
 
