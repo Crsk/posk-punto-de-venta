@@ -44,6 +44,6 @@
             materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
             materialDesign:HintAssist.FloatingScale="0.50"  
             Style="{StaticResource MaterialDesignFloatingHintTextBox}" Background="{x:Null}"/>
-        <Button x:Name="btnDcto" Content="DCTO" Style="{StaticResource BtnClear}" Background="LightGray" FontSize="10" Margin="0 12 0 0"/>
+        <Button x:Name="btnDcto" Content="DCTO" Style="{StaticResource BtnClear}" Background="#FFE1E1E1" FontSize="10" Margin="0 12 0 0" Padding="8 0 8 0" Foreground="#161616"/>
     </StackPanel>
 </UserControl>
