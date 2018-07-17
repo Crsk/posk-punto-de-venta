@@ -445,6 +445,20 @@ namespace posk.Pages.Menu
             cbSectorImpresion.SelectedIndex = -1;
             cbTipoItemVenta.SelectedIndex = -1;
             txtZindex.Clear();
+
+            cbTipoProducto.ItemsSource = TipoProductoBLL.ObtenerTodo();
+            cbTipoProducto.DisplayMemberPath = "nombre";
+
+            try
+            {
+                txtPuntos.Text = "0";
+                txtZindex.Text = "0";
+                cbTipoItemVenta.Text = "plato fondo";
+                cbTipoItemVenta.Visibility = Visibility.Hidden;
+            }
+            catch
+            {
+            }
         }
 
         private void CargarMateriasPrimas()
@@ -565,7 +579,7 @@ namespace posk.Pages.Menu
                         puntos_cantidad = 0,
                         imagen = itemFoto.NombreFoto,
                         sub_categoria_id = (cbSubCategoria.SelectedItem as subcategoria).id,
-                        tipo_producto_id = (cbTipoProducto.SelectedItem as tipo_producto).id,
+                        tipo_producto_id = (cbTipoProducto.SelectedItem as tipo_producto)?.id,
                         proveedor_id = null,
                         contiene_agregado = checkContieneAgregado.IsChecked,
                         solo_venta = rbSoloVenta.IsChecked,
@@ -599,6 +613,7 @@ namespace posk.Pages.Menu
                         cbProductoParaAgregarMP.DisplayMemberPath = "nombre";
                         cbProductoParaAgregarMP.Text = p.nombre;
                         new Notification("LISTO!");
+                        LimpiarTodo();
                     }
                     catch (Exception ex)
                     {
@@ -615,6 +630,7 @@ namespace posk.Pages.Menu
                             p.id = (int)itemIdMasNombre.ID;
                             ProductoBLL.Actualizar(p);
                             new Notification("LISTO!", "Editaste un item venta");
+                            LimpiarTodo();
                         }
                     }
                     catch (Exception ex)

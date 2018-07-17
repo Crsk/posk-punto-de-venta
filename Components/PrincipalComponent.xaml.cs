@@ -392,17 +392,19 @@ namespace posk.Components
                 itemCalcularTotal.txtVuelto.Clear();
                 itemCalcularTotal.txtTotalVenta.Clear();
             }
-            //iconFavorito.Foreground = colorDorado;
-            //iconPromo.Foreground = colorNeutro;
-            //MostrarPedidos((ProductoBLL.GetFavs()));
-            //txtBuscar.Text = "FAVORITOS";
-            //txtBuscar.Foreground = colorDorado;
-            //bFavorito = true;
+            iconFavorito.Foreground = colorDorado;
+            iconPromo.Foreground = colorNeutro;
+            MostrarPedidos((ProductoBLL.GetFavs()));
+            txtBuscar.Text = "FAVORITOS";
+            txtBuscar.Foreground = colorDorado;
+            bFavorito = true;
+
+            /*
             bFavorito = false;
             iconFavorito.Foreground = colorNeutro;
             txtBuscar.Text = "";
             bPromo = false;
-
+            */
             itemDcto.Reset();
             gridDcto.Children.Clear();
 
@@ -665,6 +667,7 @@ namespace posk.Components
 
                     if (tupla.listaProductos != null)
                     {
+                        tupla.listaProductos.OrderBy(x => x.z_index).ToList();
                         if (tupla.bSubCategoria)
                         {
                             txtBuscar.Foreground = colorDorado;
@@ -868,6 +871,9 @@ namespace posk.Components
 
                 if (tupla.listaProductos != null || tupla.listaPromociones != null)
                 {
+                    if (tupla.listaProductos != null)
+                        tupla.listaProductos.OrderBy(x => x.z_index).ToList();
+
                     if (tupla.bSubCategoria)
                     {
                         txtBuscar.Foreground = colorDorado;
@@ -974,6 +980,23 @@ namespace posk.Components
                         CrearItemVentaDesdeItemVenta(ivArmado);
                         MostrarOverlay(false);
                     };
+                };
+                wrapProductos.Children.Add(ip);
+            }
+            else
+            {
+                var ip = new ItemProducto() { Producto = p };
+
+                ip.AlDeseleccionar += (se3, a3) =>
+                {
+                    expBottomPreparadoEspecial.IsExpanded = false;
+                    expBottom.IsExpanded = false;
+                };
+
+                ip.btnProducto.Click += (se, a) =>
+                {
+                    CrearItemVenta(p);
+                    teclado.expTeclado.IsExpanded = false;
                 };
                 wrapProductos.Children.Add(ip);
             }
@@ -3377,7 +3400,7 @@ namespace posk.Components
                     ticket.TextoCentro("");
                     if (di.ServirLlevar != "")
                         ticket.TextoCentro($"Para {di.ServirLlevar.ToLower()}");
-                    if (di.Incluye != "")
+                    if (di.Incluye != "" && !di.Incluye.ToLower().Contains("sin adicional"))
                         ticket.TextoCentro($"{di.IncluyeStrUnaLinea}");
                     if (di.MensajeTicket != "")
                         ticket.TextoCentro($"Mensaje cocina: {di.MensajeTicket}");
@@ -3397,7 +3420,7 @@ namespace posk.Components
                         ticket.TextoCentro($"{di.MensajeDeliveryDos}");
                     if (di.PagaCon != 0)
                         ticket.TextoCentro($"PagaCon: {di.PagaCon}");
-                    if (di.Vuelto != "")
+                    if (!String.IsNullOrEmpty(di.Vuelto))
                         ticket.TextoCentro($"Vuelto: {di.Vuelto}");
                 }
 

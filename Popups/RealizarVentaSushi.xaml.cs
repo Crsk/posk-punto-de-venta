@@ -238,7 +238,14 @@ namespace posk.Popups
                     CalcularMontos();
                 };
 
-                SalsaBLL.ObtenerTodas().ForEach(salsa => wrapSalsas.Children.Add(new ItemSalsa() { Salsa = salsa }));
+                SalsaBLL.ObtenerTodas().ForEach(salsa => 
+                {
+                    var itemSalsa = new ItemSalsa() { Salsa = salsa };
+                    itemSalsa.btnAgregado.Click += (se2, a2) => HabilitarBotonVender();
+                    itemSalsa.btnQuitarUnidad.Click += (se2, a2) => HabilitarBotonVender();
+                    wrapSalsas.Children.Add(itemSalsa);
+                });
+
                 MedioPagoBLL.ObtenerTodos().ForEach(mp =>
                 {
                     ItemMedioPagoCalcular impc = new ItemMedioPagoCalcular() { MedioPago = mp };
@@ -435,10 +442,11 @@ namespace posk.Popups
 
         private void HabilitarBotonVender()
         {
-            if (CalcularMontos() && txtNombre.Text != "" && txtTelefono.Text != "" && txtDireccion.Text != "")
-            {
+            int contador = 0;
+            wrapSalsas.Children.OfType<ItemSalsa>().ToList().ForEach(x => contador += x.Cantidad);
+
+            if (CalcularMontos() && contador != 0)
                 btnAceptar.IsEnabled = true;
-            }
             else
                 btnAceptar.IsEnabled = false;
 

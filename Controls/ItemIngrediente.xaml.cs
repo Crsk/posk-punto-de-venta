@@ -58,6 +58,11 @@ namespace posk.Controls
             {
                 Cantidad++;
                 lbCantidad.Content = $"{Cantidad}";
+                if (Cantidad > 0)
+                    lbCantidad.Foreground = new SolidColorBrush(Color.FromRgb(1, 135, 99));
+                else
+                    lbCantidad.Foreground = new SolidColorBrush(Color.FromRgb(242, 97, 2));
+
                 AlCambiarEstado?.Invoke(this, null);
             };
             btnQuitarUnidad.Click += (se, a) =>
@@ -74,6 +79,11 @@ namespace posk.Controls
 
         public void QuitarUnidad()
         {
+            if (Cantidad > 0)
+                lbCantidad.Foreground = new SolidColorBrush(Color.FromRgb(1, 135, 99));
+            else
+                lbCantidad.Foreground = new SolidColorBrush(Color.FromRgb(242, 97, 2));
+
             if (Cantidad >= 1)
                 lbCantidad.Content = $"{--Cantidad}";
         }

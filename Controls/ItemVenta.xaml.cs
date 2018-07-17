@@ -181,7 +181,8 @@ namespace posk.Controls
                 }
                 */
 
-                listaIngredientes.OrderBy(x => x.Cantidad).ToList().ForEach(a =>
+                
+                listaIngredientes?.OrderBy(x => x.Cantidad).ToList().ForEach(a =>
                 {
                     if (a.Cantidad == 1)
                         tbAgregados.Text += $"{a.Ingrediente.nombre}, ";
@@ -190,7 +191,8 @@ namespace posk.Controls
                 });
                 try
                 {
-                    tbAgregados.Text = tbAgregados.Text.Substring(0, tbAgregados.Text.Length - 2);
+                    if (!String.IsNullOrEmpty(tbAgregados.Text))
+                        tbAgregados.Text = tbAgregados.Text.Substring(0, tbAgregados.Text.Length - 2);
                 }
                 catch (Exception ex)
                 {
@@ -251,9 +253,15 @@ namespace posk.Controls
         public void AgregarCantidad(int? cantidad)
         {
             var sumar = 0;
-            listaIngredientes.OfType<ItemIngrediente>().ToList().ForEach(x => sumar += x.Ingrediente.precio);
-            sumar += Opcion.precio;
+            listaIngredientes?.OfType<ItemIngrediente>().ToList().ForEach(x => {
+                if (x.Ingrediente != null)
+                    sumar += x.Ingrediente.precio;
+            });
+            if (Opcion != null)
+                sumar += Opcion.precio;
+
             Cantidad += cantidad;
+            int cobroExtra = ObtenerCobroExtra();
 
             if (Cantidad % 1 == 0)
                 lbCantidad.Content = $"x{Convert.ToInt32(Cantidad)}";
@@ -261,23 +269,23 @@ namespace posk.Controls
             {
                 if (Producto != null)
                 {
-                    lbPrecioUnitario.Content = $"${Producto?.precio + sumar} c/u  ";
-                    txtTotal.Text = $"{(Producto?.precio + sumar) * Cantidad}";
+                    lbPrecioUnitario.Content = $"${Producto?.precio + cobroExtra + sumar} c/u  ";
+                    txtTotal.Text = $"{(Producto?.precio + cobroExtra + sumar) * Cantidad}";
 
                 }
                 else if (Promocion != null)
                 {
-                    lbPrecioUnitario.Content = $"${Promocion?.precio + sumar} c/u  ";
-                    txtTotal.Text = $"{(Producto?.precio + sumar) * Cantidad}";
+                    lbPrecioUnitario.Content = $"${Promocion?.precio + cobroExtra + sumar} c/u  ";
+                    txtTotal.Text = $"{(Producto?.precio + cobroExtra + sumar) * Cantidad}";
                 }
                 btnQuitarUnidad.Content = iconQuitarUnidad;
             }
             else
             {
                 if (Producto != null)
-                    txtTotal.Text = $"{Producto?.precio + sumar}";
+                    txtTotal.Text = $"{Producto?.precio + cobroExtra + sumar}";
                 else if (Promocion != null)
-                    txtTotal.Text = $"{Promocion?.precio + sumar}";
+                    txtTotal.Text = $"{Promocion?.precio + cobroExtra + sumar}";
                 lbPrecioUnitario.Content = "";
                 btnQuitarUnidad.Content = iconBorrar;
             }
@@ -350,7 +358,7 @@ namespace posk.Controls
         {
             string ingredientesTemp = "";
 
-            listaIngredientes.ForEach(a =>
+            listaIngredientes?.ForEach(a =>
             {
                 if (a.Cantidad == 1)
                     ingredientesTemp += $"{a.Ingrediente.nombre}, ";
@@ -366,6 +374,29 @@ namespace posk.Controls
 
         public int CalcularTotal()
         {
+            int? cobroExtra = Extra;
+            if (AgregadoUno != null && AgregadoUno?.cobro_extra != null)
+                cobroExtra += AgregadoUno?.cobro_extra;
+            if (AgregadoDos != null && AgregadoDos?.cobro_extra != null)
+                cobroExtra += AgregadoDos?.cobro_extra;
+
+            decimal? total = 0;
+            if (cobroExtra != 0)
+                total += cobroExtra * Cantidad;
+
+            if (Producto != null)
+                total += Producto.precio * Cantidad;
+            if (Promocion != null)
+                total += Promocion.precio * Cantidad;
+
+            cobroExtra = ObtenerCobroExtra();
+
+            if (total % 1 == 0)
+                txtTotal.Text = $"{total + cobroExtra + sumarAlTotal}";
+            else
+                txtTotal.Text = $"${Convert.ToInt32(total) + cobroExtra + sumarAlTotal}";
+            return (int)total;
+
             //if (TotalIV != 0)
             //{
             //    txtTotal.Text = $"{TotalIV + Extra}";
@@ -381,79 +412,12 @@ namespace posk.Controls
             //if (AgregadoDos != null)
             //    totalAgregados += AgregadoDos.cobro_extra;
 
-            int? cobroExtra = Extra;
-            if (AgregadoUno != null && AgregadoUno?.cobro_extra != null)
-                cobroExtra += AgregadoUno?.cobro_extra;
-            if (AgregadoDos != null && AgregadoDos?.cobro_extra != null)
-                cobroExtra += AgregadoDos?.cobro_extra;
-
             //if (totalAgregados != 0 && totalAgregados != null)
             //    lbTotal.Content = $"${producto?.precio} + ${totalAgregados} = ${producto?.precio + totalAgregados}";
             //else
             //    lbTotal.Content = $"${producto?.precio}";
 
-            decimal? total = 0;
-            if (cobroExtra != 0)
-                total += cobroExtra * Cantidad;
-
-            if (Producto != null)
-                total += Producto.precio * Cantidad;
-            if (Promocion != null)
-                total += Promocion.precio * Cantidad;
-
-            int cantidadIngr = 0;
-            int limiteIngr = 0;
-            int valorIngExtra = 500; // TODO - obtener valor de bd
-
-            if (listaIngredientes != null)
-            {
-                if (LimiteIngrGlobal == 0)
-                    limiteIngr = 1000;
-                else
-                    limiteIngr = LimiteIngrGlobal;
-
-                listaIngredientes.OfType<ItemIngrediente>().ToList().ForEach(x =>
-                {
-                    cantidadIngr += x.Cantidad;
-                    sumarAlTotal += x.Ingrediente.precio;
-                });
-                sumarAlTotal += Opcion.precio;
-
-                if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
-            }
-
-
-            if (listaAgregadosSushi != null)
-            {
-                if (Producto.es_shawarma == true)
-                {
-                    limiteIngr = 5;
-                    listaAgregadosSushi.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => cantidadIngr += x.Cantidad);
-                    if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
-                }
-                if (Producto.es_handroll == true)
-                {
-                    limiteIngr = 3;
-                    listaAgregadosSushi.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => cantidadIngr += x.Cantidad);
-                    if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
-                }
-                else if (Producto.es_superhandroll == true && Producto.es_shawarma != true)
-                {
-                    limiteIngr = 3;
-                    listaAgregadosSushi.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => cantidadIngr += x.Cantidad);
-                    if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
-                }
-                else
-                {
-                    if (Producto.es_shawarma != true)
-                    {
-                        limiteIngr = 3;
-                        listaAgregadosSushi.OfType<ItemAgregadoHandroll>().ToList().ForEach(x => cantidadIngr += x.Cantidad);
-                        if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
-                    }
-                }
-            }
-
+            /*
             if (ListaRollosTabla != null)
             {
                 int cantidadIngrTabla = 0; // la cantidad de ingredientes que tiene la tabla contando todos sus rollos
@@ -479,14 +443,9 @@ namespace posk.Controls
                     txtTotal.Text = $"${Convert.ToInt32(total) + cobroExtra}";
                 return (int)total;
             }
+            */
 
 
-
-            if (total % 1 == 0)
-                txtTotal.Text = $"{total + cobroExtra + sumarAlTotal}";
-            else
-                txtTotal.Text = $"${Convert.ToInt32(total) + cobroExtra + sumarAlTotal}";
-            return (int)total;
         }
 
         // cuestionable
@@ -498,6 +457,35 @@ namespace posk.Controls
             else if (Promocion != null)
                 total = Convert.ToInt32(Promocion.precio);
             return total;
+        }
+
+        private int ObtenerCobroExtra()
+        {
+            int cobroExtra = 0;
+
+            int cantidadIngr = 0;
+            int limiteIngr = 0;
+            int valorIngExtra = 500; // TODO - obtener valor de bd
+
+            if (listaIngredientes != null)
+            {
+                if (LimiteIngrGlobal == 0)
+                    limiteIngr = 1000;
+                else
+                    limiteIngr = LimiteIngrGlobal;
+
+                listaIngredientes?.OfType<ItemIngrediente>().ToList().ForEach(x =>
+                {
+                    cantidadIngr += x.Cantidad;
+                    if (x.Ingrediente != null)
+                        sumarAlTotal += x.Ingrediente.precio;
+                });
+                if (Opcion != null)
+                    sumarAlTotal += Opcion.precio;
+
+                if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
+            }
+            return cobroExtra;
         }
     }
 }

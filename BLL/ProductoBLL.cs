@@ -14,7 +14,7 @@ namespace posk.BLL
 
         public static List<producto> ObtenerTodo()
         {
-            return db.productos.Include("subcategoria").AsNoTracking().ToList();
+            return db.productos.Include("subcategoria").AsNoTracking().OrderBy(x => x.z_index).ToList();
         }
 
         public static bool NombreExiste(string nombre)
@@ -72,12 +72,12 @@ namespace posk.BLL
                 subcategoria sc = db.subcategorias.Where(x => x.nombre == str).FirstOrDefault();
                 if (sc != null)
                 {
-                    return (db.productos.Where(x => x.sub_categoria_id == sc.id).ToList(),
+                    return (db.productos.Where(x => x.sub_categoria_id == sc.id).OrderBy(x => x.z_index).ToList(),
                         db.promociones.Where(x => x.subcategoria_id == sc.id).ToList(), true);
                 }
                 else
                 {
-                    return (db.productos.Where(x => x.nombre.Contains(str) || x.proveedore.nombre.Contains(str)).ToList(),
+                    return (db.productos.Where(x => x.nombre.Contains(str) || x.proveedore.nombre.Contains(str)).OrderBy(x => x.z_index).ToList(),
                         db.promociones.Where(x => x.nombre.Contains(str)).ToList(), false);
                 }
             }
