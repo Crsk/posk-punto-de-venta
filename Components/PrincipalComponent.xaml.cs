@@ -392,13 +392,15 @@ namespace posk.Components
                 itemCalcularTotal.txtVuelto.Clear();
                 itemCalcularTotal.txtTotalVenta.Clear();
             }
-            iconFavorito.Foreground = colorDorado;
-            iconPromo.Foreground = colorNeutro;
-            // descomentar fav
-            MostrarPedidos((ProductoBLL.GetFavs()));
-            txtBuscar.Text = "FAVORITOS";
-            txtBuscar.Foreground = colorDorado;
-            bFavorito = true;
+            //iconFavorito.Foreground = colorDorado;
+            //iconPromo.Foreground = colorNeutro;
+            //MostrarPedidos((ProductoBLL.GetFavs()));
+            //txtBuscar.Text = "FAVORITOS";
+            //txtBuscar.Foreground = colorDorado;
+            //bFavorito = true;
+            bFavorito = false;
+            iconFavorito.Foreground = colorNeutro;
+            txtBuscar.Text = "";
             bPromo = false;
 
             itemDcto.Reset();
