@@ -553,6 +553,7 @@
     <Compile Include="BLL\DB.cs" />
     <Compile Include="BLL\DeliveryItemBLL.cs" />
     <Compile Include="BLL\DevolucionBLL.cs" />
+    <Compile Include="BLL\DireccionesBLL.cs" />
     <Compile Include="BLL\EnvolturaBLL.cs" />
     <Compile Include="BLL\FiadoBLL.cs" />
     <Compile Include="BLL\GastoBLL.cs" />

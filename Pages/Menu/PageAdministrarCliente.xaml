@@ -155,9 +155,6 @@
                                     <TextBox x:Name="txtTelefono" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="TELEFONO"/>
                                 </Border>
                                 <Border Height="36" Margin="0 8 0 0">
-                                    <TextBox x:Name="txtDireccion" Height="40" HorizontalContentAlignment="Left" Background="#FFD8D8D8" FontSize="14" VerticalContentAlignment="Center" Padding="2 0 0 0" materialDesign:HintAssist.Hint="Dirección"/>
-                                </Border>
-                                <Border Height="36" Margin="0 8 0 0">
                                     <CheckBox x:Name="checkFavorito" Content="FAVORITO" FontSize="14" IsChecked="True"/>
                                 </Border>
                             </StackPanel>

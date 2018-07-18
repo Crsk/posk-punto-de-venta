@@ -204,7 +204,6 @@ namespace posk.Pages.Menu
                 txtPuntos.Text = $"{c.punto.puntos_activos}";
                 txtContacto.Text = $"{c.contacto}";
                 txtTelefono.Text = $"{c.telefono}";
-                txtDireccion.Text = $"{c.direccion}";
 
                 checkFavorito.IsChecked = c.favorito == true ? true : false;
             };
@@ -288,7 +287,6 @@ namespace posk.Pages.Menu
                         favorito = checkFavorito.IsChecked == true ? true : false,
                         imagen = itemFoto.NombreFoto,
                         telefono = txtTelefono.Text,
-                        direccion = txtDireccion.Text,
                         puntos_id = 1,
                         comentario = "",
                         pass = "12"

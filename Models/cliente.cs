@@ -18,11 +18,11 @@ namespace posk.Models
         public cliente()
         {
             this.boletas = new HashSet<boleta>();
+            this.delivery_item = new HashSet<delivery_item>();
             this.deudas = new HashSet<deuda>();
+            this.direcciones = new HashSet<direccione>();
             this.fiados = new HashSet<fiado>();
             this.prestamo_envases = new HashSet<prestamo_envases>();
-            this.delivery_item = new HashSet<delivery_item>();
-            this.direcciones = new HashSet<direccione>();
         }
     
         public int id { get; set; }
@@ -35,20 +35,19 @@ namespace posk.Models
         public string comentario { get; set; }
         public string imagen { get; set; }
         public string telefono { get; set; }
-        public string direccion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<boleta> boletas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<delivery_item> delivery_item { get; set; }
         public virtual punto punto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<deuda> deudas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<direccione> direcciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<fiado> fiados { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<prestamo_envases> prestamo_envases { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<delivery_item> delivery_item { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<direccione> direcciones { get; set; }
     }
 }

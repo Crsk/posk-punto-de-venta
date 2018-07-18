@@ -24,6 +24,11 @@ namespace posk.BLL
             return db.clientes.Include("punto").AsNoTracking().ToList();
         }
 
+        public static cliente ObtenerPorTelefono(string telefono)
+        {
+            return db.clientes.Where(x => x.telefono == telefono).FirstOrDefault();
+        }
+
         public static void Actualizar(cliente clienteNuevo)
         {
             cliente clienteViejo = db.clientes.Where(x => x.id == clienteNuevo.id).FirstOrDefault();

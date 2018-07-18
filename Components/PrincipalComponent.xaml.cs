@@ -3416,8 +3416,6 @@ namespace posk.Components
                         ticket.TextoCentro($"Direccion: {di.Direccion}");
                     if (di.MensajeDeliveryUno != "")
                         ticket.TextoCentro($"{di.MensajeDeliveryUno}");
-                    if (di.MensajeDeliveryDos != "")
-                        ticket.TextoCentro($"{di.MensajeDeliveryDos}");
                     if (di.PagaCon != 0)
                         ticket.TextoCentro($"PagaCon: {di.PagaCon}");
                     if (!String.IsNullOrEmpty(di.Vuelto))

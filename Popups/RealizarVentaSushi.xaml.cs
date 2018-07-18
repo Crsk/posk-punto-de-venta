@@ -28,13 +28,12 @@ namespace posk.Popups
         public int MontoJunaeb { get; set; }
         public int MontoOtro { get; set; }
 
+        private cliente clienteEncontrado { get; set; }
         private string ServirLlevarStr { get; set; }
 
         public string verde = "#FF0A7562";
         public string gris = "#FFC9C9C9";
         public string blanco = "#fff";
-
-        private bool bEscribiendoEnCliente;
 
         public event EventHandler<DeliveryInfo> AlVender;
         public event EventHandler<DeliveryInfo> AlCerrar;
@@ -44,14 +43,7 @@ namespace posk.Popups
             InitializeComponent();
             this.MontoTotalSinPropina = montoTotalSinPropina;
 
-
-            txtNombre.TextChanged += (se, a) => HabilitarBotonVender();
-            txtTelefono.TextChanged += (se, a) => HabilitarBotonVender();
-            txtDireccion.TextChanged += (se, a) => HabilitarBotonVender();
-
-
             ServirLlevarStr = "SERVIR";
-            bEscribiendoEnCliente = false;
 
             var bc = new BrushConverter();
             btnServir.Background = (Brush)bc.ConvertFrom(verde);
@@ -106,107 +98,85 @@ namespace posk.Popups
                 AlCerrar?.Invoke(this, null);
             };
 
-            cbClientes.ItemsSource = listaClientes;
-            cbClientes.DisplayMemberPath = "nombre";
-            cbClientes.SelectionChanged += (se, a) =>
-            {
-                try
-                {
-                    cliente cli = cbClientes.SelectedItem as cliente;
-                    lbClienteEncontrado.Content = $"{cli?.nombre} acumula {puntos} y quedará con {cli?.punto?.puntos_activos + puntos} puntos";
-                    if (!bEscribiendoEnCliente)
-                    {
-                        txtBuscarCliente.Text = cli.nombre;
-                        txtNombre.Text = cli.nombre;
-                        txtTelefono.Text = cli.telefono;
-                        txtDireccion.Text = cli.direccion;
-                    }
-                }
-                catch
-                {
-                    lbClienteEncontrado.Content = $"(Acumularía {puntos} puntos)";
-                    cbClientes.SelectedIndex = -1;
-                }
-            };
-
             btnLimpiarCliente.Click += (se, a) =>
             {
-                cbClientes.SelectedIndex = -1;
-                txtBuscarCliente.Text = "";
-                txtBuscarCliente.Focus();
+                txtBuscarPorTelefono.Text = "";
+                txtNombre.Text = "";
+                cbDirecciones.ItemsSource = null;
+                clienteEncontrado = null;
+                txtBuscarPorTelefono.Focus();
+                btnVerCompras.IsEnabled = false;
+                btnCrearDireccion.IsEnabled = false;
             };
 
             lbClienteEncontrado.Content = $"(Acumularía {puntos} puntos)";
-            txtBuscarCliente.TextChanged += (se, a) =>
+
+            txtBuscarPorTelefono.GotFocus += CursorAlFinalAlObtenerFoco;
+            txtNombre.GotFocus += CursorAlFinalAlObtenerFoco;
+            txtDireccion.GotFocus += CursorAlFinalAlObtenerFoco;
+
+            expCrearDireccion.Expanded += (se, a) => expVerCompras.IsExpanded = false;
+            expVerCompras.Expanded += (se, a) => expCrearDireccion.IsExpanded = false;
+
+            btnAgregarDireccion.Click += (se, a) =>
             {
-                if (cbClientes.SelectedIndex != -1)
-                {
-                    lbClienteEncontrado.Content = $"(Acumularía {puntos} puntos)";
-                    cbClientes.ItemsSource = listaClientes;
-                    cbClientes.DisplayMemberPath = "nombre";
-                    cbClientes.SelectedIndex = -1;
-                    cbClientes.Text = "";
-                    txtNombre.Text = "";
-                    txtTelefono.Text = "";
-                    txtDireccion.Text = "";
-                }
+                cliente c;
 
-                bEscribiendoEnCliente = true;
-                // cliente cli_test = listaClientes.Where(x => x.nombre.ToUpper() == txtBuscarCliente.Text.ToUpper()).FirstOrDefault();
-                cliente cliPorRut = listaClientes.Where(x => x.rut == txtBuscarCliente.Text).FirstOrDefault();
-                cliente cliPorTelefono = listaClientes.Where(x => x.telefono == txtBuscarCliente.Text).FirstOrDefault();
-                List<cliente> listaClientesEncontrados = listaClientes.Where(x => x.rut.Contains(txtBuscarCliente.Text) || x.telefono.Contains(txtBuscarCliente.Text) || x.direccion.ToUpper().Contains(txtBuscarCliente.Text.ToUpper()) || x.nombre.ToUpper().Contains(txtBuscarCliente.Text.ToUpper())).ToList();
-
-                if (listaClientesEncontrados != null)
+                if (clienteEncontrado != null)
                 {
-                    cbClientes.ItemsSource = listaClientesEncontrados;
-                    cbClientes.DisplayMemberPath = "nombre";
-
-                    if (listaClientesEncontrados.Count == 1)
-                    {
-                        //cliente cliEncontrado = listaClientesEncontrados.FirstOrDefault() as cliente;
-                        //cbClientes.Text = cliEncontrado.nombre;
-                        //lbClienteEncontrado.Content = $"{cliEncontrado.nombre} acumula {puntos} y queda con {cliEncontrado.punto.puntos_activos + puntos} puntos";
-
-                    }
-                    //else
-                    //cbClientes.SelectedIndex = -1;
-                }
-                else // resetear
-                {
-                    lbClienteEncontrado.Content = $"(Acumularía {puntos} puntos)";
-                    cbClientes.ItemsSource = listaClientes;
-                    cbClientes.DisplayMemberPath = "nombre";
-                    cbClientes.SelectedIndex = -1;
-                    cbClientes.Text = "";
-                    txtNombre.Text = "";
-                    txtTelefono.Text = "";
-                    txtDireccion.Text = "";
-                }
-                if (cliPorRut != null)
-                {
-                    cbClientes.Text = cliPorRut.nombre;
-                    txtNombre.Text = cliPorRut.nombre;
-                    txtTelefono.Text = cliPorRut.telefono;
-                    txtDireccion.Text = cliPorRut.direccion;
-                }
-                else if (cliPorTelefono != null)
-                {
-                    cbClientes.Text = cliPorTelefono.nombre;
-                    txtNombre.Text = cliPorTelefono.nombre;
-                    txtTelefono.Text = cliPorTelefono.telefono;
-                    txtDireccion.Text = cliPorTelefono.direccion;
+                    c = clienteEncontrado;
                 }
                 else
                 {
-                    /*
-                    lbClienteEncontrado.Content = $"(Acumularía {puntos} puntos)";
-                    cbClientes.ItemsSource = listaClientes;
-                    cbClientes.DisplayMemberPath = "nombre";
-                    cbClientes.SelectedIndex = -1;
-                    */
+                    punto pt = PuntoBLL.Crear();
+
+                    ClienteBLL.AddClient(new cliente() { nombre = txtNombre.Text, telefono = $"{txtCodArea.Text} {txtBuscarPorTelefono.Text}", puntos_id = pt.id, pass = "123" });
+                    c = ClienteBLL.ObtenerPorTelefono($"{txtCodArea.Text} {txtBuscarPorTelefono.Text}");
+                    listaClientes.Add(c);
                 }
-                bEscribiendoEnCliente = false;
+                if (c != null)
+                {
+                    DireccionesBLL.AgregarDireccionCliente(c.id, txtDireccion.Text);
+                    cbDirecciones.ItemsSource = DireccionesBLL.ObtenerPorCliente(c.id);
+                    cbDirecciones.DisplayMemberPath = "nombre";
+                    cbDirecciones.SelectedIndex = 0;
+                    cbDirecciones.Text = txtDireccion.Text;
+                    txtDireccion.Text = "";
+                    expCrearDireccion.IsExpanded = false;
+                    txtNombre.IsEnabled = false;
+                }
+            };
+
+            btnVerCompras.Click += (se, a) => expVerCompras.IsExpanded ^= true;
+            btnCrearDireccion.Click += (se, a) =>
+            {
+                expCrearDireccion.IsExpanded ^= true;
+                if (expCrearDireccion.IsExpanded == true)
+                    txtDireccion.Focus();
+            };
+
+            txtNombre.TextChanged += (se, a) => HabilitarFormularioCliente();
+
+            txtBuscarPorTelefono.TextChanged += (se, a) =>
+            {
+                cliente cliPorTelefono = listaClientes.Where(x => x.telefono.Replace(" ", "") == (txtCodArea.Text + txtBuscarPorTelefono.Text).Replace(" ", "")).FirstOrDefault();
+
+                if (cliPorTelefono != null)
+                {
+                    clienteEncontrado = cliPorTelefono;
+                    txtNombre.Text = cliPorTelefono.nombre;
+                    cbDirecciones.ItemsSource = DireccionesBLL.ObtenerPorCliente(cliPorTelefono.id);
+                    cbDirecciones.DisplayMemberPath = "nombre";
+                    cbDirecciones.SelectedIndex = 0;
+                }
+                else
+                {
+                    clienteEncontrado = null;
+                    txtNombre.Clear();
+                    cbDirecciones.ItemsSource = null;
+                }
+
+                HabilitarFormularioCliente();
             };
 
             Loaded += (se, a) =>
@@ -238,7 +208,7 @@ namespace posk.Popups
                     CalcularMontos();
                 };
 
-                SalsaBLL.ObtenerTodas().ForEach(salsa => 
+                SalsaBLL.ObtenerTodas().ForEach(salsa =>
                 {
                     var itemSalsa = new ItemSalsa() { Salsa = salsa };
                     itemSalsa.btnAgregado.Click += (se2, a2) => HabilitarBotonVender();
@@ -416,17 +386,16 @@ namespace posk.Popups
                         NombreCliente = txtNombre.Text,
                         ServirLlevar = ServirLlevarStr,
                         MensajeTicket = txtMensajeTicket.Text,
-                        Telefono = txtTelefono.Text,
-                        Direccion = txtDireccion.Text,
+                        Telefono = $"{txtCodArea.Text} {txtBuscarPorTelefono.Text}",
+                        Direccion = cbDirecciones.Text,
                         MensajeDeliveryUno = txtMensajeDeliveryUno.Text,
-                        MensajeDeliveryDos = txtMensajeDeliverDos.Text,
                         Incluye = incluyeStr,
                         IncluyeStrUnaLinea = incluyeStrUnaLinea,
                         PagaCon = pagaCon,
                         Vuelto = vuelto
                     };
 
-                    string nombre = txtBuscarCliente.Text;
+                    string nombre = txtBuscarPorTelefono.Text;
                     string nombredos = nombre + "asd";
 
                     AlVender.Invoke(this, di);
@@ -438,6 +407,37 @@ namespace posk.Popups
             };
 
             Deactivated += (se, ev) => { if (!bCerrado) Close(); };
+        }
+
+        private void CursorAlFinalAlObtenerFoco(object sender, RoutedEventArgs e)
+        {
+            if (txtBuscarPorTelefono.Text.Length != 0)
+            {
+                TextBox tb = (TextBox)sender;
+                tb.CaretIndex = tb.Text.Length;
+            }
+        }
+
+        private void HabilitarFormularioCliente()
+        {
+            btnVerCompras.IsEnabled = false;
+            btnCrearDireccion.IsEnabled = false;
+
+            if (clienteEncontrado != null)
+            {
+                txtNombre.IsEnabled = false;
+                btnCrearDireccion.IsEnabled = true;
+                btnVerCompras.IsEnabled = true;
+            }
+            else
+            {
+                txtNombre.IsEnabled = true;
+                btnVerCompras.IsEnabled = true;
+                if (txtNombre.Text != "" && txtBuscarPorTelefono.Text.Length == 8)
+                    btnCrearDireccion.IsEnabled = true;
+                else
+                    btnCrearDireccion.IsEnabled = false;
+            }
         }
 
         private void HabilitarBotonVender()
