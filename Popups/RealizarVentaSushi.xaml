@@ -29,15 +29,26 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox x:Name="txtBuscarCliente" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="160" materialDesign:HintAssist.Hint="Buscar" HorizontalContentAlignment="Center" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                                    <TextBox x:Name="txtBuscarCliente" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="160" materialDesign:HintAssist.Hint="Buscar por teléfono" HorizontalContentAlignment="Center" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                                     <ComboBox x:Name="cbClientes" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="160" materialDesign:HintAssist.Hint="Selección" HorizontalContentAlignment="Center" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
                                     <Button x:Name="btnLimpiarCliente" Style="{StaticResource BtnClear}" Margin="8 0 8 0" Width="32" Background="LightGray">
                                         <materialDesign:PackIcon Kind="Broom" />
                                     </Button>
                                 </StackPanel>
-                                <TextBox x:Name="txtNombre" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" materialDesign:HintAssist.Hint="Nombre" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalContentAlignment="Center" Margin="12 12 12 0"/>
-                                <TextBox x:Name="txtTelefono" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" materialDesign:HintAssist.Hint="Teléfono" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalContentAlignment="Center" Margin="12 12 12 0"/>
-                                <TextBox x:Name="txtDireccion" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Dirección" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Margin="12 12 12 0"/>
+                                <TextBox x:Name="txtNombre" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Stretch" materialDesign:HintAssist.Hint="Nombre" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalContentAlignment="Center" Margin="12 12 12 0"/>
+                                <TextBox x:Name="txtTelefono" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Stretch" materialDesign:HintAssist.Hint="Teléfono" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalContentAlignment="Center" Margin="12 12 12 0"/>
+                                <ComboBox x:Name="cbDirecciones" Foreground="Black" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Escoger Dirección" Style="{StaticResource MaterialDesignFloatingHintComboBox}" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Margin="30 12 12 0"/>
+                                <Expander Style="{StaticResource ExpanderStyleFiltro}" Background="{x:Null}" Header="Nueva Dirección" Foreground="ForestGreen">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBox x:Name="txtDireccion" Width="301" Foreground="Black" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Dirección" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Margin="12 12 12 0"/>
+                                        <Button Style="{StaticResource BtnClear}" Background="{x:Null}" Foreground="#FF0A7562" VerticalAlignment="Bottom">
+                                            <materialDesign:PackIcon Kind="Plus" />
+                                        </Button>
+                                    </StackPanel>
+                                </Expander>
+                                <Button x:Name="btnCrearCliente" Grid.Column="0" Margin="0 16 0 32" Background="#FF0A7562" BorderThickness="0" Foreground="White" HorizontalAlignment="Center" Width="100">
+                                    <materialDesign:PackIcon Kind="AccountPlus" />
+                                </Button>
                                 <TextBox x:Name="txtMensajeDeliveryUno" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mensaje Delivery 1" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Margin="12 12 12 0"/>
                                 <TextBox x:Name="txtMensajeDeliverDos" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" materialDesign:HintAssist.Hint="MensajeDelivery 2" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Margin="12 12 12 0"/>
                                 <Label x:Name="lbClienteEncontrado" Foreground="#FF0A7562" HorizontalAlignment="Center" Visibility="Hidden"/>
@@ -59,8 +70,8 @@
                             <Label Content="REALIZAR VENTA DE: $" Foreground="black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0"/>
                             <Label x:Name="lbTotal" Content="2000" Foreground="black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold"/>
                             <Label Content="    ¿incluir propina?" Foreground="black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0"/>
-                      
-                             <Label Content=" ($" Foreground="black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0"/>
+
+                            <Label Content=" ($" Foreground="black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0"/>
                             <TextBox x:Name="txtPropina" Text="0" MinWidth="20" Foreground="black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" PreviewTextInput="ValidarNumero"/>
                             <Label Content=")" Foreground="black" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0"/>
                             <ToggleButton x:Name="tooglePropina" IsChecked="True" Background="#FF0A7562" Foreground="#fff" Style="{StaticResource MaterialDesignActionLightToggleButton}" Margin="8 0 0 0"/>

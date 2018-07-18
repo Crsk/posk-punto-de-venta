@@ -22,6 +22,7 @@ namespace posk.Models
             this.fiados = new HashSet<fiado>();
             this.prestamo_envases = new HashSet<prestamo_envases>();
             this.delivery_item = new HashSet<delivery_item>();
+            this.direcciones = new HashSet<direccione>();
         }
     
         public int id { get; set; }
@@ -47,5 +48,7 @@ namespace posk.Models
         public virtual ICollection<prestamo_envases> prestamo_envases { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<delivery_item> delivery_item { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<direccione> direcciones { get; set; }
     }
 }

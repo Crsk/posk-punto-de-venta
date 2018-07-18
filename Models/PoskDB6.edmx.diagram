@@ -148,6 +148,8 @@
         <EntityTypeShape EntityType="posk_dbModel6.tipo_producto" Width="1.5" PointX="5.375" PointY="0.875" />
         <AssociationConnector Association="posk_dbModel6.productos_ibfk_5" />
         <AssociationConnector Association="posk_dbModel6.tipo_producto_opcionales_ibfk_1" />
+        <EntityTypeShape EntityType="posk_dbModel6.direccione" Width="1.5" PointX="5.5" PointY="13.25" />
+        <AssociationConnector Association="posk_dbModel6.direcciones_ibfk_1" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

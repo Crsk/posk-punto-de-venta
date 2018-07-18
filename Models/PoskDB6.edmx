@@ -200,6 +200,14 @@
           <Property Name="fecha" Type="datetime" Precision="0" />
           <Property Name="monto" Type="decimal" Precision="12" Scale="2" />
         </EntityType>
+        <EntityType Name="direcciones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="cliente_id" Type="int" />
+        </EntityType>
         <EntityType Name="envolturas">
           <Key>
             <PropertyRef Name="id" />
@@ -935,6 +943,20 @@
             </Principal>
             <Dependent Role="devolucion">
               <PropertyRef Name="producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="direcciones_ibfk_1">
+          <End Role="clientes" Type="Self.clientes" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="direcciones" Type="Self.direcciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clientes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="direcciones">
+              <PropertyRef Name="cliente_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1701,6 +1723,7 @@
           <EntitySet Name="detalle_boleta" EntityType="Self.detalle_boleta" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="deudas" EntityType="Self.deudas" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="devolucion" EntityType="Self.devolucion" Schema="posk_db" store:Type="Tables" />
+          <EntitySet Name="direcciones" EntityType="Self.direcciones" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="envolturas" EntityType="Self.envolturas" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="fiados" EntityType="Self.fiados" Schema="posk_db" store:Type="Tables" />
           <EntitySet Name="gastos" EntityType="Self.gastos" Schema="posk_db" store:Type="Tables" />
@@ -1834,6 +1857,10 @@
           <AssociationSet Name="devolucion_ibfk_1" Association="Self.devolucion_ibfk_1">
             <End Role="productos" EntitySet="productos" />
             <End Role="devolucion" EntitySet="devolucion" />
+          </AssociationSet>
+          <AssociationSet Name="direcciones_ibfk_1" Association="Self.direcciones_ibfk_1">
+            <End Role="clientes" EntitySet="clientes" />
+            <End Role="direcciones" EntitySet="direcciones" />
           </AssociationSet>
           <AssociationSet Name="envoltura_producto_ibfk_1" Association="Self.envoltura_producto_ibfk_1">
             <End Role="productos" EntitySet="productos" />
@@ -2448,6 +2475,11 @@
           <AssociationSet Name="tipo_producto_opcionales_ibfk_1" Association="posk_dbModel6.tipo_producto_opcionales_ibfk_1">
             <End Role="tipo_producto" EntitySet="tipo_producto" />
             <End Role="tipo_producto_opcionales" EntitySet="tipo_producto_opcionales" />
+          </AssociationSet>
+          <EntitySet Name="direcciones" EntityType="posk_dbModel6.direccione" />
+          <AssociationSet Name="direcciones_ibfk_1" Association="posk_dbModel6.direcciones_ibfk_1">
+            <End Role="cliente" EntitySet="clientes" />
+            <End Role="direccione" EntitySet="direcciones" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="bodega_movimiento">
@@ -3703,6 +3735,7 @@
           <NavigationProperty Name="fiados" Relationship="posk_dbModel6.fiados_ibfk_1" FromRole="cliente" ToRole="fiado" />
           <NavigationProperty Name="prestamo_envases" Relationship="posk_dbModel6.prestamo_envases_ibfk_1" FromRole="cliente" ToRole="prestamo_envases" />
           <NavigationProperty Name="delivery_item" Relationship="posk_dbModel6.cliente_fk" FromRole="cliente" ToRole="delivery_item" />
+          <NavigationProperty Name="direcciones" Relationship="posk_dbModel6.direcciones_ibfk_1" FromRole="cliente" ToRole="direccione" />
         </EntityType>
         <Association Name="boletas_ibfk_1">
           <End Type="posk_dbModel6.cliente" Role="cliente" Multiplicity="0..1" />
@@ -4282,6 +4315,29 @@
             </Principal>
             <Dependent Role="tipo_producto_opcionales">
               <PropertyRef Name="tipo_producto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="direccione">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cliente_id" Type="Int32" />
+          <NavigationProperty Name="cliente" Relationship="posk_dbModel6.direcciones_ibfk_1" FromRole="direccione" ToRole="cliente" />
+        </EntityType>
+        <Association Name="direcciones_ibfk_1">
+          <End Type="posk_dbModel6.cliente" Role="cliente" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="posk_dbModel6.direccione" Role="direccione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="direccione">
+              <PropertyRef Name="cliente_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4991,6 +5047,15 @@
               <MappingFragment StoreEntitySet="tipo_producto">
                 <ScalarProperty Name="mostrar_opciones" ColumnName="mostrar_opciones" />
                 <ScalarProperty Name="limite_ingr" ColumnName="limite_ingr" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="direcciones">
+            <EntityTypeMapping TypeName="posk_dbModel6.direccione">
+              <MappingFragment StoreEntitySet="direcciones">
+                <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

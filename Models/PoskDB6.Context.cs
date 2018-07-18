@@ -89,5 +89,6 @@ namespace posk.Models
         public virtual DbSet<tipo_producto_opcionales> tipo_producto_opcionales { get; set; }
         public virtual DbSet<producto> productos { get; set; }
         public virtual DbSet<tipo_producto> tipo_producto { get; set; }
+        public virtual DbSet<direccione> direcciones { get; set; }
     }
 }

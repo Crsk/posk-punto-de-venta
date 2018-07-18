@@ -1323,6 +1323,9 @@
     <Compile Include="Models\devolucion.cs">
       <DependentUpon>PoskDB6.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\direccione.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\envoltura.cs">
       <DependentUpon>PoskDB6.tt</DependentUpon>
     </Compile>
