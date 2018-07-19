@@ -344,6 +344,8 @@ namespace posk.Popups
                     };
                     spMedioPago.Children.Add(impc);
                 });
+
+                txtBuscarPorTelefono.Focus();
             };
 
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
