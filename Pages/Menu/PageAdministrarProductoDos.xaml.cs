@@ -321,7 +321,7 @@ namespace posk.Pages.Menu
                 }
                 catch (Exception ex)
                 {
-                    PoskException.Make(ex, "error al cargar cb");
+                    // PoskException.Make(ex, "error al cargar cb");
                     cbSectorImpresion.Text = "";
                     cbTipoItemVenta.Text = "";
                 }

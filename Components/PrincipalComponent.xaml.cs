@@ -3016,12 +3016,15 @@ namespace posk.Components
                 if (!bEsPedido)
                 {
                     if (!string.IsNullOrEmpty(mesa))
-                        ticket.TextoIzquierda($"MESA: {mesa}".ToUpper());
+                            ticket.TextoIzquierda($"MESA: {mesa}".ToUpper());
                     ticket.TextoDerecha($"ID: {BoletaBLL.ObtenerUltimoNumeroBleta()}");
                 }
                 else
                 {
-                    ticket.TextoExtremos($"MESA: {mesa}".ToUpper(), $"ID: {BoletaBLL.ObtenerUltimoNumeroBleta()}");
+                    if (!string.IsNullOrEmpty(mesa))
+                        ticket.TextoExtremos($"MESA: {mesa}".ToUpper(), $"ID: {BoletaBLL.ObtenerUltimoNumeroBleta()}");
+                    else
+                        ticket.TextoDerecha($"ID: {BoletaBLL.ObtenerUltimoNumeroBleta()}");
                 }
 
                 if (!string.IsNullOrEmpty(garzon))
@@ -3414,7 +3417,7 @@ namespace posk.Components
                 {
                     if (di.NombreCliente != "")
                         ticket.TextoCentro($"Cliente: {di.NombreCliente}");
-                    if (di.Telefono != "")
+                    if (di.Telefono != "" && di.Telefono.Replace(" ", "") != "+569")
                         ticket.TextoCentro($"Teléfono: {di.Telefono}");
                     if (di.Direccion != "")
                         ticket.TextoCentro($"Direccion: {di.Direccion}");
