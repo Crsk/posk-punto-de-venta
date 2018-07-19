@@ -275,7 +275,8 @@ namespace posk.Pages.Menu
 
             btnGuardarDescripcionNegocio.Click += (se, ev) =>
             {
-                DatosNegocioBLL.SetDescripcionNegocio(txtNombreDelNegocio.Text, "", txtDireccionNegocio.Text, txtImagenPortada.Text);
+                bool servir = cbServir.SelectedIndex == 0 ? true : false;
+                DatosNegocioBLL.SetDescripcionNegocio(txtNombreDelNegocio.Text, "", txtDireccionNegocio.Text, txtImagenPortada.Text, servir);
             };
 
             this.Loaded += (se, ev) =>

@@ -43,13 +43,23 @@ namespace posk.Popups
             InitializeComponent();
             this.MontoTotalSinPropina = montoTotalSinPropina;
 
-            ServirLlevarStr = "SERVIR";
-
             var bc = new BrushConverter();
-            btnServir.Background = (Brush)bc.ConvertFrom(verde);
-            btnServir.Foreground = (Brush)bc.ConvertFrom(blanco);
-            btnLlevar.Background = (Brush)bc.ConvertFrom(gris);
-            btnLlevar.Foreground = (Brush)bc.ConvertFrom(blanco);
+            if (DatosNegocioBLL.ObtenerServirDefault())
+            {
+                ServirLlevarStr = "SERVIR";
+                btnServir.Background = (Brush)bc.ConvertFrom(verde);
+                btnServir.Foreground = (Brush)bc.ConvertFrom(blanco);
+                btnLlevar.Background = (Brush)bc.ConvertFrom(gris);
+                btnLlevar.Foreground = (Brush)bc.ConvertFrom(blanco);
+            }
+            else
+            {
+                ServirLlevarStr = "LLEVAR";
+                btnServir.Background = (Brush)bc.ConvertFrom(gris);
+                btnServir.Foreground = (Brush)bc.ConvertFrom(blanco);
+                btnLlevar.Background = (Brush)bc.ConvertFrom(verde);
+                btnLlevar.Foreground = (Brush)bc.ConvertFrom(blanco);
+            }
 
             btnServir.Click += (se, a) =>
             {
@@ -71,7 +81,7 @@ namespace posk.Popups
 
             bPropinaIncluida = false;
             tooglePropina.IsChecked = false;
-            if (montoTotalSinPropina == 0) return;
+            // if (montoTotalSinPropina == 0) return;
 
             Propina = (montoTotalSinPropina * 10) / 100;
             MontoTotalConPropina = montoTotalSinPropina + Propina;

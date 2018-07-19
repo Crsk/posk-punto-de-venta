@@ -57,6 +57,7 @@ namespace posk.Popups
             }
             else if (posicion == 2)
             {
+                lbTitulo.Content = $"{_producto.nombre.ToUpper()}";
                 posicion = 1;
                 expIngredientes.IsExpanded = false;
                 expOpciones.IsExpanded = true;
@@ -119,9 +120,18 @@ namespace posk.Popups
             int contadorIngredientes = 0;
             wrapIngredientes.Children.OfType<ItemIngrediente>().ToList().ForEach(ie => contadorIngredientes += ie.Cantidad);
             if (contadorIngredientes > 0)
+            {
                 btnIngresar.IsEnabled = true;
+                if (contadorIngredientes == 1)
+                    lbTitulo.Content = $"{_producto.nombre.ToUpper()} (va {contadorIngredientes} ingrediente)";
+                else
+                    lbTitulo.Content = $"{_producto.nombre.ToUpper()} (van {contadorIngredientes} ingredientes)";
+            }
             else
+            {
                 btnIngresar.IsEnabled = false;
+                lbTitulo.Content = $"{_producto.nombre.ToUpper()}";
+            }
         }
     }
 }

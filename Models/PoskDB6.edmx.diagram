@@ -74,7 +74,6 @@
         <AssociationConnector Association="posk_dbModel6.promociones_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.registros_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.reservas_ibfk_2" />
-        <EntityTypeShape EntityType="posk_dbModel6.datos_negocio" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="posk_dbModel6.sectore" Width="1.5" PointX="14.625" PointY="20.375" />
         <AssociationConnector Association="posk_dbModel6.categoria_sector_ibfk_2" />
         <EntityTypeShape EntityType="posk_dbModel6.sector_impresion" Width="1.5" PointX="0.75" PointY="36.5" />
@@ -150,6 +149,7 @@
         <AssociationConnector Association="posk_dbModel6.direcciones_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.fiados_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.prestamo_envases_ibfk_1" />
+        <EntityTypeShape EntityType="posk_dbModel6.datos_negocio" Width="1.5" PointX="0.75" PointY="6.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

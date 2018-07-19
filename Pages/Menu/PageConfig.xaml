@@ -85,13 +85,17 @@
                                             <Border Height="36" Margin="2">
                                                 <TextBox x:Name="txtImagenPortada" materialDesign:HintAssist.Hint="IMAGEN PORTADA" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" HorizontalContentAlignment="Center"/>
                                             </Border>
+                                            <ComboBox x:Name="cbServir" materialDesign:HintAssist.Hint="Acción default" Margin="8" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                                <ComboBoxItem Content="SERVIR"/>
+                                                <ComboBoxItem Content="LLEVAR"/>
+                                            </ComboBox>
                                             <Button x:Name="btnGuardarDescripcionNegocio" Content="Guardar" Margin="8,12,8,8" VerticalAlignment="Top" />
                                         </StackPanel>
                                     </Border>
                                 </StackPanel>
                             </Expander>
                         </Border>
-                        <Border DockPanel.Dock="Top">
+                        <Border DockPanel.Dock="Top" Visibility="Hidden" Height="0">
                             <Expander Header="GLOBAL" Style="{DynamicResource ExpanderSubMenuRight}" Background="#FFD6D6D6" Foreground="Black">
                                 <StackPanel>
                                     <Border Height="36" Margin="2">
@@ -171,8 +175,8 @@
                                     <Border Height="36" Margin="2">
                                         <TextBox x:Name="txtCorreo_secundario" materialDesign:HintAssist.Hint="CORREO SECUNDARIO" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" HorizontalContentAlignment="Center"/>
                                     </Border>
-                                    <CheckBox Content="Notificar resumen de jornada" Margin="8" IsChecked="True" />
-                                    <StackPanel Orientation="Horizontal" Margin="8">
+                                    <CheckBox Content="Notificar resumen de jornada" Margin="8" IsChecked="True" Visibility="Hidden" Height="0"/>
+                                    <StackPanel Orientation="Horizontal" Margin="8" Visibility="Hidden" Height="0">
                                         <CheckBox IsChecked="True" />
                                         <Label Content="Notificar bajo stock: " Foreground="Black"/>
                                         <TextBox Width="30" Text="50" HorizontalContentAlignment="Center" ToolTip="Enviar un correo cuando quede poco stock"/>
@@ -186,12 +190,12 @@
                             <Expander Header="BASE DE DATOS" Style="{DynamicResource ExpanderSubMenuRight}" Background="#FFD6D6D6" Foreground="Black">
                                 <StackPanel>
                                     <Button x:Name="btnRespaldarBD" Content="RESPALDAR" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="SeaGreen" Margin="0"/>
-                                    <Button x:Name="btnRestaurarBD" Content="RESTAURAR" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="SeaGreen" Margin="0"/>
-                                    <Button x:Name="btnBorrarStock" Content="BORRAR STOCK" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="SeaGreen" Margin="0"/>
+                                    <Button x:Name="btnRestaurarBD" Content="RESTAURAR" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="SeaGreen" Margin="0" Visibility="Hidden" Height="0"/>
+                                    <Button x:Name="btnBorrarStock" Content="BORRAR STOCK" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="SeaGreen" Margin="0" Visibility="Hidden" Height="0"/>
                                 </StackPanel>
                             </Expander>
                         </Border>
-                        <Button x:Name="btnActualizar" Content="BUSCAR ACTUALIZACIÓN" BorderBrush="{x:Null}" Background="ForestGreen" Foreground="#f9f9f9" Margin="0" VerticalAlignment="Top"/>
+                        <Button x:Name="btnActualizar" Content="ACTUALIZAR SISTEMA" BorderBrush="{x:Null}" Background="ForestGreen" Foreground="#f9f9f9" Margin="32" VerticalAlignment="Top"/>
                     </DockPanel>
                     <DockPanel>
                         <StackPanel HorizontalAlignment="Left" Margin="120 24 0 0" Visibility="Hidden">

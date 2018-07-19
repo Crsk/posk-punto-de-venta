@@ -19,7 +19,7 @@
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
-    <PublishUrl>C:\posk\releases\shawarma-rolls\</PublishUrl>
+    <PublishUrl>C:\posk\releases\posk_v2RC2\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -31,8 +31,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://posk.cl/public_ftp/posk/ruabar/</UpdateUrl>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>91</ApplicationRevision>
-    <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
+    <ApplicationRevision>92</ApplicationRevision>
+    <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -71,6 +71,10 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>posk.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="DeltaCompressionDotNet, Version=1.1.0.0, Culture=neutral, PublicKeyToken=1d14d6e5194e7f4a, processorArchitecture=MSIL">
       <HintPath>packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.dll</HintPath>
@@ -1831,6 +1835,7 @@
       <DependentUpon>PoskDB6.edmx</DependentUpon>
       <LastGenOutput>PoskDB6.cs</LastGenOutput>
     </Content>
+    <Resource Include="posk.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\WPFMediaKit.2.2.0\build\WPFMediaKit.targets" Condition="Exists('packages\WPFMediaKit.2.2.0\build\WPFMediaKit.targets')" />

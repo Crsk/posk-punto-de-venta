@@ -2266,7 +2266,11 @@ namespace posk.Components
                                         if (item.Producto?.puntos_cantidad != null)
                                             puntos += (int)item.Producto?.puntos_cantidad;
                                     }
-                                    RealizarVentaSushi rvs = new RealizarVentaSushi(Convert.ToInt32(itemCalcularTotal.txtTotalVenta.Text), puntos);
+                                    int totalVenta = 0;
+                                    if (itemCalcularTotal.txtTotalVenta.Text != "")
+                                        totalVenta = Convert.ToInt32(itemCalcularTotal.txtTotalVenta?.Text);
+
+                                    RealizarVentaSushi rvs = new RealizarVentaSushi(totalVenta, puntos);
                                     rvs.Show();
                                     MostrarOverlay(true);
 
@@ -2303,7 +2307,7 @@ namespace posk.Components
                                         foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().ToList())
                                         {
                                             // ejemplo: ensalada de cortesía para restaurant
-                                            if (item.Producto?.precio == 0) continue;
+                                            //if (item.Producto?.precio == 0) continue;
 
                                             detalle_boleta dl = new detalle_boleta()
                                             {

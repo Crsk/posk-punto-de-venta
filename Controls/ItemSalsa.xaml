@@ -11,7 +11,7 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto">
     <Grid Height="78">
-        <Border x:Name="borderCantidad" Panel.ZIndex="1" CornerRadius="20" Width="32" Height="32" Background="#FFD2D2D2" Margin="0 0 72 50" HorizontalAlignment="Left">
+        <Border x:Name="borderCantidad" Panel.ZIndex="1" CornerRadius="20" Width="32" Height="32" Background="#FFD2D2D2" Margin="0 0 72 50" HorizontalAlignment="Left" Visibility="Hidden">
             <Label x:Name="lbCantidad" Content="2" HorizontalAlignment="Center" Margin="0 0 1 0" Foreground="#FFF26102" FontSize="16" FontWeight="Bold"/>
         </Border>
         <Grid Height="36">

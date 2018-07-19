@@ -41,7 +41,7 @@
         </Grid>
         <Grid Grid.Row="1"/>
         <Grid Grid.Row="2" Background="#FF060606" HorizontalAlignment="Center">
-            <Expander Name="expOpciones" Background="#FF060606" Foreground="#FFF0F0F0" ExpandDirection="Down" HorizontalAlignment="Left" Style="{StaticResource ExpanderStyleSinHeader}">
+            <Expander Name="expOpciones" Background="#FF060606" Foreground="#FFF0F0F0" ExpandDirection="Down" HorizontalAlignment="Left" Style="{StaticResource ExpanderStyleSinHeader}" MaxHeight="420">
                 <ScrollViewer>
                     <ScrollViewer.Resources>
                         <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">50</sys:Double>
@@ -51,8 +51,8 @@
             </Expander>
         </Grid>
         <Grid Grid.Row="3" Background="#FF060606" HorizontalAlignment="Center">
-            <Expander Name="expIngredientes" Background="#FF060606" ExpandDirection="Down" HorizontalAlignment="Left" Style="{StaticResource ExpanderStyleSinHeader}">
-                <ScrollViewer>
+            <Expander Name="expIngredientes" Background="#FF060606" ExpandDirection="Down" HorizontalAlignment="Left" Style="{StaticResource ExpanderStyleSinHeader}" MaxHeight="420">
+                <ScrollViewer MaxHeight="420">
                     <ScrollViewer.Resources>
                         <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">50</sys:Double>
                     </ScrollViewer.Resources>

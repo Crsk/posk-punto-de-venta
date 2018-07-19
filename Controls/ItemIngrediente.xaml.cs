@@ -50,19 +50,26 @@ namespace posk.Controls
 
         public event EventHandler AlCambiarEstado;
 
+        public Color Amarillo { get; set; }
+        public Color AmarilloOscuro { get; set; }
+        public Color Verde { get; set; }
+        public Color VerdeOscuro { get; set; }
+
+
         public ItemIngrediente()
         {
             InitializeComponent();
 
+            Amarillo = (Color)ColorConverter.ConvertFromString("#FFF26102");
+            AmarilloOscuro = (Color)ColorConverter.ConvertFromString("#FFE35403");
+
+            Verde = (Color)ColorConverter.ConvertFromString("#FF0F755C");
+            VerdeOscuro = (Color)ColorConverter.ConvertFromString("#FF0A6456");
+
             btnIngrediente.Click += (se, a) =>
             {
                 Cantidad++;
-                lbCantidad.Content = $"{Cantidad}";
-                if (Cantidad > 0)
-                    lbCantidad.Foreground = new SolidColorBrush(Color.FromRgb(1, 135, 99));
-                else
-                    lbCantidad.Foreground = new SolidColorBrush(Color.FromRgb(242, 97, 2));
-
+                PintarCuadrado();
                 AlCambiarEstado?.Invoke(this, null);
             };
             btnQuitarUnidad.Click += (se, a) =>
@@ -79,13 +86,28 @@ namespace posk.Controls
 
         public void QuitarUnidad()
         {
-            if (Cantidad > 0)
-                lbCantidad.Foreground = new SolidColorBrush(Color.FromRgb(1, 135, 99));
-            else
-                lbCantidad.Foreground = new SolidColorBrush(Color.FromRgb(242, 97, 2));
-
             if (Cantidad >= 1)
                 lbCantidad.Content = $"{--Cantidad}";
+            PintarCuadrado();
+        }
+
+        private void PintarCuadrado()
+        {
+            lbCantidad.Content = $"{Cantidad}";
+            if (Cantidad > 0)
+            {
+                lbCantidad.Foreground = new SolidColorBrush(Verde);
+                btnQuitarUnidad.Background = new SolidColorBrush(VerdeOscuro);
+                btnIngrediente.Background = new SolidColorBrush(Verde);
+                borderCantidad.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                lbCantidad.Foreground = new SolidColorBrush(Amarillo);
+                btnQuitarUnidad.Background = new SolidColorBrush(AmarilloOscuro);
+                btnIngrediente.Background = new SolidColorBrush(Amarillo);
+                borderCantidad.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

@@ -147,6 +147,7 @@
           <Property Name="correo_primario" Type="varchar" MaxLength="45" />
           <Property Name="correo_secundario" Type="varchar" MaxLength="45" />
           <Property Name="teclado_tactil_integrado" Type="bool" />
+          <Property Name="servir_default" Type="bool" Nullable="false" />
         </EntityType>
         <EntityType Name="delivery_item">
           <Key>
@@ -2245,7 +2246,6 @@
             <End Role="usuario" EntitySet="usuarios" />
             <End Role="reserva" EntitySet="reservas" />
           </AssociationSet>
-          <EntitySet Name="datos_negocio" EntityType="posk_dbModel6.datos_negocio" />
           <EntitySet Name="sectores" EntityType="posk_dbModel6.sectore" />
           <AssociationSet Name="categoria_sector_ibfk_2" Association="posk_dbModel6.categoria_sector_ibfk_2">
             <End Role="sectore" EntitySet="sectores" />
@@ -2480,6 +2480,7 @@
             <End Role="cliente" EntitySet="clientes" />
             <End Role="prestamo_envases" EntitySet="prestamo_envases" />
           </AssociationSet>
+          <EntitySet Name="datos_negocio" EntityType="posk_dbModel6.datos_negocio" />
           </EntityContainer>
         <EntityType Name="bodega_movimiento">
           <Key>
@@ -3316,25 +3317,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="datos_negocio">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="mensaje" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="direccion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="logo" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
-          <Property Name="iva" Type="Int32" />
-          <Property Name="inicio_jornada_dia" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="termino_jornada_dia" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="inicio_jornada_hora" Type="Time" />
-          <Property Name="termino_jornada_hora" Type="Time" />
-          <Property Name="modo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="correo_primario" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="correo_secundario" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="teclado_tactil_integrado" Type="Boolean" />
-        </EntityType>
         <EntityType Name="sectore">
           <Key>
             <PropertyRef Name="id" />
@@ -4339,6 +4321,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="datos_negocio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="mensaje" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="logo" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
+          <Property Name="iva" Type="Int32" />
+          <Property Name="inicio_jornada_dia" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="termino_jornada_dia" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="inicio_jornada_hora" Type="Time" />
+          <Property Name="termino_jornada_hora" Type="Time" />
+          <Property Name="modo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="correo_primario" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="correo_secundario" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="teclado_tactil_integrado" Type="Boolean" />
+          <Property Name="servir_default" Type="Boolean" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4778,26 +4780,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="datos_negocio">
-            <EntityTypeMapping TypeName="posk_dbModel6.datos_negocio">
-              <MappingFragment StoreEntitySet="datos_negocio">
-                <ScalarProperty Name="teclado_tactil_integrado" ColumnName="teclado_tactil_integrado" />
-                <ScalarProperty Name="correo_secundario" ColumnName="correo_secundario" />
-                <ScalarProperty Name="correo_primario" ColumnName="correo_primario" />
-                <ScalarProperty Name="modo" ColumnName="modo" />
-                <ScalarProperty Name="termino_jornada_hora" ColumnName="termino_jornada_hora" />
-                <ScalarProperty Name="inicio_jornada_hora" ColumnName="inicio_jornada_hora" />
-                <ScalarProperty Name="termino_jornada_dia" ColumnName="termino_jornada_dia" />
-                <ScalarProperty Name="inicio_jornada_dia" ColumnName="inicio_jornada_dia" />
-                <ScalarProperty Name="iva" ColumnName="iva" />
-                <ScalarProperty Name="logo" ColumnName="logo" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sectores">
             <EntityTypeMapping TypeName="posk_dbModel6.sectore">
               <MappingFragment StoreEntitySet="sectores">
@@ -5054,6 +5036,27 @@
                 <ScalarProperty Name="pass" ColumnName="pass" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="rut" ColumnName="rut" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="datos_negocio">
+            <EntityTypeMapping TypeName="posk_dbModel6.datos_negocio">
+              <MappingFragment StoreEntitySet="datos_negocio">
+                <ScalarProperty Name="servir_default" ColumnName="servir_default" />
+                <ScalarProperty Name="teclado_tactil_integrado" ColumnName="teclado_tactil_integrado" />
+                <ScalarProperty Name="correo_secundario" ColumnName="correo_secundario" />
+                <ScalarProperty Name="correo_primario" ColumnName="correo_primario" />
+                <ScalarProperty Name="modo" ColumnName="modo" />
+                <ScalarProperty Name="termino_jornada_hora" ColumnName="termino_jornada_hora" />
+                <ScalarProperty Name="inicio_jornada_hora" ColumnName="inicio_jornada_hora" />
+                <ScalarProperty Name="termino_jornada_dia" ColumnName="termino_jornada_dia" />
+                <ScalarProperty Name="inicio_jornada_dia" ColumnName="inicio_jornada_dia" />
+                <ScalarProperty Name="iva" ColumnName="iva" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

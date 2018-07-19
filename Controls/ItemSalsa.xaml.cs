@@ -22,9 +22,20 @@ namespace posk.Controls
         public int CobroExtra { get; set; }
         public int Cantidad { get; set; }
 
+        public Color Amarillo { get; set; }
+        public Color AmarilloOscuro { get; set; }
+        public Color Verde { get; set; }
+        public Color VerdeOscuro { get; set; }
+
         public ItemSalsa()
         {
             InitializeComponent();
+
+            Amarillo = (Color)ColorConverter.ConvertFromString("#FFF26102");
+            AmarilloOscuro = (Color)ColorConverter.ConvertFromString("#FFE35403");
+
+            Verde = (Color)ColorConverter.ConvertFromString("#FF0F755C");
+            VerdeOscuro = (Color)ColorConverter.ConvertFromString("#FF0A6456");
 
             Loaded += (se, a) =>
             {
@@ -32,7 +43,11 @@ namespace posk.Controls
                 Cantidad = 0;
                 lbCantidad.Content = Cantidad;
             };
-            btnAgregado.Click += (se, a) => lbCantidad.Content = $"{++Cantidad}";
+            btnAgregado.Click += (se, a) =>
+            {
+                lbCantidad.Content = $"{++Cantidad}";
+                PintarCuadrado();
+            };
             btnQuitarUnidad.Click += (se, a) => QuitarUnidad();
             borderCantidad.MouseLeftButtonUp += (se, a) => QuitarUnidad();
         }
@@ -41,6 +56,26 @@ namespace posk.Controls
         {
             if (Cantidad >= 1)
                 lbCantidad.Content = $"{--Cantidad}";
+            PintarCuadrado();
+        }
+
+        private void PintarCuadrado()
+        {
+            lbCantidad.Content = $"{Cantidad}";
+            if (Cantidad > 0)
+            {
+                lbCantidad.Foreground = new SolidColorBrush(Verde);
+                btnQuitarUnidad.Background = new SolidColorBrush(VerdeOscuro);
+                btnAgregado.Background = new SolidColorBrush(Verde);
+                borderCantidad.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                lbCantidad.Foreground = new SolidColorBrush(Amarillo);
+                btnQuitarUnidad.Background = new SolidColorBrush(AmarilloOscuro);
+                btnAgregado.Background = new SolidColorBrush(Amarillo);
+                borderCantidad.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

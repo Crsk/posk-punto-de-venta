@@ -67,7 +67,6 @@ namespace posk.Models
         public virtual DbSet<sync> syncs { get; set; }
         public virtual DbSet<unidades_medida> unidades_medida { get; set; }
         public virtual DbSet<usuario> usuarios { get; set; }
-        public virtual DbSet<datos_negocio> datos_negocio { get; set; }
         public virtual DbSet<sectore> sectores { get; set; }
         public virtual DbSet<sector_impresion> sector_impresion { get; set; }
         public virtual DbSet<tipo_itemventa> tipo_itemventa { get; set; }
@@ -90,5 +89,6 @@ namespace posk.Models
         public virtual DbSet<tipo_producto> tipo_producto { get; set; }
         public virtual DbSet<direccione> direcciones { get; set; }
         public virtual DbSet<cliente> clientes { get; set; }
+        public virtual DbSet<datos_negocio> datos_negocio { get; set; }
     }
 }

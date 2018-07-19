@@ -38,7 +38,7 @@
                                 <TextBox x:Name="txtNombre" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Stretch" materialDesign:HintAssist.Hint="Nombre" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalContentAlignment="Left" Margin="12 12 12 0"/>
                                 <ComboBox x:Name="cbDirecciones" Foreground="Black" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Dirección" Style="{StaticResource MaterialDesignFloatingHintComboBox}" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" Margin="12 12 12 0"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 16 0 4">
-                                    <Button x:Name="btnVerCompras" Content="Ver compras" Style="{StaticResource BtnClear}" Margin="4" Padding="6" Foreground="WhiteSmoke" FontSize="12" IsEnabled="False"/>
+                                    <Button x:Name="btnVerCompras" Content="Ver compras" Style="{StaticResource BtnClear}" Margin="4" Padding="6" Foreground="WhiteSmoke" FontSize="12" IsEnabled="False" Visibility="Hidden" Width="0"/>
                                     <Button x:Name="btnCrearDireccion" Content="Crear dirección" Style="{StaticResource BtnClear}" Margin="4" Padding="6" Foreground="WhiteSmoke" FontSize="12" IsEnabled="False"/>
                                 </StackPanel>
                                 <Expander x:Name="expCrearDireccion" Style="{StaticResource ExpanderStyleSinHeader}" Background="{x:Null}" Foreground="ForestGreen">
