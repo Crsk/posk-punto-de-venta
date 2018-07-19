@@ -21,11 +21,20 @@ namespace posk.Pages.Menu
             cbTerminoJornadaDia.Items.Add("A");
             cbTerminoJornadaDia.Items.Add("B");
 
-            cbImpresoraUno.ItemsSource = System.Drawing.Printing.PrinterSettings.InstalledPrinters;
-            cbImpresoraDos.ItemsSource = System.Drawing.Printing.PrinterSettings.InstalledPrinters;
-            cbImpresoraTres.ItemsSource = System.Drawing.Printing.PrinterSettings.InstalledPrinters;
-            cbImpresoraCuatro.ItemsSource = System.Drawing.Printing.PrinterSettings.InstalledPrinters;
-            cbImpresoraCinco.ItemsSource = System.Drawing.Printing.PrinterSettings.InstalledPrinters;
+            
+            cbImpresoraUno.Items.Insert(0, new ComboBoxItem() { Content = "NO IMPRIMIR" });
+            cbImpresoraDos.Items.Insert(0, new ComboBoxItem() { Content = "NO IMPRIMIR" });
+            cbImpresoraTres.Items.Insert(0, new ComboBoxItem() { Content = "NO IMPRIMIR" });
+            cbImpresoraCuatro.Items.Insert(0, new ComboBoxItem() { Content = "NO IMPRIMIR" });
+            cbImpresoraCinco.Items.Insert(0, new ComboBoxItem() { Content = "NO IMPRIMIR" });
+            foreach (var item in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
+            {
+                cbImpresoraUno.Items.Add(item);
+                cbImpresoraDos.Items.Add(item);
+                cbImpresoraTres.Items.Add(item);
+                cbImpresoraCuatro.Items.Add(item);
+                cbImpresoraCinco.Items.Add(item);
+            }
 
             cbSectorUno.ItemsSource = ImpresoraBLL.ObtenerImpresoras();
             cbSectorUno.DisplayMemberPath = "nombre";
@@ -44,16 +53,16 @@ namespace posk.Pages.Menu
 
             btnGuardarImpresoras.Click += (se, a) =>
             {
-                if (cbSectorUno.SelectedItem != null && cbImpresoraUno.SelectedValue != null)
-                    ImpresoraBLL.EstablecerSectorImpresora((cbSectorUno.SelectedItem as sector_impresion).nombre, cbImpresoraUno.SelectedValue.ToString());
+                if (cbSectorUno.SelectedItem != null && cbImpresoraUno.Text != "")
+                    ImpresoraBLL.EstablecerSectorImpresora((cbSectorUno.SelectedItem as sector_impresion).nombre, cbImpresoraUno.Text);
                 if (cbSectorDos.SelectedItem != null && cbImpresoraDos.SelectedValue != null)
-                    ImpresoraBLL.EstablecerSectorImpresora((cbSectorDos.SelectedItem as sector_impresion).nombre, cbImpresoraDos.SelectedValue.ToString());
+                    ImpresoraBLL.EstablecerSectorImpresora((cbSectorDos.SelectedItem as sector_impresion).nombre, cbImpresoraDos.Text);
                 if (cbSectorTres.SelectedItem != null && cbImpresoraTres.SelectedValue != null)
-                    ImpresoraBLL.EstablecerSectorImpresora((cbSectorTres.SelectedItem as sector_impresion).nombre, cbImpresoraTres.SelectedValue.ToString());
+                    ImpresoraBLL.EstablecerSectorImpresora((cbSectorTres.SelectedItem as sector_impresion).nombre, cbImpresoraTres.Text);
                 if (cbSectorCuatro.SelectedItem != null && cbImpresoraCuatro.SelectedValue != null)
-                    ImpresoraBLL.EstablecerSectorImpresora((cbSectorCuatro.SelectedItem as sector_impresion).nombre, cbImpresoraCuatro.SelectedValue.ToString());
+                    ImpresoraBLL.EstablecerSectorImpresora((cbSectorCuatro.SelectedItem as sector_impresion).nombre, cbImpresoraCuatro.Text);
                 if (cbSectorCinco.SelectedItem != null && cbImpresoraCinco.SelectedValue != null)
-                    ImpresoraBLL.EstablecerSectorImpresora((cbSectorCinco.SelectedItem as sector_impresion).nombre, cbImpresoraCinco.SelectedValue.ToString());
+                    ImpresoraBLL.EstablecerSectorImpresora((cbSectorCinco.SelectedItem as sector_impresion).nombre, cbImpresoraCinco.Text);
 
                 new Notification("LISTO");
 
