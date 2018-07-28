@@ -128,9 +128,6 @@ namespace posk.Pages.Menu
                 spDerecha.Children.Add(borderSector);
                 spDerecha.Children.Add(borderCategoria);
                 spDerecha.Children.Add(borderSubcategoria);
-                spDerecha.Children.Add(borderAgregado);
-                spDerecha.Children.Add(borderPreparadoEspecial);
-                spDerecha.Children.Add(borderTipoItemVenta);
                 spDerecha.Children.Add(borderSectorImpresion);
                 spDerecha.Children.Add(borderZindex);
             }
@@ -149,9 +146,6 @@ namespace posk.Pages.Menu
                 spDerecha.Children.Add(borderCategoria);
                 spDerecha.Children.Add(borderSubcategoria);
                 spDerecha.Children.Add(borderTipoProducto);
-                spDerecha.Children.Add(borderAgregado);
-                spDerecha.Children.Add(borderPreparadoEspecial);
-                spDerecha.Children.Add(borderTipoItemVenta);
                 spDerecha.Children.Add(borderSectorImpresion);
                 spDerecha.Children.Add(borderZindex);
             }
@@ -301,9 +295,6 @@ namespace posk.Pages.Menu
                 rbCompraVenta.IsChecked = p.solo_venta != true && p.solo_compra != true ? true : false;
                 rbSoloVenta.IsChecked = p.solo_venta == true ? true : false;
                 rbSoloCompra.IsChecked = p.solo_compra == true ? true : false;
-                checkRetornable.IsChecked = p.retornable == true ? true : false;
-                checkContieneAgregado.IsChecked = p.contiene_agregado == true ? true : false;
-                checkPreparadoEspecial.IsChecked = p.preparado_especial == true ? true : false;
                 txtZindex.Text = $"{p.z_index}";
 
                 try
@@ -312,18 +303,11 @@ namespace posk.Pages.Menu
                     cbSectorImpresion.ItemsSource = SectorImpresionBLL.ObtenerTodo();
                     cbSectorImpresion.DisplayMemberPath = "nombre";
                     cbSectorImpresion.Text = p.sector_impresion.nombre;
-
-                    tipo_itemventa tiv = TipoItemVentaBLL.Obtener(p.id);
-                    cbTipoItemVenta.ItemsSource = TipoItemVentaBLL.ObtenerTodo();
-                    cbTipoItemVenta.DisplayMemberPath = "nombre";
-                    cbTipoItemVenta.Text = p.tipo_itemventa.nombre;
-                    //cbTipoItemVenta.SelectedItem = cbTipoItemVenta.ItemsSource.OfType<tipo_itemventa>().Where(x => x.nombre.ToUpper() == $"{p.tipo_itemventa.nombre}").FirstOrDefault();
                 }
                 catch (Exception ex)
                 {
                     // PoskException.Make(ex, "error al cargar cb");
                     cbSectorImpresion.Text = "";
-                    cbTipoItemVenta.Text = "";
                 }
 
                 if (p.tipo_producto_id != null)
@@ -440,10 +424,7 @@ namespace posk.Pages.Menu
             cbCategoria.ItemsSource = null;
             cbSubCategoria.ItemsSource = null;
             cbTipoProducto.ItemsSource = null;
-            checkRetornable.IsChecked = false;
-            checkContieneAgregado.IsChecked = false;
             cbSectorImpresion.SelectedIndex = -1;
-            cbTipoItemVenta.SelectedIndex = -1;
             txtZindex.Clear();
 
             cbTipoProducto.ItemsSource = TipoProductoBLL.ObtenerTodo();
@@ -453,8 +434,6 @@ namespace posk.Pages.Menu
             {
                 txtPuntos.Text = "0";
                 txtZindex.Text = "0";
-                cbTipoItemVenta.Text = "plato fondo";
-                cbTipoItemVenta.Visibility = Visibility.Hidden;
             }
             catch
             {
@@ -574,18 +553,13 @@ namespace posk.Pages.Menu
                         nombre = txtNombre.Text,
                         codigo_barras = txtCodigo.Text,
                         precio = Convert.ToInt32(txtPrecioVenta.Text),
-                        retornable = checkRetornable.IsChecked,
                         favorito = checkFavorito.IsChecked,
                         puntos_cantidad = 0,
                         imagen = itemFoto.NombreFoto,
                         sub_categoria_id = (cbSubCategoria.SelectedItem as subcategoria).id,
                         tipo_producto_id = (cbTipoProducto.SelectedItem as tipo_producto)?.id,
-                        proveedor_id = null,
-                        contiene_agregado = checkContieneAgregado.IsChecked,
                         solo_venta = rbSoloVenta.IsChecked,
                         solo_compra = rbSoloCompra.IsChecked,
-                        preparado_especial = checkPreparadoEspecial.IsChecked,
-                        tipo_itemventa_id = (cbTipoItemVenta.SelectedItem as tipo_itemventa).id,
                         sector_impresion_id = (cbSectorImpresion.SelectedItem as sector_impresion).id,
                         z_index = Convert.ToInt32(txtZindex.Text)
                     };
@@ -658,9 +632,6 @@ namespace posk.Pages.Menu
                     cbSector.ItemsSource = SectorBLL.ObtenerTodo();
                     cbSector.DisplayMemberPath = "nombre";
 
-                    cbTipoItemVenta.ItemsSource = TipoItemVentaBLL.ObtenerTodo();
-                    cbTipoItemVenta.DisplayMemberPath = "nombre";
-
                     cbSectorImpresion.ItemsSource = SectorImpresionBLL.ObtenerTodo();
                     cbSectorImpresion.DisplayMemberPath = "nombre";
 
@@ -674,8 +645,6 @@ namespace posk.Pages.Menu
                     {
                         txtPuntos.Text = "0";
                         txtZindex.Text = "0";
-                        cbTipoItemVenta.Text = "plato fondo";
-                        cbTipoItemVenta.Visibility = Visibility.Hidden;
                     }
                     catch
                     {

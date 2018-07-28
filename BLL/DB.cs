@@ -49,22 +49,6 @@ namespace posk.BLL
         {
             return db.puntos.Where(x => x.id == client.puntos_id).FirstOrDefault();
         }
-
-
-
-        public static void AddDetailLine(detalle_boleta dt)
-        {
-            try
-            {
-                detalle_boleta dl = new detalle_boleta() { producto_id = dt.producto_id, monto = dt.monto, cantidad = dt.cantidad, descuento = dt.descuento, boleta_id = dt.boleta_id, promocion_id = dt.promocion_id };
-                db.detalle_boleta.Add(dt);
-                db.SaveChanges();
-            }
-            catch (Exception)
-            {
-
-            }
-        }
         
         
         // Product methods
@@ -86,7 +70,6 @@ namespace posk.BLL
                 original.puntos_cantidad = newProduct.puntos_cantidad;
                 original.imagen = newProduct.imagen;
                 original.sub_categoria_id = newProduct.sub_categoria_id;
-                original.proveedor_id = newProduct.proveedor_id;
                 db.SaveChanges();
             }
         }
@@ -270,16 +253,6 @@ namespace posk.BLL
             subcategoria sc = db.subcategorias.Where(x => x.id == id).FirstOrDefault();
             if (sc != null)
                 return sc.nombre;
-            else
-                return "";
-        }
-
-        // Supplier methods
-        public static string GetSupplierName(int id)
-        {
-            proveedore s = db.proveedores.Where(x => x.id == id).FirstOrDefault();
-            if (s != null)
-                return s.nombre;
             else
                 return "";
         }

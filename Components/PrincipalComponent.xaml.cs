@@ -28,7 +28,6 @@ namespace posk.Components
     {
         #region Global
         private ItemCalcularTotal itemCalcularTotal;
-        private List<ItemVentaPedido> listaItemsPedidoEliminarDesdeBD;
         private ItemTeclado teclado;
         public bool bProductosFavToggle { get; set; }
         private SolidColorBrush colorDorado;
@@ -150,100 +149,6 @@ namespace posk.Components
                 spMoneda2.Children.Add(x);
             });
 
-            // Crea los agregados
-            //var btnCerrarAgregados = new Button() { Content = "x" };
-            //btnCerrarAgregados.Click += (se, a) =>
-            //{
-            //    expBottom.IsExpanded = false;
-            //    DeseleccionarProductoAgregado();
-            //};
-            //wrapAgregados.Children.Add(btnCerrarAgregados);
-
-            // Crea los item agregado
-            AgregadoBLL.ObtenerTodos().ForEach(itemLista =>
-            {
-                var ia = new ItemAgregado() { Agregado = itemLista };
-                ia.btnAgregado.Click += (se, a) =>
-                {
-                    if (itemAgregadoUno.Agregado == null && itemAgregadoDos.Agregado == null)
-                        itemAgregadoUno.Agregado = itemLista;
-                    else if (itemAgregadoDos.Agregado == null && itemAgregadoUno.Agregado != null)
-                        itemAgregadoDos.Agregado = itemLista;
-                    if (itemAgregadoDos.Agregado != null && itemAgregadoUno.Agregado != null && itemProductoSeleccionado.Producto != null)
-                        Incluir();
-                };
-                wrapAgregados.Children.Add(ia);
-            });
-
-            AgregadoBLL.ObtenerPaltaCebollin().ForEach(item =>
-            {
-                var ia = new ItemAgregadoHandroll(true) { Agregado = item };
-                ia.btnAgregado.Click += (se, a) =>
-                {
-                    itemPaltaCebollin = ia;
-                    expBottomPaltaCebollin.IsExpanded = false;
-                    expBottomAgregadosHandroll.IsExpanded = true;
-                };
-                wrapPaltaCebollin.Children.Add(ia);
-            });
-
-            // CargarEnvolturas();
-
-            List<ItemAgregadoHandroll> listaAgregadosParaHandroll = new List<ItemAgregadoHandroll>();
-
-            CrearAgregadosHandroll();
-
-            btnCrearItemVentaEspecialHandroll.Click += (se, a) =>
-            {
-                List<ItemAgregadoHandroll> listaAgregados = wrapAgregadosHandroll.Children.OfType<ItemAgregadoHandroll>().Where(x => x.Cantidad > 0).ToList();
-                if (listaAgregados.Count > 0)
-                    IncluirRolloSushi(listaAgregados);
-                else
-                    new Notification("NO SE PUDO", "DEBES INCLUIR INGREDIENTES", Notification.Type.Warning);
-            };
-
-            // Crea los item preparado especial
-            PreparacionesBLL.ObtenerTodos().ForEach(prep =>
-            {
-                var ip = new ItemPreparacion() { Preparacion = prep };
-                ip.btnPreparacion.Click += (se, a) =>
-                {
-                    //if (itemAgregadoUno.Agregado == null && itemAgregadoDos.Agregado == null)
-                    //itemAgregadoUno.Agregado = itemLista;
-                    //else if (itemAgregadoDos.Agregado == null && itemAgregadoUno.Agregado != null)
-                    //itemAgregadoDos.Agregado = itemLista;
-                    //if (itemAgregadoDos.Agregado != null && itemAgregadoUno.Agregado != null && itemProductoSeleccionado.Producto != null)
-
-                    //Incluir();
-                    //var ipSeleccion = new ItemPreparacion() { Preparacion = p };
-                    //ipSeleccion.btnPreparacion.Click += (se2, a2) => wrapPreparadoEspecialSeleccion.Children.Remove(se2 as ItemPreparacion);
-
-                    // usar en sushi:
-                    //listaItemsPreparadoEspecial.Add(p);
-                    //IncluiraVentaPreparadoEspecial();
-
-                    listaItemsPreparadoEspecial.Add(prep);
-                    // usar en sushi
-                    //var itemVentaExtendido = new ItemVentaPreparadoEspecial() { Producto = itemProductoSeleccionado.Producto, ListaItemsPreparado = listaItemsPreparadoEspecial };
-
-                    //var itemVentaExtendido = new ItemVentaPlatoFondo() { Producto = itemProductoSeleccionado.Producto, AgregadoUno = itemAgregadoUno.Agregado, AgregadoDos = itemAgregadoDos.Agregado, Preparacion = prep };
-                    var itemVentaExtendido = new ItemVenta() { Producto = itemProductoSeleccionado.Producto, AgregadoUno = itemAgregadoUno.Agregado, AgregadoDos = itemAgregadoDos.Agregado, Preparacion = prep };
-
-                    itemVentaExtendido.AlEliminar += (se2, a2) =>
-                    {
-                        spVentaItems.Children.Remove(itemVentaExtendido);
-                        CalcularTotal();
-                    };
-                    itemVentaExtendido.AlModificarCantidad += (se4, a4) => CalcularTotal();
-                    itemVentaExtendido.AlModificarTotal += (se4, a4) => CalcularTotal();
-                    spVentaItems.Children.Add(itemVentaExtendido);
-                    DeseleccionarProductoAgregado();
-                    CalcularTotal();
-                    expBottomPreparadoEspecial.IsExpanded = false;
-                    listaItemsPreparadoEspecial.Clear();
-                };
-                wrapPreparadoEspecial.Children.Add(ip);
-            });
             teclado = new ItemTeclado(new List<TextBox>() { txtBuscar });
             borderTeclado.Child = teclado;
 
@@ -256,52 +161,6 @@ namespace posk.Components
             InitEvents();
         }
 
-        private void CrearAgregadosHandroll()
-        {
-            wrapAgregadosHandroll.Children.Clear();
-            AgregadoBLL.ObtenerTodos().Where(a => a.para_handroll == true).ToList().ForEach(itemLista =>
-            {
-                var ia = new ItemAgregadoHandroll() { Agregado = itemLista };
-                wrapAgregadosHandroll.Children.Add(ia);
-            });
-        }
-
-        private void IncluiraVentaPreparadoEspecial()
-        {
-            wrapPreparadoEspecialSeleccion.Children.Clear();
-            listaItemsPreparadoEspecial.ForEach(p =>
-            {
-                var ip = new ItemPreparacion() { Preparacion = p };
-                ip.btnPreparacion.Click += (se, a) =>
-                {
-                    listaItemsPreparadoEspecial.Remove(p);
-                    IncluiraVentaPreparadoEspecial();
-                };
-                wrapPreparadoEspecialSeleccion.Children.Add(ip);
-            });
-
-            var btnIncluir = new Button() { Content = "Incluir" };
-            btnIncluir.Click += (se, a) =>
-            {
-                // usar en sushi
-                // var itemVentaExtendido = new ItemVentaPreparadoEspecial() { Producto = itemProductoSeleccionado.Producto, ListaItemsPreparado = listaItemsPreparadoEspecial };
-                //var itemVentaExtendido = new ItemVentaPlatoFondo() { Producto = itemProductoSeleccionado.Producto, AgregadoUno = itemAgregadoUno.Agregado, AgregadoDos = itemAgregadoDos.Agregado };
-                var itemVentaExtendido = new ItemVenta() { Producto = itemProductoSeleccionado.Producto, AgregadoUno = itemAgregadoUno.Agregado, AgregadoDos = itemAgregadoDos.Agregado };
-                itemVentaExtendido.AlEliminar += (se2, a2) =>
-                {
-                    spVentaItems.Children.Remove(itemVentaExtendido);
-                    CalcularTotal();
-                };
-                itemVentaExtendido.AlModificarCantidad += (se4, a4) => CalcularTotal();
-                itemVentaExtendido.AlModificarTotal += (se4, a4) => CalcularTotal();
-                spVentaItems.Children.Add(itemVentaExtendido);
-                DeseleccionarProductoAgregado();
-                CalcularTotal();
-
-                listaItemsPreparadoEspecial.Clear();
-            };
-            wrapPreparadoEspecialSeleccion.Children.Add(btnIncluir);
-        }
         private void dtClockTime_Tick(object sender, EventArgs e)
         {
             try
@@ -464,130 +323,6 @@ namespace posk.Components
         }
 
         /// <summary>
-        /// Incluye un plato de fondo a la sección venta (cuando tiene 2 agregados)
-        /// </summary>
-        private void Incluir()
-        {
-            try
-            {
-                if (ProductoYaSeleccionado() && AgregadosSeleccionados() == 2)
-                {
-                    if (itemProductoSeleccionado.Producto?.preparado_especial == true)
-                    {
-                        expBottom.IsExpanded = false;
-                        expBottomPreparadoEspecial.IsExpanded = true;
-                        return;
-                    }
-                    string agregadoStr = "";
-                    if (itemAgregadoUno.Agregado == itemAgregadoDos.Agregado)
-                        agregadoStr = $"{itemAgregadoUno.Agregado.nombre}";
-                    else
-                        agregadoStr = $"{itemAgregadoUno.Agregado.nombre} y {itemAgregadoDos.Agregado.nombre}";
-                    MostrarNotificacion($"{itemProductoSeleccionado.Producto?.nombre}", agregadoStr);
-
-                    //var itemVentaExtendido = new ItemVentaPlatoFondo() { Producto = itemProductoSeleccionado.Producto, AgregadoUno = itemAgregadoUno.Agregado, AgregadoDos = itemAgregadoDos.Agregado };
-                    var itemVentaExtendido = new ItemVenta() { Producto = itemProductoSeleccionado.Producto, AgregadoUno = itemAgregadoUno.Agregado, AgregadoDos = itemAgregadoDos.Agregado };
-                    itemVentaExtendido.AlEliminar += (se, a) =>
-                    {
-                        spVentaItems.Children.Remove(itemVentaExtendido);
-                        CalcularTotal();
-                    };
-                    itemVentaExtendido.AlModificarCantidad += (se4, a4) => CalcularTotal();
-                    itemVentaExtendido.AlModificarTotal += (se4, a4) => CalcularTotal();
-                    spVentaItems.Children.Add(itemVentaExtendido);
-                    DeseleccionarProductoAgregado();
-                    CalcularTotal();
-                    expBottom.IsExpanded = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex + "");
-            }
-        }
-
-
-        private void IncluirRolloSushi(List<ItemAgregadoHandroll> listaAgregados, producto producto = null, envoltura envoltura = null)
-        {
-            try
-            {
-                if (ProductoYaSeleccionado())
-                {
-                    envoltura _envoltura = envoltura;
-                    producto _producto = producto;
-
-                    if (producto == null) _producto = itemProductoSeleccionado.Producto;
-
-                    if (_envoltura == null)
-                    {
-                        // no tiene envoltura y requiere una, abrir popup para solicitar
-                        if (_producto?.es_envoltura == true && itemEnvoltura.Envoltura.nombre == null)
-                        {
-                            expBottom.IsExpanded = false;
-                            expBottomPreparadoEspecial.IsExpanded = false;
-                            expBottomEnvolturasHandroll.IsExpanded = true;
-                        }
-                        _envoltura = itemEnvoltura.Envoltura;
-                    }
-
-                    string agregadosStr = "";
-                    listaAgregados.ForEach(a =>
-                    {
-                        if (a.Cantidad == 1)
-                            agregadosStr += $"{a.Agregado.nombre}";
-                        else
-                            agregadosStr += $"{a.Agregado.nombre} x{a.Cantidad}, ";
-
-                    });
-                    try
-                    {
-                        if (agregadosStr != "")
-                            agregadosStr = agregadosStr.Substring(0, agregadosStr.Length - 2);
-
-                    }
-                    catch (Exception ex)
-                    {
-                        PoskException.Make(ex, "ERROR AL QUITAR ULTIMA COMA");
-                    }
-
-                    MostrarNotificacion($"{_producto?.nombre}", "");
-
-
-
-                    var itemVentaExtendido = new ItemVenta();
-
-                    var cantidadIngredientes = 0;
-                    var cobroExtra = 0;
-                    listaAgregados.Where(x => x.Cantidad > 0).ToList().ForEach(a => cantidadIngredientes += a.Cantidad);
-
-                    // cobro extra desde el quinto ingrediente
-                    if (cantidadIngredientes >= 5) cobroExtra = 500 * (cantidadIngredientes - 5);
-
-                    if (_envoltura != null)
-                        itemVentaExtendido = new ItemVenta() { Producto = _producto, listaAgregadosSushi = listaAgregados, Envoltura = _envoltura, Extra = cobroExtra };
-                    else
-                        itemVentaExtendido = new ItemVenta() { Producto = _producto, listaAgregadosSushi = listaAgregados, Extra = cobroExtra };
-
-                    itemVentaExtendido.AlEliminar += (se, a) =>
-                    {
-                        spVentaItems.Children.Remove(itemVentaExtendido);
-                        CalcularTotal();
-                    };
-                    itemVentaExtendido.AlModificarCantidad += (se4, a4) => CalcularTotal();
-                    itemVentaExtendido.AlModificarTotal += (se4, a4) => CalcularTotal();
-                    spVentaItems.Children.Add(itemVentaExtendido);
-                    DeseleccionarProductoAgregado();
-                    CalcularTotal();
-                    expBottomAgregadosHandroll.IsExpanded = false;
-                    itemEnvoltura = new ItemEnvoltura();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex + "");
-            }
-        }
-        /// <summary>
         /// Luego de Incluir() un plato, reestablecer configuración de ItemProducto e ItemAgregado
         /// </summary>
         private void DeseleccionarProductoAgregado()
@@ -601,7 +336,6 @@ namespace posk.Components
                 ia.Reiniciar();
             }
             expBottom.IsExpanded = false;
-            expBottomPreparadoEspecial.IsExpanded = false;
         }
 
         /// <summary>
@@ -686,15 +420,14 @@ namespace posk.Components
                         foreach (producto p in tupla.listaProductos)
                         {
 
-                            if (Modo == "STOCK" && p.contiene_agregado == true || Modo == "STOCK" && p.solo_venta == true)
+                            if (Modo == "STOCK" && p.tipo_producto_id != null || Modo == "STOCK" && p.solo_venta == true)
                                 continue;
-                            else if (p.contiene_agregado == true)
+                            else if (p.tipo_producto_id != null)
                             {
                                 var ip = new ItemProducto() { Producto = p };
 
                                 ip.AlDeseleccionar += (se3, a3) =>
                                 {
-                                    expBottomPreparadoEspecial.IsExpanded = false;
                                     expBottom.IsExpanded = false;
                                 };
                                 ip.AlSeleccionar += (se3, a3) => expBottom.IsExpanded = true;
@@ -707,8 +440,6 @@ namespace posk.Components
                                             itemProductoSeleccionado.Reiniciar();
                                         itemProductoSeleccionado = ip;
                                     }
-                                    if (itemProductoSeleccionado != null && itemAgregadoUno != null && itemAgregadoDos != null)
-                                        Incluir();
                                     teclado.expTeclado.IsExpanded = false;
                                 };
 
@@ -759,7 +490,6 @@ namespace posk.Components
 
                                 ip.AlDeseleccionar += (se3, a3) =>
                                 {
-                                    expBottomPreparadoEspecial.IsExpanded = false;
                                     expBottom.IsExpanded = false;
                                 };
 
@@ -904,63 +634,10 @@ namespace posk.Components
             wrapProductos.Children.Add(ip);
         }
 
-        private void CargarEnvolturas(producto p)
-        {
-            wrapEnvolturasHandroll.Children.Clear();
-            if (p.es_handroll == true)
-            {
-                foreach (envoltura env in EnvolturaBLL.ObtenerTodasParaHandroll())
-                {
-                    var ie = new ItemEnvoltura() { Envoltura = env };
-                    ie.btnEnvoltura.Click += (se, a) =>
-                    {
-                        itemEnvoltura = ie;
-                        expBottomEnvolturasHandroll.IsExpanded = false;
-                        expBottomPaltaCebollin.IsExpanded = true;
-                    };
-                    wrapEnvolturasHandroll.Children.Add(ie);
-                }
-            }
-            if (p.es_superhandroll == true)
-            {
-                foreach (envoltura env in EnvolturaBLL.ObtenerTodasParaSuperHandroll())
-                {
-                    var ie = new ItemEnvoltura() { Envoltura = env };
-                    ie.btnEnvoltura.Click += (se, a) =>
-                    {
-                        itemEnvoltura = ie;
-                        expBottomEnvolturasHandroll.IsExpanded = false;
-                        expBottomAgregadosHandroll.IsExpanded = true;
-                    };
-                    wrapEnvolturasHandroll.Children.Add(ie);
-                }
-            }
-        }
-
         private void CrearMostrarItemProducto(producto p)
         {
             if (Modo == "VENTA" && p.solo_compra == true)
                 return;
-            if (!GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.RESTAURANT.ToString()))
-            {
-                // que no muestre el plato con agregado en seccion venta si es que no estamos en modo restaurant
-                if (Modo == "VENTA" && p.contiene_agregado == true)
-                    return;
-            }
-
-            if (p.es_tabla == true)
-            {
-                var ip = new ItemProducto() { Producto = p };
-
-                ip.btnProducto.Click += (se2, a2) =>
-                {
-                    ArmarTabla(p);
-                };
-                wrapProductos.Children.Add(ip);
-
-                return;
-            }
-
             if (p.tipo_producto_id != null)
             {
                 var ip = new ItemProducto() { Producto = p };
@@ -989,180 +666,6 @@ namespace posk.Components
 
                 ip.AlDeseleccionar += (se3, a3) =>
                 {
-                    expBottomPreparadoEspecial.IsExpanded = false;
-                    expBottom.IsExpanded = false;
-                };
-
-                ip.btnProducto.Click += (se, a) =>
-                {
-                    CrearItemVenta(p);
-                    teclado.expTeclado.IsExpanded = false;
-                };
-                wrapProductos.Children.Add(ip);
-            }
-
-            return;
-
-            // TODO - borrar
-            if (p.es_handroll == true || p.es_superhandroll == true || p.es_envoltura == true)
-            {
-                var ip = new ItemProducto() { Producto = p };
-                ip.AlSeleccionar += (se, a) =>
-                {
-                    ArmarProductoPopup app = new ArmarProductoPopup(p);
-                    app.Deactivated += (se2, a2) =>
-                    {
-                        app.bCerrado = true;
-                        MostrarOverlay(false);
-                        ip.Reiniciar();
-                    };
-                    MostrarOverlay(true);
-                    app.Show();
-                    app.AlIngresarProductoArmado += (se2, ivArmado) =>
-                    {
-                        CrearItemVentaDesdeItemVenta(ivArmado);
-                        MostrarOverlay(false);
-                    };
-                };
-
-                wrapProductos.Children.Add(ip);
-
-                ip.AlDeseleccionar += (se3, a3) =>
-                {
-                    expBottomEnvolturasHandroll.IsExpanded = false;
-                };
-                ip.AlSeleccionar += (se3, a3) =>
-                {
-                    CargarEnvolturas(p);
-                    expBottomEnvolturasHandroll.IsExpanded = true;
-                };
-                ip.btnProducto.Click += (se2, a2) =>
-                {
-                    if (itemProductoSeleccionado != ip)
-                    {
-                        if (itemProductoSeleccionado != null)
-                            itemProductoSeleccionado.Reiniciar();
-                        itemProductoSeleccionado = ip;
-                    }
-                    teclado.expTeclado.IsExpanded = false;
-                };
-                ip.MouseDoubleClick += (se2, a2) =>
-                {
-                    if (itemProductoSeleccionado != null)
-                        itemProductoSeleccionado.Reiniciar();
-                    CrearItemVenta(p);
-                    teclado.expTeclado.IsExpanded = false;
-                };
-                wrapProductos.Children.Add(ip);
-
-                return;
-            }
-
-
-
-
-            if (p.contiene_agregado == true && p.preparado_especial == false)
-            {
-                var ip = new ItemProducto() { Producto = p };
-
-                ip.AlDeseleccionar += (se3, a3) =>
-                {
-                    expBottomPreparadoEspecial.IsExpanded = false;
-                    expBottom.IsExpanded = false;
-                };
-                ip.AlSeleccionar += (se3, a3) =>
-                {
-                    expBottom.IsExpanded = true;
-                };
-
-                ip.btnProducto.Click += (se2, a2) =>
-                {
-                    if (itemProductoSeleccionado != ip)
-                    {
-                        if (itemProductoSeleccionado != null)
-                            itemProductoSeleccionado.Reiniciar();
-                        itemProductoSeleccionado = ip;
-                    }
-                    if (itemProductoSeleccionado != null && itemAgregadoUno != null && itemAgregadoDos != null)
-                        Incluir();
-                    teclado.expTeclado.IsExpanded = false;
-                };
-
-                ip.MouseDoubleClick += (se2, a2) =>
-                {
-                    if (itemProductoSeleccionado != null)
-                        itemProductoSeleccionado.Reiniciar();
-                    CrearItemVenta(p);
-                    teclado.expTeclado.IsExpanded = false;
-                };
-                wrapProductos.Children.Add(ip);
-            }
-            else if (p.contiene_agregado == true && p.preparado_especial == true)
-            {
-                var ip = new ItemProducto() { Producto = p };
-                ip.AlDeseleccionar += (se3, a3) =>
-                {
-                    expBottomPreparadoEspecial.IsExpanded = false;
-                    expBottom.IsExpanded = false;
-                };
-                ip.btnProducto.Click += (se2, a2) =>
-                {
-                    if (itemProductoSeleccionado != ip)
-                    {
-                        if (itemProductoSeleccionado != null)
-                            itemProductoSeleccionado.Reiniciar();
-                        itemProductoSeleccionado = ip;
-                    }
-                    if (itemProductoSeleccionado != null && itemAgregadoUno != null && itemAgregadoDos != null)
-                    {
-                        expBottomPreparadoEspecial.IsExpanded = false;
-                        expBottom.IsExpanded = true;
-                    }
-                    // Incluir();
-                    teclado.expTeclado.IsExpanded = false;
-                };
-                wrapProductos.Children.Add(ip);
-            }
-            else if (p.preparado_especial == true && p.contiene_agregado == false)
-            {
-                var ip = new ItemProducto() { Producto = p };
-
-                ip.AlDeseleccionar += (se3, a3) =>
-                {
-                    expBottomPreparadoEspecial.IsExpanded = false;
-                    expBottom.IsExpanded = false;
-                };
-                ip.AlSeleccionar += (se3, a3) => expBottomPreparadoEspecial.IsExpanded = true;
-
-                ip.btnProducto.Click += (se2, a2) =>
-                {
-                    if (itemProductoSeleccionado != ip)
-                    {
-                        if (itemProductoSeleccionado != null)
-                            itemProductoSeleccionado.Reiniciar();
-                        itemProductoSeleccionado = ip;
-                    }
-                    if (itemProductoSeleccionado != null && itemAgregadoUno != null && itemAgregadoDos != null)
-                        Incluir();
-                    teclado.expTeclado.IsExpanded = false;
-                };
-
-                ip.MouseDoubleClick += (se2, a2) =>
-                {
-                    if (itemProductoSeleccionado != null)
-                        itemProductoSeleccionado.Reiniciar();
-                    CrearItemVenta(p);
-                    teclado.expTeclado.IsExpanded = false;
-                };
-                wrapProductos.Children.Add(ip);
-            }
-            else
-            {
-                var ip = new ItemProducto() { Producto = p };
-
-                ip.AlDeseleccionar += (se3, a3) =>
-                {
-                    expBottomPreparadoEspecial.IsExpanded = false;
                     expBottom.IsExpanded = false;
                 };
 
@@ -1495,347 +998,6 @@ namespace posk.Components
             });
         }
 
-        private void CargarPendientesRestaurant()
-        {
-            List<pedido> listaPedidosPorMesa = new List<pedido>();
-            int? mesaAnteriorId = null;
-
-            foreach (pedido x in PedidoBLL.ObtenerTodos().OrderBy(xs => xs.mesa_id))
-            {
-                if (mesaAnteriorId != null && mesaAnteriorId == x.mesa_id)
-                    continue;
-                if (Settings.Usuario.tipo.ToLower() == "g" && x.usuario_id != Settings.Usuario.id)
-                    continue;
-
-                mesaAnteriorId = x.mesa_id;
-
-                listaPedidosPorMesa = PedidoBLL.ObtenerPedidosPorMesa(x.mesa_id);
-
-                //listaPedidosPorMesa = PedidoBLL.ObtenerPedidosPorMesa(x.mesa_id);
-                listaPedidosPorMesa.Add(x);
-
-                ItemPendienteMesa ipm = new ItemPendienteMesa() { Usuario = x.usuario, Mesa = x.mesa, Pedido = x, ListaPedidos = listaPedidosPorMesa, Id = x.id };
-
-                ipm.AlEliminar += (se, a) =>
-                {
-                    if (MessageBox.Show($"¿Cancelar pedido? Mesa: {ipm.Mesa.codigo}", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                    {
-                        //PedidoBLL.Eliminar(ipm.Pedido.id);
-                        PedidoBLL.EliminarVariosPorMesa(ipm.ListaPedidos);
-                        MesaBLL.LiberarMesa(ipm.Mesa.id);
-                        spDerecha.Children.Clear();
-                        CargarPendientesRestaurant();
-                        CargarItemVerPendientes();
-
-                        CrearTicket ticket = new CrearTicket();
-                        ticket.TextoIzquierda("");
-                        ticket.TextoIzquierda("");
-                        ticket.TextoIzquierda("");
-                        //ticket.TextoCentro($"Cancelar pedido ID: {x.id}".ToUpper());
-                        ticket.TextoCentro($"Cancelar pedido Mesa: {ipm.Mesa.codigo}".ToUpper());
-                        ticket.TextoCentro($"Pedido ID: {ipm.Pedido.id}".ToUpper());
-                        ticket.TextoCentro($"({ipm.Pedido.fecha})".ToUpper());
-                        ticket.TextoIzquierda("");
-                        ticket.TextoIzquierda("");
-                        ticket.TextoIzquierda("");
-                        ticket.CortaTicket();
-                        ticket.ImprimirTicket(Settings.ImpresoraBar, "Cancelacion pedido - caja"); // al cancelar pedido
-                        int contadorPedidosCocina = 0;
-
-                        ipm.ListaPedidos.ForEach(lp =>
-                        {
-                            foreach (pedidos_productos pp in lp.pedidos_productos)
-                            {
-                                if (pp.producto != null)
-                                {
-                                    if (pp.producto.sector_impresion.nombre.Equals("COCINA"))
-                                        contadorPedidosCocina++;
-                                }
-                            }
-                        });
-                        if (contadorPedidosCocina != 0)
-                            ticket.ImprimirTicket(Settings.ImpresoraCocina, "Cancelacion pedido - cocina"); // al cancelar pedido
-                    }
-                };
-                ipm.AlClickear += (se, a) =>
-                {
-                    MostrarOverlay(true);
-
-                    // popup seleccionar items del pedido
-                    var sipp = new SeleccionarItemsPedidoPopup(ipm.Pedido);
-                    sipp.Show();
-
-                    sipp.Deactivated += (se2, a2) => MostrarOverlay(false);
-
-                    List<pedidos_productos> listaPPDesdePopup = new List<pedidos_productos>();
-                    sipp.AlRetornarLista += (se2, lista) => listaPPDesdePopup = lista;
-
-                    sipp.AlActualizar += (se2, args) =>
-                    {
-                        // args[0] Garzón ID (int) 
-                        usuario _usuario = UsuarioBLL.ObtenerUsuario(args[0]);
-
-                        // args[1] = Mesa ID (int)
-                        mesa _mesa = MesaBLL.Obtener(args[1]);
-
-                        PedidoBLL.ActualizarPedido(ipm.Pedido.id, args[0], args[1]);
-                        sipp.Close();
-                        spDerecha.Children.Clear();
-                        CargarPendientesRestaurant();
-                        CargarItemVerPendientes();
-
-                        //PedidoBLL.EliminarVariosPorMesa(ipm.ListaPedidos);
-                        //MesaBLL.LiberarMesa(ipm.Mesa.id);
-                        //spDerecha.Children.Clear();
-                        //CargarPendientesRestaurant();
-
-                        int? subTotal = 0;
-                        int propinaSugerida = 0;
-                        int? total = 0;
-                        listaPPDesdePopup.ForEach(pp =>
-                        {
-                            if (pp.producto != null)
-                                subTotal += pp.producto?.precio;
-                            else if (pp.promocione != null)
-                                subTotal += pp.promocione.precio;
-                        });
-                        expTecladoPagar.IsExpanded = false;
-                        //MostrarNotificacion("IMPRIMIENDO...", "");
-                        propinaSugerida = Convert.ToInt32(subTotal * 0.10);
-                        total = propinaSugerida + subTotal;
-
-                        string header = "";
-                        header += $"Reemplazar Pedido # {ipm.Pedido.id}".ToUpper();
-
-                        GenerarTicketDesdePP(ipm.Pedido, ConvertirListaPPitemVenta(listaPPDesdePopup), "Actualizacion pedido", header, $"{ipm.Pedido.id}", $"{_usuario.nombre}", $"{_mesa.codigo}");
-                    };
-
-
-                    //List<pedidos_productos> listaPP = new List<pedidos_productos>();
-                    sipp.AlIngresar2 += (se2, a2) =>
-                    {
-                        ieg.cbGarzones.Text = $"{a2[0]}";
-                        iem.cbMesas.Text = $"{a2[1]}";
-                    };
-
-                    sipp.AlPedirCuenta += (se2, listaPP_Seleccionados) =>
-                    {
-                        int? subTotal = 0;
-                        int propinaSugerida = 0;
-                        int? total = 0;
-                        listaPP_Seleccionados.ForEach(pp =>
-                        {
-                            if (pp.producto != null)
-                                subTotal += pp.producto?.precio;
-                            else if (pp.promocione != null)
-                                subTotal += pp.promocione.precio;
-                        });
-                        expTecladoPagar.IsExpanded = false;
-                        //MostrarNotificacion("IMPRIMIENDO...", "");
-                        propinaSugerida = Convert.ToInt32(subTotal * 0.10);
-                        total = propinaSugerida + subTotal;
-
-                        GenerarTicketDesdePP(x, ConvertirListaPPitemVenta(listaPP_Seleccionados));
-                    };
-
-                    sipp.AlIngresarVenta += (se2, listaPP_Seleccionados) =>
-                    {
-                        foreach (pedidos_productos pp in listaPP_Seleccionados)
-                        {
-                            var ppFromDB = PedidosProductosBLL.Obtener(pp.id);
-                            if (ppFromDB.producto?.contiene_agregado == true || ppFromDB.producto?.preparado_especial == true)
-                            {
-                                pedidos_agregados pa = PedidosAgregadosBLL.Obtener(ppFromDB.id);
-                                pedidos_preparaciones pedPrep = PedidosPreparacionesBLL.Obtener(ppFromDB.id);
-
-                                agregado agregadoUno = AgregadoBLL.Obtener(pa?.agregado_uno_id);
-                                agregado agregadoDos = AgregadoBLL.Obtener(pa?.agregado_dos_id);
-                                preparacione preparacion = PreparacionesBLL.Obtener(pedPrep?.preparacion_id);
-
-                                //var ivpPlatoFondoNuevo = new ItemVentaPlatoFondo() { Producto = ppFromDB.producto, AgregadoUno = agregadoUno, AgregadoDos = agregadoDos, Preparacion = preparacion };
-
-                                var ivpPlatoFondoNuevo = new ItemVenta() { Producto = ppFromDB.producto, AgregadoUno = agregadoUno, AgregadoDos = agregadoDos, Preparacion = preparacion, Cantidad = (int)ppFromDB.cantidad };
-                                //if (ppFromDB.precio != 0)
-                                //    ivpPlatoFondoNuevo.txtTotal.Text = $"{ppFromDB.precio}";
-
-
-                                ivpPlatoFondoNuevo.AlEliminar += (se3, a3) =>
-                                {
-                                    spVentaItems.Children.Remove(ivpPlatoFondoNuevo);
-                                    CalcularTotal();
-                                };
-                                ivpPlatoFondoNuevo.AlModificarCantidad += (se4, a4) => CalcularTotal();
-                                ivpPlatoFondoNuevo.AlModificarTotal += (se4, a4) => CalcularTotal();
-                                spVentaItems.Children.Add(ivpPlatoFondoNuevo);
-                            }
-                            else
-                            {
-                                try
-                                {
-                                    producto prod = new producto();
-                                    if (ppFromDB.precio != 0)
-                                        prod = new producto() { nombre = ppFromDB.producto?.nombre, precio = ppFromDB.precio, sector_impresion_id = ppFromDB.producto?.sector_impresion_id, tipo_itemventa_id = ppFromDB.producto?.tipo_itemventa_id };
-                                    else
-                                        prod = new producto() { nombre = ppFromDB.producto?.nombre, precio = ppFromDB.producto.precio, sector_impresion_id = ppFromDB.producto?.sector_impresion_id, tipo_itemventa_id = ppFromDB.producto?.tipo_itemventa_id };
-
-
-                                    var ivpNuevo = new ItemVenta() { Producto = ppFromDB.producto, Cantidad = Convert.ToInt32(ppFromDB.cantidad)/*, TotalModificado = ppFromDB.precio */};
-
-                                    ivpNuevo.AlEliminar += (se3, a3) =>
-                                    {
-                                        spVentaItems.Children.Remove(ivpNuevo);
-                                        CalcularTotal();
-                                    };
-                                    ivpNuevo.AlModificarCantidad += (se4, a4) => CalcularTotal();
-                                    ivpNuevo.AlModificarTotal += (se4, a4) => CalcularTotal();
-                                    spVentaItems.Children.Add(ivpNuevo);
-                                }
-                                catch (Exception ex)
-                                {
-                                    PoskException.Make(ex, "Error al convertir");
-                                }
-                            }
-                            PedidosProductosBLL.Eliminar(ppFromDB.id);
-                        }
-
-                        int count = 0;
-                        ipm.ListaPedidos.ForEach(p =>
-                        {
-                            PedidosProductosBLL.ObtenerTodos(p.id).ForEach(pp => count++);
-                        });
-                        if (count == 0)
-                        {
-                            //PedidoBLL.Eliminar(x.id);
-                            PedidoBLL.EliminarVariosPorMesa(ipm.ListaPedidos);
-                            MesaBLL.LiberarMesa(ipm.Mesa.id);
-                            spDerecha.Children.Clear();
-                            CargarPendientesRestaurant();
-                            CargarItemVerPendientes();
-                            CalcularTotal();
-                        }
-                        CalcularTotal();
-                        sipp.Close();
-                    };
-                };
-                spDerecha.Children.Add(ipm);
-            }
-
-            return;
-            /*
-            PedidoBLL.ObtenerTodos().ForEach(x =>
-            {
-                listaPedidosPorMesa = PedidoBLL.ObtenerPedidosPorMesa(x.mesa_id);
-
-                //listaPedidosPorMesa = PedidoBLL.ObtenerPedidosPorMesa(x.mesa_id);
-                listaPedidosPorMesa.Add(x);
-
-                ItemPendienteMesa ipm = new ItemPendienteMesa() { Usuario = x.usuario, Mesa = x.mesa, Pedido = x, ListaPedidos = listaPedidosPorMesa };
-                ipm.AlEliminar += (se, a) =>
-                {
-                    if (MessageBox.Show("¿Eliminar pedido?", "", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                    {
-                        PedidoBLL.Eliminar(ipm.Pedido.id);
-                        spDerecha.Children.Clear();
-                        CargarPendientesRestaurant();
-                        CargarItemVerPendientes();
-                        CrearTicket ticket = new CrearTicket();
-                        ticket.TextoIzquierda("");
-                        ticket.TextoIzquierda("");
-                        ticket.TextoIzquierda("");
-                        ticket.TextoCentro($"Cancelar pedido ID: {x.id}".ToUpper());
-                        ticket.TextoIzquierda("");
-                        ticket.TextoIzquierda("");
-                        ticket.TextoIzquierda("");
-                        ticket.CortaTicket();
-                        ticket.ImprimirTicket("THERMAL Receipt Printer");
-                    }
-                };
-                ipm.AlClickear += (se, a) =>
-                {
-                    // popup seleccionar items del pedido
-                    var sipp = new SeleccionarItemsPedidoPopup(x.id, ipm.Pedido);
-                    sipp.Show();
-
-                    List<pedidos_productos> listaPP = new List<pedidos_productos>();
-                    sipp.AlIngresarVenta += (se2, listaPP_Seleccionados) =>
-                    {
-                        foreach (pedidos_productos pp in listaPP_Seleccionados)
-                        {
-                            var ppFromDB = PedidosProductosBLL.Obtener(pp.id);
-                            if (ppFromDB.producto?.contiene_agregado == true)
-                            {
-                                pedidos_agregados pa = PedidosAgregadosBLL.Obtener(ppFromDB.id);
-                                agregado agregadoUno = AgregadoBLL.Obtener(pa?.agregado_uno_id);
-                                agregado agregadoDos = AgregadoBLL.Obtener(pa?.agregado_dos_id);
-
-                                //var ivpPlatoFondoNuevo = new ItemVentaPlatoFondo() { Producto = ppFromDB.producto, AgregadoUno = agregadoUno, AgregadoDos = agregadoDos };
-                                var ivpPlatoFondoNuevo = new ItemVenta() { Producto = ppFromDB.producto, AgregadoUno = agregadoUno, AgregadoDos = agregadoDos };
-                                ivpPlatoFondoNuevo.AlEliminar += (se3, a3) =>
-                                {
-                                    spVentaItems.Children.Remove(ivpPlatoFondoNuevo);
-                                    CalcularTotal();
-                                };
-                                ivpPlatoFondoNuevo.AlModificarCantidad += (se4, a4) => CalcularTotal();
-                                spVentaItems.Children.Add(ivpPlatoFondoNuevo);
-                            }
-                            else
-                            {
-                                try
-                                {
-                                    var ivpNuevo = new ItemVenta() { Producto = ppFromDB.producto, Cantidad = (int)ppFromDB.cantidad };
-                                    ivpNuevo.AlEliminar += (se3, a3) =>
-                                    {
-                                        spVentaItems.Children.Remove(ivpNuevo);
-                                        CalcularTotal();
-                                    };
-                                    ivpNuevo.AlModificarCantidad += (se4, a4) => CalcularTotal();
-                                    spVentaItems.Children.Add(ivpNuevo);
-                                }
-                                catch (Exception ex)
-                                {
-                                    PoskException.Make(ex, "Error al convertir");
-                                }
-                            }
-                            PedidosProductosBLL.Eliminar(ppFromDB.id);
-                        }
-
-                        if (PedidosProductosBLL.ObtenerTodos(x.id).Count == 0)
-                        {
-                            PedidoBLL.Eliminar(x.id);
-                            spDerecha.Children.Clear();
-                            CargarPendientesRestaurant();
-                            CargarItemVerPendientes();
-                            CalcularTotal();
-                        }
-                        CalcularTotal();
-                        sipp.Close();
-                    };
-                };
-                spDerecha.Children.Add(ipm);
-            });
-            */
-        }
-
-        private void CargarArriendos()
-        {
-            /*
-            ArriendoBLL.ObtenerTodos().ForEach(arriendo => 
-            {
-                ItemArriendo ia = new ItemArriendo()
-                {
-                    Cliente = arriendo.cliente,
-                    Producto = arriendo.producto,
-                    Arriendo = arriendo
-                };
-                ia.btnPendiente.Click += (se, a) => 
-                {
-                    new Notification("test");
-                };
-                spDerecha.Children.Add(ia);
-                expDerecha.IsExpanded ^= true;
-            });
-            */
-        }
 
         private void CargarItemVerPendientes()
         {
@@ -1845,12 +1007,8 @@ namespace posk.Components
 
             if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.RESTAURANT.ToString()))
             {
-                CargarPendientesRestaurant();
+                //CargarPendientesRestaurant();
                 //itemVerPendientes.lbVerEntregasNumero.Content = $"{ PedidoBLL.ObtenerTodos().Count }";
-            }
-            else if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.KUPAL.ToString()))
-            {
-                CargarArriendos();
             }
             else //if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.RUA.ToString()))
             {
@@ -2064,37 +1222,6 @@ namespace posk.Components
 
                 if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.RESTAURANT.ToString()) || GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.SUSHI.ToString()))
                 {
-                    // cambiado a popup
-                    //if (spMensaje.Children.OfType<ItemMensajeCocina>().ToList().Count == 0)
-                    //    spMensaje.Children.Add(imc);
-
-                    /*
-                    if (!Settings.Usuario.tipo.ToLower().Equals("g"))
-                    {
-                        if (spGarzonMesa.Children.OfType<ItemEscogerGarzonSeccionVenta>().ToList().Count == 0)
-                            spGarzonMesa.Children.Add(ieg);
-                        if (spGarzonMesa.Children.OfType<ItemEscogerMesaSeccionVenta>().ToList().Count == 0)
-                            spGarzonMesa.Children.Add(iem);
-                    }
-                    if (spMedioDePago.Children.OfType<ItemMedioPago>().ToList().Count == 0)
-                    {
-                        spMedioDePago.Children.Add(imp);
-                    }
-                    */
-                    iegm.btnEscogerMesaGarzon.Click += (se2, a2) =>
-                    {
-                        var rpp = new RealizarPedidoPopup(
-                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == true).ToList(),
-                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList(),
-                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "otro").ToList(), Settings.Usuario.tipo
-                        );
-                        rpp.AlEscogerMesa += (se3, mesa_usuario) =>
-                        {
-                            iem.cbMesas.Text = mesa_usuario.Mesa.codigo;
-                            ieg.cbGarzones.Text = mesa_usuario.Usuario?.nombre;
-                        };
-                        rpp.Show();
-                    };
                     if (!Settings.Usuario.tipo.ToLower().Equals("g"))
                     {
                         if (spGarzonMesa.Children.OfType<ItemEscogerGarzonSeccionVenta>().ToList().Count == 0)
@@ -2306,9 +1433,6 @@ namespace posk.Components
 
                                         foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().ToList())
                                         {
-                                            // ejemplo: ensalada de cortesía para restaurant
-                                            //if (item.Producto?.precio == 0) continue;
-
                                             detalle_boleta dl = new detalle_boleta()
                                             {
                                                 producto_id = item.Producto?.id,
@@ -2318,23 +1442,10 @@ namespace posk.Components
                                                 descuento = 0,
                                                 boleta_id = ultimaBoleta.id
                                             };
-                                            DB.AddDetailLine(dl);
-
-                                            // al almar una tabla creo productos cuya imagen es 'rollo tabla', los cuales no se deben descontar de stock
-                                            if (item.Producto?.imagen != "rollo_tabla")
-                                                CompraBLL.ReduceStockByProduct(item.Producto?.id, item.Promocion?.id, (int)item.Cantidad);
-
-                                            int? cobroExtra = 0;
-                                            if (item.Producto?.contiene_agregado == true)
-                                            {
-                                                if (item.AgregadoUno?.cobro_extra != null)
-                                                    cobroExtra += item.AgregadoUno?.cobro_extra;
-                                                if (item.AgregadoDos?.cobro_extra != null)
-                                                    cobroExtra += item.AgregadoDos?.cobro_extra;
-                                            }
-
-                                            if (item.Producto?.imagen != "rollo_tabla")
-                                                VentasJornadaBLL.Agregar(JornadaBLL.UltimaJornada().id, item.Producto?.id, item.Promocion?.id, item.Cantidad, (int)cobroExtra);
+                                            DetalleBoletaBLL.Agregar(dl);
+                                            detalle_boleta dBoleta = DetalleBoletaBLL.ObtenerUltima();
+                                            CompraBLL.ReduceStockByProduct(item.Producto?.id, item.Promocion?.id, (int)item.Cantidad);
+                                            VentasJornadaBLL.Agregar(JornadaBLL.UltimaJornada().id, dBoleta.id, item.Opcion?.nombre, (int)item.Cantidad, item.Extra_);
                                         }
                                         int? _subTotal = 0;
                                         int _propinaSugerida = 0;
@@ -2364,88 +1475,6 @@ namespace posk.Components
                                     PoskException.Make(ex, "ERROR AL MOSTRAR RV POPUP");
                                 }
                             }
-
-                            return;
-                            int calcularTotal = 0;
-                            if (itemCalcularTotal?.txtTotalVenta?.Text != "")
-                                calcularTotal = Convert.ToInt32(itemCalcularTotal?.txtTotalVenta?.Text);
-
-                            boleta ts = BoletaBLL.Set(0, Settings.Usuario.id, 0, calcularTotal, imp.MedioPagoSeleccionado.id);
-
-                            foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().ToList())
-                            {
-                                if (item.Producto?.precio == 0) continue;
-
-                                detalle_boleta dl = new detalle_boleta()
-                                {
-                                    producto_id = item.Producto?.id,
-                                    promocion_id = item.Promocion?.id,
-                                    monto = item.ObtenerTotal(),
-                                    cantidad = (int)item.Cantidad,
-                                    descuento = 0,
-                                    boleta = ts
-                                };
-                                DB.AddDetailLine(dl);
-
-                                CompraBLL.ReduceStockByProduct(item.Producto?.id, item.Promocion?.id, (int)item.Cantidad);
-
-                                int? cobroExtra = 0;
-                                if (item.Producto?.contiene_agregado == true)
-                                {
-                                    if (item.AgregadoUno?.cobro_extra != null)
-                                        cobroExtra += item.AgregadoUno?.cobro_extra;
-                                    if (item.AgregadoDos?.cobro_extra != null)
-                                        cobroExtra += item.AgregadoDos?.cobro_extra;
-                                }
-
-                                VentasJornadaBLL.Agregar(JornadaBLL.UltimaJornada().id, item.Producto?.id, item.Promocion?.id, item.Cantidad, (int)cobroExtra);
-                            }
-                            int? subTotal = 0;
-                            int propinaSugerida = 0;
-                            int? total = 0;
-
-                            spVentaItems.Children.OfType<ItemVenta>().ToList().ForEach(x => subTotal += x.ObtenerTotal());
-                            expTecladoPagar.IsExpanded = false;
-                            MostrarNotificacion("VENDIDO", "");
-                            if (subTotal != null && subTotal != 0)
-                            {
-                                propinaSugerida = Convert.ToInt32(subTotal * 0.10);
-                                total = propinaSugerida + subTotal;
-                            }
-
-                            if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.RESTAURANT.ToString()))
-                                GenerarTicket(subTotal, ((usuario)ieg.cbGarzones.SelectedItem)?.nombre, ((mesa)iem.cbMesas.SelectedValue)?.codigo, "", "Ticket Caja");
-
-                            LimpiarTodo();
-
-                            try // mostrar última boleta
-                            {
-                                ItemUltimaVenta iuv = new ItemUltimaVenta() { Mensaje = $"ÚLTIMA: ${ts.total} A LAS {ts.fecha.ToLongTimeString()}", Boleta = ts };
-                                borderUltimaVenta.Child = null;
-                                borderUltimaVenta.Child = iuv;
-
-                                iuv.btnBoleta.Click += (se3, a3) =>
-                                {
-                                    string detalleBoleta = $"Boleta ID: {iuv.Boleta.id}  GENERADA A LAS  {iuv.Boleta.fecha.ToLongTimeString()}\n\n";
-                                    LineaDetalleBLL.ObtenerPorBoletaId(iuv.Boleta.id).ForEach(detalle =>
-                                    {
-                                        int detalleCantidad = 1;
-                                        if (detalle.cantidad == 0) detalleCantidad = 1;
-                                        if (detalle.promocione != null)
-                                            detalleBoleta += $"${detalle.promocione?.precio * detalleCantidad}    x{detalleCantidad}    [{detalle.promocione?.nombre}]  (promoción)\n";
-                                        else
-                                            detalleBoleta += $"${detalle.producto?.precio * detalleCantidad}    x{detalleCantidad}    [{detalle.producto?.nombre}]\n";
-                                    });
-                                    detalleBoleta += $"\nTotal: ${iuv.Boleta.total}";
-                                    MessageBox.Show(detalleBoleta);
-                                };
-                            }
-                            catch (Exception ex)
-                            {
-                                PoskException.Make(ex, "ERROR AL MOSTRAR ÚLTIMA BOLETA");
-                            }
-
-                            // agregar iteracion para platos de fondo
                         }
                         catch (Exception ex)
                         {
@@ -2453,61 +1482,6 @@ namespace posk.Components
                         }
                     }
                 };
-
-
-                ItemDejarPendiente_venta itemDejarPendiente = new ItemDejarPendiente_venta();
-                itemDejarPendiente.btnPendiente.Click += (se2, a2) =>
-                {
-                    // deja items venta como pendiente asociado a una mesa
-                    #region restaurant
-                    try
-                    {
-                        //var rpp = new RealizarPedidoPopup(spVentaItems.Children.OfType<ItemVenta>().ToList(), spVentaItems.Children.OfType<ItemVentaPlatoFondo>().ToList());
-                        var rpp = new RealizarPedidoPopup(
-                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == true).ToList(),
-                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList(),
-                            spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "otro").ToList(), Settings.Usuario.tipo
-                        );
-                        rpp.Show();
-
-                        rpp.ReciclarEvent += (se3, usuarioMesa) =>
-                        {
-                            spDerecha.Children.Clear();
-                            if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.RESTAURANT.ToString()))
-                            {
-                                CargarPendientesRestaurant();
-                                CargarItemVerPendientes();
-
-                                SyncBLL.AumentarSyncId("pedido");
-                            }
-                            else if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.KUPAL.ToString()))
-                            {
-                                CargarArriendos();
-                                CargarItemVerPendientes();
-                            }
-                            else //if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.RUA.ToString()))
-                            {
-                                CargarPendientes();
-                                CargarItemVerPendientes();
-                            }
-                            rpp.Close();
-                            GenerarTicket(0, usuarioMesa[0], usuarioMesa[1], usuarioMesa[2]);
-                            LimpiarTodo();
-                        };
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Test message");
-                    }
-
-                    if (!Settings.Usuario.tipo.ToLower().Equals("g"))
-                    {
-                        borderAccionIzquierda.Child = itemDejarPendiente;
-                    }
-                    #endregion restaurant
-                };
-                if (!GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.SUSHI.ToString()))
-                    borderAccionIzquierda.Child = itemDejarPendiente;
             };
         }
 
@@ -2546,446 +1520,6 @@ namespace posk.Components
             });
         }
 
-        private List<ItemVenta> ConvertirListaPPitemVenta(List<pedidos_productos> listaPP)
-        {
-            List<ItemVenta> listaItemsVenta = new List<ItemVenta>();
-            try
-            {
-                listaPP.ForEach(x =>
-                {
-                    var ppFromDB = PedidosProductosBLL.Obtener(x.id);
-                    if (ppFromDB.producto?.contiene_agregado == true || ppFromDB.producto?.preparado_especial == true)
-                    {
-                        pedidos_agregados pa = PedidosAgregadosBLL.Obtener(ppFromDB.id);
-                        pedidos_preparaciones pedPrep = PedidosPreparacionesBLL.Obtener(ppFromDB.id);
-
-                        agregado agregadoUno = AgregadoBLL.Obtener(pa?.agregado_uno_id);
-                        agregado agregadoDos = AgregadoBLL.Obtener(pa?.agregado_dos_id);
-                        preparacione preparacion = PreparacionesBLL.Obtener(pedPrep?.preparacion_id);
-                        listaItemsVenta.Add(new ItemVenta() { Producto = ppFromDB.producto, AgregadoUno = agregadoUno, AgregadoDos = agregadoDos, Preparacion = preparacion, Cantidad = (int)x.cantidad });
-                    }
-                    else
-                    {
-                        listaItemsVenta.Add(new ItemVenta() { Producto = ppFromDB.producto, Cantidad = (int)x.cantidad, Nota = x.nota });
-                    }
-                });
-            }
-            catch (Exception ex)
-            {
-                PoskException.Make(ex, "ERROR AL CONVERTIR LISTA");
-            }
-            return listaItemsVenta;
-        }
-
-        private void GenerarTicketDesdePP(pedido p, List<ItemVenta> listaIV, string docName = "Cuenta", string header = "", string pedidoId = "", string nuevoGarzonNombre = "", string nuevaMesaCodigo = "")
-        {
-            try
-            {
-                int? subTotal = 0;
-                listaIV.ForEach(x =>
-                {
-                    subTotal += x.ObtenerTotal();
-                });
-
-                CrearTicket ticket = new CrearTicket();
-                ticket.AbreCajon();
-
-                ticket.TextoCentro($"{header}");
-                ticket.TextoIzquierda(" ");
-                ticket.TextoIzquierda(" ");
-
-                bool bEsPedido = false;
-                if (!string.IsNullOrEmpty(pedidoId))
-                    bEsPedido = true;
-
-                if (!bEsPedido)
-                    ticket.TextoCentro($"{Settings.NombreDelNegocio}");
-                else
-                    ticket.TextoCentro($"TICKET COCINA");
-
-                ticket.TextoIzquierda("");
-
-                if (!bEsPedido)
-                {
-                    if (nuevaMesaCodigo != "")
-                    {
-                        ticket.TextoIzquierda($"MESA: {nuevaMesaCodigo}".ToUpper());
-                    }
-                    else
-                    {
-                        if (!string.IsNullOrEmpty(p.mesa.codigo))
-                            ticket.TextoIzquierda($"MESA: {p.mesa.codigo}".ToUpper());
-                    }
-                }
-                else
-                {
-                    if (nuevaMesaCodigo != "")
-                    {
-                        ticket.TextoExtremos($"MESA: {nuevaMesaCodigo}".ToUpper(), $"PEDIDO ID: {p.id}".ToUpper());
-                    }
-                    else
-                    {
-                        ticket.TextoExtremos($"MESA: {p.mesa.codigo}".ToUpper(), $"PEDIDO ID: {p.id}".ToUpper());
-                    }
-                }
-
-                if (nuevoGarzonNombre != "")
-                {
-                    ticket.TextoIzquierda($"GARZON: {nuevoGarzonNombre}".ToUpper());
-                }
-                else
-                {
-                    if (!string.IsNullOrEmpty(p.usuario.nombre))
-                        ticket.TextoIzquierda($"GARZON: {p.usuario.nombre}".ToUpper());
-                }
-
-                ticket.TextoExtremos("FECHA: " + DateTime.Now.ToShortDateString(), "HORA: " + DateTime.Now.ToShortTimeString());
-                ticket.TextoIzquierda("");
-
-                //if (spVentaItems.Children.OfType<ItemVentaPlatoFondo>().ToList().Count != 0)
-                if (listaIV.Where(x => x.Producto?.tipo_itemventa?.nombre == "entrada").ToList().Count != 0)
-                {
-                    ticket.lineasGuion();
-                    ticket.TextoCentro("ENTRADAS");
-                }
-
-                foreach (ItemVenta item in listaIV.Where(x => x.Producto?.tipo_itemventa?.nombre == "entrada").ToList())
-                {
-                    string espaciosStr = "";
-                    string espaciosValor = "";
-                    switch ($"{item.Producto?.precio * item.Cantidad}".Length)
-                    {
-                        case 3:
-                            espaciosValor = "  ";
-                            break;
-                        case 4:
-                            espaciosValor = " ";
-                            break;
-                        case 5:
-                            espaciosValor = "";
-                            break;
-                        default:
-                            break;
-                    }
-
-                    string cortesiaStr = "";
-                    if (item.Producto?.precio == 0) cortesiaStr = " (CORTESIA)";
-
-                    for (int i = 0; i < 33 - $"00 {item.Producto?.nombre}".Length; i++)
-                        espaciosStr += ".";
-
-                    if (item.Cantidad < 10)
-                    {
-                        if (bEsPedido || item.Producto?.precio == 0)
-                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}".ToUpper());
-                        else
-                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
-                    }
-                    else
-                    {
-                        if (bEsPedido || item.Producto?.precio == 0)
-                            ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}".ToUpper());
-                        else
-                            ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
-                    }
-                }
-
-                if (listaIV.Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo").ToList().Count != 0)
-                {
-                    ticket.TextoIzquierda("");
-                    //ticket.lineasGuion();
-                    ticket.TextoCentro("DETALLE");
-                    //foreach (ItemVentaPlatoFondo item in spVentaItems.Children.OfType<ItemVentaPlatoFondo>().ToList())
-                    foreach (ItemVenta item in listaIV.Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList())
-                    {
-                        string espaciosStr = "";
-                        string espaciosValor = "";
-                        switch ($"{item.ObtenerTotal()}".Length)
-                        {
-                            case 3:
-                                espaciosValor = "  ";
-                                break;
-                            case 4:
-                                espaciosValor = " ";
-                                break;
-                            case 5:
-                                espaciosValor = "";
-                                break;
-                            default:
-                                break;
-                        }
-
-
-                        for (int i = 0; i < 33 - $"00 {item.Producto?.nombre} {item.Preparacion?.nombre}".Length; i++)
-                            espaciosStr += ".";
-
-                        int? cobroExtra = 0;
-                        cobroExtra += item.AgregadoUno?.cobro_extra;
-                        cobroExtra += item.AgregadoDos?.cobro_extra;
-                        //if (cobroExtra == null) cobroExtra = 0;
-
-                        if (cobroExtra != 0 && cobroExtra != null)
-                        {
-                            if (item.AgregadoUno == item.AgregadoDos && item.AgregadoUno != null)
-                            {
-                                if (bEsPedido)
-                                {
-                                    if (item.Cantidad < 10)
-                                    {
-                                        ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                        ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre}".ToUpper());
-                                    }
-                                    else
-                                    {
-                                        ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                        ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre}".ToUpper());
-                                    }
-                                }
-                                else
-                                {
-                                    if (item.Cantidad < 10)
-                                    {
-                                        ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                        ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre}".ToUpper());
-                                    }
-                                    else
-                                    {
-                                        ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                        ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre}".ToUpper());
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                if (item.AgregadoUno != null && item.AgregadoDos != null)
-                                {
-                                    if (bEsPedido)
-                                    {
-                                        if (item.Cantidad < 10)
-                                        {
-                                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                            ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                                        }
-                                        else
-                                        {
-                                            ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                            ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (item.Cantidad < 10)
-                                        {
-                                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                            ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                                        }
-                                        else
-                                        {
-                                            ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                            ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (item.AgregadoUno == item.AgregadoDos && item.AgregadoUno != null)
-                            {
-                                if (bEsPedido)
-                                {
-                                    if (item.Cantidad < 10)
-                                    {
-                                        ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                        ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre}".ToUpper());
-                                    }
-                                    else
-                                    {
-                                        ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                        ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre}".ToUpper());
-                                    }
-                                }
-                                else
-                                {
-                                    if (item.Cantidad < 10)
-                                    {
-                                        ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                        ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre}".ToUpper());
-                                    }
-                                    else
-                                    {
-                                        ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                        ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre}".ToUpper());
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                if (item.AgregadoUno?.nombre != null && item.AgregadoDos?.nombre != null)
-                                {
-                                    if (bEsPedido)
-                                    {
-                                        if (item.Cantidad < 10)
-                                        {
-                                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                            ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                                        }
-                                        else
-                                        {
-                                            ticket.TextoIzquierda($"\n{item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                            ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (item.Cantidad < 10)
-                                        {
-                                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                            ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                                        }
-                                        else
-                                        {
-                                            ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                            ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                                        }
-
-                                    }
-                                }
-                                else
-                                {
-                                    if (bEsPedido)
-                                    {
-                                        if (item.Cantidad < 10)
-                                        {
-                                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                        }
-                                        else
-                                        {
-                                            ticket.TextoIzquierda($"\n{item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (item.Cantidad < 10)
-                                        {
-                                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                        }
-                                        else
-                                        {
-                                            ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                        }
-
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    ticket.TextoIzquierda("");
-                    //ticket.lineasGuion();
-                    if (bEsPedido)
-                    {
-                        if (!string.IsNullOrEmpty(imc.txtMensaje.Text) && ((sector_impresion)imc.cbSectoresImpresion.SelectedItem).nombre.ToUpper() == "COCINA" || ((sector_impresion)imc.cbSectoresImpresion.SelectedItem).nombre.ToUpper() == "TODOS")
-                        {
-                            ticket.TextoIzquierda("");
-                            ticket.TextoIzquierda($"Mensaje: {imc.txtMensaje.Text}".ToUpper());
-                        }
-                    }
-                }
-
-
-                if (listaIV.Where(x => x.Producto?.tipo_itemventa?.nombre == "otro").ToList().Count != 0)
-                {
-                    bool bParaBar = false;
-                    if (!string.IsNullOrEmpty(pedidoId))
-                        bParaBar = true;
-
-                    ticket.lineasGuion();
-                    ticket.TextoCentro($"OTROS");
-
-
-                    foreach (ItemVenta item in listaIV.Where(x => x.Producto?.tipo_itemventa?.nombre == "otro" && x.Producto?.precio != 0).ToList())
-                    {
-                        string espaciosStr = "";
-                        string espaciosValor = "";
-                        switch ($"{item.Producto?.precio * item.Cantidad}".Length)
-                        {
-                            case 3:
-                                espaciosValor = "  ";
-                                break;
-                            case 4:
-                                espaciosValor = " ";
-                                break;
-                            case 5:
-                                espaciosValor = "";
-                                break;
-                            default:
-                                break;
-                        }
-
-                        for (int i = 0; i < 33 - $"00 {item.Producto?.nombre}".Length; i++)
-                            espaciosStr += ".";
-
-                        if (item.Cantidad < 10)
-                        {
-                            if (bParaBar || item.Producto?.precio == 0)
-                                ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}".ToUpper());
-                            else
-                                ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
-                        }
-                        else
-                        {
-                            if (bParaBar || item.Producto?.precio == 0)
-                                ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}".ToUpper());
-                            else
-                                ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
-                        }
-                    }
-
-                    if (listaIV.Where(x => x.Producto?.tipo_itemventa?.nombre == "otro").ToList().Count != 0)
-                    {
-                        ticket.TextoIzquierda("");
-                        ticket.lineasGuion();
-                    }
-
-                    if (bParaBar)
-                    {
-                        if (!string.IsNullOrEmpty(imc.txtMensaje.Text) && ((sector_impresion)imc.cbSectoresImpresion.SelectedItem).nombre.ToUpper() == "BAR" || ((sector_impresion)imc.cbSectoresImpresion.SelectedItem).nombre.ToUpper() == "TODOS")
-                        {
-                            ticket.TextoIzquierda("");
-                            ticket.TextoIzquierda($"Mensaje: {imc.txtMensaje.Text}".ToUpper());
-                        }
-                    }
-                }
-
-                if (!bEsPedido)
-                {
-                    ticket.TextoIzquierda("");
-                    int propinaSugerida = Convert.ToInt32(subTotal * 0.10);
-                    int? total = propinaSugerida + subTotal;
-                    ticket.TextoIzquierda($"SubTotal:                     ${subTotal}".ToUpper());
-                    ticket.TextoIzquierda($"Propina sugerida (10%):       $ {propinaSugerida}".ToUpper());
-                    ticket.TextoIzquierda($"Total:                        ${total}".ToUpper());
-                }
-                else
-                {
-                    //if (!string.IsNullOrEmpty(mensajeCocina))
-                    //    ticket.TextoIzquierda($"Mensaje cocina: {mensajeCocina}".ToUpper());
-                }
-
-                ticket.CortaTicket();
-                ticket.ImprimirTicket(Settings.ImpresoraBar, docName + " - BAR");
-
-                if (bEsPedido)
-                    ticket.ImprimirTicket(Settings.ImpresoraCocina, docName + " - COCINA");
-            }
-            catch (Exception ex)
-            {
-                PoskException.Make(ex, "Error al generar el ticket");
-            }
-
-        }
-
-
         bool bYaRealizado = false;
 
         private void GenerarTicket(int? subTotal, string garzon, string mesa, string pedidoId, string docName = "Ticket", DeliveryInfo di = null)
@@ -3016,7 +1550,7 @@ namespace posk.Components
                 if (!bEsPedido)
                 {
                     if (!string.IsNullOrEmpty(mesa))
-                            ticket.TextoIzquierda($"MESA: {mesa}".ToUpper());
+                        ticket.TextoIzquierda($"MESA: {mesa}".ToUpper());
                     ticket.TextoDerecha($"ID: {BoletaBLL.ObtenerUltimoNumeroBleta()}");
                 }
                 else
@@ -3033,115 +1567,9 @@ namespace posk.Components
                 ticket.TextoExtremos("FECHA: " + DateTime.Now.ToShortDateString(), "HORA: " + DateTime.Now.ToShortTimeString());
                 ticket.TextoIzquierda("");
 
-                //if (spVentaItems.Children.OfType<ItemVentaPlatoFondo>().ToList().Count != 0)
-                if (spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "entrada").ToList().Count != 0)
+                if (spVentaItems.Children.OfType<ItemVenta>().ToList().Count != 0)
                 {
-                    ticket.lineasGuion();
-                    ticket.TextoCentro("ENTRADAS");
-                }
-
-                foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "entrada").ToList())
-                {
-                    bContieneParaCocina = true;
-                    if (item.Producto?.sector_impresion.nombre == "COCINA")
-                        bImprimirEnCocina = true;
-
-                    string espaciosStr = "";
-                    string espaciosValor = "";
-                    switch ($"{item.Producto?.precio * item.Cantidad}".Length)
-                    {
-                        case 3:
-                            espaciosValor = "  ";
-                            break;
-                        case 4:
-                            espaciosValor = " ";
-                            break;
-                        case 5:
-                            espaciosValor = "";
-                            break;
-                        default:
-                            break;
-                    }
-
-                    string cortesiaStr = "";
-                    if (item.Producto?.precio == 0) cortesiaStr = " (CORTESIA)";
-
-                    for (int i = 0; i < 33 - $"00 {item.Producto?.nombre}".Length; i++)
-                        espaciosStr += ".";
-
-                    if (item.Cantidad < 10)
-                    {
-                        if (bEsPedido || item.Producto?.precio == 0)
-                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}".ToUpper());
-                        else
-                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
-                    }
-                    else
-                    {
-                        if (bEsPedido || item.Producto?.precio == 0)
-                            ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}".ToUpper());
-                        else
-                            ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
-                    }
-
-                    if (!string.IsNullOrEmpty(item.txtNota.Text)) ticket.TextoIzquierda("   " + item.txtNota.Text.ToUpper());
-
-                }
-
-                if (spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo").ToList().Count != 0)
-                {
-                    //ticket.lineasGuion();
-                    //ticket.TextoCentro("ENTRADAS");
-                    foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == true).ToList())
-                    {
-                        bContieneParaCocina = true;
-                        if (item.Producto?.sector_impresion.nombre == "COCINA")
-                            bImprimirEnCocina = true;
-
-                        string espaciosStr = "";
-                        string espaciosValor = "";
-                        switch ($"{item.Producto?.precio * item.Cantidad}".Length)
-                        {
-                            case 3:
-                                espaciosValor = "  ";
-                                break;
-                            case 4:
-                                espaciosValor = " ";
-                                break;
-                            case 5:
-                                espaciosValor = "";
-                                break;
-                            default:
-                                break;
-                        }
-
-                        string cortesiaStr = "";
-                        if (item.Producto?.precio == 0) cortesiaStr = " (CORTESIA)";
-
-                        for (int i = 0; i < 33 - $"00 {item.Producto?.nombre}".Length; i++)
-                            espaciosStr += ".";
-
-                        if (item.Cantidad < 10)
-                        {
-                            if (bEsPedido || item.Producto?.precio == 0)
-                                ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}".ToUpper());
-                            else
-                                ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
-                        }
-                        else
-                        {
-                            if (bEsPedido || item.Producto?.precio == 0)
-                                ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}".ToUpper());
-                            else
-                                ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}{cortesiaStr}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
-                        }
-                        if (!string.IsNullOrEmpty(item.txtNota.Text)) ticket.TextoIzquierda("   " + item.txtNota.Text.ToUpper());
-                    }
-                    ticket.TextoIzquierda("");
-                    //ticket.lineasGuion();
-                    //ticket.TextoCentro("DETALLE");
-                    //foreach (ItemVentaPlatoFondo item in spVentaItems.Children.OfType<ItemVentaPlatoFondo>().ToList())
-                    foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList())
+                    foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().ToList())
                     {
                         if (item.Producto?.sector_impresion?.nombre != "NINGUNO")
                             bImprimir = true;
@@ -3168,228 +1596,48 @@ namespace posk.Components
                         }
 
 
-                        for (int i = 0; i < 33 - $"00 {item.Producto?.nombre} {item.Preparacion?.nombre}".Length; i++)
+                        for (int i = 0; i < 33 - $"00 {item.Producto?.nombre} ".Length; i++)
                             espaciosStr += ".";
 
-                        int? cobroExtra = 0;
-                        cobroExtra += item.AgregadoUno?.cobro_extra;
-                        cobroExtra += item.AgregadoDos?.cobro_extra;
-                        //if (cobroExtra == null) cobroExtra = 0;
-
-                        if (cobroExtra != 0 && cobroExtra != null)
+                        if (bEsPedido)
                         {
-                            if (item.AgregadoUno == item.AgregadoDos && item.AgregadoUno != null)
+                            if (item.Cantidad < 10)
                             {
-                                if (bEsPedido)
-                                {
-                                    if (item.Cantidad < 10)
-                                    {
-                                        ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                        ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre}".ToUpper());
-                                    }
-                                    else
-                                    {
-                                        ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                        ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre}".ToUpper());
-                                    }
-                                }
-                                else
-                                {
-                                    if (item.Cantidad < 10)
-                                    {
-                                        ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                        ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre}".ToUpper());
-                                    }
-                                    else
-                                    {
-                                        ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                        ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre}".ToUpper());
-                                    }
-                                }
+                                ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} ".ToUpper());
                             }
                             else
                             {
-                                if (item.AgregadoUno != null && item.AgregadoDos != null)
-                                {
-                                    if (bEsPedido)
-                                    {
-                                        if (item.Cantidad < 10)
-                                        {
-                                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                            ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                                        }
-                                        else
-                                        {
-                                            ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                            ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (item.Cantidad < 10)
-                                        {
-                                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                            ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                                        }
-                                        else
-                                        {
-                                            ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                            ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                                        }
-                                    }
-                                }
+                                ticket.TextoIzquierda($"\n{item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
                             }
                         }
                         else
                         {
-                            if (item.AgregadoUno == item.AgregadoDos && item.AgregadoUno != null)
+                            if (item.Cantidad < 10)
                             {
-                                if (bEsPedido)
-                                {
-                                    if (item.Cantidad < 10)
-                                    {
-                                        ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                        ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre}".ToUpper());
-                                    }
-                                    else
-                                    {
-                                        ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                        ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre}".ToUpper());
-                                    }
-                                }
-                                else
-                                {
-                                    if (item.Cantidad < 10)
-                                    {
-                                        ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                        ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre}".ToUpper());
-                                    }
-                                    else
-                                    {
-                                        ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                        ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre}".ToUpper());
-                                    }
-                                }
+                                ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
                             }
                             else
                             {
-                                if (item.AgregadoUno?.nombre != null && item.AgregadoDos?.nombre != null)
-                                {
-                                    if (bEsPedido)
-                                    {
-                                        if (item.Cantidad < 10)
-                                        {
-                                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                            ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                                        }
-                                        else
-                                        {
-                                            ticket.TextoIzquierda($"\n{item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                            ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (item.Cantidad < 10)
-                                        {
-                                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                            ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                                        }
-                                        else
-                                        {
-                                            ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                            ticket.TextoIzquierda($"   Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                                        }
-
-                                    }
-                                }
-                                else
-                                {
-                                    if (bEsPedido)
-                                    {
-                                        if (item.Cantidad < 10)
-                                        {
-                                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                        }
-                                        else
-                                        {
-                                            ticket.TextoIzquierda($"\n{item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (item.Cantidad < 10)
-                                        {
-                                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                        }
-                                        else
-                                        {
-                                            ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
-                                        }
-
-                                    }
-                                }
+                                ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre} {espaciosStr}${espaciosValor}{item.ObtenerTotal()}".ToUpper());
                             }
+
                         }
-                        if (item.ListaRollosTabla != null)
+
+                        if (item.Opcion != null)
                         {
-                            int count = 1;
-                            item.ListaRollosTabla.ForEach(rolloTablaIV =>
-                            {
-                                ticket.TextoIzquierda($"");
-                                ticket.TextoIzquierda($"*** ROLLO #{count}:");
-                                ticket.TextoIzquierda($"ENVOLTURA: {rolloTablaIV.Envoltura.nombre}");
-                                ticket.TextoIzquierda($"{rolloTablaIV.ObtenerAgregadosStr()}");
-
-                                if (item.Envoltura != null)
-                                    ticket.TextoIzquierda($"ENVOLTURA: {item.Envoltura.nombre}");
-                                if (item.listaAgregadosSushi != null)
-                                    ticket.TextoIzquierda($"{item?.ObtenerAgregadosStr()}");
-                                if (!string.IsNullOrEmpty(item.txtNota?.Text))
-                                    ticket.TextoIzquierda("   " + item.txtNota?.Text.ToUpper());
-                                //ticket.TextoIzquierda("");
-
-                                ticket.TextoIzquierda($"***");
-                                count++;
-                            });
+                            if (!item.Opcion.nombre.Contains("N/A"))
+                                ticket.TextoIzquierda($"TIPO: {item.Opcion.nombre}");
                         }
-                        else
-                        {
-                            if (item.Producto.es_shawarma == true)
-                            {
-                                if (item.Envoltura != null)
-                                    ticket.TextoIzquierda($"TAMANO: {item.Envoltura.nombre}");
-                                if (item.listaAgregadosSushi != null)
-                                    ticket.TextoIzquierda($"{item?.ObtenerAgregadosStr()}");
-                                if (!string.IsNullOrEmpty(item.txtNota?.Text))
-                                    ticket.TextoIzquierda("   " + item.txtNota?.Text.ToUpper());
-                                ticket.TextoIzquierda("");
+                        if (item.listaIngredientes != null)
+                            ticket.TextoIzquierda($"{item?.ObtenerIngredientesStr()}");
+                        if (!string.IsNullOrEmpty(item.txtNota?.Text))
+                            ticket.TextoIzquierda("   " + item.txtNota?.Text.ToUpper());
+                        ticket.TextoIzquierda("");
 
-                                if (bEsPedido == true)
-                                    ticket.lineasGuion();
-                            }
-                            else
-                            {
-                                if (item.Envoltura != null)
-                                    ticket.TextoIzquierda($"ENVOLTURA: {item.Envoltura.nombre}");
-                                if (item.Opcion != null)
-                                    if (!item.Opcion.nombre.Contains("N/A"))
-                                        ticket.TextoIzquierda($"TIPO: {item.Opcion.nombre}");
-                                if (item.listaAgregadosSushi != null)
-                                    ticket.TextoIzquierda($"{item?.ObtenerAgregadosStr()}");
-                                if (item.listaIngredientes != null)
-                                    ticket.TextoIzquierda($"{item?.ObtenerIngredientesStr()}");
-                                if (!string.IsNullOrEmpty(item.txtNota?.Text))
-                                    ticket.TextoIzquierda("   " + item.txtNota?.Text.ToUpper());
-                                ticket.TextoIzquierda("");
-
-                                if (bEsPedido == true)
-                                    ticket.lineasGuion();
-                            }
-                        }
+                        if (bEsPedido == true)
+                            ticket.lineasGuion();
                     }
                     ticket.TextoIzquierda("");
-                    //ticket.lineasGuion();
                     if (bEsPedido)
                     {
                         if (!string.IsNullOrEmpty(imc.txtMensaje.Text) && (((sector_impresion)imc.cbSectoresImpresion.SelectedItem).nombre.ToUpper() == "COCINA" || ((sector_impresion)imc.cbSectoresImpresion.SelectedItem).nombre.ToUpper() == "TODOS"))
@@ -3398,8 +1646,6 @@ namespace posk.Components
                             ticket.TextoIzquierda($"Mensaje: {imc.txtMensaje.Text}".ToUpper());
                         }
                     }
-
-
                 }
 
                 if (di != null && bEsPedido)
@@ -3429,95 +1675,6 @@ namespace posk.Components
                         ticket.TextoCentro($"Vuelto: {di.Vuelto}");
                 }
 
-                if (spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "otro").ToList().Count != 0)
-                {
-                    if (!string.IsNullOrEmpty(pedidoId))
-                        bParaBar = true;
-
-                    if (bParaBar)
-                    {
-                        if (bContieneParaCocina)
-                        {
-                            ticket.CortaTicket();
-                            ticket.ImprimirTicket(Settings.ImpresoraCocina, "Ticket Cocina");
-                            // ticket.ImprimirTicket(Settings.ImpresoraBar, "7466456");
-                        }
-                        ticket.linea.Clear();
-                        ticket.TextoCentro($"TICKET CAJA");
-                        ticket.TextoIzquierda("");
-                        // ticket.TextoExtremos($"MESA: {mesa}".ToUpper(), $"PEDIDO ID: {pedidoId}".ToUpper());
-                        ticket.TextoIzquierda($"MESA: {mesa}".ToUpper());
-                        if (!string.IsNullOrEmpty(garzon))
-                            ticket.TextoIzquierda($"GARZON: {garzon}".ToUpper());
-                        ticket.TextoExtremos("FECHA: " + DateTime.Now.ToShortDateString(), "HORA: " + DateTime.Now.ToShortTimeString());
-                        ticket.TextoIzquierda("");
-                    }
-                    else
-                    {
-                        ticket.lineasGuion();
-                        ticket.TextoCentro($"OTROS");
-                    }
-
-
-                    foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "otro" && x.Producto?.precio != 0).ToList())
-                    {
-                        if (item.Producto?.sector_impresion.nombre == "COCINA")
-                            bImprimirEnCocina = true;
-
-                        string espaciosStr = "";
-                        string espaciosValor = "";
-                        switch ($"{item.Producto?.precio * item.Cantidad}".Length)
-                        {
-                            case 3:
-                                espaciosValor = "  ";
-                                break;
-                            case 4:
-                                espaciosValor = " ";
-                                break;
-                            case 5:
-                                espaciosValor = "";
-                                break;
-                            default:
-                                break;
-                        }
-
-                        for (int i = 0; i < 33 - $"00 {item.Producto?.nombre}".Length; i++)
-                            espaciosStr += ".";
-
-                        if (item.Cantidad < 10)
-                        {
-                            if (bParaBar || item.Producto?.precio == 0)
-                                ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}".ToUpper());
-                            else
-                                ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
-                        }
-                        else
-                        {
-                            if (bParaBar || item.Producto?.precio == 0)
-                                ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}".ToUpper());
-                            else
-                                ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
-                        }
-                        if (!string.IsNullOrEmpty(item.txtNota.Text)) ticket.TextoIzquierda("   " + item.txtNota.Text.ToUpper());
-                    }
-
-                    if (spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "otro").ToList().Count != 0)
-                    {
-                        ticket.TextoIzquierda("");
-                        ticket.lineasGuion();
-                    }
-
-                    if (bParaBar)
-                    {
-                        if (!string.IsNullOrEmpty(imc.txtMensaje.Text) && (((sector_impresion)imc.cbSectoresImpresion.SelectedItem).nombre.ToUpper() == "BAR" || ((sector_impresion)imc.cbSectoresImpresion.SelectedItem).nombre.ToUpper() == "TODOS"))
-                        {
-                            ticket.TextoIzquierda("");
-                            ticket.TextoIzquierda($"Mensaje: {imc.txtMensaje.Text}".ToUpper());
-                        }
-                    }
-
-                }
-
                 if (!bEsPedido)
                 {
                     ticket.TextoIzquierda("");
@@ -3541,33 +1698,8 @@ namespace posk.Components
 
                 ticket.CortaTicket();
 
-                int contadorProductosCocina = 0;
-                foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == true).ToList())
-                {
-                    if (item.Producto?.sector_impresion.nombre == "COCINA")
-                        contadorProductosCocina++;
-                }
-                foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo" && x.Entrada == false).ToList())
-                {
-                    if (item.Producto?.sector_impresion.nombre == "COCINA")
-                        contadorProductosCocina++;
-                }
-                foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "otro").ToList())
-                {
-                    if (item.Producto?.sector_impresion.nombre == "COCINA")
-                        contadorProductosCocina++;
-                }
-
-                //ticket.ImprimirTicket(Settings.ImpresoraBar);
-
-                //Imprimir.PrintText("Texto de prueba a bar", Settings.ImpresoraBar);
-                //Imprimir.PrintText("Texto de prueba a cocina", Settings.ImpresoraCocina);
-
-
-                if (contadorProductosCocina != 0 && bEsPedido && !bParaBar && bImprimir == true)
+                if (bEsPedido && !bParaBar && bImprimir == true)
                     ticket.ImprimirTicket(Settings.ImpresoraCocina, "Ticket Cocina");
-
-                //Imprimir.PrintText("Texto de prueba a cocina", Settings.ImpresoraCocina);
 
                 if (GlobalSettings.Modo.Equals(GlobalSettings.ModoEnum.SUSHI.ToString()) && bYaRealizado == false && bImprimir == true)
                 {
@@ -3581,434 +1713,6 @@ namespace posk.Components
             {
                 PoskException.Make(ex, "Error al generar el ticket");
             }
-        }
-
-        /*
-        private void GenerarTicketDesdePP(int? subTotal, string mensajeCocina, string garzon, string mesa, string pedidoId, List<pedidos_productos> listaPP)
-        {
-            try
-            {
-                CrearTicket ticket = new CrearTicket();
-                ticket.AbreCajon();
-
-                bool bParaCocina = false;
-                if (!string.IsNullOrEmpty(pedidoId))
-                    bParaCocina = true;
-
-                if (!bParaCocina)
-                    ticket.TextoCentro($"{Settings.NombreDelNegocio}");
-                else
-                    ticket.TextoCentro($"TICKET COCINA");
-
-                ticket.TextoIzquierda("");
-
-                if (!bParaCocina)
-                {
-                    if (!string.IsNullOrEmpty(mesa))
-                        ticket.TextoIzquierda($"MESA: {mesa}".ToUpper());
-                }
-                else
-                    ticket.TextoExtremos($"PEDIDO ID: {pedidoId}".ToUpper(), $"MESA: {mesa}".ToUpper());
-
-                if (!string.IsNullOrEmpty(garzon))
-                    ticket.TextoIzquierda($"GARZÓN: {garzon}".ToUpper());
-
-                ticket.TextoExtremos("FECHA: " + DateTime.Now.ToShortDateString(), "HORA: " + DateTime.Now.ToShortTimeString());
-                ticket.TextoIzquierda("");
-
-                if (listaPP.Count != 0)
-                    ticket.lineasGuion();
-
-                foreach (pedidos_productos item in listaPP.Where(x => x.Producto?.contiene_agregado == true).ToList())
-                {
-                    string espaciosStr = "";
-                    string espaciosValor = "";
-                    switch ($"{item.ObtenerTotal()}".Length)
-                    {
-                        case 3:
-                            espaciosValor = "  ";
-                            break;
-                        case 4:
-                            espaciosValor = " ";
-                            break;
-                        case 5:
-                            espaciosValor = "";
-                            break;
-                        default:
-                            break;
-                    }
-
-                    for (int i = 0; i < 33 - $"{item.Producto?.nombre} {item.Preparacion?.nombre}".Length; i++)
-                        espaciosStr += ".";
-
-                    int? cobroExtra = 0;
-                    cobroExtra += item.AgregadoUno?.cobro_extra;
-                    cobroExtra += item.AgregadoDos?.cobro_extra;
-                    if (cobroExtra != 0)
-                    {
-                        if (item.AgregadoUno == item.AgregadoDos && item.AgregadoUno != null)
-                        {
-                            if (bParaCocina)
-                            {
-                                ticket.TextoIzquierda($"\n{item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                ticket.TextoIzquierda($"Con {item.AgregadoUno?.nombre} X2".ToUpper());
-                            }
-                            else
-                            {
-                                ticket.TextoIzquierda($"\n{item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.Producto?.precio + cobroExtra}".ToUpper());
-                                ticket.TextoIzquierda($"Con {item.AgregadoUno?.nombre} X2".ToUpper());
-                            }
-                        }
-                        else
-                        {
-                            if (bParaCocina)
-                            {
-                                ticket.TextoIzquierda($"\n{item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                ticket.TextoIzquierda($"Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                            }
-                            else
-                            {
-                                ticket.TextoIzquierda($"\n{item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.Producto?.precio + cobroExtra}".ToUpper());
-                                ticket.TextoIzquierda($"Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (item.AgregadoUno == item.AgregadoDos && item.AgregadoUno != null)
-                        {
-                            if (bParaCocina)
-                            {
-                                ticket.TextoIzquierda($"\n{item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                ticket.TextoIzquierda($"Con {item.AgregadoUno?.nombre} X2".ToUpper());
-                            }
-                            else
-                            {
-                                ticket.TextoIzquierda($"\n{item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.Producto?.precio}".ToUpper());
-                                ticket.TextoIzquierda($"Con {item.AgregadoUno?.nombre} X2".ToUpper());
-                            }
-                        }
-                        else
-                        {
-                            if (bParaCocina)
-                            {
-                                ticket.TextoIzquierda($"\n{item.Producto?.nombre} {item.Preparacion?.nombre}".ToUpper());
-                                ticket.TextoIzquierda($"Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                            }
-                            else
-                            {
-                                ticket.TextoIzquierda($"\n{item.Producto?.nombre} {item.Preparacion?.nombre}{espaciosStr}${espaciosValor}{item.Producto?.precio}".ToUpper());
-                                ticket.TextoIzquierda($"Con {item.AgregadoUno?.nombre} y {item.AgregadoDos?.nombre}".ToUpper());
-                            }
-                        }
-
-                    }
-                }
-                ticket.TextoIzquierda("");
-                ticket.lineasGuion();
-                foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().ToList())
-                {
-                    string espaciosStr = "";
-                    string espaciosValor = "";
-                    switch ($"{item.Producto?.precio * item.Cantidad}".Length)
-                    {
-                        case 3:
-                            espaciosValor = "  ";
-                            break;
-                        case 4:
-                            espaciosValor = " ";
-                            break;
-                        case 5:
-                            espaciosValor = "";
-                            break;
-                        default:
-                            break;
-                    }
-
-                    for (int i = 0; i < 33 - $"00 {item.Producto?.nombre}".Length; i++)
-                        espaciosStr += ".";
-
-                    if (item.Cantidad < 10)
-                    {
-                        if (bParaCocina)
-                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}".ToUpper());
-                        else
-                            ticket.TextoIzquierda($"\n0{item.Cantidad} {item.Producto?.nombre}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
-                    }
-                    else
-                    {
-                        if (bParaCocina)
-                            ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}".ToUpper());
-                        else
-                            ticket.TextoIzquierda($"\n{item.Cantidad} {item.Producto?.nombre}{espaciosStr}${espaciosValor}{item.Producto?.precio * item.Cantidad}".ToUpper());
-                    }
-                }
-                ticket.TextoIzquierda("");
-                ticket.lineasGuion();
-
-                if (!bParaCocina)
-                {
-                    ticket.TextoIzquierda("");
-                    int propinaSugerida = Convert.ToInt32(subTotal * 0.10);
-                    int? total = propinaSugerida + subTotal;
-                    ticket.TextoIzquierda($"SubTotal:                     ${subTotal}".ToUpper());
-                    ticket.TextoIzquierda($"Propina sugerida (10%):       $ {propinaSugerida}".ToUpper());
-                    ticket.TextoIzquierda($"Total:                        ${total}".ToUpper());
-                }
-                else
-                {
-                    if (!string.IsNullOrEmpty(mensajeCocina))
-                        ticket.TextoIzquierda($"Mensaje cocina: {mensajeCocina}".ToUpper());
-                }
-
-                ticket.CortaTicket();
-                ticket.ImprimirTicket("THERMAL Receipt Printer");
-            }
-            catch (Exception ex)
-            {
-                PoskException.Make(ex, "Error al generar el ticket");
-            }
-        }
-        */
-
-        private void CargarSeccionPedido()
-        {
-            btnVolver.Click += (se, a) => MainWindow.MainFrame.Content = new PageMesas();
-
-            Loaded += (se, a) =>
-            {
-                lbInfo.Content = "SECCIÓN PEDIDO";
-                //lbNombreLista.Content = "PEDIDO";
-
-                ItemDejarMensaje_pedido itemDejarMensaje = new ItemDejarMensaje_pedido();
-                borderAccionIzquierda.Child = itemDejarMensaje;
-
-                ItemMesa_pedido itemMesa = new ItemMesa_pedido() { Mesa = mesa };
-                borderAccionCentro.Child = itemMesa;
-
-                ItemEnviar_pedido itemEnviar = new ItemEnviar_pedido();
-                borderAccionDerecha.Child = itemEnviar;
-
-                ItemMensajeCocina itemMensajeCocina = new ItemMensajeCocina();
-                spContenidoSeccionLista.Children.Add(itemMensajeCocina);
-
-                itemEnviar.btnEnviar.Click += (se2, a2) =>
-                {
-                    pedido ped = new pedido();
-                    mesa.usuario = Settings.Usuario;
-                    ped = PedidoBLL.Obtener(mesa.id);
-                    if (ped == null)
-                        ped = PedidoBLL.Crear(Settings.Usuario, DateTime.UtcNow, itemMensajeCocina.Mensaje, mesa.id);
-
-                    // platos de fondo con sus agregados
-                    //List<ItemVentaPlatoFondo> listaPlatosFondo = spVentaItems.Children.OfType<ItemVentaPlatoFondo>().ToList();
-                    List<ItemVenta> listaPlatosFondo = spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo").ToList();
-                    if (listaPlatosFondo.Count != 0)
-                    {
-                        listaPlatosFondo.ForEach(ive =>
-                        {
-                            //pedidos_productos pedido_producto = PedidosProductosBLL.Crear(ped.id, ive.Producto?.id, ive.Promocion?.id, ive.Cantidad, Convert.ToInt32(ive.txtTotal.Text), );
-                            //PedidosAgregadosBLL.Crear(pedido_Producto?.id, ive.AgregadoUno.id, ive.AgregadoDos.id);
-                            //PedidosAgregadosBLL.Crear(pedido_producto, ive.AgregadoDos);
-                        });
-                    }
-
-
-                    string listaProductosImprimir_Nuevo = "\nNUEVO:\n";
-                    string listaProductosImprimir_Agregar = "\nAGREGAR:\n";
-                    string listaProductosImprimir_Quitar = "\nQUITAR UNIDAD(ES):\n";
-                    string listaProductosImprimir_QuitarTodasLasUnidades = "\nQUITAR TODAS LAS UNIDADES:\n";
-
-                    List<ItemVentaPedido> listaItemsPedido = spVentaItems.Children.OfType<ItemVentaPedido>().ToList();
-                    if (listaItemsPedido.Count != 0)
-                    {
-                        listaItemsPedido.ForEach(ivp =>
-                        {
-                            pedidos_productos pp = PedidosProductosBLL.Obtener(ivp.PedidoProductoID);
-                            if (pp != null)
-                            {
-                                if (pp.impreso_cantidad != ivp.Cantidad)
-                                {
-                                    decimal? diferenciaCantidad = ivp.Cantidad - pp.impreso_cantidad;
-                                    PedidosProductosBLL.AgregarCantidad(pp.id, diferenciaCantidad);
-                                    if (diferenciaCantidad < 0)
-                                    {
-                                        listaProductosImprimir_Quitar += $"{pp.producto?.nombre} x{Math.Abs((decimal)diferenciaCantidad)}\n";
-                                    }
-                                    else
-                                    {
-                                        listaProductosImprimir_Agregar += $"{pp.producto?.nombre} x{diferenciaCantidad}\n";
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                //PedidosProductosBLL.Crear(ped.id, ivp.Producto?.id, ivp.Promo.id, ivp.Cantidad);
-                                listaProductosImprimir_Nuevo += $"{ivp.Producto?.nombre} x{ivp.Cantidad}\n";
-                            }
-                        });
-                    }
-                    if (spVentaItems.Children.Count == 0)
-                    {
-                        MesaBLL.Actualizar(mesa.id, 0, null, true);
-                        // Mensaje
-                        List<ItemAccion> _listaItemsAccion = new List<ItemAccion>();
-                        ItemAccion _ia1 = new ItemAccion();
-                        _ia1.Accion = "SALIR";
-                        _ia1.btnAccion.Click += (se3, a3) => { MainWindow.MainFrame.Content = new PageInicio(); };
-
-                        ItemAccion _ia2 = new ItemAccion();
-                        _ia2.Accion = "OTRO PEDIDO";
-                        _ia2.btnAccion.Click += (se3, a3) => { MainWindow.MainFrame.Content = new PageMesas(); };
-
-                        _listaItemsAccion.Add(_ia1);
-                        _listaItemsAccion.Add(_ia2);
-
-                        MostrarAccion(_listaItemsAccion, "¡LISTO!");
-                        return;
-                    }
-
-                    List<pedidos_productos> listaPedidosProductosActualizar = new List<pedidos_productos>();
-                    spVentaItems.Children.OfType<ItemVentaPedido>().ToList().ForEach(x =>
-                    {
-                        listaPedidosProductosActualizar.Add(new pedidos_productos() { id = x.PedidoProductoID, cantidad = x.Cantidad });
-                    });
-                    if (listaPedidosProductosActualizar != null)
-                        PedidosProductosBLL.ActualizarVarios(ped.id, listaPedidosProductosActualizar);
-
-                    List<pedidos_productos> listaPedidosProductosEliminar = new List<pedidos_productos>();
-                    listaItemsPedidoEliminarDesdeBD.ForEach(x =>
-                    {
-                        listaProductosImprimir_QuitarTodasLasUnidades += $"{x.Producto?.nombre}\n";
-                        listaPedidosProductosEliminar.Add(new pedidos_productos() { id = x.PedidoProductoID });
-                    });
-                    if (listaPedidosProductosEliminar != null)
-                        PedidosProductosBLL.EliminarVarios(ped.id, listaPedidosProductosEliminar);
-
-                    string imprimir = "";
-                    if (listaProductosImprimir_Nuevo != "\nNUEVO:\n")
-                        imprimir += listaProductosImprimir_Nuevo;
-                    if (listaProductosImprimir_Agregar != "\nAGREGAR:\n")
-                        imprimir += listaProductosImprimir_Agregar;
-                    if (listaProductosImprimir_Quitar != "\nQUITAR UNIDAD(ES):\n")
-                        imprimir += listaProductosImprimir_Quitar;
-                    if (listaProductosImprimir_QuitarTodasLasUnidades != "\nQUITAR TODAS LAS UNIDADES:\n")
-                        imprimir += listaProductosImprimir_QuitarTodasLasUnidades;
-
-                    MessageBox.Show(imprimir);
-
-                    int contadorItems = 0;
-
-                    string imprimirActualización = $"TICKET COCINA {DateTime.Now.ToShortDateString().ToUpper()} - {DateTime.Now.ToShortTimeString()}\nACTUALIZACIÓN DE PEDIDO N°{ ped.id }\n \nSolicitado por: { Settings.Usuario.nombre }\npara mesa: {mesa.codigo} sector: {mesa.sectormesa.nombre}\n\n";
-                    //spVentaItems.Children.OfType<ItemVentaPlatoFondo>().ToList().ForEach(x =>
-                    spVentaItems.Children.OfType<ItemVenta>().Where(x => x.Producto?.tipo_itemventa?.nombre == "plato fondo").ToList().ForEach(x =>
-                    {
-                        if (x.AgregadoUno == x.AgregadoDos)
-                            imprimirActualización += $"{x.Producto?.nombre} con {x.AgregadoUno.nombre}\n";
-                        else
-                            imprimirActualización += $"{x.Producto?.nombre} con {x.AgregadoUno.nombre} y {x.AgregadoDos.nombre}\n";
-                        contadorItems++;
-                    });
-                    spVentaItems.Children.OfType<ItemVentaPedido>().ToList().ForEach(x =>
-                    {
-                        imprimirActualización += $"x{x.Cantidad}    {x.Producto?.nombre}\n";
-                        contadorItems += Convert.ToInt32(x.Cantidad);
-                    });
-
-                    MessageBox.Show(imprimirActualización);
-                    mesa.items = contadorItems;
-
-                    MesaBLL.Actualizar(mesa.id, contadorItems, Settings.Usuario.id, false);
-
-                    // Mensaje
-                    List<ItemAccion> listaItemsAccion = new List<ItemAccion>();
-                    ItemAccion ia1 = new ItemAccion();
-                    ia1.Accion = "SALIR";
-                    ia1.btnAccion.Click += (se3, a3) => { MainWindow.MainFrame.Content = new PageInicio(); };
-
-                    ItemAccion ia2 = new ItemAccion();
-                    ia2.Accion = "OTRO PEDIDO";
-                    ia2.btnAccion.Click += (se3, a3) => { MainWindow.MainFrame.Content = new PageMesas(); };
-
-                    listaItemsAccion.Add(ia1);
-                    listaItemsAccion.Add(ia2);
-
-                    MostrarAccion(listaItemsAccion, "¡LISTO!");
-                };
-
-                listaItemsPedidoEliminarDesdeBD = new List<ItemVentaPedido>();
-                if (mesa.libre == false)
-                {
-                    pedido p = PedidoBLL.Obtener(mesa.id);
-
-                    if (p != null)
-                    {
-                        List<pedidos_productos> listaPP = PedidosProductosBLL.ObtenerTodos(p.id);
-                        foreach (pedidos_productos pp in listaPP)
-                        {
-                            //pedidos_agregados pa = PedidosAgregadosBLL.Obtener(pp.id);
-                            //if (pa != null)
-                            //{
-                            //    List<agregado> listaAgregados = PedidosAgregadosBLL.ObtenerAgregados(pp.id);
-                            //    agregado agregadoUno = new agregado(), agregadoDos = new agregado();
-                            //    int i = 0;
-                            //    foreach (agregado ag in listaAgregados)
-                            //    {
-                            //        if (i == 0)
-                            //            agregadoUno = ag;
-                            //        else
-                            //            agregadoDos = ag;
-                            //        i++;
-                            //    }
-                            //    spVentaPlatosPrincipales.Children.Add(new ItemVentaPlatoFondo() { Producto = pp.producto, AgregadoUno = agregadoUno, AgregadoDos = agregadoDos });
-                            //}
-                            //else
-                            //{
-                            var ivp = new ItemVentaPedido() { PedidoProductoID = pp.id, Cantidad = pp.cantidad, Producto = pp.producto };
-                            ivp.AlEliminar += (se2, a2) =>
-                            {
-                                spVentaItems.Children.Remove(ivp);
-                                listaItemsPedidoEliminarDesdeBD.Add(ivp);
-                                CalcularTotal();
-
-                            };
-                            spVentaItems.Children.Add(ivp);
-                            CalcularTotal();
-
-                            //}
-                        }
-                    }
-                }
-                //if (mesa.libre == true)
-                //{
-                //    PedidosProductosBLL.ObtenerTodos((PedidoBLL.Obtener(mesa.id)).id).ForEach(pp => 
-                //    {
-                //        if (PedidosAgregadosBLL.Obtener(pp.id) != null)
-                //        {
-                //            agregado agregadoUno = new agregado(), agregadoDos = new agregado();
-                //            int i = 0;
-                //            PedidosAgregadosBLL.ObtenerAgregados(pp.id).ForEach(ag => 
-                //            {
-                //                if (i == 0)
-                //                    agregadoUno = ag;
-                //                else
-                //                    agregadoDos = ag;
-                //                i++;
-                //            });
-                //            spVentaItems.Children.Add( new ItemVentaPlatoFondo() { Producto = pp.producto, AgregadoUno = agregadoUno, AgregadoDos = agregadoDos });
-                //        }
-                //        else
-                //        {
-                //            var ivp = new ItemVentaPedido() { Cantidad = pp.cantidad, Producto = pp.producto };
-                //            ivp.AlEliminar += (se2, a2) => { spVentaItems.Children.Remove(ivp); };
-                //            spVentaItems.Children.Add(ivp);
-                //        }
-                //    });
-                //}
-
-                expBottom.IsExpanded = true;
-
-            };
         }
 
         private void CargarSeccionStock()
@@ -4119,20 +1823,6 @@ namespace posk.Components
 
         private void InitEvents()
         {
-            expBottomAgregadosHandroll.Expanded += (se, a) =>
-            {
-                CrearAgregadosHandroll();
-                expAgregadoSushiSuperior.IsExpanded = true;
-            };
-            expBottomAgregadosHandroll.Collapsed += (se, a) => expAgregadoSushiSuperior.IsExpanded = false;
-
-            this.KeyDown += (se, a) =>
-            {
-                if (a.Key == Key.Left)
-                    txtCantidad.Focus();
-                if (a.Key == Key.Right)
-                    txtBarCode.Focus();
-            };
             txtCantidad.KeyDown += (se, a) =>
             {
                 if (a.Key == Key.Right)
@@ -4171,9 +1861,6 @@ namespace posk.Components
             {
                 case "VENTA":
                     CargarSeccionVenta();
-                    break;
-                case "PEDIDO":
-                    CargarSeccionPedido();
                     break;
                 case "STOCK":
                     CargarSeccionStock();
@@ -4268,16 +1955,6 @@ namespace posk.Components
             {
                 if (txtBuscar.Text != "")
                 {
-                    //if (bListaRescatadaDeBD == false)
-                    //{
-                    //    listas = ProductoBLL.ObtenerCoincidencias("*");
-                    //    bListaRescatadaDeBD = true;
-                    //    MostrarPedidos(listas);
-                    //}
-                    //else
-                    //{
-                    //    MostrarPedidos(listas);
-                    //}
                     MostrarPedidos(ProductoBLL.ObtenerCoincidencias(txtBuscar.Text));
                 }
                 else
@@ -4290,33 +1967,6 @@ namespace posk.Components
             btnExpanderLeft.Click += (se, a) =>
             {
                 AbrirCategoriasToogle();
-            };
-
-            /*
-            btnExpanderBottom.Click += (se, a) =>
-                expBottom.IsExpanded ^= true;
-            expBottom.Expanded += (se, a) =>
-                btnExpanderBottom.Foreground = colorDorado;
-            expBottom.Collapsed += (se, a) =>
-                btnExpanderBottom.Foreground = colorNeutro;
-            */
-
-            expBottomEnvolturasHandroll.Expanded += (se, a) =>
-            {
-                expBottomAgregadosHandroll.IsExpanded = false;
-                expBottomPreparadoEspecial.IsExpanded = false;
-            };
-            expBottomAgregadosHandroll.Expanded += (se, a) =>
-            {
-                expBottomEnvolturasHandroll.IsExpanded = false;
-                expBottomPreparadoEspecial.IsExpanded = false;
-            };
-
-            btnCrearItemVentaEspecialHandroll.Click += (se, a) =>
-            {
-                expBottomEnvolturasHandroll.IsExpanded = false;
-                expBottomPreparadoEspecial.IsExpanded = false;
-                expBottomAgregadosHandroll.IsExpanded = false;
             };
 
             btnFavorito.Click += (se, a) =>

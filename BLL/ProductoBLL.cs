@@ -77,7 +77,7 @@ namespace posk.BLL
                 }
                 else
                 {
-                    return (db.productos.Where(x => x.nombre.Contains(str) || x.proveedore.nombre.Contains(str)).OrderBy(x => x.z_index).ToList(),
+                    return (db.productos.Where(x => x.nombre.Contains(str)).OrderBy(x => x.z_index).ToList(),
                         db.promociones.Where(x => x.nombre.Contains(str)).ToList(), false);
                 }
             }
@@ -122,8 +122,7 @@ namespace posk.BLL
                 codigo_barras = p.codigo_barras,
                 precio = p.precio,
                 puntos_cantidad = p.puntos_cantidad,
-                imagen = p.imagen,
-                proveedor_id = p.proveedor_id // TODO - revisar
+                imagen = p.imagen
             };
 
             db.productos.Add(newProduct);
@@ -144,9 +143,7 @@ namespace posk.BLL
             pViejo.solo_venta = pNuevo.solo_venta;
             pViejo.solo_compra = pNuevo.solo_compra;
             pViejo.sector_impresion_id = pNuevo.sector_impresion_id;
-            pViejo.tipo_itemventa_id = pNuevo.tipo_itemventa_id;
             pViejo.z_index = pNuevo.z_index;
-            //pViejo.proveedor_id = pNuevo.proveedor_id;
             db.SaveChanges();
         }
 

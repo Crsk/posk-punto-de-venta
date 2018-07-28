@@ -15,14 +15,13 @@ namespace posk.Models
     public partial class ventas_jornada
     {
         public int id { get; set; }
-        public Nullable<int> producto_id { get; set; }
-        public Nullable<int> promo_id { get; set; }
         public Nullable<int> jornada_id { get; set; }
-        public Nullable<decimal> cantidad { get; set; }
+        public int cantidad { get; set; }
         public int cobro_extra { get; set; }
+        public int detalle_boleta_id { get; set; }
+        public string opcion { get; set; }
     
+        public virtual detalle_boleta detalle_boleta { get; set; }
         public virtual jornada jornada { get; set; }
-        public virtual promocione promocione { get; set; }
-        public virtual producto producto { get; set; }
     }
 }

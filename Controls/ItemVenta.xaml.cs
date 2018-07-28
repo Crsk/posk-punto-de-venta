@@ -25,7 +25,7 @@ namespace posk.Controls
 
         public envoltura Envoltura { get; set; }
 
-        public int Extra { get; set; }
+        public int Extra_ { get; set; }
 
         public agregado PaltaCebollin { get; set; }
 
@@ -305,7 +305,7 @@ namespace posk.Controls
 
         public int? ObtenerTotal()
         {
-            int? cobroExtra = Extra;
+            int? cobroExtra = Extra_;
             try
             {
                 if (AgregadoUno != null && AgregadoUno?.cobro_extra != null)
@@ -374,7 +374,7 @@ namespace posk.Controls
 
         public int CalcularTotal()
         {
-            int? cobroExtra = Extra;
+            int? cobroExtra = Extra_;
             if (AgregadoUno != null && AgregadoUno?.cobro_extra != null)
                 cobroExtra += AgregadoUno?.cobro_extra;
             if (AgregadoDos != null && AgregadoDos?.cobro_extra != null)
@@ -395,6 +395,7 @@ namespace posk.Controls
                 txtTotal.Text = $"{total + cobroExtra + sumarAlTotal}";
             else
                 txtTotal.Text = $"${Convert.ToInt32(total) + cobroExtra + sumarAlTotal}";
+            Extra_ = (int) cobroExtra + sumarAlTotal;
             return (int)total;
 
             //if (TotalIV != 0)
@@ -485,6 +486,7 @@ namespace posk.Controls
 
                 if (cantidadIngr >= limiteIngr) cobroExtra = valorIngExtra * (cantidadIngr - limiteIngr);
             }
+            Extra_ = cobroExtra;
             return cobroExtra;
         }
     }

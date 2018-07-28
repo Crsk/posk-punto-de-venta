@@ -21,7 +21,7 @@ namespace posk.Models
         public Nullable<decimal> entrada { get; set; }
         public Nullable<decimal> salida { get; set; }
     
-        public virtual jornada jornada { get; set; }
         public virtual producto producto { get; set; }
+        public virtual jornada jornada { get; set; }
     }
 }

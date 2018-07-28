@@ -97,7 +97,7 @@ namespace posk.Popup
                     {
                         //ibf.ExpDetalle.IsExpanded ^= true;
                         ibf.spDetalle.Children.Clear();
-                        foreach (detalle_boleta lineaDetalle in LineaDetalleBLL.ObtenerPorBoletaId(ibf.ID))
+                        foreach (detalle_boleta lineaDetalle in DetalleBoletaBLL.ObtenerPorBoletaId(ibf.ID))
                         {
                             ItemLineaBoleta lb = new ItemLineaBoleta();
                             ConfigurarItemBoletaFactura(lb, lb.txtCodigo, lb.cbProductos);
@@ -112,12 +112,12 @@ namespace posk.Popup
                             lb.btnEliminar.Click += (se2, ev2) =>
                             {
                                 ibf.SpDetalle.Children.Remove(lb);
-                                LineaDetalleBLL.Delete(lb.ID);
+                                DetalleBoletaBLL.Delete(lb.ID);
                                 MostrarUltimasVentas();
                             };
                             lb.btnGuardar.Click += (se2, ev2) =>
                             {
-                                LineaDetalleBLL.Update(lb.ID, lb.Producto.id, lb.Cantidad, lb.Cantidad * lb.PrecioUnitario);
+                                DetalleBoletaBLL.Update(lb.ID, lb.Producto.id, lb.Cantidad, lb.Cantidad * lb.PrecioUnitario);
                                 MostrarUltimasVentas();
                             };
                             ibf.SpDetalle.Children.Add(lb);
@@ -169,7 +169,7 @@ namespace posk.Popup
                     {
                         if (ialb.CbProductos.SelectedIndex != -1 && ialb.Boleta != null && ialb.Cantidad != 0)
                         {
-                            LineaDetalleBLL.Set(p, ialb.Boleta, ialb.Cantidad);
+                            DetalleBoletaBLL.Set(p, ialb.Boleta, ialb.Cantidad);
                             MostrarUltimasVentas();
                         }
                     };

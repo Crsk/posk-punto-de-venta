@@ -17,8 +17,8 @@ namespace posk.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public mesa()
         {
-            this.reservas = new HashSet<reserva>();
             this.pedidos = new HashSet<pedido>();
+            this.reservas = new HashSet<reserva>();
         }
     
         public int id { get; set; }
@@ -30,9 +30,9 @@ namespace posk.Models
     
         public virtual sectormesa sectormesa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<pedido> pedidos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<reserva> reservas { get; set; }
         public virtual usuario usuario { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<pedido> pedidos { get; set; }
     }
 }

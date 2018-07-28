@@ -46,22 +46,8 @@ namespace posk.Controls
             {
                 lbPrecio.Content = $"${Producto.precio}";
 
-                if (Producto.contiene_agregado == true && SeccionAdministrarProducto != true && Producto.preparado_especial == false)
-                    txtProducto.Background = colorRojo;
-                else if (Producto.contiene_agregado == false && SeccionAdministrarProducto != true && Producto.preparado_especial == true)
-                {
-                    txtProducto.Background = colorMorado;
-                }
-                else if (Producto.preparado_especial == true && SeccionAdministrarProducto != true)
-                {
-                    //txtProducto.Background = colorMorado;
-                    txtProducto.Background = colorRojo;
-                    borderPreparadoEspecial.Visibility = System.Windows.Visibility.Visible;
-                }
-                else if ((Producto.es_handroll == true || Producto.es_superhandroll == true || Producto.es_envoltura == true) && SeccionAdministrarProducto != true)
-                {
+                if (Producto.tipo_producto_id != null)
                     txtProducto.Background = colorAmarillo;
-                }
                 else
                     txtProducto.Background = colorVerde;
 
@@ -101,21 +87,7 @@ namespace posk.Controls
 
         private void MostrarOverlay(bool b)
         {
-            if (b && Producto.contiene_agregado == true && SeccionAdministrarProducto != true)
-            {
-                overlay.Visibility = System.Windows.Visibility.Visible;
-                txtProducto.Background = colorRojo;
-                DoubleAnimation animation = new DoubleAnimation(1, TimeSpan.FromSeconds(0.5));
-                overlay.BeginAnimation(OpacityProperty, animation);
-            }
-            else if (b && Producto.preparado_especial == true && SeccionAdministrarProducto != true)
-            {
-                overlay.Visibility = System.Windows.Visibility.Visible;
-                txtProducto.Background = colorMorado;
-                DoubleAnimation animation = new DoubleAnimation(1, TimeSpan.FromSeconds(0.5));
-                overlay.BeginAnimation(OpacityProperty, animation);
-            }
-            else if (b && (Producto.es_handroll == true || Producto.es_superhandroll == true | Producto.es_envoltura == true) && SeccionAdministrarProducto != true)
+            if (b && Producto.tipo_producto_id != null)
             {
                 overlay.Visibility = System.Windows.Visibility.Visible;
                 txtProducto.Background = colorAmarillo;
@@ -128,11 +100,7 @@ namespace posk.Controls
                 DoubleAnimation animation = new DoubleAnimation(0, TimeSpan.FromSeconds(0.5));
                 overlay.BeginAnimation(OpacityProperty, animation);
 
-                if (Producto.contiene_agregado == true && SeccionAdministrarProducto != true)
-                    txtProducto.Background = colorRojo;
-                else if (Producto.preparado_especial == true && SeccionAdministrarProducto != true)
-                    txtProducto.Background = colorMorado;
-                else if ((Producto.es_handroll == true || Producto.es_superhandroll == true || Producto.es_envoltura == true) && SeccionAdministrarProducto != true)
+                if (Producto.tipo_producto_id != null)
                     txtProducto.Background = colorAmarillo;
                 else
                     txtProducto.Background = colorVerde;

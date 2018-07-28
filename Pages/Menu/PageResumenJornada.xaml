@@ -12,117 +12,99 @@
             TextOptions.TextRenderingMode="Auto"
             xmlns:sys="clr-namespace:System;assembly=mscorlib" 
             d:DesignHeight="640" d:DesignWidth="1200"
-            Background="#FF05070C">
+            Background="#FFF0F0F0">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Label x:Name="lbInicioJornada" Content="Inicio jornada: " HorizontalAlignment="Center" FontSize="20" Foreground="#DD50B0FF" Margin="0 8 0 0"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="64 0 0 0">
+                <Button x:Name="btnResumenJornadaAnterior" Content="Resúmen jornada anterior" Margin="8" Padding="6" Background="#FFE0E0E0" Style="{StaticResource BtnClear}" FontWeight="Normal"/>
+                <Button x:Name="btnResumenJornadaActual" Content="Resúmen jornada actual" Margin="8" Padding="6" Background="#FFE0E0E0" Style="{StaticResource BtnClear}" FontWeight="Normal"/>
+                <Label x:Name="lbInicioJornada" HorizontalAlignment="Center" FontSize="16" Margin="0 8 0 0" Foreground="Black"/>
+            </StackPanel>
+
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Content="Resumen ventas" HorizontalAlignment="Center" FontSize="26"/>
-            <Label Grid.Column="1" Content="Resumen boletas" HorizontalAlignment="Center" FontSize="26"/>
-        </Grid>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1.5*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <RadioButton x:Name="rbInicioJornadaAnterior" Height="32" VerticalContentAlignment="Center" HorizontalAlignment="Center"/>
-                        <Label Content="Jornada anterior" Margin="0 0 64 0"/>
-                        <RadioButton x:Name="rbInicioJornadaActual" Height="32" VerticalContentAlignment="Center" HorizontalAlignment="Center"/>
-                        <Label Content="Jornada actual"/>
-                    </StackPanel>
-                    <DataGrid
-                        Grid.Row="0"
+            <DataGrid
+                        Grid.Column="0"
                         Margin="0 0 0 32"
                         x:Name="dgResumenVentas"
                         ItemsSource="{Binding}"
-                        Background="#FF0A0A0A"
-                        Height="320"
                         AutoGenerateColumns="False"
                         HorizontalAlignment="Center"
                         SelectionMode="Single"
                         CanUserAddRows="False">
-                        <DataGrid.Resources>
-                            <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">50</sys:Double>
-                        </DataGrid.Resources>
-                        <DataGrid.Columns>
-                            <DataGridTextColumn 
+                <DataGrid.Resources>
+                    <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">50</sys:Double>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn 
                                 Binding="{Binding Producto.nombre}" 
                                 Header="ITEM VENTA"
                                 IsReadOnly="True"
                                 Width="220"/>
-                            <DataGridTextColumn 
+                    <DataGridTextColumn 
+                                Binding="{Binding Opcion}" 
+                                Header="OPCIÓN"
+                                IsReadOnly="True"
+                                Width="140"/>
+                    <DataGridTextColumn 
                                 Binding="{Binding Cantidad}" 
                                 Header="CANT. VEND."
                                 IsReadOnly="True"
                                 Width="100"/>
-                            <DataGridTextColumn 
+                    <DataGridTextColumn 
                                 Binding="{Binding SubTotal}" 
                                 Header="SUBTOTAL"
                                 IsReadOnly="True"
                                 Width="100"/>
-                            <DataGridTextColumn 
+                    <DataGridTextColumn 
                                 Binding="{Binding Adicional}" 
                                 Header="ADICIONAL"
                                 IsReadOnly="True"
                                 Width="100"/>
-                            <DataGridTextColumn 
+                    <DataGridTextColumn 
                                 Binding="{Binding Total}" 
                                 Header="TOTAL"
                                 IsReadOnly="True"
                                 Width="100"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </StackPanel>
-
-                <DataGrid
-                Grid.Row="1"
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid
+                Grid.Column="1"
                 Margin="0 0 0 32"
                 x:Name="dgResumenVentasPromo"
                 ItemsSource="{Binding}"
-                Background="#FF0A0A0A"
                 AutoGenerateColumns="False"
                 HorizontalAlignment="Center"
                 SelectionMode="Single"
                 CanUserAddRows="False">
-                    <DataGrid.Resources>
-                        <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">50</sys:Double>
-                    </DataGrid.Resources>
-                    <DataGrid.Columns>
-                        <DataGridTextColumn 
+                <DataGrid.Resources>
+                    <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">50</sys:Double>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn 
                         Binding="{Binding Promo.nombre}" 
                         Header="PROMO"
                         IsReadOnly="True"
                         Width="220"/>
-                        <DataGridTextColumn 
+                    <DataGridTextColumn 
                         Binding="{Binding Cantidad}" 
                         Header="CANTIDAD VENDIDA"
                         IsReadOnly="True"
                         Width="150"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-
-            </Grid>
-
-            <StackPanel Grid.Column="1">
-
-            </StackPanel>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
     </Grid>
 </Page>

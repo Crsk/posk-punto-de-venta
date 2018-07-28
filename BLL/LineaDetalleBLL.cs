@@ -7,13 +7,18 @@ using System.Threading.Tasks;
 
 namespace posk.BLL
 {
-    class LineaDetalleBLL
+    class DetalleBoletaBLL
     {
         static PoskDB6 db = new PoskDB6();
 
         public static List<detalle_boleta> ObtenerPorPeriodo(DateTime? inicio, DateTime fin)
         {
             return db.detalle_boleta.Where(x => x.boleta.fecha >= inicio && x.boleta.fecha <= fin).ToList();
+        }
+
+        public static detalle_boleta Obtener(int id)
+        {
+            return db.detalle_boleta.Where(x => x.id == id).FirstOrDefault();
         }
 
         public static int GetIngresosPorUsuario(int userID, DateTime desde, DateTime hasta)
@@ -38,6 +43,19 @@ namespace posk.BLL
             db.SaveChanges();
             ActualizarBoletaDespuesDeModificarDetalle(ld);
         }
+
+        public static detalle_boleta Agregar(detalle_boleta dt)
+        {
+            detalle_boleta dl = new detalle_boleta() { producto_id = dt.producto_id, monto = dt.monto, cantidad = dt.cantidad, descuento = dt.descuento, boleta_id = dt.boleta_id, promocion_id = dt.promocion_id };
+            db.detalle_boleta.Add(dt);
+            db.SaveChanges();
+            return dl;
+        }
+        public static detalle_boleta ObtenerUltima()
+        {
+            return db.detalle_boleta.ToList().OrderBy(x => x.id).LastOrDefault();
+        }
+
 
         public static List<detalle_boleta> ObtenerPorBoletaId(int? boletaID)
         {

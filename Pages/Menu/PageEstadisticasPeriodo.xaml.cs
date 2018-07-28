@@ -77,7 +77,7 @@ namespace posk.Pages.Menu
                         BoletaBLL.ObtenerUltimasBoletasPorPeriodo(fechaInicio, fechaCierre).ForEach(boleta =>
                         {
                             ItemBoletaFactura ibf = new ItemBoletaFactura() { NumeroBoleta = boleta.numero_boleta, Total = boleta.total, Cliente = boleta.usuario.nombre, Fecha = boleta.fecha };
-                            LineaDetalleBLL.ObtenerPorBoletaId(boleta.id).ForEach(detalle => 
+                            DetalleBoletaBLL.ObtenerPorBoletaId(boleta.id).ForEach(detalle => 
                             {
                                 ibf.spDetalle.Children.Add(new Label() { Content = $"{detalle.producto?.precio*detalle.cantidad}{detalle.promocione?.precio*detalle.cantidad} [{detalle.producto?.nombre}{detalle.promocione?.nombre}] x{detalle.cantidad}" });
                             });

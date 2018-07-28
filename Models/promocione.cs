@@ -18,10 +18,9 @@ namespace posk.Models
         public promocione()
         {
             this.detalle_boleta = new HashSet<detalle_boleta>();
+            this.pedidos_productos = new HashSet<pedidos_productos>();
             this.pendientes = new HashSet<pendiente>();
             this.producto_promocion = new HashSet<producto_promocion>();
-            this.ventas_jornada = new HashSet<ventas_jornada>();
-            this.pedidos_productos = new HashSet<pedidos_productos>();
         }
     
         public int id { get; set; }
@@ -34,13 +33,11 @@ namespace posk.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<detalle_boleta> detalle_boleta { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<pedidos_productos> pedidos_productos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pendiente> pendientes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<producto_promocion> producto_promocion { get; set; }
         public virtual subcategoria subcategoria { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ventas_jornada> ventas_jornada { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<pedidos_productos> pedidos_productos { get; set; }
     }
 }

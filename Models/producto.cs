@@ -34,7 +34,6 @@ namespace posk.Models
             this.producto_promocion = new HashSet<producto_promocion>();
             this.productoscomplejos = new HashSet<productoscomplejo>();
             this.stock_pr = new HashSet<stock_pr>();
-            this.ventas_jornada = new HashSet<ventas_jornada>();
         }
     
         public int id { get; set; }
@@ -46,22 +45,10 @@ namespace posk.Models
         public Nullable<int> puntos_cantidad { get; set; }
         public string imagen { get; set; }
         public Nullable<int> sub_categoria_id { get; set; }
-        public Nullable<int> proveedor_id { get; set; }
-        public Nullable<bool> contiene_agregado { get; set; }
         public Nullable<bool> solo_venta { get; set; }
         public Nullable<bool> solo_compra { get; set; }
-        public Nullable<bool> preparado_especial { get; set; }
         public Nullable<int> sector_impresion_id { get; set; }
-        public Nullable<int> tipo_itemventa_id { get; set; }
         public int z_index { get; set; }
-        public Nullable<bool> es_handroll { get; set; }
-        public Nullable<bool> es_shawarma { get; set; }
-        public Nullable<bool> es_coccion { get; set; }
-        public Nullable<bool> es_multiple_tamano { get; set; }
-        public Nullable<bool> es_envoltura { get; set; }
-        public Nullable<bool> es_tabla { get; set; }
-        public Nullable<int> cantidad_rollos_tabla { get; set; }
-        public Nullable<bool> es_superhandroll { get; set; }
         public Nullable<int> tipo_producto_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -95,15 +82,11 @@ namespace posk.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<producto_promocion> producto_promocion { get; set; }
         public virtual subcategoria subcategoria { get; set; }
-        public virtual tipo_itemventa tipo_itemventa { get; set; }
-        public virtual proveedore proveedore { get; set; }
+        public virtual tipo_producto tipo_producto { get; set; }
         public virtual sector_impresion sector_impresion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<productoscomplejo> productoscomplejos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<stock_pr> stock_pr { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ventas_jornada> ventas_jornada { get; set; }
-        public virtual tipo_producto tipo_producto { get; set; }
     }
 }

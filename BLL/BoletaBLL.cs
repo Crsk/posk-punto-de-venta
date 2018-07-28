@@ -89,7 +89,7 @@ namespace posk.BLL
             decimal? contadorItems = 0;
             ObtenerUltimasBoletasPorPeriodo(fechaInicio, fechaTermino).ForEach(boleta =>
             {
-                LineaDetalleBLL.ObtenerPorBoletaId(boleta.id).ForEach(lineaBoleta =>
+                DetalleBoletaBLL.ObtenerPorBoletaId(boleta.id).ForEach(lineaBoleta =>
                 {
                     if (lineaBoleta.promocione != null)
                     {

@@ -31,12 +31,12 @@ namespace posk.Models
         public int precio { get; set; }
         public string nota { get; set; }
     
+        public virtual pedido pedido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pedidos_agregados> pedidos_agregados { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pedidos_preparaciones> pedidos_preparaciones { get; set; }
-        public virtual promocione promocione { get; set; }
-        public virtual pedido pedido { get; set; }
         public virtual producto producto { get; set; }
+        public virtual promocione promocione { get; set; }
     }
 }

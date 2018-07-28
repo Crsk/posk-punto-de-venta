@@ -35,7 +35,7 @@ namespace posk.Popups
             TotalTabla = p.precio;
 
             Deactivated += (se, ev) => { if (!bCerrado) Close(); };
-
+            /*
             Loaded += (se, a) =>
             {
                 lbTotal.Content = $"Total: {TotalTabla}";
@@ -229,6 +229,7 @@ namespace posk.Popups
                     wrapRollosTabla.Children.Add(iratDiez);
                 }
             };
+            */
 
             btnCerrar.Click += (se, a) =>
             {

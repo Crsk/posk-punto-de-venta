@@ -18,7 +18,7 @@ namespace posk.Models
         public Nullable<int> producto_id { get; set; }
         public Nullable<int> promocion_id { get; set; }
     
-        public virtual promocione promocione { get; set; }
         public virtual producto producto { get; set; }
+        public virtual promocione promocione { get; set; }
     }
 }

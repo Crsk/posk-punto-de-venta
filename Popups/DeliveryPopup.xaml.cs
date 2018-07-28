@@ -31,7 +31,7 @@ namespace posk.Popups
                     lbFecha.Content = $"{di.fecha_entrega.Value.ToShortDateString()} a las {di.fecha_entrega.Value.ToShortTimeString()}";
                 }
 
-                LineaDetalleBLL.ObtenerPorBoletaId(di.boleta?.id).ForEach(x =>
+                DetalleBoletaBLL.ObtenerPorBoletaId(di.boleta?.id).ForEach(x =>
                 {
                     spDetalleBoleta.Children.Add(new Label() { Content = $"{x.producto.nombre} x{x.cantidad}", Foreground = new SolidColorBrush(Color.FromRgb(0,0,0)) });
                 });

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace posk.Pages.Menu
 {
@@ -14,10 +15,16 @@ namespace posk.Pages.Menu
         struct ProductoCantidad
         {
             public producto Producto { get; set; }
-            public decimal? Cantidad { get; set; }
+            public string Opcion { get; set; }
+            public int Cantidad { get; set; }
             public decimal? SubTotal { get; set; }
             public decimal? Adicional { get; set; }
             public decimal? Total { get; set; }
+
+            public void AumentarCantidad(int cantidad)
+            {
+                Cantidad += cantidad;
+            }
         }
         struct PromoCantidad
         {
@@ -31,24 +38,40 @@ namespace posk.Pages.Menu
 
             Loaded += (se, a) =>
             {
-                lbInicioJornada.Content = $"Inicio jornada ({Settings.Usuario.nombre}): {JornadaBLL.UltimaJornada().fecha_apertura}";
+                //lbInicioJornada.Content = $"Inicio jornada ({Settings.Usuario.nombre}): {JornadaBLL.UltimaJornada().fecha_apertura}";
                 dgResumenVentas.DataContext = null;
                 dgResumenVentasPromo.DataContext = null;
-                rbInicioJornadaAnterior.IsChecked = false;
-                rbInicioJornadaActual.IsChecked = false;
+                btnResumenJornadaAnterior.Background = new SolidColorBrush(Color.FromRgb(224, 224, 224));
+                btnResumenJornadaAnterior.Foreground = new SolidColorBrush(Color.FromRgb(24, 24, 24));
+
+                btnResumenJornadaActual.Background = new SolidColorBrush(Color.FromRgb(224, 224, 224));
+                btnResumenJornadaActual.Foreground = new SolidColorBrush(Color.FromRgb(24, 24, 24));
             };
 
-            rbInicioJornadaAnterior.Checked += (se, a) =>
+            btnResumenJornadaAnterior.Click += (se, a) =>
             {
                 jornada j = JornadaBLL.UltimaJornadaCerrada();
                 CargarContenido(j.id);
-                lbInicioJornada.Content = $"Inicio jornada ({Settings.Usuario.nombre}): {j.fecha_apertura}";
+                lbInicioJornada.Content = $"({Settings.Usuario.nombre}) Inicio: {j.fecha_apertura}";
+                if (j.fecha_cierre != null)
+                    lbInicioJornada.Content += $", Cierre: {j.fecha_cierre}";
+                btnResumenJornadaAnterior.Background = new SolidColorBrush(Color.FromRgb(24, 109, 102));
+                btnResumenJornadaAnterior.Foreground = new SolidColorBrush(Color.FromRgb(224, 224, 224));
+
+                btnResumenJornadaActual.Background = new SolidColorBrush(Color.FromRgb(224, 224, 224));
+                btnResumenJornadaActual.Foreground = new SolidColorBrush(Color.FromRgb(24, 24, 24));
             };
-            rbInicioJornadaActual.Checked += (se, a) =>
+            btnResumenJornadaActual.Click += (se, a) =>
             {
                 jornada j = JornadaBLL.UltimaJornada();
                 CargarContenido(j.id);
-                lbInicioJornada.Content = $"Inicio jornada ({Settings.Usuario.nombre}): {j.fecha_apertura}";
+                lbInicioJornada.Content = $"({Settings.Usuario.nombre}) Inicio: {j.fecha_apertura}";
+
+                btnResumenJornadaAnterior.Background = new SolidColorBrush(Color.FromRgb(224, 224, 224));
+                btnResumenJornadaAnterior.Foreground = new SolidColorBrush(Color.FromRgb(24, 24, 24));
+
+                btnResumenJornadaActual.Background = new SolidColorBrush(Color.FromRgb(24, 109, 102));
+                btnResumenJornadaActual.Foreground = new SolidColorBrush(Color.FromRgb(224, 224, 224));
             };
         }
 
@@ -58,8 +81,8 @@ namespace posk.Pages.Menu
 
             VentasJornadaBLL.ObtenerTodo().ForEach(vj =>
             {
-                if (vj.promo_id != null && vj.jornada_id == jornadaId)
-                    listaPromosCantidad.Add(new PromoCantidad() { Promo = vj.promocione, Cantidad = vj.cantidad });
+                if (vj.detalle_boleta.promocion_id != null && vj.jornada_id == jornadaId)
+                    listaPromosCantidad.Add(new PromoCantidad() { Promo = vj.detalle_boleta.promocione, Cantidad = vj.cantidad });
             });
 
             return listaPromosCantidad.OrderBy(x => x.Cantidad).Reverse().ToList();
@@ -67,15 +90,55 @@ namespace posk.Pages.Menu
 
         private List<ProductoCantidad> ContarProductosEnLista(int jornadaId)
         {
+            List<ventas_jornada> listaVentasJornada = VentasJornadaBLL.ObtenerVentasJornada(jornadaId);
             List<ProductoCantidad> listaProductoCantidad = new List<ProductoCantidad>();
+            List<ProductoCantidad> listaProductoCantidadAgrupado = new List<ProductoCantidad>();
 
-            VentasJornadaBLL.ObtenerTodo().ForEach(vj =>
+            foreach (var vj in listaVentasJornada)
             {
-                if (vj.producto_id != null && vj.jornada_id == jornadaId)
-                    listaProductoCantidad.Add(new ProductoCantidad() { Producto = vj.producto, Cantidad = (int)vj.cantidad, SubTotal = (int)(vj.producto.precio * vj.cantidad), Adicional = vj.cobro_extra, Total = (int)(vj.producto.precio * vj.cantidad  + vj.cobro_extra )});
-            });
+                listaProductoCantidad.Add(new ProductoCantidad()
+                {
+                    Producto = vj.detalle_boleta.producto,
+                    Cantidad = vj.cantidad,
+                    Opcion = vj.opcion,
+                    Adicional = vj.cobro_extra,
+                    SubTotal = vj.detalle_boleta.producto.precio * vj.cantidad,
+                    Total = vj.detalle_boleta.producto.precio * vj.cantidad + vj.cobro_extra
+                });
+            }
 
-            return listaProductoCantidad.OrderBy(x => x.Cantidad).Reverse().ToList();
+            foreach (var vj in listaVentasJornada)
+            {
+                ProductoCantidad pcModificar = listaProductoCantidadAgrupado.Where(x => x.Producto.id == vj.detalle_boleta.producto.id && x.Opcion == vj.opcion).FirstOrDefault();
+                string opcion0 = vj.opcion == null ? "" : vj.opcion ;
+                string opcion1 = pcModificar.Opcion == null ? "" : pcModificar.Opcion;
+                if (pcModificar.Producto != null && opcion0 == opcion1)
+                {
+                    listaProductoCantidadAgrupado.Remove(pcModificar);
+                    listaProductoCantidadAgrupado.Add(new ProductoCantidad()
+                    {
+                        Producto = vj.detalle_boleta.producto,
+                        Cantidad = pcModificar.Cantidad + vj.cantidad,
+                        Opcion = vj.opcion,
+                        Adicional = vj.cobro_extra + pcModificar.Adicional,
+                        SubTotal = vj.detalle_boleta.producto.precio * (vj.cantidad + pcModificar.Cantidad),
+                        Total = vj.detalle_boleta.producto.precio * (vj.cantidad + pcModificar.Cantidad) + vj.cobro_extra
+                    });
+                }
+                else
+                {
+                    listaProductoCantidadAgrupado.Add(new ProductoCantidad()
+                    {
+                        Producto = vj.detalle_boleta.producto,
+                        Cantidad = vj.cantidad,
+                        Opcion = vj.opcion,
+                        Adicional = vj.cobro_extra,
+                        SubTotal = vj.detalle_boleta.producto.precio * (vj.cantidad),
+                        Total = vj.detalle_boleta.producto.precio * (vj.cantidad) + vj.cobro_extra
+                    });
+                }
+            }
+            return listaProductoCantidadAgrupado.OrderBy(x => x.Cantidad).OrderBy(x => x.Producto.nombre).OrderBy(x => x.Opcion).Reverse().ToList();
         }
 
         private void CargarContenido(int jornadaId)

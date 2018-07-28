@@ -18,8 +18,8 @@ namespace posk.Models
         public subcategoria()
         {
             this.categoria_subcategoria = new HashSet<categoria_subcategoria>();
-            this.promociones = new HashSet<promocione>();
             this.productos = new HashSet<producto>();
+            this.promociones = new HashSet<promocione>();
         }
     
         public int id { get; set; }
@@ -28,8 +28,8 @@ namespace posk.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<categoria_subcategoria> categoria_subcategoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<promocione> promociones { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<producto> productos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<promocione> promociones { get; set; }
     }
 }

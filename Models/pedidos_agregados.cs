@@ -19,8 +19,8 @@ namespace posk.Models
         public Nullable<int> agregado_uno_id { get; set; }
         public Nullable<int> agregado_dos_id { get; set; }
     
-        public virtual pedidos_productos pedidos_productos { get; set; }
         public virtual agregado agregado { get; set; }
         public virtual agregado agregado1 { get; set; }
+        public virtual pedidos_productos pedidos_productos { get; set; }
     }
 }

@@ -26,9 +26,9 @@ namespace posk.Models
         public Nullable<int> cliente_id { get; set; }
         public Nullable<int> usuario_id { get; set; }
     
+        public virtual cliente cliente { get; set; }
         public virtual usuario usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<lineas_fiado> lineas_fiado { get; set; }
-        public virtual cliente cliente { get; set; }
     }
 }

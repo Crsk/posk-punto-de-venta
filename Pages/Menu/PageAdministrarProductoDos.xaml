@@ -202,23 +202,9 @@
                                 </Border>
                                 
                                 <StackPanel x:Name="spOpcionales" Background="#FFD1D1D1">
-                                    <Border x:Name="borderRetornable" Height="36" Margin="0 8 0 0">
-                                        <CheckBox x:Name="checkRetornable" Content="RETORNABLE" FontSize="14"/>
-                                    </Border>
-                                    <Border x:Name="borderAgregado" Height="36" Margin="0 8 0 0">
-                                        <CheckBox x:Name="checkContieneAgregado" Content="CONTIENE AGREG." FontSize="14"/>
-                                    </Border>
-                                    <Border x:Name="borderPreparadoEspecial" Height="36" Margin="0 8 0 0">
-                                        <CheckBox x:Name="checkPreparadoEspecial" Content="PREPARADO ESP." FontSize="14"/>
-                                    </Border>
-                                    <Border x:Name="borderTipoItemVenta" Margin="0 8 0 0">
-                                        <ComboBox x:Name="cbTipoItemVenta" FontSize="14" materialDesign:HintAssist.Hint="TIPO ITEM VENTA" Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectedIndex="1"/>
-                                    </Border>
-                                    
                                     <Border x:Name="borderSectorImpresion" Margin="0 8 0 0">
                                         <ComboBox x:Name="cbSectorImpresion" FontSize="14" materialDesign:HintAssist.Hint="SECTOR IMPRESIÓN" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
                                     </Border>
-                                    
                                     <Border x:Name="borderZindex" Margin="0 8 0 0">
                                         <TextBox x:Name="txtZindex" materialDesign:HintAssist.Hint="Orden" ToolTip="Número el cual será utilizado para ordenar los productos al mostrarlos" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                                     </Border>
