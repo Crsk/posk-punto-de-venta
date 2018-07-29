@@ -23,7 +23,7 @@
             <Button Grid.Column="1" x:Name="btnAgregado" Background="#FFF26102" Height="36" Style="{StaticResource BtnClear}">
                 <Grid>
                     <Border HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0 0 0 0">
-                        <TextBlock x:Name="txtNombre" Grid.Column="1" Text="UNAGI" TextWrapping="Wrap" Foreground="#FFDDE0E2" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="4 0 4 0"/>
+                        <TextBlock x:Name="txtNombre" Grid.Column="1" Text="UNAGI" TextWrapping="Wrap" Foreground="White" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="4 0 4 0"/>
                     </Border>
                 </Grid>
             </Button>

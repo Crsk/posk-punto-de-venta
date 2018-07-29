@@ -93,52 +93,43 @@ namespace posk.Pages.Menu
             List<ventas_jornada> listaVentasJornada = VentasJornadaBLL.ObtenerVentasJornada(jornadaId);
             List<ProductoCantidad> listaProductoCantidad = new List<ProductoCantidad>();
             List<ProductoCantidad> listaProductoCantidadAgrupado = new List<ProductoCantidad>();
-
+            listaVentasJornada.ForEach(vj => AgregarProductoCantidad(listaProductoCantidad, vj));
             foreach (var vj in listaVentasJornada)
             {
-                listaProductoCantidad.Add(new ProductoCantidad()
-                {
-                    Producto = vj.detalle_boleta.producto,
-                    Cantidad = vj.cantidad,
-                    Opcion = vj.opcion,
-                    Adicional = vj.cobro_extra,
-                    SubTotal = vj.detalle_boleta.producto.precio * vj.cantidad,
-                    Total = vj.detalle_boleta.producto.precio * vj.cantidad + vj.cobro_extra
-                });
-            }
-
-            foreach (var vj in listaVentasJornada)
-            {
-                ProductoCantidad pcModificar = listaProductoCantidadAgrupado.Where(x => x.Producto.id == vj.detalle_boleta.producto.id && x.Opcion == vj.opcion).FirstOrDefault();
-                string opcion0 = vj.opcion == null ? "" : vj.opcion ;
-                string opcion1 = pcModificar.Opcion == null ? "" : pcModificar.Opcion;
-                if (pcModificar.Producto != null && opcion0 == opcion1)
-                {
-                    listaProductoCantidadAgrupado.Remove(pcModificar);
-                    listaProductoCantidadAgrupado.Add(new ProductoCantidad()
-                    {
-                        Producto = vj.detalle_boleta.producto,
-                        Cantidad = pcModificar.Cantidad + vj.cantidad,
-                        Opcion = vj.opcion,
-                        Adicional = vj.cobro_extra + pcModificar.Adicional,
-                        SubTotal = vj.detalle_boleta.producto.precio * (vj.cantidad + pcModificar.Cantidad),
-                        Total = vj.detalle_boleta.producto.precio * (vj.cantidad + pcModificar.Cantidad) + vj.cobro_extra
-                    });
-                }
+                ProductoCantidad pcExistente = listaProductoCantidadAgrupado.Where(x => x.Producto.id == vj.detalle_boleta.producto.id && x.Opcion == vj.opcion).FirstOrDefault();
+                if (pcExistente.Producto != null && vj.opcion == pcExistente.Opcion)
+                    AgregarProductoCantidadExistente(listaProductoCantidadAgrupado, vj, pcExistente);
                 else
-                {
-                    listaProductoCantidadAgrupado.Add(new ProductoCantidad()
-                    {
-                        Producto = vj.detalle_boleta.producto,
-                        Cantidad = vj.cantidad,
-                        Opcion = vj.opcion,
-                        Adicional = vj.cobro_extra,
-                        SubTotal = vj.detalle_boleta.producto.precio * (vj.cantidad),
-                        Total = vj.detalle_boleta.producto.precio * (vj.cantidad) + vj.cobro_extra
-                    });
-                }
+                    AgregarProductoCantidad(listaProductoCantidadAgrupado, vj);
             }
             return listaProductoCantidadAgrupado.OrderBy(x => x.Cantidad).OrderBy(x => x.Producto.nombre).OrderBy(x => x.Opcion).Reverse().ToList();
+        }
+
+        private void AgregarProductoCantidadExistente(List<ProductoCantidad> listaProductoCantidad, ventas_jornada vj, ProductoCantidad pcExistente)
+        {
+            listaProductoCantidad.Remove(pcExistente);
+            listaProductoCantidad.Add(new ProductoCantidad()
+            {
+                Producto = vj.detalle_boleta.producto,
+                Cantidad = pcExistente.Cantidad + vj.cantidad,
+                Opcion = vj.opcion,
+                Adicional = vj.cobro_extra + pcExistente.Adicional,
+                SubTotal = vj.detalle_boleta.producto.precio * (vj.cantidad + pcExistente.Cantidad),
+                Total = vj.detalle_boleta.producto.precio * (vj.cantidad + pcExistente.Cantidad) + vj.cobro_extra
+            });
+        }
+
+        private void AgregarProductoCantidad(List<ProductoCantidad> listaProductoCantidad, ventas_jornada vj)
+        {
+            listaProductoCantidad.Add(new ProductoCantidad()
+            {
+                Producto = vj.detalle_boleta.producto,
+                Cantidad = vj.cantidad,
+                Opcion = vj.opcion,
+                Adicional = vj.cobro_extra,
+                SubTotal = vj.detalle_boleta.producto.precio * vj.cantidad,
+                Total = vj.detalle_boleta.producto.precio * vj.cantidad + vj.cobro_extra
+            });
         }
 
         private void CargarContenido(int jornadaId)

@@ -27,33 +27,32 @@
             </Grid>
             <Grid Grid.Row="1">
                 <StackPanel HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Detalle Boleta" Foreground="Black" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="txtServirLlevar" TextWrapping="Wrap" Foreground="Black" MaxWidth="150" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8 0 0 0" FontStyle="Italic"/>
+                    </StackPanel>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="110">
+                        <StackPanel x:Name="spDetalleBoleta" Margin="0 8 0 16" MaxHeight="110" Background="#FFDBDBDB"/>
+                    </ScrollViewer>
                     <StackPanel HorizontalAlignment="Center">
-                        <Label Content="Detalle:" Foreground="Black" HorizontalAlignment="Center"/>
-                        <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <StackPanel x:Name="spDetalleBoleta" Margin="0 8 0 16"/>
-                        </ScrollViewer>
                         <Label x:Name="lbFecha" Foreground="Black" HorizontalAlignment="Center"/>
                         <Label Content="Adicional: " Foreground="Black" HorizontalAlignment="Center" Margin="0 12 0 0"/>
                         <TextBlock x:Name="txtAdicional" TextWrapping="Wrap" Foreground="Black" MaxWidth="150" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <TextBlock x:Name="txtServirLlevar" TextWrapping="Wrap" Foreground="Black" MaxWidth="150" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <TextBlock x:Name="txtPagaCon" Margin="0 16 0 0" HorizontalAlignment="Center"/>
-                        <TextBlock x:Name="txtVuelto" Margin="0 0 0 0" HorizontalAlignment="Center"/>
+                        <Label x:Name="lbTotal" Content="Total Boleta: $" Foreground="Black" HorizontalAlignment="Center" FontWeight="Bold"/>
+                        <StackPanel HorizontalAlignment="Center">
+                            <ComboBox x:Name="cbMedioPago" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Paga Con" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="0 12 8 0"/>
+                            <TextBlock x:Name="txtPagaConMonto" Margin="0 16 0 0" HorizontalAlignment="Center"/>
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
             </Grid>
             <Grid Margin="4" Grid.Row="2">
                 <StackPanel>
-                    <Label Content="¿YA FUE ENTREGADO?" Foreground="Black" HorizontalAlignment="Center"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button x:Name="btnCerrar" Grid.Column="0" Margin="4" Background="#FFB40B00" BorderThickness="0" Foreground="White">
-                            <materialDesign:PackIcon Kind="Close"/>
-                        </Button>
-                        <Button x:Name="btnAceptar" Grid.Column="1" Margin="4" Background="#FF0A7562" BorderThickness="0" Foreground="White">
-                            <materialDesign:PackIcon Kind="Check"/>
+                        <Button x:Name="btnAceptar" Grid.Column="1" Content="ENTREGAR" Margin="4" Background="#FF0A7562" BorderThickness="0" Foreground="White">
                         </Button>
                     </Grid>
                 </StackPanel>

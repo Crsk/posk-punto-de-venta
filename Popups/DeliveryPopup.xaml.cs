@@ -17,14 +17,31 @@ namespace posk.Popups
         {
             InitializeComponent();
 
-            Loaded += (se, a) => 
+            cbMedioPago.ItemsSource = MedioPagoBLL.ObtenerTodos();
+            cbMedioPago.DisplayMemberPath = "nombre";
+            cbMedioPago.Text = di.medio_pago?.nombre;
+            cbMedioPago.SelectionChanged += (se, a) =>
             {
+                int medioPagoId = (cbMedioPago.SelectedItem as medio_pago).id;
+                DeliveryItemBLL.CambiarMedioDePago(di.id, medioPagoId);
+                BoletaMediopagoBLL.ActualizarMedioDePago(di.boleta.id, medioPagoId);
+                if (medioPagoId == 1 && di.paga_con != 0)
+                    txtPagaConMonto.Text = $" (Monto: ${di.paga_con}, Vuelto: ${di.vuelto})";
+                else
+                    txtPagaConMonto.Text = "";
+            };
+
+            Loaded += (se, a) =>
+            {
+                lbTotal.Content += di.boleta.total.ToString();
                 lbNumeroBoleta.Content = $"#{di.boleta?.numero_boleta}";
                 lbNombreCliente.Content = $"{di.nombre_cliente}";
                 txtAdicional.Text = $"{di.incluye}";
                 txtServirLlevar.Text = di.servir == true ? "SERVIR" : "LLEVAR";
-                txtPagaCon.Text = $"Paga Con: {di.paga_con}";
-                txtVuelto.Text = "Vuelto: " + di.vuelto;
+                if ((cbMedioPago.SelectedItem as medio_pago)?.id == 1 && di.paga_con != 0)
+                    txtPagaConMonto.Text = $" (Monto: ${di.paga_con}, Vuelto: ${di.vuelto})";
+                else
+                    txtPagaConMonto.Text = "";
 
                 if (di.fecha_entrega != null)
                 {
@@ -33,10 +50,10 @@ namespace posk.Popups
 
                 DetalleBoletaBLL.ObtenerPorBoletaId(di.boleta?.id).ForEach(x =>
                 {
-                    spDetalleBoleta.Children.Add(new Label() { Content = $"{x.producto.nombre} x{x.cantidad}", Foreground = new SolidColorBrush(Color.FromRgb(0,0,0)) });
+                    spDetalleBoleta.Children.Add(new Label() { Content = $"{x.producto.nombre} x{x.cantidad}", Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)) });
                 });
             };
-            btnAceptar.Click += (se, a) => 
+            btnAceptar.Click += (se, a) =>
             {
                 DeliveryItemBLL.Entregar(di.id);
                 AlEntregar?.Invoke(this, null);

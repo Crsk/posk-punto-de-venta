@@ -24,6 +24,11 @@ namespace posk.BLL
             db.SaveChanges();
         }
 
+        public static boleta_mediopago ObtenerPorBoleta(int boletaId)
+        {
+            return db.boleta_mediopago.Where(x => x.boleta_id == boletaId).FirstOrDefault();
+        }
+
         public static int ObtenerMonto(DateTime? inicio, DateTime? fin, int mediopago_id)
         {
             int? total = 0;
@@ -44,6 +49,13 @@ namespace posk.BLL
         public static List<boleta_mediopago> ObtenerTodo()
         {
             return db.boleta_mediopago.ToList();
+        }
+
+        public static void ActualizarMedioDePago(int boletaId, int medioPagoId)
+        {
+            boleta_mediopago bmp = ObtenerPorBoleta(boletaId);
+            bmp.mediopago_id = medioPagoId;
+            db.SaveChanges();
         }
     }
 }

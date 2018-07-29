@@ -303,7 +303,7 @@ namespace posk
             #endregion paginas principales
 
             #region paginas estadistica
-            miEstadisticasPeriodo.Click += (se, a) =>
+            miEstadisticasJornada.Click += (se, a) =>
             {
                 if (PageEstPeriodo != null)
                     menuFrame.Content = PageEstPeriodo;
@@ -312,7 +312,7 @@ namespace posk
                     PageEstPeriodo = new PageEstadisticasPeriodo();
                     menuFrame.Content = PageEstPeriodo;
                 }
-                SetMenuItemColor(miEstadisticasPeriodo);
+                SetMenuItemColor(miEstadisticasJornada);
             };
             miEstadisticasGlobalIngresos.Click += (se, a) =>
             {

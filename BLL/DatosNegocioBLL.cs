@@ -10,21 +10,14 @@ namespace posk.BLL
     {
         static PoskDB6 db = new PoskDB6();
 
-        public static void SetDescripcionNegocio(string nombre, string mensaje, string direccion, string logo, bool servir)
+        public static void SetDescripcionNegocio(string nombre, string mensaje, string direccion, string logo)
         {
             datos_negocio dn = db.datos_negocio.FirstOrDefault();
             dn.nombre = nombre;
             dn.mensaje = mensaje;
             dn.direccion = direccion;
             dn.logo = logo;
-            dn.servir_default = servir;
             db.SaveChanges();
-        }
-
-        public static bool ObtenerServirDefault()
-        {
-            datos_negocio dn = db.datos_negocio.FirstOrDefault();
-            return dn.servir_default;
         }
 
         public static string ObtenerImagenUrl()

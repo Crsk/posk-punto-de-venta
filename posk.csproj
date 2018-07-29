@@ -288,6 +288,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ItemEscoger.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ItemEscogerGarzonMesa.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -592,6 +596,7 @@
     <Compile Include="BLL\SectorBLL.cs" />
     <Compile Include="BLL\SectorImpresionBLL.cs" />
     <Compile Include="BLL\SectorMesaBLL.cs" />
+    <Compile Include="BLL\ServirLlevarBLL.cs" />
     <Compile Include="BLL\StockBLL.cs" />
     <Compile Include="BLL\StockMovimientoBLL.cs" />
     <Compile Include="BLL\StockmpBLL.cs" />
@@ -676,6 +681,9 @@
     </Compile>
     <Compile Include="Controls\ItemEnvoltura.xaml.cs">
       <DependentUpon>ItemEnvoltura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ItemEscoger.xaml.cs">
+      <DependentUpon>ItemEscoger.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ItemEscogerGarzonMesa.xaml.cs">
       <DependentUpon>ItemEscogerGarzonMesa.xaml</DependentUpon>
@@ -1424,6 +1432,9 @@
       <DependentUpon>PoskDB6.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sector_impresion.cs">
+      <DependentUpon>PoskDB6.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\servir_llevar.cs">
       <DependentUpon>PoskDB6.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\stock_mp.cs">

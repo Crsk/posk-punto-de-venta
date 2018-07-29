@@ -28,6 +28,5 @@ namespace posk.Models
         public string correo_primario { get; set; }
         public string correo_secundario { get; set; }
         public Nullable<bool> teclado_tactil_integrado { get; set; }
-        public bool servir_default { get; set; }
     }
 }

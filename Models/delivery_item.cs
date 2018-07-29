@@ -26,8 +26,10 @@ namespace posk.Models
         public Nullable<bool> servir { get; set; }
         public int paga_con { get; set; }
         public string vuelto { get; set; }
+        public Nullable<int> medio_pago_id { get; set; }
     
         public virtual boleta boleta { get; set; }
         public virtual cliente cliente { get; set; }
+        public virtual medio_pago medio_pago { get; set; }
     }
 }

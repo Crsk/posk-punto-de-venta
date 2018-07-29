@@ -1421,15 +1421,28 @@ namespace posk.Components
                                         BoletaBLL.Set(0, Settings.Usuario.id, puntos, _calcularTotal, di.Propina, cli?.id);
                                         PuntoBLL.Sumar(cli?.puntos_id, puntos);
                                         boleta ultimaBoleta = BoletaBLL.ObtenerUltima();
+                                        int medioPagoId = 1;
 
                                         if (di.Efectivo != 0)
-                                            BoletaMediopagoBLL.Crear(ultimaBoleta.id, 1, di.Efectivo, Settings.Usuario.id);
+                                        {
+                                            medioPagoId = 1;
+                                            BoletaMediopagoBLL.Crear(ultimaBoleta.id, medioPagoId, di.Efectivo, Settings.Usuario.id);
+                                        }
                                         if (di.TransBank != 0)
-                                            BoletaMediopagoBLL.Crear(ultimaBoleta.id, 2, di.TransBank, Settings.Usuario.id);
+                                        {
+                                            medioPagoId = 2;
+                                            BoletaMediopagoBLL.Crear(ultimaBoleta.id, medioPagoId, di.TransBank, Settings.Usuario.id);
+                                        }
                                         if (di.Junaeb != 0)
-                                            BoletaMediopagoBLL.Crear(ultimaBoleta.id, 3, di.Junaeb, Settings.Usuario.id);
+                                        {
+                                            medioPagoId = 3;
+                                            BoletaMediopagoBLL.Crear(ultimaBoleta.id, medioPagoId, di.Junaeb, Settings.Usuario.id);
+                                        }
                                         if (di.Otro != 0)
-                                            BoletaMediopagoBLL.Crear(ultimaBoleta.id, 4, di.Otro, Settings.Usuario.id);
+                                        {
+                                            medioPagoId = 4;
+                                            BoletaMediopagoBLL.Crear(ultimaBoleta.id, medioPagoId, di.Otro, Settings.Usuario.id);
+                                        }
 
                                         foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().ToList())
                                         {
@@ -1465,7 +1478,7 @@ namespace posk.Components
                                         LimpiarTodo();
                                         bool bServir = di.ServirLlevar.ToUpper() == "SERVIR" ? true : false;
 
-                                        DeliveryItemBLL.Crear(ultimaBoleta.id, null, DateTime.Now, di.Direccion, di.NombreCliente, null, "", di.Incluye, bServir, di.PagaCon, di.Vuelto);
+                                        DeliveryItemBLL.Crear(ultimaBoleta.id, null, DateTime.Now, di.Direccion, di.NombreCliente, null, "", di.Incluye, bServir, di.PagaCon, di.Vuelto, medioPagoId);
                                         CargarDeliveryPendientesDeEntrega();
                                     };
                                     return;

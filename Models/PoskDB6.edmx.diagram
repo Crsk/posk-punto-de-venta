@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f06cc1a141fe4ad39d39b2de2ae126c0" Name="Diagram1" ZoomLevel="63">
+      <Diagram DiagramId="f06cc1a141fe4ad39d39b2de2ae126c0" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="posk_dbModel6.agregado" Width="1.5" PointX="11.25" PointY="27.75" />
         <EntityTypeShape EntityType="posk_dbModel6.bodega_movimiento" Width="1.5" PointX="11.25" PointY="40.125" />
         <EntityTypeShape EntityType="posk_dbModel6.bodega_stock" Width="1.5" PointX="8.25" PointY="53.125" />
@@ -18,8 +18,6 @@
         <EntityTypeShape EntityType="posk_dbModel6.cliente" Width="1.5" PointX="9" PointY="26.25" />
         <EntityTypeShape EntityType="posk_dbModel6.compra" Width="1.5" PointX="9" PointY="23.375" />
         <EntityTypeShape EntityType="posk_dbModel6.config" Width="1.5" PointX="1.5" PointY="22.5" />
-        <EntityTypeShape EntityType="posk_dbModel6.datos_negocio" Width="1.5" PointX="5.75" PointY="2" />
-        <EntityTypeShape EntityType="posk_dbModel6.delivery_item" Width="1.5" PointX="17.25" PointY="44.625" />
         <EntityTypeShape EntityType="posk_dbModel6.detalle_boleta" Width="1.5" PointX="14.25" PointY="44.625" />
         <EntityTypeShape EntityType="posk_dbModel6.deuda" Width="1.5" PointX="11.25" PointY="32" />
         <EntityTypeShape EntityType="posk_dbModel6.devolucion" Width="1.5" PointX="8.25" PointY="71.375" />
@@ -75,7 +73,6 @@
         <AssociationConnector Association="posk_dbModel6.boletamediopago_fk" />
         <AssociationConnector Association="posk_dbModel6.mediopago_fk" />
         <AssociationConnector Association="posk_dbModel6.usuario_fk" />
-        <AssociationConnector Association="posk_dbModel6.boleta_fk" />
         <AssociationConnector Association="posk_dbModel6.boletas_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.boletas_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.detalle_boleta_ibfk_1" />
@@ -85,7 +82,6 @@
         <AssociationConnector Association="posk_dbModel6.categoria_sector_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.categoria_subcategoria_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.categoria_subcategoria_ibfk_2" />
-        <AssociationConnector Association="posk_dbModel6.cliente_fk" />
         <AssociationConnector Association="posk_dbModel6.clientes_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.deudas_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.direcciones_ibfk_1" />
@@ -145,6 +141,12 @@
         <EntityTypeShape EntityType="posk_dbModel6.ventas_jornada" Width="1.5" PointX="18.125" PointY="32.625" />
         <AssociationConnector Association="posk_dbModel6.ventas_jornada_ibfk_4" />
         <AssociationConnector Association="posk_dbModel6.ventas_jornada_ibfk_3" />
+        <EntityTypeShape EntityType="posk_dbModel6.datos_negocio" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="posk_dbModel6.servir_llevar" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="posk_dbModel6.delivery_item" Width="1.5" PointX="19.75" PointY="44.5" />
+        <AssociationConnector Association="posk_dbModel6.boleta_fk" />
+        <AssociationConnector Association="posk_dbModel6.cliente_fk" />
+        <AssociationConnector Association="posk_dbModel6.medio_pago_fk" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -18,6 +18,7 @@ namespace posk.Models
         public medio_pago()
         {
             this.boleta_mediopago = new HashSet<boleta_mediopago>();
+            this.delivery_item = new HashSet<delivery_item>();
         }
     
         public int id { get; set; }
@@ -25,5 +26,7 @@ namespace posk.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<boleta_mediopago> boleta_mediopago { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<delivery_item> delivery_item { get; set; }
     }
 }

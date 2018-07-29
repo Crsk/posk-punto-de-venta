@@ -38,8 +38,6 @@ namespace posk.Models
         public virtual DbSet<cliente> clientes { get; set; }
         public virtual DbSet<compra> compras { get; set; }
         public virtual DbSet<config> configs { get; set; }
-        public virtual DbSet<datos_negocio> datos_negocio { get; set; }
-        public virtual DbSet<delivery_item> delivery_item { get; set; }
         public virtual DbSet<detalle_boleta> detalle_boleta { get; set; }
         public virtual DbSet<deuda> deudas { get; set; }
         public virtual DbSet<devolucion> devolucions { get; set; }
@@ -88,5 +86,8 @@ namespace posk.Models
         public virtual DbSet<unidades_medida> unidades_medida { get; set; }
         public virtual DbSet<usuario> usuarios { get; set; }
         public virtual DbSet<ventas_jornada> ventas_jornada { get; set; }
+        public virtual DbSet<datos_negocio> datos_negocio { get; set; }
+        public virtual DbSet<servir_llevar> servir_llevar { get; set; }
+        public virtual DbSet<delivery_item> delivery_item { get; set; }
     }
 }

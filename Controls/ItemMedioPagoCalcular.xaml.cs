@@ -79,7 +79,7 @@ namespace posk.Controls
         {
             var bc = new BrushConverter();
             btnMedioPago.Background = (Brush)bc.ConvertFrom("#FF0A7562");
-            btnMedioPago.Foreground = new SolidColorBrush(Color.FromRgb(225, 225, 225));
+            btnMedioPago.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#fff"));
             bUsado = true;
         }
 

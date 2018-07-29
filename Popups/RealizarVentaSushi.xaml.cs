@@ -43,41 +43,27 @@ namespace posk.Popups
             InitializeComponent();
             this.MontoTotalSinPropina = montoTotalSinPropina;
 
-            var bc = new BrushConverter();
-            if (DatosNegocioBLL.ObtenerServirDefault())
+            ServirLlevarBLL.ObtenerTodo().ForEach(x =>
             {
-                ServirLlevarStr = "SERVIR";
-                btnServir.Background = (Brush)bc.ConvertFrom(verde);
-                btnServir.Foreground = (Brush)bc.ConvertFrom(blanco);
-                btnLlevar.Background = (Brush)bc.ConvertFrom(gris);
-                btnLlevar.Foreground = (Brush)bc.ConvertFrom(blanco);
-            }
-            else
-            {
-                ServirLlevarStr = "LLEVAR";
-                btnServir.Background = (Brush)bc.ConvertFrom(gris);
-                btnServir.Foreground = (Brush)bc.ConvertFrom(blanco);
-                btnLlevar.Background = (Brush)bc.ConvertFrom(verde);
-                btnLlevar.Foreground = (Brush)bc.ConvertFrom(blanco);
-            }
+                var itemOpcion = new ItemEscoger() { Nombre = x.nombre.ToUpper() };
+                if (x.orden == 0)
+                {
+                    itemOpcion.Escoger(true);
+                    ServirLlevarStr = x.nombre.ToUpper();
+                }
+                else
+                {
+                    itemOpcion.Escoger(false);
+                }
 
-            btnServir.Click += (se, a) =>
-            {
-                ServirLlevarStr = "SERVIR";
-                btnServir.Background = (Brush)bc.ConvertFrom(verde);
-                btnServir.Foreground = (Brush)bc.ConvertFrom(blanco);
-                btnLlevar.Background = (Brush)bc.ConvertFrom(gris);
-                btnLlevar.Foreground = (Brush)bc.ConvertFrom(blanco);
-            };
-
-            btnLlevar.Click += (se, a) =>
-            {
-                ServirLlevarStr = "LLEVAR";
-                btnLlevar.Background = (Brush)bc.ConvertFrom(verde);
-                btnLlevar.Foreground = (Brush)bc.ConvertFrom(blanco);
-                btnServir.Background = (Brush)bc.ConvertFrom(gris);
-                btnServir.Foreground = (Brush)bc.ConvertFrom(blanco);
-            };
+                itemOpcion.btnOpcion.Click += (se, a) =>
+                {
+                    spServirLlevar.Children.OfType<ItemEscoger>().ToList().ForEach(y => y.Escoger(false));
+                    itemOpcion.Escoger(true);
+                    ServirLlevarStr = x.nombre.ToUpper();
+                };
+                spServirLlevar.Children.Add(itemOpcion);
+            });
 
             bPropinaIncluida = false;
             tooglePropina.IsChecked = false;

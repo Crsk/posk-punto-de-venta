@@ -66,7 +66,7 @@
                                         </StackPanel>
                                     </ScrollViewer>
                                 </Expander>
-                                <TextBox x:Name="txtMensajeDeliveryUno" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mensaje Delivery" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Margin="12 12 12 0" Height="0" Visibility="Hidden"/>
+                                
                                 <Label x:Name="lbClienteEncontrado" Foreground="#FF0A7562" HorizontalAlignment="Center" Visibility="Hidden"/>
                             </StackPanel>
                         </StackPanel>
@@ -113,12 +113,17 @@
                                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">30</sys:Double>
                             </ScrollViewer.Resources>
                             <StackPanel>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button x:Name="btnServir" Content="SERVIR" Margin="8 0 12 0" Background="Silver" BorderBrush="{x:Null}" Foreground="#FFE8E8E8" Style="{StaticResource BtnClear}" Padding="8 0 8 0" BorderThickness="0"/>
-                                    <Button x:Name="btnLlevar" Content="LLEVAR" Margin="12 0 8 0" Background="Silver" BorderBrush="{x:Null}" Foreground="#FFE8E8E8" Style="{StaticResource BtnClear}" Padding="8 0 8 0" BorderThickness="0"/>
-                                </StackPanel>
-
-                                <TextBox x:Name="txtMensajeTicket" Foreground="Black" Grid.Column="0" VerticalAlignment="Center" Width="460" materialDesign:HintAssist.Hint="Mensaje Cocina" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="12 12 12 0"/>
+                                <StackPanel x:Name="spServirLlevar" Orientation="Horizontal" HorizontalAlignment="Center" />
+                                <Grid Width="600">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBox Grid.Column="0" x:Name="txtMensajeDeliveryUno" Foreground="Black" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mensaje Delivery" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Margin="12 12 12 0"/>
+                                    <TextBox Grid.Column="1" x:Name="txtMensajeTicket" Foreground="Black" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Mensaje Cocina" Style="{StaticResource MaterialDesignFloatingHintTextBox}" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" Margin="12 12 12 0"/>
+                                </Grid>
+                                
                             </StackPanel>
                         </ScrollViewer>
                     </Grid>

@@ -85,10 +85,6 @@
                                             <Border Height="36" Margin="2">
                                                 <TextBox x:Name="txtImagenPortada" materialDesign:HintAssist.Hint="IMAGEN PORTADA" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" HorizontalContentAlignment="Center"/>
                                             </Border>
-                                            <ComboBox x:Name="cbServir" materialDesign:HintAssist.Hint="Acción default" Margin="8" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                                                <ComboBoxItem Content="SERVIR"/>
-                                                <ComboBoxItem Content="LLEVAR"/>
-                                            </ComboBox>
                                             <Button x:Name="btnGuardarDescripcionNegocio" Content="Guardar" Margin="8,12,8,8" VerticalAlignment="Top" />
                                         </StackPanel>
                                     </Border>
