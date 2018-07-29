@@ -11,7 +11,7 @@ namespace posk.Controls
     {
         public mesa Mesa { get; set; }
         public event EventHandler AlClickear;
-        public string verde = "#27ae60";
+        public string verde = "#FF12A466";
         public string rojo = "#c0392b";
 
         public ItemMesaPedido()
@@ -34,13 +34,13 @@ namespace posk.Controls
             lbMesa.Content = Mesa.codigo;
             if (Mesa?.libre == true)
             {
-                lbEstado.Content = "Libre";
+                // lbEstado.Content = "Libre";
                 // btnMesa.Background = new SolidColorBrush(Color.FromRgb(5, 91, 37));
                 btnMesa.Background = (Brush)bc.ConvertFrom(verde);
             }
             else
             {
-                lbEstado.Content = "Ocupada";
+                // lbEstado.Content = "Ocupada";
                 // btnMesa.Background = new SolidColorBrush(Color.FromRgb(91, 5, 5));
                 btnMesa.Background = (Brush)bc.ConvertFrom(rojo);
             }

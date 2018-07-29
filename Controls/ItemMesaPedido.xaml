@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:posk.Controls"
              mc:Ignorable="d">
-    <Button x:Name="btnMesa" Style="{StaticResource BtnClear}" Height="60" Width="125" Background="#27ae60" Margin="8">
+    <Button x:Name="btnMesa" Style="{StaticResource BtnClear}" Height="60" Width="125" Background="#FF12A466" Margin="8">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -16,8 +16,10 @@
                     <ColumnDefinition Width="50"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label x:Name="lbMesa" Width="50" Grid.Column="0" Content="2" FontSize="36" HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
-                <Label x:Name="lbEstado" Grid.Column="1" Content="Disponible" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 0"/>
+                <Label x:Name="lbMesa" Width="50" Grid.Column="0" Content="2" FontSize="36" HorizontalContentAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 0"/>
+                <!--
+                <Label x:Name="lbEstado" Grid.Column="1" Content="" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 0 0 0"/>
+                -->
             </Grid>
         </Grid>
     </Button>

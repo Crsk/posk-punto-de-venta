@@ -15,37 +15,77 @@
       TextOptions.TextRenderingMode="Auto"
       Background="#FF0C1119"
       Title="PageMesas">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button Name="btnSector1" Grid.Column="0" Content="PRIMER PISO" Height="40" Margin="8 0 8 8" Background="#ecf0f1" BorderBrush="#ecf0f1" Foreground="#020202" Style="{StaticResource BtnClear}" FontSize="18" VerticalAlignment="Top"/>
-            <Button Name="btnSector2" Grid.Column="1" Content="SUBTERRANEO" Height="40" Margin="8 0 8 8" Background="#ecf0f1" BorderBrush="#ecf0f1" Foreground="#020202" Style="{StaticResource BtnClear}" FontSize="18" VerticalAlignment="Top"/>
-        </Grid>
-        <Grid>
-            
-        </Grid>
-        <Frame Name="frameMesas"  Grid.Row="1" NavigationUIVisibility="Hidden" VerticalAlignment="Center"/>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Height="30" Width="100" Margin="16" FontSize="28" Background="#27ae60" Foreground="#27ae60" Style="{StaticResource BtnClear}" VerticalAlignment="Center"/>
-                <Label Content="LIBRE" Foreground="#27ae60" FontSize="22" VerticalContentAlignment="Center"/>
+    <Grid x:Name="gridPadre" Margin="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btnCancelar" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="{x:Null}" Foreground="gray" BorderBrush="#FFFF9600" Margin="8" Visibility="Hidden">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <materialDesign:PackIcon Kind="ArrowLeft" VerticalContentAlignment="Center" Foreground="#FFFF9600" Height="30"/>
+                <Label Content="V O L V E R" Foreground="#FFFF9600"/>
             </StackPanel>
-            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Height="30" Width="100" Margin="16" FontSize="28" Background="#c0392b" Foreground="#020202" Style="{StaticResource BtnClear}" VerticalAlignment="Center"/>
-                <Label Content="OCUPADA" Foreground="#c0392b" FontSize="22" VerticalContentAlignment="Center"/>
+        </Button>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <WrapPanel Grid.Row="0" x:Name="wrapSector" HorizontalAlignment="Center" Margin="0 4 0 0"></WrapPanel>
+            <StackPanel Grid.Row="0">
+                <ToggleButton x:Name="toggleGarzon" IsChecked="False" Background="#FF0A7562" Foreground="#fff" Style="{StaticResource MaterialDesignActionToggleButton}" Margin="8 8 18 0" Grid.Row="0" HorizontalAlignment="Right">
+                    <materialDesign:PackIcon Kind="AccountOff" />
+                </ToggleButton>
+                <Label Content="MESERO/A" HorizontalAlignment="Right"></Label>
             </StackPanel>
+            <WrapPanel x:Name="wrapMesas" Grid.Row="1" HorizontalAlignment="Center"></WrapPanel>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Border Background="#FF12A466" Height="20" Width="40" VerticalAlignment="Top" Margin="4"></Border>
+                    <Label Content="LIBRE" Foreground="#FF12A466"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="16 0 0 0">
+                    <Border Background="#c0392b" Height="20" Width="40" VerticalAlignment="Top" Margin="4"></Border>
+                    <Label Content="OCUPADA" Foreground="#c0392b"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1" x:Name="gridUsuarios">
+            <Expander x:Name="expEscogerGarzon" ExpandDirection="Left" Style="{StaticResource ExpanderStyleSinHeader}" Background="{x:Null}">
+                <DockPanel x:Name="dpUsuarios" DockPanel.Dock="Left" Width="600"  >
+                    <Border x:Name="borderTeclado" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+                    </Border>
+                    <DockPanel VerticalAlignment="Top" DockPanel.Dock="Top">
+                        <Border DockPanel.Dock="Top" Height="46" Margin="0 2 64 0">
+                            <DockPanel Margin="8, 0, 8, 0">
+                                <Border DockPanel.Dock="Left" Background="{x:Null}">
+                                    <Button x:Name="btnTecladoTogglePendiente" Margin="0,0,0,0" FontSize="10" Width="40" Background="{x:Null}" Foreground="#fafafa" BorderThickness="0" Style="{DynamicResource BtnClear}" materialDesign:ShadowAssist.ShadowDepth="Depth0" HorizontalAlignment="Left" Visibility="Hidden">
+                                        <materialDesign:PackIcon Kind="Keyboard" Height="36" Width="36"/>
+                                    </Button>
+                                </Border>
+                                <Border DockPanel.Dock="Left">
+                                    <Button x:Name="btnBusquedaUsuarios_fav" Background="{x:Null}" Margin="8 0 16 0" BorderBrush="{x:Null}" Foreground="#FFFF9600" Style="{StaticResource BtnClear}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon x:Name="btnFavoritos_EngregarPedido" Kind="Star" Height="36" Width="36" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+                                </Border>
+                                <Border DockPanel.Dock="Right">
+                                    <TextBox x:Name="txtEscogerUsuarioEntregar" Height="50" HorizontalContentAlignment="Center" Background="#FF080B0F" FontSize="24" VerticalContentAlignment="Center" materialDesign:HintAssist.Hint="MESERO/A" Foreground="#DDFFFFFF"/>
+                                </Border>
+                            </DockPanel>
+                        </Border>
+                        <Border DockPanel.Dock="Bottom">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalAlignment="Center">
+                                <WrapPanel x:Name="wrapEscogerUsuario" HorizontalAlignment="Center">
+                                </WrapPanel>
+                            </ScrollViewer>
+                        </Border>
+                    </DockPanel>
+                </DockPanel>
+            </Expander>
         </Grid>
     </Grid>
 </Page>

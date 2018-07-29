@@ -43,14 +43,15 @@ namespace posk.Components
         private ItemMensajeCocina imc;
         private int ultimoSyncIdPedido;
         private int ultimoSyncIdDelivery;
-        private ItemEscogerGarzonMesa iegm;
-        private ItemEscogerGarzonSeccionVenta ieg;
-        private ItemEscogerMesaSeccionVenta iem;
+        private static ItemEscogerGarzonSeccionVenta ieg;
+        private static ItemEscogerMesaSeccionVenta iem;
         private ItemMedioPago imp;
 
         private bool bDelimitadorPresionado = false;
 
         private mesa mesa;
+        private usuario garzon;
+
         public string Modo { get; set; }
 
         private List<ItemMoneda> listaItemsMoneda1 { get; set; }
@@ -64,6 +65,7 @@ namespace posk.Components
 
         public int Propina { get; set; }
 
+        public bool PagoInmediato { get; set; }
 
         #endregion
 
@@ -73,11 +75,18 @@ namespace posk.Components
         /// </summary>
         /// <param name="_mesa"></param>
         /// <param name="modo"></param>
-        public PrincipalComponent(string modo, mesa _mesa = null)
+        public PrincipalComponent(string modo, usuario _garzon = null, mesa _mesa = null)
         {
             InitializeComponent();
+            PagoInmediato = DatosNegocioBLL.PagoInmediato();
             Modo = modo;
             mesa = _mesa;
+            garzon = _garzon;
+
+            if (PagoInmediato)
+                gridMensajeCocina.Visibility = Visibility.Hidden;
+            else
+                gridMensajeCocina.Visibility = Visibility.Visible;
 
             itemDelimitador = new ItemDelimitador();
             itemDcto = new ItemDcto();
@@ -93,9 +102,10 @@ namespace posk.Components
             itemPaltaCebollin = new ItemAgregadoHandroll();
             imc = new ItemMensajeCocina();
 
-            iegm = new ItemEscogerGarzonMesa();
             ieg = new ItemEscogerGarzonSeccionVenta() { Usuarios = UsuarioBLL.ObtenerGarzones() };
             iem = new ItemEscogerMesaSeccionVenta() { Mesas = MesaBLL.ObtenerTodas() };
+            
+
             imp = new ItemMedioPago() { MediosPago = MedioPagoBLL.ObtenerTodos() };
 
             colorDorado = new SolidColorBrush(System.Windows.Media.Color.FromRgb(255, 150, 0));
@@ -396,6 +406,9 @@ namespace posk.Components
             {
                 try
                 {
+                    iem.cbMesas.Text = mesa?.codigo;
+                    ieg.cbGarzones.Text = garzon?.nombre;
+
                     wrapProductos.Children.Clear();
                     txtBuscar.Foreground = colorNeutro;
 
@@ -1132,6 +1145,18 @@ namespace posk.Components
         }
         */
 
+        public static void CargarGarzonMesa(usuario u, mesa m)
+        {
+            try
+            {
+                ieg.cbGarzones.Text = u?.nombre;
+                iem.cbMesas.Text = m?.codigo;
+            }
+            catch (Exception ex)
+            {
+                PoskException.Make(ex, "Error al escoger garzon/mesa");
+            }
+        }
 
         private void CargarSeccionVenta()
         {
@@ -1228,8 +1253,6 @@ namespace posk.Components
                             spGarzonMesa.Children.Add(ieg);
                         if (spGarzonMesa.Children.OfType<ItemEscogerMesaSeccionVenta>().ToList().Count == 0)
                             spGarzonMesa.Children.Add(iem);
-                        if (spGarzonMesa.Children.OfType<ItemEscogerGarzonMesa>().ToList().Count == 0)
-                            spGarzonMesa.Children.Add(iegm);
                     }
                 }
 
@@ -1387,6 +1410,12 @@ namespace posk.Components
                             {
                                 try
                                 {
+                                    if (PagoInmediato == false)
+                                    {
+                                        RealizarPedido();
+                                        return;
+                                    }
+
                                     int puntos = 0;
                                     foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().ToList())
                                     {
@@ -1410,76 +1439,7 @@ namespace posk.Components
                                     };
                                     rvs.AlVender += (se3, di) =>
                                     {
-                                        int _calcularTotal = 0;
-                                        if (itemCalcularTotal?.txtTotalVenta?.Text != "")
-                                            _calcularTotal = Convert.ToInt32(itemCalcularTotal?.txtTotalVenta?.Text);
-
-                                        List<boleta_mediopago> listaBMP = new List<boleta_mediopago>();
-
-
-                                        cliente cli = ClienteBLL.GetClient(di.NombreCliente);
-                                        BoletaBLL.Set(0, Settings.Usuario.id, puntos, _calcularTotal, di.Propina, cli?.id);
-                                        PuntoBLL.Sumar(cli?.puntos_id, puntos);
-                                        boleta ultimaBoleta = BoletaBLL.ObtenerUltima();
-                                        int medioPagoId = 1;
-
-                                        if (di.Efectivo != 0)
-                                        {
-                                            medioPagoId = 1;
-                                            BoletaMediopagoBLL.Crear(ultimaBoleta.id, medioPagoId, di.Efectivo, Settings.Usuario.id);
-                                        }
-                                        if (di.TransBank != 0)
-                                        {
-                                            medioPagoId = 2;
-                                            BoletaMediopagoBLL.Crear(ultimaBoleta.id, medioPagoId, di.TransBank, Settings.Usuario.id);
-                                        }
-                                        if (di.Junaeb != 0)
-                                        {
-                                            medioPagoId = 3;
-                                            BoletaMediopagoBLL.Crear(ultimaBoleta.id, medioPagoId, di.Junaeb, Settings.Usuario.id);
-                                        }
-                                        if (di.Otro != 0)
-                                        {
-                                            medioPagoId = 4;
-                                            BoletaMediopagoBLL.Crear(ultimaBoleta.id, medioPagoId, di.Otro, Settings.Usuario.id);
-                                        }
-
-                                        foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().ToList())
-                                        {
-                                            detalle_boleta dl = new detalle_boleta()
-                                            {
-                                                producto_id = item.Producto?.id,
-                                                promocion_id = item.Promocion?.id,
-                                                monto = item.ObtenerTotal(),
-                                                cantidad = (int)item.Cantidad,
-                                                descuento = 0,
-                                                boleta_id = ultimaBoleta.id
-                                            };
-                                            DetalleBoletaBLL.Agregar(dl);
-                                            detalle_boleta dBoleta = DetalleBoletaBLL.ObtenerUltima();
-                                            CompraBLL.ReduceStockByProduct(item.Producto?.id, item.Promocion?.id, (int)item.Cantidad);
-                                            VentasJornadaBLL.Agregar(JornadaBLL.UltimaJornada().id, dBoleta.id, item.Opcion?.nombre, (int)item.Cantidad, item.Extra_);
-                                        }
-                                        int? _subTotal = 0;
-                                        int _propinaSugerida = 0;
-                                        int? _total = 0;
-
-                                        spVentaItems.Children.OfType<ItemVenta>().ToList().ForEach(x => _subTotal += x.ObtenerTotal());
-                                        expTecladoPagar.IsExpanded = false;
-                                        MostrarNotificacion("VENDIDO", "");
-                                        if (_subTotal != null && _subTotal != 0)
-                                        {
-                                            _propinaSugerida = Convert.ToInt32(_subTotal * 0.10);
-                                            _total = _propinaSugerida + _subTotal;
-                                        }
-
-                                        GenerarTicket(_subTotal, ((usuario)ieg.cbGarzones.SelectedItem)?.nombre, ((mesa)iem.cbMesas.SelectedValue)?.codigo, "", "Ticket Caja", di);
-
-                                        LimpiarTodo();
-                                        bool bServir = di.ServirLlevar.ToUpper() == "SERVIR" ? true : false;
-
-                                        DeliveryItemBLL.Crear(ultimaBoleta.id, null, DateTime.Now, di.Direccion, di.NombreCliente, null, "", di.Incluye, bServir, di.PagaCon, di.Vuelto, medioPagoId);
-                                        CargarDeliveryPendientesDeEntrega();
+                                        VenderPagoInmediato(di, puntos);
                                     };
                                     return;
                                 }
@@ -1496,6 +1456,85 @@ namespace posk.Components
                     }
                 };
             };
+        }
+
+        private void RealizarPedido()
+        {
+            MessageBox.Show("Asociar pedido a mesa");
+        }
+
+        private void VenderPagoInmediato(DeliveryInfo di, int puntos)
+        {
+            int _calcularTotal = 0;
+            if (itemCalcularTotal?.txtTotalVenta?.Text != "")
+                _calcularTotal = Convert.ToInt32(itemCalcularTotal?.txtTotalVenta?.Text);
+
+            List<boleta_mediopago> listaBMP = new List<boleta_mediopago>();
+
+
+            cliente cli = ClienteBLL.GetClient(di.NombreCliente);
+            BoletaBLL.Set(0, Settings.Usuario.id, puntos, _calcularTotal, di.Propina, cli?.id);
+            PuntoBLL.Sumar(cli?.puntos_id, puntos);
+            boleta ultimaBoleta = BoletaBLL.ObtenerUltima();
+            int medioPagoId = 1;
+
+            if (di.Efectivo != 0)
+            {
+                medioPagoId = 1;
+                BoletaMediopagoBLL.Crear(ultimaBoleta.id, medioPagoId, di.Efectivo, Settings.Usuario.id);
+            }
+            if (di.TransBank != 0)
+            {
+                medioPagoId = 2;
+                BoletaMediopagoBLL.Crear(ultimaBoleta.id, medioPagoId, di.TransBank, Settings.Usuario.id);
+            }
+            if (di.Junaeb != 0)
+            {
+                medioPagoId = 3;
+                BoletaMediopagoBLL.Crear(ultimaBoleta.id, medioPagoId, di.Junaeb, Settings.Usuario.id);
+            }
+            if (di.Otro != 0)
+            {
+                medioPagoId = 4;
+                BoletaMediopagoBLL.Crear(ultimaBoleta.id, medioPagoId, di.Otro, Settings.Usuario.id);
+            }
+
+            foreach (ItemVenta item in spVentaItems.Children.OfType<ItemVenta>().ToList())
+            {
+                detalle_boleta dl = new detalle_boleta()
+                {
+                    producto_id = item.Producto?.id,
+                    promocion_id = item.Promocion?.id,
+                    monto = item.ObtenerTotal(),
+                    cantidad = (int)item.Cantidad,
+                    descuento = 0,
+                    boleta_id = ultimaBoleta.id
+                };
+                DetalleBoletaBLL.Agregar(dl);
+                detalle_boleta dBoleta = DetalleBoletaBLL.ObtenerUltima();
+                CompraBLL.ReduceStockByProduct(item.Producto?.id, item.Promocion?.id, (int)item.Cantidad);
+                VentasJornadaBLL.Agregar(JornadaBLL.UltimaJornada().id, dBoleta.id, item.Opcion?.nombre, (int)item.Cantidad, item.Extra_);
+            }
+            int? _subTotal = 0;
+            int _propinaSugerida = 0;
+            int? _total = 0;
+
+            spVentaItems.Children.OfType<ItemVenta>().ToList().ForEach(x => _subTotal += x.ObtenerTotal());
+            expTecladoPagar.IsExpanded = false;
+            MostrarNotificacion("VENDIDO", "");
+            if (_subTotal != null && _subTotal != 0)
+            {
+                _propinaSugerida = Convert.ToInt32(_subTotal * 0.10);
+                _total = _propinaSugerida + _subTotal;
+            }
+
+            GenerarTicket(_subTotal, ((usuario)ieg.cbGarzones.SelectedItem)?.nombre, ((mesa)iem.cbMesas.SelectedValue)?.codigo, "", "Ticket Caja", di);
+
+            LimpiarTodo();
+            bool bServir = di.ServirLlevar.ToUpper() == "SERVIR" ? true : false;
+
+            DeliveryItemBLL.Crear(ultimaBoleta.id, null, DateTime.Now, di.Direccion, di.NombreCliente, null, "", di.Incluye, bServir, di.PagaCon, di.Vuelto, medioPagoId);
+            CargarDeliveryPendientesDeEntrega();
         }
 
         private void CargarDeliveryPendientesDeEntrega()

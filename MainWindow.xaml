@@ -49,6 +49,7 @@
                                     </StackPanel>
 
                                     <MenuItem x:Name="miVenta" Header="Venta" Height="54" FontSize="22"/>
+                                    <MenuItem x:Name="miMesas" Header="Mesas" Height="54" FontSize="22"/>
                                     <Separator Height="8" Width="100" Background="#FF000104"/>
                                     
                                     <StackPanel x:Name="spGlobal" Orientation="Horizontal">

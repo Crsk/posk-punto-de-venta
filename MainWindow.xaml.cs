@@ -1,6 +1,7 @@
 ﻿using posk.BLL;
 using posk.Components;
 using posk.Globals;
+using posk.Models;
 using posk.Pages.Graficos;
 using posk.Pages.Menu;
 using posk.Popup;
@@ -25,6 +26,7 @@ namespace posk
         public static PageVerInventario PageVerInventario { get; set; }
         public static PageInicio PageInicio { get; set; }
         public static PageVenta PageVenta { get; set; }
+        public static PageMesas PageMesas { get; set; }
         public static PageCompra PageCompra { get; set; }
         public static PageDevolucion PageDevolucion { get; set; }
         public static PageMerma PageMerma { get; set; }
@@ -63,6 +65,11 @@ namespace posk
             LbNombreUsuario = lbNombreUsuario;
             LbRol = lbRol;
 
+            if (DatosNegocioBLL.PagoInmediato())
+                MostrarItemMesas(false);
+            else
+                MostrarItemMesas(true);
+
             GlobalSettings.Modo = DatosNegocioBLL.ObtenerModo();
             GlobalSettings.UsarTecladoTactilIntegrado = DatosNegocioBLL.ObtenerConfiguracionTeclado();
 
@@ -79,6 +86,22 @@ namespace posk
             }
             else
                 menuFrame.Content = new PageInicio();
+
+            PageMesas.AlEscogerMesa += (se, a) => AbrirSeccionVenta(a.Usuario, a.Mesa);
+        }
+
+        private void MostrarItemMesas(bool b)
+        {
+            if (b)
+            {
+                miMesas.Height = 54;
+                miMesas.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                miMesas.Height = 0;
+                miMesas.Visibility = Visibility.Hidden;
+            }
         }
 
         private void TerminarJornada()
@@ -127,6 +150,7 @@ namespace posk
             miVerInventario.Background = null;
             miInicio.Background = null;
             miVenta.Background = null;
+            miMesas.Background = null;
             miCompra.Background = null;
             miDevolucion.Background = null;
             miMerma.Background = null;
@@ -184,6 +208,19 @@ namespace posk
             SetMenuItemColor(miVerInventario);
         }
 
+        private void AbrirSeccionVenta(usuario u, mesa m)
+        {
+            if (PageVenta != null)
+                menuFrame.Content = PageVenta;
+            else
+            {
+                PageVenta = new PageVenta(u, m);
+                menuFrame.Content = PageVenta;
+            }
+            PrincipalComponent.CargarGarzonMesa(u, m);
+            SetMenuItemColor(miVenta);
+        }
+
         #endregion metodos
 
         #region eventos
@@ -222,14 +259,18 @@ namespace posk
 
             miVenta.Click += (se, a) =>
             {
-                if (PageVenta != null)
-                    menuFrame.Content = PageVenta;
+                AbrirSeccionVenta(null, null);
+            };
+            miMesas.Click += (se, a) =>
+            {
+                if (PageMesas != null)
+                    menuFrame.Content = PageMesas;
                 else
                 {
-                    PageVenta = new PageVenta();
-                    menuFrame.Content = PageVenta;
+                    PageMesas = new PageMesas(Settings.Usuario.tipo);
+                    menuFrame.Content = PageMesas;
                 }
-                SetMenuItemColor(miVenta);
+                SetMenuItemColor(miMesas);
             };
             miCompra.Click += (se, a) =>
             {

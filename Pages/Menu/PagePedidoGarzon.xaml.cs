@@ -366,7 +366,7 @@ namespace posk.Pages.Menu
                 });
             };
 
-            btnVolver.Click += (se, a) => MainWindow.MainFrame.Content = new PageMesas();
+            //btnVolver.Click += (se, a) => MainWindow.MainFrame.Content = new PageMesas();
 
             btnLimpiarBusqueda.Click += (se, a) =>
             {
@@ -456,7 +456,7 @@ namespace posk.Pages.Menu
 
                     ItemAccion _ia2 = new ItemAccion();
                     _ia2.Accion = "OTRO PEDIDO";
-                    _ia2.btnAccion.Click += (se2, a2) => { MainWindow.MainFrame.Content = new PageMesas(); };
+                    //_ia2.btnAccion.Click += (se2, a2) => { MainWindow.MainFrame.Content = new PageMesas(); };
 
                     _listaItemsAccion.Add(_ia1);
                     _listaItemsAccion.Add(_ia2);
@@ -524,7 +524,7 @@ namespace posk.Pages.Menu
 
                 ItemAccion ia2 = new ItemAccion();
                 ia2.Accion = "OTRO PEDIDO";
-                ia2.btnAccion.Click += (se2, a2) => { MainWindow.MainFrame.Content = new PageMesas(); };
+                //ia2.btnAccion.Click += (se2, a2) => { MainWindow.MainFrame.Content = new PageMesas(); };
 
                 listaItemsAccion.Add(ia1);
                 listaItemsAccion.Add(ia2);

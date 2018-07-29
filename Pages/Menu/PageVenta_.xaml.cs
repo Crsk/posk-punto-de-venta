@@ -299,7 +299,7 @@ namespace posk.Pages.Menu
                 });
             };
 
-            btnVolver.Click += (se, a) => MainWindow.MainFrame.Content = new PageMesas();
+            //btnVolver.Click += (se, a) => MainWindow.MainFrame.Content = new PageMesas();
 
             btnLimpiarBusqueda.Click += (se, a) =>
             {

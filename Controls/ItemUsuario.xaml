@@ -19,6 +19,7 @@
             <Border BorderBrush="#ED001229" BorderThickness="1">
                 <Grid Height="120" Width="160">
                     <Image x:Name="image"/>
+                    <Grid x:Name="overlay" Background="#6606704D" Opacity="0" Visibility="Hidden"/>
                     <Label x:Name="lbUsuario" VerticalAlignment="Bottom" Content="NOMBRE USUARIO" Foreground="White" Background="#ED001229" HorizontalContentAlignment="Center" Width="160" FontWeight="Normal" Height="23" Padding="0" VerticalContentAlignment="Center" FontSize="16"/>
                 </Grid>
             </Border>

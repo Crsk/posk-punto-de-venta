@@ -147,6 +147,7 @@
           <Property Name="correo_primario" Type="varchar" MaxLength="45" />
           <Property Name="correo_secundario" Type="varchar" MaxLength="45" />
           <Property Name="teclado_tactil_integrado" Type="bool" />
+          <Property Name="pago_inmediato" Type="bool" Nullable="false" />
         </EntityType>
         <EntityType Name="delivery_item">
           <Key>
@@ -2402,7 +2403,6 @@
             <End Role="jornada" EntitySet="jornadas" />
             <End Role="ventas_jornada" EntitySet="ventas_jornada" />
           </AssociationSet>
-          <EntitySet Name="datos_negocio" EntityType="posk_dbModel6.datos_negocio" />
           <EntitySet Name="servir_llevar" EntityType="posk_dbModel6.servir_llevar" />
           <EntitySet Name="delivery_item" EntityType="posk_dbModel6.delivery_item" />
           <AssociationSet Name="boleta_fk" Association="posk_dbModel6.boleta_fk">
@@ -2417,6 +2417,7 @@
             <End Role="medio_pago" EntitySet="medio_pago" />
             <End Role="delivery_item" EntitySet="delivery_item" />
           </AssociationSet>
+          <EntitySet Name="datos_negocio" EntityType="posk_dbModel6.datos_negocio" />
           </EntityContainer>
         <EntityType Name="agregado">
           <Key>
@@ -4143,25 +4144,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="datos_negocio">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="mensaje" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="direccion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="logo" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
-          <Property Name="iva" Type="Int32" />
-          <Property Name="inicio_jornada_dia" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="termino_jornada_dia" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="inicio_jornada_hora" Type="Time" />
-          <Property Name="termino_jornada_hora" Type="Time" />
-          <Property Name="modo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="correo_primario" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="correo_secundario" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="teclado_tactil_integrado" Type="Boolean" />
-        </EntityType>
         <EntityType Name="servir_llevar">
           <Key>
             <PropertyRef Name="id" />
@@ -4227,6 +4209,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="datos_negocio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="mensaje" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="logo" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
+          <Property Name="iva" Type="Int32" />
+          <Property Name="inicio_jornada_dia" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="termino_jornada_dia" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="inicio_jornada_hora" Type="Time" />
+          <Property Name="termino_jornada_hora" Type="Time" />
+          <Property Name="modo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="correo_primario" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="correo_secundario" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="teclado_tactil_integrado" Type="Boolean" />
+          <Property Name="pago_inmediato" Type="Boolean" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4878,26 +4880,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="datos_negocio">
-            <EntityTypeMapping TypeName="posk_dbModel6.datos_negocio">
-              <MappingFragment StoreEntitySet="datos_negocio">
-                <ScalarProperty Name="teclado_tactil_integrado" ColumnName="teclado_tactil_integrado" />
-                <ScalarProperty Name="correo_secundario" ColumnName="correo_secundario" />
-                <ScalarProperty Name="correo_primario" ColumnName="correo_primario" />
-                <ScalarProperty Name="modo" ColumnName="modo" />
-                <ScalarProperty Name="termino_jornada_hora" ColumnName="termino_jornada_hora" />
-                <ScalarProperty Name="inicio_jornada_hora" ColumnName="inicio_jornada_hora" />
-                <ScalarProperty Name="termino_jornada_dia" ColumnName="termino_jornada_dia" />
-                <ScalarProperty Name="inicio_jornada_dia" ColumnName="inicio_jornada_dia" />
-                <ScalarProperty Name="iva" ColumnName="iva" />
-                <ScalarProperty Name="logo" ColumnName="logo" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="servir_llevar">
             <EntityTypeMapping TypeName="posk_dbModel6.servir_llevar">
               <MappingFragment StoreEntitySet="servir_llevar">
@@ -4922,6 +4904,27 @@
                 <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
                 <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="datos_negocio">
+            <EntityTypeMapping TypeName="posk_dbModel6.datos_negocio">
+              <MappingFragment StoreEntitySet="datos_negocio">
+                <ScalarProperty Name="pago_inmediato" ColumnName="pago_inmediato" />
+                <ScalarProperty Name="teclado_tactil_integrado" ColumnName="teclado_tactil_integrado" />
+                <ScalarProperty Name="correo_secundario" ColumnName="correo_secundario" />
+                <ScalarProperty Name="correo_primario" ColumnName="correo_primario" />
+                <ScalarProperty Name="modo" ColumnName="modo" />
+                <ScalarProperty Name="termino_jornada_hora" ColumnName="termino_jornada_hora" />
+                <ScalarProperty Name="inicio_jornada_hora" ColumnName="inicio_jornada_hora" />
+                <ScalarProperty Name="termino_jornada_dia" ColumnName="termino_jornada_dia" />
+                <ScalarProperty Name="inicio_jornada_dia" ColumnName="inicio_jornada_dia" />
+                <ScalarProperty Name="iva" ColumnName="iva" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

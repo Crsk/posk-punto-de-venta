@@ -14,7 +14,7 @@
              mc:Ignorable="d">
     <Grid>
         <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
-            <ComboBox x:Name="cbGarzones" Width="120" materialDesign:HintAssist.Hint="GARZÓN" Foreground="Black" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+            <ComboBox x:Name="cbGarzones" Width="120" materialDesign:HintAssist.Hint="MESERO/A" Foreground="Black" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
         </StackPanel>
     </Grid>
 </UserControl>

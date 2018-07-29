@@ -220,7 +220,7 @@ namespace posk.Pages.Menu
                         case "R":
                             MainWindow.LbRol.Content = "Cajero Restaurant";
                             JornadaBLL.CrearJornadaSiNoExiste();
-                            MainWindow.MainFrame.Content = new PageMesas();
+                            //MainWindow.MainFrame.Content = new PageMesas();
                             break;
                     }
                     MainWindow.BtnMenu.Visibility = Visibility.Visible;

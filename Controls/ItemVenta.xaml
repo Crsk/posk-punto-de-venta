@@ -50,7 +50,7 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Column="3">
+        <Grid Grid.Column="2">
             <DockPanel>
                 <Border DockPanel.Dock="Bottom" Margin="0 0 0 6">
                     <Grid>

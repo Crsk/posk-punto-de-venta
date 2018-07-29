@@ -20,7 +20,7 @@ namespace posk.Pages.Menu
                     var itemMesa = new ItemMesa();
                     itemMesa.Mesa = m;
                     itemMesa.Libre = m.libre;
-                    itemMesa.btnMesa.Click += (se2, a2) => { MainWindow.MainFrame.Content = new PrincipalComponent("VENTA", m); };
+                    //itemMesa.btnMesa.Click += (se2, a2) => { MainWindow.MainFrame.Content = new PrincipalComponent("VENTA", m); };
                     wrapMesas.Children.Add(itemMesa);
                 });
             };

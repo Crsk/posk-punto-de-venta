@@ -126,7 +126,7 @@ namespace posk.Popups
                             _ItemMesaPedido.Colorear();
                         _ItemMesaPedido = imp;
                         _ItemMesaPedido.lbMesa.Content = _ItemMesaPedido.Mesa.codigo;
-                        _ItemMesaPedido.lbEstado.Content = "selección";
+                        //_ItemMesaPedido.lbEstado.Content = "selección";
                         lbMesa.Content = $"MESA: { _ItemMesaPedido.Mesa.codigo }";
                         Mesa = _ItemMesaPedido.Mesa;
                         //if (Settings.Usuario.tipo.ToLower() == "g")
@@ -161,7 +161,7 @@ namespace posk.Popups
                             _ItemMesaPedido.Colorear();
                         _ItemMesaPedido = imp;
                         _ItemMesaPedido.lbMesa.Content = _ItemMesaPedido.Mesa.codigo;
-                        _ItemMesaPedido.lbEstado.Content = "selección";
+                        //_ItemMesaPedido.lbEstado.Content = "selección";
                         lbMesa.Content = $"MESA: { _ItemMesaPedido.Mesa.codigo }";
                         Mesa = _ItemMesaPedido.Mesa;
                         if (Settings.Usuario.tipo.ToLower() == "g")

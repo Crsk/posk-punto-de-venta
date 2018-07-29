@@ -51,6 +51,8 @@ namespace posk.Popups
                 DetalleBoletaBLL.ObtenerPorBoletaId(di.boleta?.id).ForEach(x =>
                 {
                     spDetalleBoleta.Children.Add(new Label() { Content = $"{x.producto.nombre} x{x.cantidad}", Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)) });
+                    string nombreProducto = x.producto.nombre;
+                    string cantidad = x.cantidad + "";
                 });
             };
             btnAceptar.Click += (se, a) =>

@@ -33,6 +33,11 @@ namespace posk.BLL
             db.SaveChanges();
         }
 
+        public static bool PagoInmediato()
+        {
+            return db.datos_negocio.FirstOrDefault().pago_inmediato;
+        }
+
         public static void GuardarConfiguracionTeclado(bool? b)
         {
             datos_negocio dn = db.datos_negocio.FirstOrDefault();
