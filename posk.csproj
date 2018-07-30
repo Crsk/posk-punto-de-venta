@@ -19,7 +19,7 @@
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
-    <PublishUrl>C:\posk\releases\posk_v2RC3\</PublishUrl>
+    <PublishUrl>C:\posk\releases\posk_v2RC4-pre\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -31,7 +31,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://posk.cl/public_ftp/posk/ruabar/</UpdateUrl>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>93</ApplicationRevision>
+    <ApplicationRevision>101</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -72,7 +72,7 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>posk.ico</ApplicationIcon>
+    <ApplicationIcon>icon-a.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
@@ -1793,6 +1793,8 @@
   <ItemGroup>
     <Content Include="db\dbbackup_12-5-2018_19-16-26.sql" />
     <Content Include="db\dbbackup_13-5-2018_14-12-33.sql" />
+    <Resource Include="icon.ico" />
+    <Resource Include="icon-a.ico" />
     <Content Include="Models\PoskDB6.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PoskDB6.edmx</DependentUpon>
@@ -1803,6 +1805,12 @@
       <DependentUpon>PoskDB6.edmx</DependentUpon>
       <LastGenOutput>PoskDB6.cs</LastGenOutput>
     </Content>
+    <Resource Include="posk-icon-xs.ico" />
+    <Resource Include="posk-xs.ico" />
+    <Resource Include="posk-icon.ico" />
+    <Resource Include="posk-logo_light.ico" />
+    <Resource Include="posk-logo-light.ico" />
+    <Resource Include="posk-logo.ico" />
     <Resource Include="posk.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
