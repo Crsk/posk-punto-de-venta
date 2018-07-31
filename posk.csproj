@@ -19,7 +19,7 @@
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
-    <PublishUrl>C:\posk\releases\posk_v2RC4-pre\</PublishUrl>
+    <PublishUrl>C:\posk\releases\posk_v2RC4\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -31,7 +31,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://posk.cl/public_ftp/posk/ruabar/</UpdateUrl>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>101</ApplicationRevision>
+    <ApplicationRevision>102</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -923,6 +923,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Menu\PageEstadisticasRangoFechas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Menu\PageRelacionarTipoProducto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1478,6 +1482,9 @@
     </Compile>
     <Compile Include="Pages\Menu\PageAdministrarTipoDeProducto.xaml.cs">
       <DependentUpon>PageAdministrarTipoDeProducto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\PageEstadisticasRangoFechas.xaml.cs">
+      <DependentUpon>PageEstadisticasRangoFechas.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Menu\PagePrimerInicio.xaml.cs">
       <DependentUpon>PagePrimerInicio.xaml</DependentUpon>

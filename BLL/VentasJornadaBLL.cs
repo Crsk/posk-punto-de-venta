@@ -13,7 +13,7 @@ namespace posk.BLL
 
         public static void Agregar(int jid, int detalleBoletaId, string opcion, int cantidad, int cobroExtra)
         {
-            db.ventas_jornada.Add(new ventas_jornada() { jornada_id = jid, detalle_boleta_id = detalleBoletaId, opcion = opcion == null ? "" : opcion, cantidad = cantidad, cobro_extra = cobroExtra });
+            db.ventas_jornada.Add(new ventas_jornada() { jornada_id = jid, detalle_boleta_id = detalleBoletaId, opcion = opcion == null ? "" : opcion, cantidad = cantidad, cobro_extra = cobroExtra, fecha = DateTime.Now });
             db.SaveChanges();
         }
 
@@ -25,6 +25,11 @@ namespace posk.BLL
         public static List<ventas_jornada> ObtenerVentasJornada(int jornadaId)
         {
             return db.ventas_jornada.Include("detalle_boleta").Where(x => x.jornada_id == jornadaId).ToList();
+        }
+
+        public static List<ventas_jornada> ObtenerVentasRangoFechas(DateTime desde, DateTime hasta)
+        {
+            return db.ventas_jornada.Include("detalle_boleta").Where(x => x.fecha > desde && x.fecha < hasta).ToList();
         }
 
         public static List<ventas_jornada> ObtenerDistintos()

@@ -634,6 +634,7 @@
           <Property Name="cobro_extra" Type="int" Nullable="false" />
           <Property Name="detalle_boleta_id" Type="int" Nullable="false" />
           <Property Name="opcion" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="fecha" Type="datetime" Precision="0" Nullable="false" />
         </EntityType>
         <Association Name="bodega_movimiento_ibfk_1">
           <End Role="productos" Type="Self.productos" Multiplicity="0..1">
@@ -2394,15 +2395,6 @@
             <End Role="tipo_producto" EntitySet="tipo_producto" />
             <End Role="tipo_producto_opcionales" EntitySet="tipo_producto_opcionales" />
           </AssociationSet>
-          <EntitySet Name="ventas_jornada" EntityType="posk_dbModel6.ventas_jornada" />
-          <AssociationSet Name="ventas_jornada_ibfk_4" Association="posk_dbModel6.ventas_jornada_ibfk_4">
-            <End Role="detalle_boleta" EntitySet="detalle_boleta" />
-            <End Role="ventas_jornada" EntitySet="ventas_jornada" />
-          </AssociationSet>
-          <AssociationSet Name="ventas_jornada_ibfk_3" Association="posk_dbModel6.ventas_jornada_ibfk_3">
-            <End Role="jornada" EntitySet="jornadas" />
-            <End Role="ventas_jornada" EntitySet="ventas_jornada" />
-          </AssociationSet>
           <EntitySet Name="servir_llevar" EntityType="posk_dbModel6.servir_llevar" />
           <EntitySet Name="delivery_item" EntityType="posk_dbModel6.delivery_item" />
           <AssociationSet Name="boleta_fk" Association="posk_dbModel6.boleta_fk">
@@ -2418,6 +2410,15 @@
             <End Role="delivery_item" EntitySet="delivery_item" />
           </AssociationSet>
           <EntitySet Name="datos_negocio" EntityType="posk_dbModel6.datos_negocio" />
+          <EntitySet Name="ventas_jornada" EntityType="posk_dbModel6.ventas_jornada" />
+          <AssociationSet Name="ventas_jornada_ibfk_4" Association="posk_dbModel6.ventas_jornada_ibfk_4">
+            <End Role="detalle_boleta" EntitySet="detalle_boleta" />
+            <End Role="ventas_jornada" EntitySet="ventas_jornada" />
+          </AssociationSet>
+          <AssociationSet Name="ventas_jornada_ibfk_3" Association="posk_dbModel6.ventas_jornada_ibfk_3">
+            <End Role="jornada" EntitySet="jornadas" />
+            <End Role="ventas_jornada" EntitySet="ventas_jornada" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="agregado">
           <Key>
@@ -4103,47 +4104,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="ventas_jornada">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="jornada_id" Type="Int32" />
-          <Property Name="cantidad" Type="Int32" Nullable="false" />
-          <Property Name="cobro_extra" Type="Int32" Nullable="false" />
-          <Property Name="detalle_boleta_id" Type="Int32" Nullable="false" />
-          <Property Name="opcion" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="detalle_boleta" Relationship="posk_dbModel6.ventas_jornada_ibfk_4" FromRole="ventas_jornada" ToRole="detalle_boleta" />
-          <NavigationProperty Name="jornada" Relationship="posk_dbModel6.ventas_jornada_ibfk_3" FromRole="ventas_jornada" ToRole="jornada" />
-        </EntityType>
-        <Association Name="ventas_jornada_ibfk_4">
-          <End Type="posk_dbModel6.detalle_boleta" Role="detalle_boleta" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="posk_dbModel6.ventas_jornada" Role="ventas_jornada" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="detalle_boleta">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ventas_jornada">
-              <PropertyRef Name="detalle_boleta_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ventas_jornada_ibfk_3">
-          <End Type="posk_dbModel6.jornada" Role="jornada" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="posk_dbModel6.ventas_jornada" Role="ventas_jornada" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="jornada">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ventas_jornada">
-              <PropertyRef Name="jornada_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="servir_llevar">
           <Key>
             <PropertyRef Name="id" />
@@ -4229,6 +4189,48 @@
           <Property Name="teclado_tactil_integrado" Type="Boolean" />
           <Property Name="pago_inmediato" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="ventas_jornada">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="jornada_id" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="cobro_extra" Type="Int32" Nullable="false" />
+          <Property Name="detalle_boleta_id" Type="Int32" Nullable="false" />
+          <Property Name="opcion" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="detalle_boleta" Relationship="posk_dbModel6.ventas_jornada_ibfk_4" FromRole="ventas_jornada" ToRole="detalle_boleta" />
+          <NavigationProperty Name="jornada" Relationship="posk_dbModel6.ventas_jornada_ibfk_3" FromRole="ventas_jornada" ToRole="jornada" />
+        </EntityType>
+        <Association Name="ventas_jornada_ibfk_4">
+          <End Type="posk_dbModel6.detalle_boleta" Role="detalle_boleta" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="posk_dbModel6.ventas_jornada" Role="ventas_jornada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalle_boleta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ventas_jornada">
+              <PropertyRef Name="detalle_boleta_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ventas_jornada_ibfk_3">
+          <End Type="posk_dbModel6.jornada" Role="jornada" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="posk_dbModel6.ventas_jornada" Role="ventas_jornada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jornada">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ventas_jornada">
+              <PropertyRef Name="jornada_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4868,18 +4870,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ventas_jornada">
-            <EntityTypeMapping TypeName="posk_dbModel6.ventas_jornada">
-              <MappingFragment StoreEntitySet="ventas_jornada">
-                <ScalarProperty Name="opcion" ColumnName="opcion" />
-                <ScalarProperty Name="detalle_boleta_id" ColumnName="detalle_boleta_id" />
-                <ScalarProperty Name="cobro_extra" ColumnName="cobro_extra" />
-                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-                <ScalarProperty Name="jornada_id" ColumnName="jornada_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="servir_llevar">
             <EntityTypeMapping TypeName="posk_dbModel6.servir_llevar">
               <MappingFragment StoreEntitySet="servir_llevar">
@@ -4925,6 +4915,19 @@
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
                 <ScalarProperty Name="mensaje" ColumnName="mensaje" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ventas_jornada">
+            <EntityTypeMapping TypeName="posk_dbModel6.ventas_jornada">
+              <MappingFragment StoreEntitySet="ventas_jornada">
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="opcion" ColumnName="opcion" />
+                <ScalarProperty Name="detalle_boleta_id" ColumnName="detalle_boleta_id" />
+                <ScalarProperty Name="cobro_extra" ColumnName="cobro_extra" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="jornada_id" ColumnName="jornada_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

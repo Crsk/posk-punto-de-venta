@@ -1472,7 +1472,9 @@ namespace posk.Components
             List<boleta_mediopago> listaBMP = new List<boleta_mediopago>();
 
 
-            cliente cli = ClienteBLL.GetClient(di.NombreCliente);
+            
+            cliente cli = ClienteBLL.ObtenerPorTelefono(di.Telefono);
+
             BoletaBLL.Set(0, Settings.Usuario.id, puntos, _calcularTotal, di.Propina, cli?.id);
             PuntoBLL.Sumar(cli?.puntos_id, puntos);
             boleta ultimaBoleta = BoletaBLL.ObtenerUltima();

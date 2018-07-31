@@ -39,7 +39,7 @@
                                 <ComboBox x:Name="cbDirecciones" Foreground="Black" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Dirección" Style="{StaticResource MaterialDesignFloatingHintComboBox}" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" Margin="12 12 12 0"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="8 16 0 4">
                                     <Button x:Name="btnCrearDireccion" Content="Crear dirección" Style="{StaticResource BtnClear}" Margin="4" Padding="6" Foreground="WhiteSmoke" FontSize="12" IsEnabled="False" HorizontalAlignment="Left"/>
-                                    <Button x:Name="btnVerCompras" Content="Ver compras" Style="{StaticResource BtnClear}" Margin="4" Padding="6" Foreground="WhiteSmoke" FontSize="12" IsEnabled="False" Visibility="Hidden" Width="0"/>
+                                    <Button x:Name="btnVerCompras" Content="Ver compras" Style="{StaticResource BtnClear}" Margin="4" Padding="6" Foreground="WhiteSmoke" FontSize="12" IsEnabled="False" Visibility="Visible" />
                                 </StackPanel>
                                 <Expander x:Name="expCrearDireccion" Style="{StaticResource ExpanderStyleSinHeader}" Background="{x:Null}" Foreground="ForestGreen">
                                     <StackPanel Orientation="Horizontal">
@@ -51,19 +51,7 @@
                                 </Expander>
                                 <Expander x:Name="expVerCompras" Style="{StaticResource ExpanderStyleSinHeader}" Background="{x:Null}" Foreground="Gray">
                                     <ScrollViewer MaxHeight="250">
-                                        <StackPanel MaxHeight="250">
-                                            <Label Content="05 - 27/06/2018 20:04:00 Total: $2.590" Foreground="Black" HorizontalAlignment="Center"/>
-                                            <Label Content="04 - 24/06/2018 13:04:00 Total: $1.290" Foreground="Black" HorizontalAlignment="Center"/>
-                                            <Label Content="03 - 24/06/2018 21:04:00 Total: $7.000" Foreground="Black" HorizontalAlignment="Center"/>
-                                            <Label Content="02 - 23/06/2018 15:04:00 Total: $3.100" Foreground="Black" HorizontalAlignment="Center"/>
-                                            <Label Content="01 - 22/06/2018 18:04:00 Total: $5.200" Foreground="Black" HorizontalAlignment="Center"/>
-                                            <Label Content="01 - 22/06/2018 18:04:00 Total: $5.200" Foreground="Black" HorizontalAlignment="Center"/>
-                                            <Label Content="01 - 22/06/2018 18:04:00 Total: $5.200" Foreground="Black" HorizontalAlignment="Center"/>
-                                            <Label Content="01 - 22/06/2018 18:04:00 Total: $5.200" Foreground="Black" HorizontalAlignment="Center"/>
-                                            <Label Content="01 - 22/06/2018 18:04:00 Total: $5.200" Foreground="Black" HorizontalAlignment="Center"/>
-                                            <Label Content="01 - 22/06/2018 18:04:00 Total: $5.200" Foreground="Black" HorizontalAlignment="Center"/>
-                                            <Label Content="01 - 22/06/2018 18:04:00 Total: $5.200" Foreground="Black" HorizontalAlignment="Center"/>
-                                        </StackPanel>
+                                        <StackPanel x:Name="spComprasCliente" />
                                     </ScrollViewer>
                                 </Expander>
                                 

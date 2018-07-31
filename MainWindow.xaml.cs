@@ -37,6 +37,7 @@ namespace posk
         public static PageResumenJornada PageResumenJornada { get; set; }
 
         public static PageEstadisticasPeriodo PageEstPeriodo { get; set; }
+        public static PageEstadisticasRangoFechas PageEstRangoFechas { get; set; }
         public static PageEstadisticasGlobalIngresos PageEstGlobalIngresos { get; set; }
         public static PageEstadisticasPorFecha PageEstFecha { get; set; }
         public static PageEstadisticasUsuario PageEstUsuario { get; set; }
@@ -181,6 +182,7 @@ namespace posk
             miEstadisticasUsuario.Background = null;
             miEstadisticasCliente.Background = null;
             miEstadisticasStock.Background = null;
+            miEstadisticasRangoFechas.Background = null;
             if (mi == miInicio) return;
             mi.Background = new SolidColorBrush(Color.FromArgb(80, 0, 100, 255));
         }
@@ -355,6 +357,19 @@ namespace posk
                 }
                 SetMenuItemColor(miEstadisticasJornada);
             };
+
+            miEstadisticasRangoFechas.Click += (se, a) =>
+            {
+                if (PageEstRangoFechas != null)
+                    menuFrame.Content = PageEstRangoFechas;
+                else
+                {
+                    PageEstRangoFechas = new PageEstadisticasRangoFechas();
+                    menuFrame.Content = PageEstRangoFechas;
+                }
+                SetMenuItemColor(miEstadisticasRangoFechas);
+            };
+
             miEstadisticasGlobalIngresos.Click += (se, a) =>
             {
                 if (!Settings.Usuario.tipo.ToLower().Equals("a"))

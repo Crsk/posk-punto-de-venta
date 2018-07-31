@@ -143,7 +143,8 @@ namespace posk.Popups
                 }
             };
 
-            btnVerCompras.Click += (se, a) => expVerCompras.IsExpanded ^= true;
+            btnVerCompras.Click += (se, a) => MostrarCompras();
+
             btnCrearDireccion.Click += (se, a) =>
             {
                 expCrearDireccion.IsExpanded ^= true;
@@ -407,6 +408,26 @@ namespace posk.Popups
             Deactivated += (se, ev) => { if (!bCerrado) Close(); };
         }
 
+        private void MostrarCompras()
+        {
+            if (clienteEncontrado != null)
+            {
+                spComprasCliente.Children.Clear();
+                BoletaBLL.ObtenerPorCliente(clienteEncontrado.id).ForEach(boleta =>
+                    spComprasCliente.Children.Add(new Label()
+                    {
+                        Content = $"El {boleta.fecha.ToShortDateString()} a las {boleta.fecha.Hour}:{boleta.fecha.Minute} - TOTAL: ${boleta.total}",
+                        Foreground = new SolidColorBrush(Color.FromRgb(12, 12, 12))
+                    }));
+                expVerCompras.IsExpanded ^= true;
+            }
+            else
+            {
+                spComprasCliente.Children.Clear();
+                expVerCompras.IsExpanded = false;
+            }
+        }
+
         private void CursorAlFinalAlObtenerFoco(object sender, RoutedEventArgs e)
         {
             if (txtBuscarPorTelefono.Text.Length != 0)
@@ -432,9 +453,15 @@ namespace posk.Popups
                 txtNombre.IsEnabled = true;
                 btnVerCompras.IsEnabled = true;
                 if (txtNombre.Text != "" && txtBuscarPorTelefono.Text.Length == 8)
+                {
                     btnCrearDireccion.IsEnabled = true;
+                    btnVerCompras.IsEnabled = true;
+                }
                 else
+                {
                     btnCrearDireccion.IsEnabled = false;
+                    btnVerCompras.IsEnabled = false;
+                }
             }
         }
 

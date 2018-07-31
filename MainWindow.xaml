@@ -142,10 +142,10 @@
                                 <Expander x:Name="expMenuAdministrarExtensionEstadisticas" Style="{StaticResource ExpMenu}" Background="{x:Null}" ExpandDirection="Right">
                                     <StackPanel x:Name="spMenuAdministrarExtensionEstadisticas">
                                         <Separator Height="178" Width="100" Background="#F2080808" Visibility="Hidden"/>
-                                        <MenuItem x:Name="miEstadisticasPeriodo" Header="Periodo" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miEstadisticasRangoFechas" Header="Rango de Fechas" Height="36" FontSize="12"/>
                                         <MenuItem x:Name="miEstadisticasJornada" Header="Jornada" Height="0" FontSize="12" Visibility="Hidden"/>
-                                        <MenuItem x:Name="miEstadisticasGlobalIngresos" Header="Global Ingresos" Height="36" FontSize="12"/>
-                                        <MenuItem x:Name="miEstadisticasFecha" Header="Fecha" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miEstadisticasGlobalIngresos" Header="Global" Height="36" FontSize="12"/>
+                                        <MenuItem x:Name="miEstadisticasFecha" Header="Fecha" Height="0" FontSize="12" Visibility="Hidden"/>
                                         <MenuItem x:Name="miEstadisticasStock" Header="Stock" Height="36" FontSize="12"/>
                                         <MenuItem x:Name="miEstadisticasCliente" Header="Cliente" Height="36" FontSize="12" Visibility="Hidden"/>
                                         <MenuItem x:Name="miEstadisticasUsuario" Header="Usuario" Height="36" FontSize="12" Visibility="Hidden"/>

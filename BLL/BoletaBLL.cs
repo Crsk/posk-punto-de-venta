@@ -15,6 +15,11 @@ namespace posk.BLL
             public int Monto { get; set; }
         }
 
+        public static List<boleta> ObtenerPorCliente(int clienteId)
+        {
+            return db.boletas.Where(x => x.cliente_id == clienteId).ToList();
+        }
+
         public static boleta ObtenerUltima()
         {
             return db.boletas.ToList().OrderBy(x => x.id).LastOrDefault();

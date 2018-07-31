@@ -20,6 +20,7 @@ namespace posk.Models
         public int cobro_extra { get; set; }
         public int detalle_boleta_id { get; set; }
         public string opcion { get; set; }
+        public System.DateTime fecha { get; set; }
     
         public virtual detalle_boleta detalle_boleta { get; set; }
         public virtual jornada jornada { get; set; }
