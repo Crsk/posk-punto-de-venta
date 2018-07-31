@@ -74,7 +74,7 @@ namespace posk.Pages.Menu
                 btnResumenJornadaActual.Foreground = new SolidColorBrush(Color.FromRgb(224, 224, 224));
             };
         }
-
+        /*
         private List<PromoCantidad> ContarPromosEnLista(int jornadaId)
         {
             List<PromoCantidad> listaPromosCantidad = new List<PromoCantidad>();
@@ -87,7 +87,7 @@ namespace posk.Pages.Menu
 
             return listaPromosCantidad.OrderBy(x => x.Cantidad).Reverse().ToList();
         }
-
+        */
         private List<ProductoCantidad> ContarProductosEnLista(int jornadaId)
         {
             List<ventas_jornada> listaVentasJornada = VentasJornadaBLL.ObtenerVentasJornada(jornadaId);
@@ -137,16 +137,16 @@ namespace posk.Pages.Menu
             try
             {
                 List<ProductoCantidad> listaProductoCantidad = new List<ProductoCantidad>();
-                List<PromoCantidad> listaPromosCantidad = new List<PromoCantidad>();
+                //List<PromoCantidad> listaPromosCantidad = new List<PromoCantidad>();
 
                 listaProductoCantidad = ContarProductosEnLista(jornadaId);
-                listaPromosCantidad = ContarPromosEnLista(jornadaId);
+                //listaPromosCantidad = ContarPromosEnLista(jornadaId);
 
                 dgResumenVentas.DataContext = null;
                 dgResumenVentas.DataContext = listaProductoCantidad;
 
-                dgResumenVentasPromo.DataContext = null;
-                dgResumenVentasPromo.DataContext = listaPromosCantidad;
+                //dgResumenVentasPromo.DataContext = null;
+                //dgResumenVentasPromo.DataContext = listaPromosCantidad;
             }
             catch (Exception ex)
             {
