@@ -2,6 +2,7 @@
 using posk.Controls;
 using posk.Models;
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -12,6 +13,12 @@ namespace posk.Popups
     {
         public bool bCerrado = false;
         public event EventHandler AlEntregar;
+
+        public int MontoEfectivo { get; set; }
+        public int MontoTransBank { get; set; }
+        public int MontoJunaeb { get; set; }
+        public int MontoOtro { get; set; }
+        //public int MontoPorPagar { get; set; }
 
         public DeliveryPopup(delivery_item di)
         {
@@ -54,6 +61,33 @@ namespace posk.Popups
                     string nombreProducto = x.producto.nombre;
                     string cantidad = x.cantidad + "";
                 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             };
             btnAceptar.Click += (se, a) =>
             {
@@ -64,6 +98,9 @@ namespace posk.Popups
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             Deactivated += (se, ev) => { if (!bCerrado) Close(); };
         }
+
+
+
 
         public void Cerrar()
         {

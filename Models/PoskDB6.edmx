@@ -154,7 +154,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="direccion" Type="varchar" MaxLength="60" />
+          <Property Name="direccion" Type="varchar" MaxLength="120" />
           <Property Name="nombre_cliente" Type="varchar" MaxLength="30" />
           <Property Name="cliente_id" Type="int" />
           <Property Name="comentario" Type="varchar" MaxLength="60" />
@@ -2396,6 +2396,16 @@
             <End Role="tipo_producto_opcionales" EntitySet="tipo_producto_opcionales" />
           </AssociationSet>
           <EntitySet Name="servir_llevar" EntityType="posk_dbModel6.servir_llevar" />
+          <EntitySet Name="datos_negocio" EntityType="posk_dbModel6.datos_negocio" />
+          <EntitySet Name="ventas_jornada" EntityType="posk_dbModel6.ventas_jornada" />
+          <AssociationSet Name="ventas_jornada_ibfk_4" Association="posk_dbModel6.ventas_jornada_ibfk_4">
+            <End Role="detalle_boleta" EntitySet="detalle_boleta" />
+            <End Role="ventas_jornada" EntitySet="ventas_jornada" />
+          </AssociationSet>
+          <AssociationSet Name="ventas_jornada_ibfk_3" Association="posk_dbModel6.ventas_jornada_ibfk_3">
+            <End Role="jornada" EntitySet="jornadas" />
+            <End Role="ventas_jornada" EntitySet="ventas_jornada" />
+          </AssociationSet>
           <EntitySet Name="delivery_item" EntityType="posk_dbModel6.delivery_item" />
           <AssociationSet Name="boleta_fk" Association="posk_dbModel6.boleta_fk">
             <End Role="boleta" EntitySet="boletas" />
@@ -2408,16 +2418,6 @@
           <AssociationSet Name="medio_pago_fk" Association="posk_dbModel6.medio_pago_fk">
             <End Role="medio_pago" EntitySet="medio_pago" />
             <End Role="delivery_item" EntitySet="delivery_item" />
-          </AssociationSet>
-          <EntitySet Name="datos_negocio" EntityType="posk_dbModel6.datos_negocio" />
-          <EntitySet Name="ventas_jornada" EntityType="posk_dbModel6.ventas_jornada" />
-          <AssociationSet Name="ventas_jornada_ibfk_4" Association="posk_dbModel6.ventas_jornada_ibfk_4">
-            <End Role="detalle_boleta" EntitySet="detalle_boleta" />
-            <End Role="ventas_jornada" EntitySet="ventas_jornada" />
-          </AssociationSet>
-          <AssociationSet Name="ventas_jornada_ibfk_3" Association="posk_dbModel6.ventas_jornada_ibfk_3">
-            <End Role="jornada" EntitySet="jornadas" />
-            <End Role="ventas_jornada" EntitySet="ventas_jornada" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="agregado">
@@ -4112,63 +4112,6 @@
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="orden" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="delivery_item">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="direccion" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="nombre_cliente" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="cliente_id" Type="Int32" />
-          <Property Name="comentario" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="incluye" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="fecha_entrega" Type="DateTime" />
-          <Property Name="fecha_pedido" Type="DateTime" Nullable="false" />
-          <Property Name="boleta_id" Type="Int32" />
-          <Property Name="servir" Type="Boolean" />
-          <Property Name="paga_con" Type="Int32" Nullable="false" />
-          <Property Name="vuelto" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="medio_pago_id" Type="Int32" />
-          <NavigationProperty Name="boleta" Relationship="posk_dbModel6.boleta_fk" FromRole="delivery_item" ToRole="boleta" />
-          <NavigationProperty Name="cliente" Relationship="posk_dbModel6.cliente_fk" FromRole="delivery_item" ToRole="cliente" />
-          <NavigationProperty Name="medio_pago" Relationship="posk_dbModel6.medio_pago_fk" FromRole="delivery_item" ToRole="medio_pago" />
-        </EntityType>
-        <Association Name="boleta_fk">
-          <End Type="posk_dbModel6.boleta" Role="boleta" Multiplicity="0..1" />
-          <End Type="posk_dbModel6.delivery_item" Role="delivery_item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="boleta">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="delivery_item">
-              <PropertyRef Name="boleta_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="cliente_fk">
-          <End Type="posk_dbModel6.cliente" Role="cliente" Multiplicity="0..1" />
-          <End Type="posk_dbModel6.delivery_item" Role="delivery_item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="cliente">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="delivery_item">
-              <PropertyRef Name="cliente_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="medio_pago_fk">
-          <End Type="posk_dbModel6.medio_pago" Role="medio_pago" Multiplicity="0..1" />
-          <End Type="posk_dbModel6.delivery_item" Role="delivery_item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="medio_pago">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="delivery_item">
-              <PropertyRef Name="medio_pago_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="datos_negocio">
           <Key>
             <PropertyRef Name="id" />
@@ -4228,6 +4171,63 @@
             </Principal>
             <Dependent Role="ventas_jornada">
               <PropertyRef Name="jornada_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="delivery_item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="direccion" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_cliente" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="cliente_id" Type="Int32" />
+          <Property Name="comentario" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="incluye" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_entrega" Type="DateTime" />
+          <Property Name="fecha_pedido" Type="DateTime" Nullable="false" />
+          <Property Name="boleta_id" Type="Int32" />
+          <Property Name="servir" Type="Boolean" />
+          <Property Name="paga_con" Type="Int32" Nullable="false" />
+          <Property Name="vuelto" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="medio_pago_id" Type="Int32" />
+          <NavigationProperty Name="boleta" Relationship="posk_dbModel6.boleta_fk" FromRole="delivery_item" ToRole="boleta" />
+          <NavigationProperty Name="cliente" Relationship="posk_dbModel6.cliente_fk" FromRole="delivery_item" ToRole="cliente" />
+          <NavigationProperty Name="medio_pago" Relationship="posk_dbModel6.medio_pago_fk" FromRole="delivery_item" ToRole="medio_pago" />
+        </EntityType>
+        <Association Name="boleta_fk">
+          <End Type="posk_dbModel6.boleta" Role="boleta" Multiplicity="0..1" />
+          <End Type="posk_dbModel6.delivery_item" Role="delivery_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="boleta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="delivery_item">
+              <PropertyRef Name="boleta_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cliente_fk">
+          <End Type="posk_dbModel6.cliente" Role="cliente" Multiplicity="0..1" />
+          <End Type="posk_dbModel6.delivery_item" Role="delivery_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="delivery_item">
+              <PropertyRef Name="cliente_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="medio_pago_fk">
+          <End Type="posk_dbModel6.medio_pago" Role="medio_pago" Multiplicity="0..1" />
+          <End Type="posk_dbModel6.delivery_item" Role="delivery_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="medio_pago">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="delivery_item">
+              <PropertyRef Name="medio_pago_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4879,25 +4879,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="delivery_item">
-            <EntityTypeMapping TypeName="posk_dbModel6.delivery_item">
-              <MappingFragment StoreEntitySet="delivery_item">
-                <ScalarProperty Name="medio_pago_id" ColumnName="medio_pago_id" />
-                <ScalarProperty Name="vuelto" ColumnName="vuelto" />
-                <ScalarProperty Name="paga_con" ColumnName="paga_con" />
-                <ScalarProperty Name="servir" ColumnName="servir" />
-                <ScalarProperty Name="boleta_id" ColumnName="boleta_id" />
-                <ScalarProperty Name="fecha_pedido" ColumnName="fecha_pedido" />
-                <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
-                <ScalarProperty Name="incluye" ColumnName="incluye" />
-                <ScalarProperty Name="comentario" ColumnName="comentario" />
-                <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
-                <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
-                <ScalarProperty Name="direccion" ColumnName="direccion" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="datos_negocio">
             <EntityTypeMapping TypeName="posk_dbModel6.datos_negocio">
               <MappingFragment StoreEntitySet="datos_negocio">
@@ -4928,6 +4909,25 @@
                 <ScalarProperty Name="cobro_extra" ColumnName="cobro_extra" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
                 <ScalarProperty Name="jornada_id" ColumnName="jornada_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="delivery_item">
+            <EntityTypeMapping TypeName="posk_dbModel6.delivery_item">
+              <MappingFragment StoreEntitySet="delivery_item">
+                <ScalarProperty Name="medio_pago_id" ColumnName="medio_pago_id" />
+                <ScalarProperty Name="vuelto" ColumnName="vuelto" />
+                <ScalarProperty Name="paga_con" ColumnName="paga_con" />
+                <ScalarProperty Name="servir" ColumnName="servir" />
+                <ScalarProperty Name="boleta_id" ColumnName="boleta_id" />
+                <ScalarProperty Name="fecha_pedido" ColumnName="fecha_pedido" />
+                <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
+                <ScalarProperty Name="incluye" ColumnName="incluye" />
+                <ScalarProperty Name="comentario" ColumnName="comentario" />
+                <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
+                <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

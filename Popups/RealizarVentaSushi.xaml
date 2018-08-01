@@ -50,9 +50,12 @@
                                     </StackPanel>
                                 </Expander>
                                 <Expander x:Name="expVerCompras" Style="{StaticResource ExpanderStyleSinHeader}" Background="{x:Null}" Foreground="Gray">
-                                    <ScrollViewer MaxHeight="250">
-                                        <StackPanel x:Name="spComprasCliente" />
-                                    </ScrollViewer>
+                                    <StackPanel>
+                                        <Label x:Name="labelTotalComprasCliente" Content="" Foreground="Black" Margin="8 0 0 8"/>
+                                        <ScrollViewer MaxHeight="250" Margin="8 0 0 0">
+                                            <StackPanel x:Name="spComprasCliente" />
+                                        </ScrollViewer>
+                                    </StackPanel>
                                 </Expander>
                                 
                                 <Label x:Name="lbClienteEncontrado" Foreground="#FF0A7562" HorizontalAlignment="Center" Visibility="Hidden"/>

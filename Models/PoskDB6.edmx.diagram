@@ -139,14 +139,14 @@
         <AssociationConnector Association="posk_dbModel6.reservas_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.tipo_producto_opcionales_ibfk_1" />
         <EntityTypeShape EntityType="posk_dbModel6.servir_llevar" Width="1.5" PointX="7.375" PointY="0.75" />
-        <EntityTypeShape EntityType="posk_dbModel6.delivery_item" Width="1.5" PointX="19.75" PointY="44.5" />
-        <AssociationConnector Association="posk_dbModel6.boleta_fk" />
-        <AssociationConnector Association="posk_dbModel6.cliente_fk" />
-        <AssociationConnector Association="posk_dbModel6.medio_pago_fk" />
         <EntityTypeShape EntityType="posk_dbModel6.datos_negocio" Width="1.5" PointX="7.375" PointY="3.75" />
         <EntityTypeShape EntityType="posk_dbModel6.ventas_jornada" Width="1.5" PointX="18.125" PointY="32.625" />
         <AssociationConnector Association="posk_dbModel6.ventas_jornada_ibfk_4" />
         <AssociationConnector Association="posk_dbModel6.ventas_jornada_ibfk_3" />
+        <EntityTypeShape EntityType="posk_dbModel6.delivery_item" Width="1.5" PointX="17.25" PointY="44.5" />
+        <AssociationConnector Association="posk_dbModel6.boleta_fk" />
+        <AssociationConnector Association="posk_dbModel6.cliente_fk" />
+        <AssociationConnector Association="posk_dbModel6.medio_pago_fk" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using posk.Partials;
 using posk.Models;
 using posk.Popup;
+using posk.Globals;
 
 namespace posk.Popups
 {
@@ -27,6 +28,7 @@ namespace posk.Popups
         public int MontoTransBank { get; set; }
         public int MontoJunaeb { get; set; }
         public int MontoOtro { get; set; }
+        public int MontoPorPagar { get; set; }
 
         private cliente clienteEncontrado { get; set; }
         private string ServirLlevarStr { get; set; }
@@ -313,6 +315,30 @@ namespace posk.Popups
                             CalcularMontos();
                         };
                     }
+                    if (impc.MedioPago.nombre.ToLower().Equals("por pagar"))
+                    {
+                        impc.btnMedioPago.Click += (se2, a2) => MostrarPagaCon(false);
+                        impc.txtMonto.TabIndex = 5;
+
+                        impc.txtMonto.TextChanged += (se2, a2) =>
+                        {
+                            try
+                            {
+                                if (impc.txtMonto.Text != "")
+                                    MontoPorPagar = Convert.ToInt32(impc.txtMonto.Text);
+                                else
+                                    MontoPorPagar = 0;
+                                HabilitarBotonVender();
+                            }
+                            catch
+                            {
+                                impc.txtMonto.Text = "";
+                                MontoPorPagar = 0;
+                            }
+                            CalcularMontos();
+                        };
+                    }
+
                     //impc.txtMonto.TextChanged += (se2, a2) => CalcularMontos();
                     impc.btnMedioPago.Click += (se2, a2) =>
                     {
@@ -412,14 +438,26 @@ namespace posk.Popups
         {
             if (clienteEncontrado != null)
             {
-                spComprasCliente.Children.Clear();
-                BoletaBLL.ObtenerPorCliente(clienteEncontrado.id).ForEach(boleta =>
-                    spComprasCliente.Children.Add(new Label()
+                try
+                {
+                    int total = 0;
+                    spComprasCliente.Children.Clear();
+                    BoletaBLL.ObtenerPorCliente(clienteEncontrado.id).ForEach(boleta =>
                     {
-                        Content = $"El {boleta.fecha.ToShortDateString()} a las {boleta.fecha.Hour}:{boleta.fecha.Minute} - TOTAL: ${boleta.total}",
-                        Foreground = new SolidColorBrush(Color.FromRgb(12, 12, 12))
-                    }));
-                expVerCompras.IsExpanded ^= true;
+                        total += (int)boleta.total;
+                        spComprasCliente.Children.Add(new Label()
+                        {
+                            Content = $"El {boleta.fecha.ToShortDateString()} a las {boleta.fecha.Hour}:{boleta.fecha.Minute} - TOTAL: ${boleta.total}",
+                            Foreground = new SolidColorBrush(Color.FromRgb(12, 12, 12))
+                        });
+                    });
+                    expVerCompras.IsExpanded ^= true;
+                    labelTotalComprasCliente.Content = $"Total ${total}";
+                }
+                catch (Exception ex)
+                {
+                    PoskException.Make(ex, "Error al obtener compras cliente");
+                }
             }
             else
             {
@@ -521,7 +559,7 @@ namespace posk.Popups
             }
             _montoTotal = Convert.ToInt32(lbTotal.Content);
 
-            if (MontoEfectivo + MontoTransBank + MontoJunaeb + MontoOtro == _montoTotal)
+            if (MontoEfectivo + MontoTransBank + MontoJunaeb + MontoOtro + MontoPorPagar == _montoTotal)
                 return true;
             else
                 return false;
