@@ -69,7 +69,7 @@
                             <Label Content="OPCIONES" Foreground="#FFC3C3C3" HorizontalContentAlignment="Center"/>
                         </Border>
                         <Border DockPanel.Dock="Top">
-                            <Expander Header="NEGOCIO" Style="{DynamicResource ExpanderSubMenuRight}" Background="#FFD6D6D6" Foreground="Black" VerticalAlignment="Top">
+                            <Expander Header="LOCAL" Style="{DynamicResource ExpanderSubMenuRight}" Background="#FFD6D6D6" Foreground="Black" VerticalAlignment="Top">
                                 <StackPanel>
                                     <Border DockPanel.Dock="Top">
                                         <StackPanel>
@@ -85,7 +85,8 @@
                                             <Border Height="36" Margin="2">
                                                 <TextBox x:Name="txtImagenPortada" materialDesign:HintAssist.Hint="IMAGEN PORTADA" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Foreground="Black" HorizontalContentAlignment="Center"/>
                                             </Border>
-                                            <Button x:Name="btnGuardarDescripcionNegocio" Content="Guardar" Margin="8,12,8,8" VerticalAlignment="Top" />
+                                            <CheckBox x:Name="checkMesasGarzon" Content="¿Trabaja con mesas y garzón?" Margin="8"/>
+                                            <Button x:Name="btnGuardarDescripcionNegocio" Content="Guardar" Margin="8,12,8,8" VerticalAlignment="Top" Background="ForestGreen" Style="{StaticResource BtnClear}" Foreground="White"/>
                                         </StackPanel>
                                     </Border>
                                 </StackPanel>
@@ -116,7 +117,7 @@
                                             <ComboBox x:Name="cbTerminoJornadaDia" materialDesign:HintAssist.Hint="Dia de Término Jornada" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Foreground="Black" HorizontalContentAlignment="Left" Margin="0 0 0 2"/>
                                             <materialDesign:TimePicker x:Name="timeInicioJornadaHora" materialDesign:HintAssist.Hint="Hora de Inicio Jornada" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Foreground="Black" HorizontalContentAlignment="Center"/>
                                             <materialDesign:TimePicker x:Name="timeTerminoJornadaHora" materialDesign:HintAssist.Hint="Hora de Término Jornada" Height="38" Background="#FFC8C8C8" Style="{StaticResource MaterialDesignFloatingHintTimePicker}" Foreground="Black" HorizontalContentAlignment="Center"/>
-                                            <Button x:Name="btnGuardarJornada" Content="Guardar" Margin="8,12,8,8" VerticalAlignment="Top" />
+                                            <Button x:Name="btnGuardarJornada" Content="Guardar" Margin="8,12,8,8" VerticalAlignment="Top" Background="ForestGreen" Foreground="White" Style="{StaticResource BtnClear}"/>
                                         </StackPanel>
                                     </Border>
                                 </StackPanel>
@@ -157,7 +158,7 @@
                                             </Border>
                                         </StackPanel>
                                     </Grid>
-                                    <Button x:Name="btnGuardarImpresoras" Content="Guardar" Margin="8,12,8,8" VerticalAlignment="Top" />
+                                    <Button x:Name="btnGuardarImpresoras" Content="Guardar" Margin="8,12,8,8" VerticalAlignment="Top" Background="ForestGreen" Foreground="White" Style="{StaticResource BtnClear}"/>
                                 </StackPanel>
                             </Expander>
                         </Border>
@@ -177,7 +178,7 @@
                                         <Label Content="Notificar bajo stock: " Foreground="Black"/>
                                         <TextBox Width="30" Text="50" HorizontalContentAlignment="Center" ToolTip="Enviar un correo cuando quede poco stock"/>
                                     </StackPanel>
-                                    <Button x:Name="btnGuardarNotificaciones" Content="Guardar" Margin="8,12,8,8" VerticalAlignment="Top" />
+                                    <Button x:Name="btnGuardarNotificaciones" Content="Guardar" Margin="8,12,8,8" VerticalAlignment="Top" Background="ForestGreen" Foreground="White" Style="{StaticResource BtnClear}"/>
                                 </StackPanel>
                             </Expander>
                         </Border>
@@ -191,7 +192,7 @@
                                 </StackPanel>
                             </Expander>
                         </Border>
-                        <Button x:Name="btnActualizar" Content="ACTUALIZAR SISTEMA" BorderBrush="{x:Null}" Background="ForestGreen" Foreground="#f9f9f9" Margin="32" VerticalAlignment="Top"/>
+                        <Button x:Name="btnActualizar" Content="ACTUALIZAR SISTEMA" BorderBrush="{x:Null}" Background="ForestGreen" Foreground="White" Margin="32" VerticalAlignment="Top"/>
                     </DockPanel>
                     <DockPanel>
                         <StackPanel HorizontalAlignment="Left" Margin="120 24 0 0" Visibility="Hidden">

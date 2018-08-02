@@ -8,6 +8,7 @@ using posk.Popup;
 using System.Deployment.Application;
 using System.Windows.Forms;
 using System.Windows.Controls;
+using System.Collections.Generic;
 
 namespace posk.Pages.Menu
 {
@@ -36,20 +37,53 @@ namespace posk.Pages.Menu
                 cbImpresoraCinco.Items.Add(item);
             }
 
-            cbSectorUno.ItemsSource = ImpresoraBLL.ObtenerImpresoras();
+            List<sector_impresion> listaSectorImpresion = SectorImpresionBLL.ObtenerTodo();
+
+            cbSectorUno.ItemsSource = listaSectorImpresion;
             cbSectorUno.DisplayMemberPath = "nombre";
 
-            cbSectorDos.ItemsSource = ImpresoraBLL.ObtenerImpresoras();
+            cbSectorDos.ItemsSource = listaSectorImpresion;
             cbSectorDos.DisplayMemberPath = "nombre";
 
-            cbSectorTres.ItemsSource = ImpresoraBLL.ObtenerImpresoras();
+            cbSectorTres.ItemsSource = listaSectorImpresion;
             cbSectorTres.DisplayMemberPath = "nombre";
 
-            cbSectorCuatro.ItemsSource = ImpresoraBLL.ObtenerImpresoras();
+            cbSectorCuatro.ItemsSource = listaSectorImpresion;
             cbSectorCuatro.DisplayMemberPath = "nombre";
 
-            cbSectorCinco.ItemsSource = ImpresoraBLL.ObtenerImpresoras();
+            cbSectorCinco.ItemsSource = listaSectorImpresion;
             cbSectorCinco.DisplayMemberPath = "nombre";
+
+            int index = 0;
+            listaSectorImpresion.ForEach(x => 
+            {
+                index++;
+                if (index == 1)
+                {
+                    cbSectorUno.Text = x.nombre;
+                    cbImpresoraUno.Text = x.impresora;
+                }
+                if (index == 2)
+                {
+                    cbSectorDos.Text = x.nombre;
+                    cbImpresoraDos.Text = x.impresora;
+                }
+                if (index == 3)
+                {
+                    cbSectorTres.Text = x.nombre;
+                    cbImpresoraTres.Text = x.impresora;
+                }
+                if (index == 4)
+                {
+                    cbSectorCuatro.Text = x.nombre;
+                    cbImpresoraCuatro.Text = x.impresora;
+                }
+                if (index == 5)
+                {
+                    cbSectorCinco.Text = x.nombre;
+                    cbImpresoraCinco.Text = x.impresora;
+                }
+            });
 
             btnGuardarImpresoras.Click += (se, a) =>
             {
@@ -88,6 +122,8 @@ namespace posk.Pages.Menu
             Loaded += (se, a) =>
             {
                 string modo = DatosNegocioBLL.ObtenerModo();
+                datos_negocio datosNegocio = DatosNegocioBLL.ObtenerDatos();
+                checkMesasGarzon.IsChecked = datosNegocio.pago_inmediato == true ? false : true;
 
                 txtIVA.Text = $"{DatosNegocioBLL.ObtenerIva()}";
                 checkTecladoTactilIntegrado.IsChecked = DatosNegocioBLL.ObtenerConfiguracionTeclado();
@@ -285,14 +321,6 @@ namespace posk.Pages.Menu
             btnGuardarDescripcionNegocio.Click += (se, ev) =>
             {
                 DatosNegocioBLL.SetDescripcionNegocio(txtNombreDelNegocio.Text, "", txtDireccionNegocio.Text, txtImagenPortada.Text);
-            };
-
-            this.Loaded += (se, ev) =>
-            {
-                // test
-                //RegistroBLL.CreateLog(DateTime.Now, "tipo_", 1, "detalle_");
-                //List<LogItem> listaLogs = RegistroBLL.GetLogItems();
-                //dgRegistro.ItemsSource = listaLogs;
             };
         }
 

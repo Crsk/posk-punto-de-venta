@@ -50,35 +50,29 @@
 
                                     <MenuItem x:Name="miVenta" Header="Venta" Height="54" FontSize="22"/>
                                     <MenuItem x:Name="miMesas" Header="Mesas" Height="54" FontSize="22"/>
+
                                     <Separator Height="8" Width="100" Background="#FF000104"/>
-                                    
-                                    <StackPanel x:Name="spGlobal" Orientation="Horizontal">
-                                        <MenuItem x:Name="miGlobal" Header="Global" Height="36" FontSize="12"/>
+                                    <Separator Height="8" Width="100" Background="#FF000104"/>
+
+                                    <StackPanel x:Name="spJornada" Orientation="Horizontal">
+                                        <MenuItem x:Name="miJornada" Header="Mi jornada" Height="36" FontSize="12"/>
                                         <materialDesign:PackIcon Kind="MenuRight" VerticalAlignment="Center" Margin="-16 0 0 0"/>
                                     </StackPanel>
-
-                                    <Separator Height="8" Width="100" Background="#FF000104"/>
-
-                                    <Separator Height="8" Width="100" Background="#FF000104"/>
 
                                     <StackPanel x:Name="spStock" Orientation="Horizontal">
                                         <MenuItem x:Name="miStock" Header="Stock" Height="36" FontSize="12"/>
                                         <materialDesign:PackIcon Kind="MenuRight" VerticalAlignment="Center" Margin="-16 0 0 0"/>
                                     </StackPanel>
-  
-                                    <StackPanel x:Name="spJornada" Orientation="Horizontal">
-                                        <MenuItem x:Name="miJornada" Header="Mi jornada" Height="36" FontSize="12"/>
-                                        <materialDesign:PackIcon Kind="MenuRight" VerticalAlignment="Center" Margin="-16 0 0 0"/>
-                                    </StackPanel>
+
                                     <Separator Height="8" Width="100" Background="#FF000104"/>
-    
+
                                     <StackPanel x:Name="spAdmin">
                                         <Separator Height="8" Width="100" Background="#FF000104"/>
                                         <StackPanel x:Name="spEstadisticas" Orientation="Horizontal">
                                             <MenuItem x:Name="miEstadisticas" Header="Estadísticas" Height="36" FontSize="12"/>
                                             <materialDesign:PackIcon Kind="MenuRight" VerticalAlignment="Center" Margin="-16 0 0 0"/>
                                         </StackPanel>
-    
+
                                         <StackPanel x:Name="spAdministrar" Orientation="Horizontal">
                                             <MenuItem x:Name="miAdministrar" Header="Administrar" Height="36" FontSize="12"/>
                                             <materialDesign:PackIcon Kind="MenuRight" VerticalAlignment="Center" Margin="-16 0 0 0"/>
@@ -88,29 +82,22 @@
 
                                     <Separator Height="8" Width="100" Background="#FF000104"/>
                                     <Separator Height="8" Width="100" Background="#FF000104"/>
-                                    
+
+                                    <MenuItem x:Name="miOpciones" Header="Opciones" Height="36" FontSize="12"/>
+
                                     <MenuItem x:Name="miInicio" Header="Cerrar sesión" Height="36" FontSize="12"/>
                                     <Separator Height="8" Width="100" Background="#FF000104"/>
-                                    <MenuItem x:Name="miTerminarJornada" Header="Terminar jornada" Height="36" FontSize="12" Foreground="#7FFFB200"/>
+                                    <MenuItem x:Name="miTerminarJornada" Header="Terminar jornada" Height="36" FontSize="12" Foreground="#FFE48505"/>
                                     <Separator Height="8" Width="100" Background="#FF000104"/>
-                                    <Button x:Name="btnCerrar" Content="Cerrar programa" Style="{StaticResource BtnClear}" Background="{x:Null}" HorizontalAlignment="Center" Foreground="#7FDC250C" />
+                                    <Button x:Name="btnCerrar" Content="Cerrar sistema" FontSize="12" Style="{StaticResource BtnClear}" Background="{x:Null}" HorizontalAlignment="Left" Foreground="#FFB72511" Margin="26 0 0 0" />
                                 </StackPanel>
-
-                                <Expander x:Name="expMenuGlobalExtension" Style="{StaticResource ExpMenu}" Background="{x:Null}" ExpandDirection="Right">
-                                    <StackPanel x:Name="spMenuGlobalExtension">
-                                        <Separator Height="178" Width="100" Background="#F2080808" Visibility="Hidden"/>
-                                        <MenuItem x:Name="miVerInventario" Header="Inventario" Height="36" FontSize="12" Visibility="Hidden"/>
-                                        <Separator Height="8" Width="100" Background="#FF000104"/>
-                                        <MenuItem x:Name="miGasto" Header="Gasto" Height="36" FontSize="12"/>
-                                        <Separator Height="8" Width="100" Background="#FF000104"/>
-                                        <MenuItem x:Name="miOpciones" Header="Opciones" Height="36" FontSize="12"/>
-                                    </StackPanel>
-                                </Expander>
 
                                 <Expander x:Name="expMenuJornadaExtension" Style="{StaticResource ExpMenu}" Background="{x:Null}" ExpandDirection="Right">
                                     <StackPanel x:Name="spMenuJornadaExtension">
                                         <Separator Height="178" Width="100" Background="#F2080808" Visibility="Hidden"/>
                                         <MenuItem x:Name="miJornadaResumen" Header="Resúmen" Height="36" FontSize="12"/>
+                                        <Separator Height="8" Width="100" Background="#FF000104"/>
+                                        <MenuItem x:Name="miGasto" Header="Gasto" Height="36" FontSize="12"/>
                                         <MenuItem x:Name="miJornadaVentas" Header="Ventas realizadas" Height="36" FontSize="12" Visibility="Hidden"/>
                                     </StackPanel>
                                 </Expander>

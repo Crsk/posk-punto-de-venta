@@ -11,11 +11,6 @@ namespace posk.BLL
     {
         private static PoskDB6 db = new PoskDB6();
 
-        public static List<sector_impresion> ObtenerImpresoras()
-        {
-            return db.sector_impresion.ToList();
-        }
-
         public static void EstablecerSectorImpresoras(string sectorUno, string impresoraUno, string sectorDos, string impresoraDos, string sectorTres, string impresoraTres, string sectorCuatro, string impresoraCuatro, string sectorCinco, string impresoraCinco)
         {
             sector_impresion siUno = db.sector_impresion.Where(x => x.nombre == sectorUno).FirstOrDefault();

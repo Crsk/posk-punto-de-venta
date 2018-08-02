@@ -129,7 +129,6 @@ namespace posk
                 gridOverlay.BeginAnimation(OpacityProperty, animation);
                 expMenu.IsExpanded = true;
 
-                expMenuGlobalExtension.IsExpanded = false;
                 expMenuJornadaExtension.IsExpanded = false;
                 expMenuStockExtension.IsExpanded = false;
                 expMenuAdministrarExtension.IsExpanded = false;
@@ -148,7 +147,6 @@ namespace posk
         private void SetMenuItemColor(MenuItem mi)
         {
             AbrirMenu(false);
-            miVerInventario.Background = null;
             miInicio.Background = null;
             miVenta.Background = null;
             miMesas.Background = null;
@@ -175,7 +173,6 @@ namespace posk
             miEstadisticas.Background = null;
             miAdministrar.Background = null;
             miJornada.Background = null;
-            miGlobal.Background = null;
 
             miEstadisticasGlobalIngresos.Background = null;
             miEstadisticasFecha.Background = null;
@@ -196,18 +193,6 @@ namespace posk
                 PageInicio = new PageInicio();
                 menuFrame.Content = PageInicio;
             }
-        }
-
-        private void CerrarJornada()
-        {
-            if (PageVerInventario != null)
-                menuFrame.Content = PageVerInventario;
-            else
-            {
-                PageVerInventario = new PageVerInventario();
-                menuFrame.Content = PageVerInventario;
-            }
-            SetMenuItemColor(miVerInventario);
         }
 
         private void AbrirSeccionVenta(usuario u, mesa m)
@@ -239,18 +224,6 @@ namespace posk
             miTerminarJornada.Click += (se, a) =>
             {
                 TerminarJornada();
-            };
-
-            miVerInventario.Click += (se, a) =>
-            {
-                if (PageVerInventario != null)
-                    menuFrame.Content = PageVerInventario;
-                else
-                {
-                    PageVerInventario = new PageVerInventario();
-                    menuFrame.Content = PageVerInventario;
-                }
-                SetMenuItemColor(miVerInventario);
             };
 
             miInicio.Click += (se, a) =>
@@ -641,26 +614,8 @@ namespace posk
             {
                 expMenuAdministrarExtensionEstadisticas.IsExpanded ^= true;
             };
-
-            miGlobal.Click += (se, ev) =>
-            {
-                expMenuGlobalExtension.IsExpanded ^= true;
-            };
             #endregion menu expandible
 
-            expMenuGlobalExtension.Expanded += (se, a) =>
-            {
-                miGlobal.Background = new SolidColorBrush(Color.FromArgb(80, 0, 160, 255));
-                miJornada.Background = null;
-                miAdministrar.Background = null;
-                miEstadisticas.Background = null;
-                miStock.Background = null;
-                expMenuJornadaExtension.IsExpanded = false;
-                expMenuAdministrarExtension.IsExpanded = false;
-                expMenuAdministrarExtensionEstadisticas.IsExpanded = false;
-                expMenuStockExtension.IsExpanded = false;
-            };
-            expMenuGlobalExtension.Collapsed += (se, a) => miGlobal.Background = null;
 
             expMenuJornadaExtension.Expanded += (se, a) =>
             {
@@ -668,11 +623,9 @@ namespace posk
                 miAdministrar.Background = null;
                 miEstadisticas.Background = null;
                 miStock.Background = null;
-                miGlobal.Background = null;
                 expMenuAdministrarExtension.IsExpanded = false;
                 expMenuAdministrarExtensionEstadisticas.IsExpanded = false;
                 expMenuStockExtension.IsExpanded = false;
-                expMenuGlobalExtension.IsExpanded = false;
             };
             expMenuStockExtension.Collapsed += (se, a) => miJornada.Background = null;
 
@@ -682,11 +635,9 @@ namespace posk
                 miJornada.Background = null;
                 miAdministrar.Background = null;
                 miEstadisticas.Background = null;
-                miGlobal.Background = null;
                 expMenuAdministrarExtension.IsExpanded = false;
                 expMenuAdministrarExtensionEstadisticas.IsExpanded = false;
                 expMenuJornadaExtension.IsExpanded = false;
-                expMenuGlobalExtension.IsExpanded = false;
             };
             expMenuStockExtension.Collapsed += (se, a) => miStock.Background = null;
 
@@ -696,11 +647,9 @@ namespace posk
                 miStock.Background = null;
                 miEstadisticas.Background = new SolidColorBrush(Color.FromArgb(80, 0, 160, 255));
                 miAdministrar.Background = null;
-                miGlobal.Background = null;
                 expMenuAdministrarExtension.IsExpanded = false;
                 expMenuStockExtension.IsExpanded = false;
                 expMenuJornadaExtension.IsExpanded = false;
-                expMenuGlobalExtension.IsExpanded = false;
             };
             expMenuAdministrarExtensionEstadisticas.Collapsed += (se, a) => miEstadisticas.Background = null;
 
@@ -709,12 +658,10 @@ namespace posk
                 miJornada.Background = null;
                 miStock.Background = null;
                 miEstadisticas.Background = null;
-                miGlobal.Background = null;
                 miAdministrar.Background = new SolidColorBrush(Color.FromArgb(80, 0, 160, 255));
                 expMenuAdministrarExtensionEstadisticas.IsExpanded = false;
                 expMenuStockExtension.IsExpanded = false;
                 expMenuJornadaExtension.IsExpanded = false;
-                expMenuGlobalExtension.IsExpanded = false;
             };
             expMenuAdministrarExtension.Collapsed += (se, a) => miAdministrar.Background = null;
         }

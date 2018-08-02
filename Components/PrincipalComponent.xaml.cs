@@ -1542,7 +1542,7 @@ namespace posk.Components
         private void CargarDeliveryPendientesDeEntrega()
         {
             spDerecha.Children.Clear();
-            DeliveryItemBLL.ObtenerPendientesDeEntrega().ForEach(d =>
+            DeliveryItemBLL.ObtenerPendientesDeEntrega().OrderBy(x => x.fecha_pedido).ToList().ForEach(d =>
             {
                 ItemDelivery id = new ItemDelivery()
                 {
