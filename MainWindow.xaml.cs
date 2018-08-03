@@ -24,7 +24,7 @@ namespace posk
         public static Label LbNombreUsuario, LbRol;
 
         public static PageVerInventario PageVerInventario { get; set; }
-        public static PageInicio PageInicio { get; set; }
+        public static PageInicio PageInicio_ { get; set; }
         public static PageVenta PageVenta { get; set; }
         public static PageMesas PageMesas { get; set; }
         public static PageCompra PageCompra { get; set; }
@@ -55,7 +55,7 @@ namespace posk
         public static PageAdministrarStock PageAdmStock { get; set; }
         public static PageAdministrarTipoDeProducto PageAdmTipoProducto { get; set; }
         public static PageRelacionarTipoProducto PageRelTipoProducto { get; set; }
-
+        public static event EventHandler AlIniciarJornada;
 
         public MainWindow()
         {
@@ -65,11 +65,26 @@ namespace posk
             FotoUsuario = fotoUsuario;
             LbNombreUsuario = lbNombreUsuario;
             LbRol = lbRol;
+            PageBienvenido.AlIniciarJornadaDesdeAdmin += (se, a) => IniciarTerminarJornada();
+            PageInicio.AlIniciarSesionComoCajero += (se, a) => IniciarTerminarJornada(false);
 
             if (DatosNegocioBLL.PagoInmediato())
                 MostrarItemMesas(false);
             else
                 MostrarItemMesas(true);
+
+            if (JornadaBLL.JornadaAbierta())
+            {
+                miIniciarTerminarJornada.Header = "Terminar jornada";
+                DateTime inicio = (DateTime)JornadaBLL.UltimaJornada().fecha_apertura;
+                lbHoraInicioJornada.Content = $"Inició a las {inicio.ToShortTimeString()} hrs.";
+            }
+            else
+            {
+                miIniciarTerminarJornada.Header = "Iniciar jornada";
+                lbHoraInicioJornada.Content = "";
+
+            }
 
             GlobalSettings.Modo = DatosNegocioBLL.ObtenerModo();
             GlobalSettings.UsarTecladoTactilIntegrado = DatosNegocioBLL.ObtenerConfiguracionTeclado();
@@ -105,17 +120,49 @@ namespace posk
             }
         }
 
-        private void TerminarJornada()
+        private async void IniciarTerminarJornada(bool bInicioComoAdmin = true, bool bCerrarPrograma = false)
         {
-            if (!JornadaBLL.JornadaAbierta()) return; //si ya está cerrada: return
-            if (MessageBox.Show("¿Cerrar jornada?", "", MessageBoxButton.YesNo) == MessageBoxResult.No) return;
+            if (JornadaBLL.JornadaAbierta())
+            {
+                if (bInicioComoAdmin)
+                {
+                    if (MessageBox.Show("¿Cerrar jornada?", "", MessageBoxButton.YesNo) == MessageBoxResult.No)
+                    {
+                        if (bCerrarPrograma == true)
+                            Close();
+                        else
+                            return;
+                        return;
+                    }
 
-            JornadaBLL.TerminarJornadaSiEstaIniciada(DateTime.Now, 0, "");
-            AbrirMenu(false);
-            Logout();
-            new Notification("JORNADA TERMINADA");
+                    JornadaBLL.TerminarJornadaSiEstaIniciada(DateTime.Now, 0, "");
+                    AbrirMenu(false);
+                    Logout(true);
+                    var mensaje = new Notification("Cerrando jornada...", "Espera un momento", Notification.Type.Warning, 100);
+                    miIniciarTerminarJornada.Header = "Iniciar jornada";
+                    lbHoraInicioJornada.Content = "";
 
-            InformeJornada.EnviarInformeJornada();
+                    await InformeJornada.EnviarInformeJornadaAsync();
+
+                    new Notification("JORNADA TERMINADA");
+                    if (bCerrarPrograma == true)
+                        Close();
+                    else
+                        mensaje.Close();
+                }
+            }
+            else
+            {
+                JornadaBLL.CrearJornadaSiNoExiste();
+
+                if (bInicioComoAdmin) // cambia la visual de page bienvenido (admin), no aplica para cajero
+                    AlIniciarJornada.Invoke(this, null);
+
+                new Notification("JORNADA INICIADA");
+                miIniciarTerminarJornada.Header = "Terminar jornada";
+                DateTime inicio = (DateTime)JornadaBLL.UltimaJornada().fecha_apertura;
+                lbHoraInicioJornada.Content = $"Inició a las {inicio.ToShortTimeString()} hrs.";
+            }
         }
 
         #region metodos
@@ -184,14 +231,22 @@ namespace posk
             mi.Background = new SolidColorBrush(Color.FromArgb(80, 0, 100, 255));
         }
 
-        private void Logout()
+        private void Logout(bool bDeshabilitarLogin = false)
         {
-            if (PageInicio != null)
-                menuFrame.Content = PageInicio;
+            if (PageInicio_ != null)
+                menuFrame.Content = PageInicio_;
             else
             {
-                PageInicio = new PageInicio();
-                menuFrame.Content = PageInicio;
+                PageInicio_ = new PageInicio();
+                menuFrame.Content = PageInicio_;
+            }
+            if (bDeshabilitarLogin == true)
+            {
+                PageInicio_.expLogin.IsExpanded = false;
+                PageInicio_.btnLogin.IsEnabled = false;
+                PageInicio_.btnCerrar.IsEnabled = false;
+                PageInicio_.btnLogin.Visibility = Visibility.Hidden;
+                PageInicio_.btnCerrar.Visibility = Visibility.Hidden;
             }
         }
 
@@ -215,15 +270,14 @@ namespace posk
         {
             btnCerrar.Click += (se, a) =>
             {
-                TerminarJornada();
-                Close();
+                IniciarTerminarJornada(true, true);
             };
 
             #region paginas principales
 
-            miTerminarJornada.Click += (se, a) =>
+            miIniciarTerminarJornada.Click += (se, a) =>
             {
-                TerminarJornada();
+                IniciarTerminarJornada();
             };
 
             miInicio.Click += (se, a) =>

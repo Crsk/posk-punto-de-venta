@@ -20,16 +20,24 @@ namespace posk.Pages.Menu
 {
     public partial class PageBienvenido : Page
     {
+        public static event EventHandler AlIniciarJornadaDesdeAdmin;
+
         public PageBienvenido()
         {
             InitializeComponent();
             lbBienvenida.Content = $"Hola {Settings.Nombre}";
             
             Loaded += (se, a) => Events();
+            MainWindow.AlIniciarJornada += (se, a) =>
+            {
+                expTerminarJornada.IsExpanded = true;
+                expIniciarJornada.IsExpanded = false;
+            };
         }
 
         private void Events()
         {
+
             if (JornadaBLL.UltimaJornadaTerminada())
             {
                 expTerminarJornada.IsExpanded = false;
@@ -51,6 +59,7 @@ namespace posk.Pages.Menu
 
             btnComenzarJornada.Click += (se, ev) =>
             {
+                AlIniciarJornadaDesdeAdmin.Invoke(this, null);
                 JornadaBLL.CrearJornadaSiNoExiste(txtMensajeJornadaEspecial.Text);
                 expTerminarJornada.IsExpanded = true;
                 expIniciarJornada.IsExpanded = false;
@@ -65,5 +74,6 @@ namespace posk.Pages.Menu
                 new Notification("JORNADA TERMINADA");
             };
         }
+
     }
 }

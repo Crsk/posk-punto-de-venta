@@ -25,7 +25,7 @@ namespace posk.Pages.Menu
     public partial class PageInicio : Page, IDisposable
     {
         public List<TextBox> ListaTB { get; set; }
-        public event EventHandler<string> AlIniciarSesion;
+        public static event EventHandler AlIniciarSesionComoCajero;
 
         public PageInicio()
         {
@@ -208,7 +208,7 @@ namespace posk.Pages.Menu
                             break;
                         case "C":
                             MainWindow.LbRol.Content = "Cajero";
-                            JornadaBLL.CrearJornadaSiNoExiste();
+                            AlIniciarSesionComoCajero.Invoke(this, null);
                             MainWindow.MainFrame.Content = new PrincipalComponent("VENTA");
                             break;
                         case "G":

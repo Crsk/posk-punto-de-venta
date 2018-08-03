@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using posk.Models;
+using System.Threading.Tasks;
 
 namespace posk.Globals
 {
@@ -20,6 +21,22 @@ namespace posk.Globals
                 EnviarCorreo(new MailAddress(correoPrimarioStr, $"Informe {nombreNegocio}"));
             if (!String.IsNullOrEmpty(correoSecundarioStr))
                 EnviarCorreo(new MailAddress(correoSecundarioStr, $"Informe {nombreNegocio}"));
+        }
+
+        public static Task EnviarInformeJornadaAsync()
+        {
+            return Task.Run(() =>
+            {
+                string nombreNegocio = DatosNegocioBLL.ObtenerNombreNegocio();
+                string correoPrimarioStr = DatosNegocioBLL.ObtenerCorreoPrimario();
+                string correoSecundarioStr = DatosNegocioBLL.ObtenerCorreoSecundario();
+
+                if (!String.IsNullOrEmpty(correoPrimarioStr))
+                    EnviarCorreo(new MailAddress(correoPrimarioStr, $"Informe {nombreNegocio}"));
+                if (!String.IsNullOrEmpty(correoSecundarioStr))
+                    EnviarCorreo(new MailAddress(correoSecundarioStr, $"Informe {nombreNegocio}"));
+                return;
+            });
         }
 
         private static void EnviarCorreo(MailAddress correo)

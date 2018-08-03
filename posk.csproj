@@ -19,7 +19,7 @@
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
-    <PublishUrl>C:\posk\releases\posk_v2RC5\</PublishUrl>
+    <PublishUrl>C:\posk\releases\posk_v2RC6\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -31,7 +31,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://posk.cl/public_ftp/posk/ruabar/</UpdateUrl>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>104</ApplicationRevision>
+    <ApplicationRevision>105</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

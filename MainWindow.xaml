@@ -85,11 +85,12 @@
 
                                     <MenuItem x:Name="miOpciones" Header="Opciones" Height="36" FontSize="12"/>
 
-                                    <MenuItem x:Name="miInicio" Header="Cerrar sesión" Height="36" FontSize="12"/>
+                                    <MenuItem x:Name="miInicio" Header="Cambiar usuario" Height="36" FontSize="12"/>
                                     <Separator Height="8" Width="100" Background="#FF000104"/>
-                                    <MenuItem x:Name="miTerminarJornada" Header="Terminar jornada" Height="36" FontSize="12" Foreground="#FFE48505"/>
+                                    <MenuItem x:Name="miIniciarTerminarJornada" Header="Terminar jornada" Height="36" FontSize="12" Foreground="#FFE48505" Panel.ZIndex="100"/>
+                                    <Label x:Name="lbHoraInicioJornada" Content="Inició a las 00:00 hrs." Margin="18 -16 0 0" FontSize="8" Foreground="#FFE48505"/>
                                     <Separator Height="8" Width="100" Background="#FF000104"/>
-                                    <Button x:Name="btnCerrar" Content="Cerrar sistema" FontSize="12" Style="{StaticResource BtnClear}" Background="{x:Null}" HorizontalAlignment="Left" Foreground="#FFB72511" Margin="26 0 0 0" />
+                                    <Button x:Name="btnCerrar" Content="Cerrar sistema" FontSize="12" Style="{StaticResource BtnClear}" Background="{x:Null}" HorizontalAlignment="Left" Foreground="#FFB72511" Margin="24 0 0 0" />
                                 </StackPanel>
 
                                 <Expander x:Name="expMenuJornadaExtension" Style="{StaticResource ExpMenu}" Background="{x:Null}" ExpandDirection="Right">
