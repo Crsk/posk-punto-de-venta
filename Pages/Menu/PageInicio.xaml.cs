@@ -33,19 +33,20 @@ namespace posk.Pages.Menu
 
             btnCerrar.Click += (se, a) => Application.Current.Shutdown();
 
+            btnLogin.Click += (se2, a2) =>
+            {
+                expLogin.IsExpanded ^= true;
+                if (expLogin.IsExpanded)
+                {
+                    spUsuarios.Children.Clear();
+                    Init();
+                }
+            };
+
             Loaded += (se, a) =>
             {
                 MainWindow.BtnMenu.Visibility = Visibility.Hidden;
                 MainWindow.BtnMenu.IsEnabled = false;
-                btnLogin.Click += (se2, a2) =>
-                {
-                    expLogin.IsExpanded ^= true;
-                    if (expLogin.IsExpanded)
-                    {
-                        spUsuarios.Children.Clear();
-                        Init();
-                    }
-                };
 
 
                 try

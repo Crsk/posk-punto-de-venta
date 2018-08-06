@@ -66,6 +66,7 @@ namespace posk
             LbNombreUsuario = lbNombreUsuario;
             LbRol = lbRol;
             PageBienvenido.AlIniciarJornadaDesdeAdmin += (se, a) => IniciarTerminarJornada();
+            PageBienvenido.AlTerminarJornadaDesdeAdmin += (se, a) => IniciarTerminarJornada();
             PageInicio.AlIniciarSesionComoCajero += (se, a) => IniciarTerminarJornada(false);
 
             if (DatosNegocioBLL.PagoInmediato())
@@ -148,7 +149,10 @@ namespace posk
                     if (bCerrarPrograma == true)
                         Close();
                     else
+                    {
                         mensaje.Close();
+                        MostrarBotonesInicio(true);
+                    }
                 }
             }
             else
@@ -241,6 +245,26 @@ namespace posk
                 menuFrame.Content = PageInicio_;
             }
             if (bDeshabilitarLogin == true)
+            {
+                PageInicio_.expLogin.IsExpanded = false;
+                PageInicio_.btnLogin.IsEnabled = false;
+                PageInicio_.btnCerrar.IsEnabled = false;
+                PageInicio_.btnLogin.Visibility = Visibility.Hidden;
+                PageInicio_.btnCerrar.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void MostrarBotonesInicio(bool b)
+        {
+            if (b)
+            {
+                PageInicio_.expLogin.IsExpanded = false;
+                PageInicio_.btnLogin.IsEnabled = true;
+                PageInicio_.btnCerrar.IsEnabled = true;
+                PageInicio_.btnLogin.Visibility = Visibility.Visible;
+                PageInicio_.btnCerrar.Visibility = Visibility.Visible;
+            }
+            else
             {
                 PageInicio_.expLogin.IsExpanded = false;
                 PageInicio_.btnLogin.IsEnabled = false;

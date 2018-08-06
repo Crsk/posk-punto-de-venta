@@ -21,6 +21,7 @@ namespace posk.Pages.Menu
     public partial class PageBienvenido : Page
     {
         public static event EventHandler AlIniciarJornadaDesdeAdmin;
+        public static event EventHandler AlTerminarJornadaDesdeAdmin;
 
         public PageBienvenido()
         {
@@ -59,7 +60,7 @@ namespace posk.Pages.Menu
 
             btnComenzarJornada.Click += (se, ev) =>
             {
-                AlIniciarJornadaDesdeAdmin.Invoke(this, null);
+                AlIniciarJornadaDesdeAdmin?.Invoke(this, null);
                 JornadaBLL.CrearJornadaSiNoExiste(txtMensajeJornadaEspecial.Text);
                 expTerminarJornada.IsExpanded = true;
                 expIniciarJornada.IsExpanded = false;
@@ -68,6 +69,7 @@ namespace posk.Pages.Menu
 
             btnCerrarJornada.Click += (se, ev) =>
             {
+                AlTerminarJornadaDesdeAdmin?.Invoke(this, null);
                 JornadaBLL.TerminarJornadaSiEstaIniciada(DateTime.Now, 0, txtMensajeJornadaEspecial.Text);
                 expTerminarJornada.IsExpanded = false;
                 expIniciarJornada.IsExpanded = true;
