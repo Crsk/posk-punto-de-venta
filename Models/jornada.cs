@@ -35,8 +35,8 @@ namespace posk.Models
         public virtual ICollection<bodega_movimiento> bodega_movimiento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cantidadesvendidas_jornada> cantidadesvendidas_jornada { get; set; }
-        public virtual usuario usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ventas_jornada> ventas_jornada { get; set; }
+        public virtual usuario usuario { get; set; }
     }
 }

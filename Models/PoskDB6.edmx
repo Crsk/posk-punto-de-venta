@@ -617,7 +617,6 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="25" />
-          <Property Name="nombre_usuario" Type="varchar" MaxLength="20" />
           <Property Name="pass" Type="varchar" MaxLength="256" />
           <Property Name="tipo" Type="char" MaxLength="1" />
           <Property Name="config_id" Type="int" Nullable="false" />
@@ -630,7 +629,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="jornada_id" Type="int" />
-          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" />
           <Property Name="cobro_extra" Type="int" Nullable="false" />
           <Property Name="detalle_boleta_id" Type="int" Nullable="false" />
           <Property Name="opcion" Type="varchar" MaxLength="45" Nullable="false" />
@@ -2102,7 +2101,6 @@
           <EntitySet Name="tipo_producto" EntityType="posk_dbModel6.tipo_producto" />
           <EntitySet Name="tipo_producto_opcionales" EntityType="posk_dbModel6.tipo_producto_opcionales" />
           <EntitySet Name="unidades_medida" EntityType="posk_dbModel6.unidades_medida" />
-          <EntitySet Name="usuarios" EntityType="posk_dbModel6.usuario" />
           <AssociationSet Name="pedidos_agregados_ibfk_2" Association="posk_dbModel6.pedidos_agregados_ibfk_2">
             <End Role="agregado" EntitySet="agregados" />
             <End Role="pedidos_agregados" EntitySet="pedidos_agregados" />
@@ -2131,16 +2129,8 @@
             <End Role="medio_pago" EntitySet="medio_pago" />
             <End Role="boleta_mediopago" EntitySet="boleta_mediopago" />
           </AssociationSet>
-          <AssociationSet Name="usuario_fk" Association="posk_dbModel6.usuario_fk">
-            <End Role="usuario" EntitySet="usuarios" />
-            <End Role="boleta_mediopago" EntitySet="boleta_mediopago" />
-          </AssociationSet>
           <AssociationSet Name="boletas_ibfk_1" Association="posk_dbModel6.boletas_ibfk_1">
             <End Role="cliente" EntitySet="clientes" />
-            <End Role="boleta" EntitySet="boletas" />
-          </AssociationSet>
-          <AssociationSet Name="boletas_ibfk_2" Association="posk_dbModel6.boletas_ibfk_2">
-            <End Role="usuario" EntitySet="usuarios" />
             <End Role="boleta" EntitySet="boletas" />
           </AssociationSet>
           <AssociationSet Name="detalle_boleta_ibfk_1" Association="posk_dbModel6.detalle_boleta_ibfk_1">
@@ -2191,17 +2181,9 @@
             <End Role="cliente" EntitySet="clientes" />
             <End Role="prestamo_envases" EntitySet="prestamo_envases" />
           </AssociationSet>
-          <AssociationSet Name="compras_ibfk_1" Association="posk_dbModel6.compras_ibfk_1">
-            <End Role="usuario" EntitySet="usuarios" />
-            <End Role="compra" EntitySet="compras" />
-          </AssociationSet>
           <AssociationSet Name="producto_compra_ibfk_2" Association="posk_dbModel6.producto_compra_ibfk_2">
             <End Role="compra" EntitySet="compras" />
             <End Role="producto_compra" EntitySet="producto_compra" />
-          </AssociationSet>
-          <AssociationSet Name="usuarios_ibfk_1" Association="posk_dbModel6.usuarios_ibfk_1">
-            <End Role="config" EntitySet="configs" />
-            <End Role="usuario" EntitySet="usuarios" />
           </AssociationSet>
           <AssociationSet Name="detalle_boleta_ibfk_2" Association="posk_dbModel6.detalle_boleta_ibfk_2">
             <End Role="producto" EntitySet="productos" />
@@ -2223,10 +2205,6 @@
             <End Role="producto" EntitySet="productos" />
             <End Role="envoltura" EntitySet="envolturas" />
           </AssociationSet>
-          <AssociationSet Name="fiados_ibfk_2" Association="posk_dbModel6.fiados_ibfk_2">
-            <End Role="usuario" EntitySet="usuarios" />
-            <End Role="fiado" EntitySet="fiados" />
-          </AssociationSet>
           <AssociationSet Name="lineas_fiado_ibfk_2" Association="posk_dbModel6.lineas_fiado_ibfk_2">
             <End Role="fiado" EntitySet="fiados" />
             <End Role="lineas_fiado" EntitySet="lineas_fiado" />
@@ -2234,14 +2212,6 @@
           <AssociationSet Name="opcionales_ingredientes_ibfk_2" Association="posk_dbModel6.opcionales_ingredientes_ibfk_2">
             <End Role="ingrediente" EntitySet="ingredientes" />
             <End Role="opcionales_ingredientes" EntitySet="opcionales_ingredientes" />
-          </AssociationSet>
-          <AssociationSet Name="ingresos_ibfk_1" Association="posk_dbModel6.ingresos_ibfk_1">
-            <End Role="usuario" EntitySet="usuarios" />
-            <End Role="ingreso" EntitySet="ingresos" />
-          </AssociationSet>
-          <AssociationSet Name="jornadas_ibfk_1" Association="posk_dbModel6.jornadas_ibfk_1">
-            <End Role="usuario" EntitySet="usuarios" />
-            <End Role="jornada" EntitySet="jornadas" />
           </AssociationSet>
           <AssociationSet Name="lineas_fiado_ibfk_1" Association="posk_dbModel6.lineas_fiado_ibfk_1">
             <End Role="producto" EntitySet="productos" />
@@ -2275,10 +2245,6 @@
             <End Role="mesa" EntitySet="mesas" />
             <End Role="reserva" EntitySet="reservas" />
           </AssociationSet>
-          <AssociationSet Name="usuarios_ibfk_2" Association="posk_dbModel6.usuarios_ibfk_2">
-            <End Role="usuario" EntitySet="usuarios" />
-            <End Role="mesa" EntitySet="mesas" />
-          </AssociationSet>
           <AssociationSet Name="opcionales_ingredientes_ibfk_1" Association="posk_dbModel6.opcionales_ingredientes_ibfk_1">
             <End Role="opcionale" EntitySet="opcionales" />
             <End Role="opcionales_ingredientes" EntitySet="opcionales_ingredientes" />
@@ -2286,10 +2252,6 @@
           <AssociationSet Name="tipo_producto_opcionales_ibfk_2" Association="posk_dbModel6.tipo_producto_opcionales_ibfk_2">
             <End Role="opcionale" EntitySet="opcionales" />
             <End Role="tipo_producto_opcionales" EntitySet="tipo_producto_opcionales" />
-          </AssociationSet>
-          <AssociationSet Name="pedidos_ibfk_1" Association="posk_dbModel6.pedidos_ibfk_1">
-            <End Role="usuario" EntitySet="usuarios" />
-            <End Role="pedido" EntitySet="pedidos" />
           </AssociationSet>
           <AssociationSet Name="pedidos_productos_ibfk_1" Association="posk_dbModel6.pedidos_productos_ibfk_1">
             <End Role="pedido" EntitySet="pedidos" />
@@ -2317,10 +2279,6 @@
           </AssociationSet>
           <AssociationSet Name="pendientes_ibfk_1" Association="posk_dbModel6.pendientes_ibfk_1">
             <End Role="producto" EntitySet="productos" />
-            <End Role="pendiente" EntitySet="pendientes" />
-          </AssociationSet>
-          <AssociationSet Name="pendientes_ibfk_2" Association="posk_dbModel6.pendientes_ibfk_2">
-            <End Role="usuario" EntitySet="usuarios" />
             <End Role="pendiente" EntitySet="pendientes" />
           </AssociationSet>
           <AssociationSet Name="pendientes_ibfk_3" Association="posk_dbModel6.pendientes_ibfk_3">
@@ -2383,14 +2341,6 @@
             <End Role="subcategoria" EntitySet="subcategorias" />
             <End Role="promocione" EntitySet="promociones" />
           </AssociationSet>
-          <AssociationSet Name="registros_ibfk_1" Association="posk_dbModel6.registros_ibfk_1">
-            <End Role="usuario" EntitySet="usuarios" />
-            <End Role="registro" EntitySet="registros" />
-          </AssociationSet>
-          <AssociationSet Name="reservas_ibfk_2" Association="posk_dbModel6.reservas_ibfk_2">
-            <End Role="usuario" EntitySet="usuarios" />
-            <End Role="reserva" EntitySet="reservas" />
-          </AssociationSet>
           <AssociationSet Name="tipo_producto_opcionales_ibfk_1" Association="posk_dbModel6.tipo_producto_opcionales_ibfk_1">
             <End Role="tipo_producto" EntitySet="tipo_producto" />
             <End Role="tipo_producto_opcionales" EntitySet="tipo_producto_opcionales" />
@@ -2418,6 +2368,55 @@
           <AssociationSet Name="medio_pago_fk" Association="posk_dbModel6.medio_pago_fk">
             <End Role="medio_pago" EntitySet="medio_pago" />
             <End Role="delivery_item" EntitySet="delivery_item" />
+          </AssociationSet>
+          <EntitySet Name="usuarios" EntityType="posk_dbModel6.usuario" />
+          <AssociationSet Name="usuario_fk" Association="posk_dbModel6.usuario_fk">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="boleta_mediopago" EntitySet="boleta_mediopago" />
+          </AssociationSet>
+          <AssociationSet Name="boletas_ibfk_2" Association="posk_dbModel6.boletas_ibfk_2">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="boleta" EntitySet="boletas" />
+          </AssociationSet>
+          <AssociationSet Name="compras_ibfk_1" Association="posk_dbModel6.compras_ibfk_1">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="compra" EntitySet="compras" />
+          </AssociationSet>
+          <AssociationSet Name="usuarios_ibfk_1" Association="posk_dbModel6.usuarios_ibfk_1">
+            <End Role="config" EntitySet="configs" />
+            <End Role="usuario" EntitySet="usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="fiados_ibfk_2" Association="posk_dbModel6.fiados_ibfk_2">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="fiado" EntitySet="fiados" />
+          </AssociationSet>
+          <AssociationSet Name="ingresos_ibfk_1" Association="posk_dbModel6.ingresos_ibfk_1">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="ingreso" EntitySet="ingresos" />
+          </AssociationSet>
+          <AssociationSet Name="jornadas_ibfk_1" Association="posk_dbModel6.jornadas_ibfk_1">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="jornada" EntitySet="jornadas" />
+          </AssociationSet>
+          <AssociationSet Name="usuarios_ibfk_2" Association="posk_dbModel6.usuarios_ibfk_2">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="mesa" EntitySet="mesas" />
+          </AssociationSet>
+          <AssociationSet Name="pedidos_ibfk_1" Association="posk_dbModel6.pedidos_ibfk_1">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="pedido" EntitySet="pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="pendientes_ibfk_2" Association="posk_dbModel6.pendientes_ibfk_2">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="pendiente" EntitySet="pendientes" />
+          </AssociationSet>
+          <AssociationSet Name="registros_ibfk_1" Association="posk_dbModel6.registros_ibfk_1">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="registro" EntitySet="registros" />
+          </AssociationSet>
+          <AssociationSet Name="reservas_ibfk_2" Association="posk_dbModel6.reservas_ibfk_2">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="reserva" EntitySet="reservas" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="agregado">
@@ -2482,9 +2481,9 @@
           <Property Name="propina" Type="Int32" Nullable="false" />
           <NavigationProperty Name="boleta_mediopago" Relationship="posk_dbModel6.boletamediopago_fk" FromRole="boleta" ToRole="boleta_mediopago" />
           <NavigationProperty Name="cliente" Relationship="posk_dbModel6.boletas_ibfk_1" FromRole="boleta" ToRole="cliente" />
-          <NavigationProperty Name="usuario" Relationship="posk_dbModel6.boletas_ibfk_2" FromRole="boleta" ToRole="usuario" />
           <NavigationProperty Name="detalle_boleta" Relationship="posk_dbModel6.detalle_boleta_ibfk_1" FromRole="boleta" ToRole="detalle_boleta" />
           <NavigationProperty Name="delivery_item" Relationship="posk_dbModel6.boleta_fk" FromRole="boleta" ToRole="delivery_item" />
+          <NavigationProperty Name="usuario" Relationship="posk_dbModel6.boletas_ibfk_2" FromRole="boleta" ToRole="usuario" />
         </EntityType>
         <EntityType Name="cantidadesvendida">
           <Key>
@@ -2564,8 +2563,8 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="fecha" Type="DateTime" />
           <Property Name="usuario_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="usuario" Relationship="posk_dbModel6.compras_ibfk_1" FromRole="compra" ToRole="usuario" />
           <NavigationProperty Name="producto_compra" Relationship="posk_dbModel6.producto_compra_ibfk_2" FromRole="compra" ToRole="producto_compra" />
+          <NavigationProperty Name="usuario" Relationship="posk_dbModel6.compras_ibfk_1" FromRole="compra" ToRole="usuario" />
         </EntityType>
         <EntityType Name="config">
           <Key>
@@ -2648,8 +2647,8 @@
           <Property Name="cliente_id" Type="Int32" />
           <Property Name="usuario_id" Type="Int32" />
           <NavigationProperty Name="cliente" Relationship="posk_dbModel6.fiados_ibfk_1" FromRole="fiado" ToRole="cliente" />
-          <NavigationProperty Name="usuario" Relationship="posk_dbModel6.fiados_ibfk_2" FromRole="fiado" ToRole="usuario" />
           <NavigationProperty Name="lineas_fiado" Relationship="posk_dbModel6.lineas_fiado_ibfk_2" FromRole="fiado" ToRole="lineas_fiado" />
+          <NavigationProperty Name="usuario" Relationship="posk_dbModel6.fiados_ibfk_2" FromRole="fiado" ToRole="usuario" />
         </EntityType>
         <EntityType Name="gasto">
           <Key>
@@ -2695,8 +2694,8 @@
           <Property Name="caja_inicial_efectivo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="bodega_movimiento" Relationship="posk_dbModel6.bodega_movimiento_ibfk_2" FromRole="jornada" ToRole="bodega_movimiento" />
           <NavigationProperty Name="cantidadesvendidas_jornada" Relationship="posk_dbModel6.cantidadesvendidas_jornada_ibfk_2" FromRole="jornada" ToRole="cantidadesvendidas_jornada" />
-          <NavigationProperty Name="usuario" Relationship="posk_dbModel6.jornadas_ibfk_1" FromRole="jornada" ToRole="usuario" />
           <NavigationProperty Name="ventas_jornada" Relationship="posk_dbModel6.ventas_jornada_ibfk_3" FromRole="jornada" ToRole="ventas_jornada" />
+          <NavigationProperty Name="usuario" Relationship="posk_dbModel6.jornadas_ibfk_1" FromRole="jornada" ToRole="usuario" />
         </EntityType>
         <EntityType Name="lineas_fiado">
           <Key>
@@ -2787,8 +2786,8 @@
           <Property Name="mesa_id" Type="Int32" />
           <Property Name="pagado" Type="Boolean" />
           <NavigationProperty Name="mesa" Relationship="posk_dbModel6.pedidos_ibfk_2" FromRole="pedido" ToRole="mesa" />
-          <NavigationProperty Name="usuario" Relationship="posk_dbModel6.pedidos_ibfk_1" FromRole="pedido" ToRole="usuario" />
           <NavigationProperty Name="pedidos_productos" Relationship="posk_dbModel6.pedidos_productos_ibfk_1" FromRole="pedido" ToRole="pedidos_productos" />
+          <NavigationProperty Name="usuario" Relationship="posk_dbModel6.pedidos_ibfk_1" FromRole="pedido" ToRole="usuario" />
         </EntityType>
         <EntityType Name="pedidos_agregados">
           <Key>
@@ -2842,8 +2841,8 @@
           <Property Name="archivado" Type="Boolean" />
           <Property Name="promocion_id" Type="Int32" />
           <NavigationProperty Name="producto" Relationship="posk_dbModel6.pendientes_ibfk_1" FromRole="pendiente" ToRole="producto" />
-          <NavigationProperty Name="usuario" Relationship="posk_dbModel6.pendientes_ibfk_2" FromRole="pendiente" ToRole="usuario" />
           <NavigationProperty Name="promocione" Relationship="posk_dbModel6.pendientes_ibfk_3" FromRole="pendiente" ToRole="promocione" />
+          <NavigationProperty Name="usuario" Relationship="posk_dbModel6.pendientes_ibfk_2" FromRole="pendiente" ToRole="usuario" />
         </EntityType>
         <EntityType Name="preparacione">
           <Key>
@@ -3119,31 +3118,6 @@
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="materiasprimas" Relationship="posk_dbModel6.materiasprimas_ibfk_1" FromRole="unidades_medida" ToRole="materiasprima" />
         </EntityType>
-        <EntityType Name="usuario">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="nombre_usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="pass" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="tipo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="config_id" Type="Int32" Nullable="false" />
-          <Property Name="imagen" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
-          <Property Name="favorito" Type="Boolean" />
-          <NavigationProperty Name="boleta_mediopago" Relationship="posk_dbModel6.usuario_fk" FromRole="usuario" ToRole="boleta_mediopago" />
-          <NavigationProperty Name="boletas" Relationship="posk_dbModel6.boletas_ibfk_2" FromRole="usuario" ToRole="boleta" />
-          <NavigationProperty Name="compras" Relationship="posk_dbModel6.compras_ibfk_1" FromRole="usuario" ToRole="compra" />
-          <NavigationProperty Name="config" Relationship="posk_dbModel6.usuarios_ibfk_1" FromRole="usuario" ToRole="config" />
-          <NavigationProperty Name="fiados" Relationship="posk_dbModel6.fiados_ibfk_2" FromRole="usuario" ToRole="fiado" />
-          <NavigationProperty Name="ingresos" Relationship="posk_dbModel6.ingresos_ibfk_1" FromRole="usuario" ToRole="ingreso" />
-          <NavigationProperty Name="jornadas" Relationship="posk_dbModel6.jornadas_ibfk_1" FromRole="usuario" ToRole="jornada" />
-          <NavigationProperty Name="mesas" Relationship="posk_dbModel6.usuarios_ibfk_2" FromRole="usuario" ToRole="mesa" />
-          <NavigationProperty Name="pedidos" Relationship="posk_dbModel6.pedidos_ibfk_1" FromRole="usuario" ToRole="pedido" />
-          <NavigationProperty Name="pendientes" Relationship="posk_dbModel6.pendientes_ibfk_2" FromRole="usuario" ToRole="pendiente" />
-          <NavigationProperty Name="registros" Relationship="posk_dbModel6.registros_ibfk_1" FromRole="usuario" ToRole="registro" />
-          <NavigationProperty Name="reservas" Relationship="posk_dbModel6.reservas_ibfk_2" FromRole="usuario" ToRole="reserva" />
-        </EntityType>
         <Association Name="pedidos_agregados_ibfk_2">
           <End Type="posk_dbModel6.agregado" Role="agregado" Multiplicity="0..1" />
           <End Type="posk_dbModel6.pedidos_agregados" Role="pedidos_agregados" Multiplicity="*" />
@@ -3238,20 +3212,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="usuario_fk">
-          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="posk_dbModel6.boleta_mediopago" Role="boleta_mediopago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="boleta_mediopago">
-              <PropertyRef Name="vendedor_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="boletas_ibfk_1">
           <End Type="posk_dbModel6.cliente" Role="cliente" Multiplicity="0..1" />
           <End Type="posk_dbModel6.boleta" Role="boleta" Multiplicity="*" />
@@ -3261,18 +3221,6 @@
             </Principal>
             <Dependent Role="boleta">
               <PropertyRef Name="cliente_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="boletas_ibfk_2">
-          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1" />
-          <End Type="posk_dbModel6.boleta" Role="boleta" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="boleta">
-              <PropertyRef Name="usuario_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3436,18 +3384,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="compras_ibfk_1">
-          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="1" />
-          <End Type="posk_dbModel6.compra" Role="compra" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="compra">
-              <PropertyRef Name="usuario_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="producto_compra_ibfk_2">
           <End Type="posk_dbModel6.compra" Role="compra" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -3459,18 +3395,6 @@
             </Principal>
             <Dependent Role="producto_compra">
               <PropertyRef Name="compra_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="usuarios_ibfk_1">
-          <End Type="posk_dbModel6.config" Role="config" Multiplicity="1" />
-          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="config">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="usuario">
-              <PropertyRef Name="config_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3542,18 +3466,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fiados_ibfk_2">
-          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1" />
-          <End Type="posk_dbModel6.fiado" Role="fiado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="fiado">
-              <PropertyRef Name="usuario_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="lineas_fiado_ibfk_2">
           <End Type="posk_dbModel6.fiado" Role="fiado" Multiplicity="0..1" />
           <End Type="posk_dbModel6.lineas_fiado" Role="lineas_fiado" Multiplicity="*" />
@@ -3577,30 +3489,6 @@
             </Principal>
             <Dependent Role="opcionales_ingredientes">
               <PropertyRef Name="ingrediente_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ingresos_ibfk_1">
-          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1" />
-          <End Type="posk_dbModel6.ingreso" Role="ingreso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ingreso">
-              <PropertyRef Name="usuario_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="jornadas_ibfk_1">
-          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1" />
-          <End Type="posk_dbModel6.jornada" Role="jornada" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="jornada">
-              <PropertyRef Name="usuario_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3708,18 +3596,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="usuarios_ibfk_2">
-          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1" />
-          <End Type="posk_dbModel6.mesa" Role="mesa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="mesa">
-              <PropertyRef Name="usuario_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="opcionales_ingredientes_ibfk_1">
           <End Type="posk_dbModel6.opcionale" Role="opcionale" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -3745,18 +3621,6 @@
             </Principal>
             <Dependent Role="tipo_producto_opcionales">
               <PropertyRef Name="opcional_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="pedidos_ibfk_1">
-          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1" />
-          <End Type="posk_dbModel6.pedido" Role="pedido" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="pedido">
-              <PropertyRef Name="usuario_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3847,18 +3711,6 @@
             </Principal>
             <Dependent Role="pendiente">
               <PropertyRef Name="producto_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="pendientes_ibfk_2">
-          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1" />
-          <End Type="posk_dbModel6.pendiente" Role="pendiente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="pendiente">
-              <PropertyRef Name="usuario_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4064,32 +3916,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="registros_ibfk_1">
-          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1" />
-          <End Type="posk_dbModel6.registro" Role="registro" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="registro">
-              <PropertyRef Name="usuario_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="reservas_ibfk_2">
-          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="posk_dbModel6.reserva" Role="reserva" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="reserva">
-              <PropertyRef Name="usuario_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="tipo_producto_opcionales_ibfk_1">
           <End Type="posk_dbModel6.tipo_producto" Role="tipo_producto" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -4228,6 +4054,178 @@
             </Principal>
             <Dependent Role="delivery_item">
               <PropertyRef Name="medio_pago_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="pass" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="tipo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="config_id" Type="Int32" Nullable="false" />
+          <Property Name="imagen" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
+          <Property Name="favorito" Type="Boolean" />
+          <NavigationProperty Name="boleta_mediopago" Relationship="posk_dbModel6.usuario_fk" FromRole="usuario" ToRole="boleta_mediopago" />
+          <NavigationProperty Name="boletas" Relationship="posk_dbModel6.boletas_ibfk_2" FromRole="usuario" ToRole="boleta" />
+          <NavigationProperty Name="compras" Relationship="posk_dbModel6.compras_ibfk_1" FromRole="usuario" ToRole="compra" />
+          <NavigationProperty Name="config" Relationship="posk_dbModel6.usuarios_ibfk_1" FromRole="usuario" ToRole="config" />
+          <NavigationProperty Name="fiados" Relationship="posk_dbModel6.fiados_ibfk_2" FromRole="usuario" ToRole="fiado" />
+          <NavigationProperty Name="ingresos" Relationship="posk_dbModel6.ingresos_ibfk_1" FromRole="usuario" ToRole="ingreso" />
+          <NavigationProperty Name="jornadas" Relationship="posk_dbModel6.jornadas_ibfk_1" FromRole="usuario" ToRole="jornada" />
+          <NavigationProperty Name="mesas" Relationship="posk_dbModel6.usuarios_ibfk_2" FromRole="usuario" ToRole="mesa" />
+          <NavigationProperty Name="pedidos" Relationship="posk_dbModel6.pedidos_ibfk_1" FromRole="usuario" ToRole="pedido" />
+          <NavigationProperty Name="pendientes" Relationship="posk_dbModel6.pendientes_ibfk_2" FromRole="usuario" ToRole="pendiente" />
+          <NavigationProperty Name="registros" Relationship="posk_dbModel6.registros_ibfk_1" FromRole="usuario" ToRole="registro" />
+          <NavigationProperty Name="reservas" Relationship="posk_dbModel6.reservas_ibfk_2" FromRole="usuario" ToRole="reserva" />
+        </EntityType>
+        <Association Name="usuario_fk">
+          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="posk_dbModel6.boleta_mediopago" Role="boleta_mediopago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="boleta_mediopago">
+              <PropertyRef Name="vendedor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="boletas_ibfk_2">
+          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="posk_dbModel6.boleta" Role="boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="compras_ibfk_1">
+          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="1" />
+          <End Type="posk_dbModel6.compra" Role="compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="compra">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuarios_ibfk_1">
+          <End Type="posk_dbModel6.config" Role="config" Multiplicity="1" />
+          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="config">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="config_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fiados_ibfk_2">
+          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="posk_dbModel6.fiado" Role="fiado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="fiado">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ingresos_ibfk_1">
+          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="posk_dbModel6.ingreso" Role="ingreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ingreso">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="jornadas_ibfk_1">
+          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="posk_dbModel6.jornada" Role="jornada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="jornada">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuarios_ibfk_2">
+          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="posk_dbModel6.mesa" Role="mesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mesa">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pedidos_ibfk_1">
+          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="posk_dbModel6.pedido" Role="pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pedido">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pendientes_ibfk_2">
+          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="posk_dbModel6.pendiente" Role="pendiente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pendiente">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="registros_ibfk_1">
+          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="posk_dbModel6.registro" Role="registro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="registro">
+              <PropertyRef Name="usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reservas_ibfk_2">
+          <End Type="posk_dbModel6.usuario" Role="usuario" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="posk_dbModel6.reserva" Role="reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="reserva">
+              <PropertyRef Name="usuario_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4856,20 +4854,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="usuarios">
-            <EntityTypeMapping TypeName="posk_dbModel6.usuario">
-              <MappingFragment StoreEntitySet="usuarios">
-                <ScalarProperty Name="favorito" ColumnName="favorito" />
-                <ScalarProperty Name="imagen" ColumnName="imagen" />
-                <ScalarProperty Name="config_id" ColumnName="config_id" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="pass" ColumnName="pass" />
-                <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="servir_llevar">
             <EntityTypeMapping TypeName="posk_dbModel6.servir_llevar">
               <MappingFragment StoreEntitySet="servir_llevar">
@@ -4928,6 +4912,19 @@
                 <ScalarProperty Name="cliente_id" ColumnName="cliente_id" />
                 <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="posk_dbModel6.usuario">
+              <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="favorito" ColumnName="favorito" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="config_id" ColumnName="config_id" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -84,10 +84,10 @@ namespace posk.Models
         public virtual DbSet<tipo_producto> tipo_producto { get; set; }
         public virtual DbSet<tipo_producto_opcionales> tipo_producto_opcionales { get; set; }
         public virtual DbSet<unidades_medida> unidades_medida { get; set; }
-        public virtual DbSet<usuario> usuarios { get; set; }
         public virtual DbSet<servir_llevar> servir_llevar { get; set; }
         public virtual DbSet<datos_negocio> datos_negocio { get; set; }
         public virtual DbSet<ventas_jornada> ventas_jornada { get; set; }
         public virtual DbSet<delivery_item> delivery_item { get; set; }
+        public virtual DbSet<usuario> usuarios { get; set; }
     }
 }

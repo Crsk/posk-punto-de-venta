@@ -28,8 +28,8 @@ namespace posk.Models
         public Nullable<bool> pagado { get; set; }
     
         public virtual mesa mesa { get; set; }
-        public virtual usuario usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pedidos_productos> pedidos_productos { get; set; }
+        public virtual usuario usuario { get; set; }
     }
 }

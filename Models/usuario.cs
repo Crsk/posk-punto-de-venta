@@ -32,7 +32,6 @@ namespace posk.Models
     
         public int id { get; set; }
         public string nombre { get; set; }
-        public string nombre_usuario { get; set; }
         public string pass { get; set; }
         public string tipo { get; set; }
         public int config_id { get; set; }

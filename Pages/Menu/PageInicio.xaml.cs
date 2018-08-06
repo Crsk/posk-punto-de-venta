@@ -183,8 +183,7 @@ namespace posk.Pages.Menu
                     Settings.ImpresoraCocina = SectorImpresionBLL.ObtenerImpresoraCocina();
                     Settings.ImpresoraBar = SectorImpresionBLL.ObtenerImpresoraBar();
                     Settings.Usuario = u;
-                    Settings.Nombre = u.nombre;
-                    Settings.NombreUsuario = u.nombre_usuario;
+                    Settings.NombreUsuario = u.nombre;
                     Settings.Foto = u.imagen;
                     Settings.Tipo = u.tipo;
                     Settings.NombreDelNegocio = DatosNegocioBLL.ObtenerNombreNegocio();
@@ -199,7 +198,7 @@ namespace posk.Pages.Menu
                         avatar = new BitmapImage(new Uri($@"{ConfigurationManager.AppSettings["RutaImagenUsuario"]}\nullavatar.jpg"));
                     }
                     MainWindow.FotoUsuario.ImageSource = avatar;
-                    MainWindow.LbNombreUsuario.Content = u.nombre_usuario;
+                    MainWindow.LbNombreUsuario.Content = u.nombre;
                     switch (Settings.Tipo)
                     {
                         case "A":

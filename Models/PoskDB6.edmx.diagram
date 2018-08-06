@@ -64,7 +64,6 @@
         <EntityTypeShape EntityType="posk_dbModel6.tipo_producto" Width="1.5" PointX="3.75" PointY="39.625" />
         <EntityTypeShape EntityType="posk_dbModel6.tipo_producto_opcionales" Width="1.5" PointX="12" PointY="22.75" />
         <EntityTypeShape EntityType="posk_dbModel6.unidades_medida" Width="1.5" PointX="3.75" PointY="43.625" />
-        <EntityTypeShape EntityType="posk_dbModel6.usuario" Width="1.5" PointX="3.75" PointY="21" />
         <AssociationConnector Association="posk_dbModel6.pedidos_agregados_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.pedidos_agregados_ibfk_3" />
         <AssociationConnector Association="posk_dbModel6.bodega_movimiento_ibfk_1" />
@@ -72,9 +71,7 @@
         <AssociationConnector Association="posk_dbModel6.bodega_stock_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.boletamediopago_fk" />
         <AssociationConnector Association="posk_dbModel6.mediopago_fk" />
-        <AssociationConnector Association="posk_dbModel6.usuario_fk" />
         <AssociationConnector Association="posk_dbModel6.boletas_ibfk_1" />
-        <AssociationConnector Association="posk_dbModel6.boletas_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.detalle_boleta_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.cantidadesvendidas_jornada_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.cantidadesvendidas_jornada_ibfk_2" />
@@ -87,19 +84,14 @@
         <AssociationConnector Association="posk_dbModel6.direcciones_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.fiados_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.prestamo_envases_ibfk_1" />
-        <AssociationConnector Association="posk_dbModel6.compras_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.producto_compra_ibfk_2" />
-        <AssociationConnector Association="posk_dbModel6.usuarios_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.detalle_boleta_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.detalle_boleta_ibfk_3" />
         <AssociationConnector Association="posk_dbModel6.deudas_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.devolucion_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.envoltura_producto_ibfk_1" />
-        <AssociationConnector Association="posk_dbModel6.fiados_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.lineas_fiado_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.opcionales_ingredientes_ibfk_2" />
-        <AssociationConnector Association="posk_dbModel6.ingresos_ibfk_1" />
-        <AssociationConnector Association="posk_dbModel6.jornadas_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.lineas_fiado_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.materiasprimas_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.producto_materiaprima_ibfk_1" />
@@ -108,10 +100,8 @@
         <AssociationConnector Association="posk_dbModel6.mesas_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.pedidos_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.reservas_ibfk_1" />
-        <AssociationConnector Association="posk_dbModel6.usuarios_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.opcionales_ingredientes_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.tipo_producto_opcionales_ibfk_2" />
-        <AssociationConnector Association="posk_dbModel6.pedidos_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.pedidos_productos_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.pedidos_agregados_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.pedidos_preparaciones_ibfk_1" />
@@ -119,7 +109,6 @@
         <AssociationConnector Association="posk_dbModel6.pedidos_productos_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.pedidos_productos_ibfk_3" />
         <AssociationConnector Association="posk_dbModel6.pendientes_ibfk_1" />
-        <AssociationConnector Association="posk_dbModel6.pendientes_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.pendientes_ibfk_3" />
         <AssociationConnector Association="posk_dbModel6.producto_preparacion_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.producto_compra_ibfk_1" />
@@ -135,8 +124,6 @@
         <AssociationConnector Association="posk_dbModel6.productoscomplejos_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.stock_pr_ibfk_1" />
         <AssociationConnector Association="posk_dbModel6.promociones_ibfk_1" />
-        <AssociationConnector Association="posk_dbModel6.registros_ibfk_1" />
-        <AssociationConnector Association="posk_dbModel6.reservas_ibfk_2" />
         <AssociationConnector Association="posk_dbModel6.tipo_producto_opcionales_ibfk_1" />
         <EntityTypeShape EntityType="posk_dbModel6.servir_llevar" Width="1.5" PointX="7.375" PointY="0.75" />
         <EntityTypeShape EntityType="posk_dbModel6.datos_negocio" Width="1.5" PointX="7.375" PointY="3.75" />
@@ -147,6 +134,19 @@
         <AssociationConnector Association="posk_dbModel6.boleta_fk" />
         <AssociationConnector Association="posk_dbModel6.cliente_fk" />
         <AssociationConnector Association="posk_dbModel6.medio_pago_fk" />
+        <EntityTypeShape EntityType="posk_dbModel6.usuario" Width="1.5" PointX="3.75" PointY="21" />
+        <AssociationConnector Association="posk_dbModel6.usuario_fk" />
+        <AssociationConnector Association="posk_dbModel6.boletas_ibfk_2" />
+        <AssociationConnector Association="posk_dbModel6.compras_ibfk_1" />
+        <AssociationConnector Association="posk_dbModel6.usuarios_ibfk_1" />
+        <AssociationConnector Association="posk_dbModel6.fiados_ibfk_2" />
+        <AssociationConnector Association="posk_dbModel6.ingresos_ibfk_1" />
+        <AssociationConnector Association="posk_dbModel6.jornadas_ibfk_1" />
+        <AssociationConnector Association="posk_dbModel6.usuarios_ibfk_2" />
+        <AssociationConnector Association="posk_dbModel6.pedidos_ibfk_1" />
+        <AssociationConnector Association="posk_dbModel6.pendientes_ibfk_2" />
+        <AssociationConnector Association="posk_dbModel6.registros_ibfk_1" />
+        <AssociationConnector Association="posk_dbModel6.reservas_ibfk_2" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

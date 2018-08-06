@@ -21,7 +21,7 @@ namespace posk.BLL
             if (coincidencia.ToUpper().Equals("TODO") || coincidencia.ToUpper().Equals("*"))
                 return db.usuarios.AsNoTracking().ToList();
             else
-                return db.usuarios.AsNoTracking().Where(x => x.nombre.Contains(coincidencia) || x.nombre_usuario.Contains(coincidencia)).ToList();
+                return db.usuarios.AsNoTracking().Where(x => x.nombre.Contains(coincidencia)).ToList();
         }
 
         public static List<usuario> ObtenerGarzones()
@@ -56,7 +56,6 @@ namespace posk.BLL
         {
             usuario uViejo = db.usuarios.Where(x => x.id == usuarioNuevoId).FirstOrDefault();
             uViejo.nombre = uNuevo.nombre;
-            uViejo.nombre_usuario = uNuevo.nombre_usuario;
             uViejo.pass = uNuevo.pass;
             uViejo.tipo = uNuevo.tipo;
             uViejo.imagen = uNuevo.imagen;
@@ -67,7 +66,7 @@ namespace posk.BLL
         public static usuario Login(string userName, string pass)
         {
             usuario u = new usuario();
-            u = db.usuarios.Where(x => x.nombre_usuario == userName && x.pass == pass).FirstOrDefault();
+            u = db.usuarios.Where(x => x.nombre == userName && x.pass == pass).FirstOrDefault();
             if (u != null)
                 return u;
             else

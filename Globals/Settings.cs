@@ -38,7 +38,6 @@ namespace posk.Globals
         // User
         public static usuario Usuario { get; set; }
         public static int UserID { get; set; }
-        public static string Nombre { get; set; }
         public static string NombreUsuario { get; set; }
         public static string Foto { get; set; }
         public static string Tipo { get; set; }

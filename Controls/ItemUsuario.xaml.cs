@@ -11,7 +11,6 @@ namespace posk.Controls
         public int ID { get; set; }
         public string Rut { get; set; }
         public string Nombre { get; set; }
-        public string NombreUsuario { get; set; }
         public string Pass { get; set; }
         public string Tipo { get; set; }
         public bool Favorito { get; set; }

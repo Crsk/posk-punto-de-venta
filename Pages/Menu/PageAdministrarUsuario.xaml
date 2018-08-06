@@ -62,29 +62,19 @@
                                     </Border>
                                     <Border>
                                         <DockPanel>
-                                            <Border DockPanel.Dock="Right">
-                                            </Border>
                                             <Border>
-                                                <StackPanel x:Name="spProductItems1" VerticalAlignment="Bottom">
+                                                <StackPanel x:Name="spProductItems1" VerticalAlignment="Top">
                                                     <TextBox
-                                            x:Name="txtNombre"
-                                            Foreground="Black"
-                                            Width="150"
-                                            Margin="8"
-                                            VerticalAlignment="Top"
-                                            HorizontalAlignment="Left"
-                                            materialDesign:HintAssist.Hint="NOMBRE"
-                                            Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextInput="txtNombre_TextInput" KeyDown="txtNombre_KeyDown" TextChanged="txtNombre_TextChanged" />
-                                                    <TextBox
-                                                x:Name="txtNombreUsuario"
-                                                Width="150"
-                                                Foreground="Black"
-                                                Margin="8"
-                                            VerticalAlignment="Top"
-                                            HorizontalAlignment="Left"
-                                                materialDesign:HintAssist.Hint="NOMBRE USUARIO"
-                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                                                    <TextBox
+                                                        x:Name="txtNombre"
+                                                        Foreground="Black"
+                                                        Width="150"
+                                                        Margin="8"
+                                                        VerticalAlignment="Top"
+                                                        HorizontalAlignment="Left"
+                                                        materialDesign:HintAssist.Hint="NOMBRE"
+                                                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextInput="txtNombre_TextInput" KeyDown="txtNombre_KeyDown" TextChanged="txtNombre_TextChanged" 
+                                                    />
+                                                    <PasswordBox
                                                 x:Name="txtPass"
                                                 Width="150"
                                                 Foreground="Black"
@@ -92,7 +82,7 @@
                                             VerticalAlignment="Top"
                                             HorizontalAlignment="Left"
                                                 materialDesign:HintAssist.Hint="CONTRASEÑA"
-                                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                                                Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
                                                     <!--<TextBox
                                             x:Name="txtImage"
                                             Foreground="Black"

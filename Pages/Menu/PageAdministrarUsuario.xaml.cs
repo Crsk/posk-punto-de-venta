@@ -47,7 +47,7 @@ namespace posk.Pages.Menu
         public PageAdministrarUsuario()
         {
             InitializeComponent();
-            borderTeclado.Child = new ItemTeclado(new List<TextBox>() { txtBuscar, txtNombre, txtNombreUsuario, txtPass });
+            // borderTeclado.Child = new ItemTeclado(new List<TextBox>() { txtBuscar, txtNombre, txtNombreUsuario, txtPass });
             gridOverlay.MouseLeftButtonDown += (se, e) => MostrarOverlay(false);
             btnBuscaImagen.Click += (se, e) =>
             {
@@ -161,7 +161,6 @@ namespace posk.Pages.Menu
             //txtImage.Clear();
             imgUsuario._id = 0;
             imgUsuario._name = "";
-            txtNombreUsuario.Clear();
             txtPass.Clear();
             txtNombre.Clear();
             rbGarzon.IsChecked = true;
@@ -219,7 +218,6 @@ namespace posk.Pages.Menu
                             {
                                 ID = u.id,
                                 Nombre = u.nombre,
-                                NombreUsuario = u.nombre_usuario,
                                 Pass = u.pass,
                                 Tipo = u.tipo,
                                 Favorito = u.favorito == false ? false : true,
@@ -249,8 +247,7 @@ namespace posk.Pages.Menu
                                 }
 
                                 txtNombre.Text = ItemFromSearchWrap.Nombre;
-                                txtNombreUsuario.Text = ItemFromSearchWrap.NombreUsuario;
-                                txtPass.Text = ItemFromSearchWrap.Pass;
+                                txtPass.Password = ItemFromSearchWrap.Pass;
                                 checkFavorito.IsChecked = ItemFromSearchWrap.Favorito == true ? true : false;
 
                                 if (ItemFromSearchWrap.Tipo == "A")
@@ -294,8 +291,7 @@ namespace posk.Pages.Menu
             {
                 usuario u = new usuario();
                 u.nombre = txtNombre.Text;
-                u.nombre_usuario = txtNombreUsuario.Text;
-                u.pass = txtPass.Text;
+                u.pass = txtPass.Password;
                 u.config_id = 1;
                 u.imagen = imgUsuario._name;
 

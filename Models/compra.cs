@@ -24,8 +24,8 @@ namespace posk.Models
         public Nullable<System.DateTime> fecha { get; set; }
         public int usuario_id { get; set; }
     
-        public virtual usuario usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<producto_compra> producto_compra { get; set; }
+        public virtual usuario usuario { get; set; }
     }
 }

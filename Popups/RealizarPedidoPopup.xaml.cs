@@ -312,15 +312,10 @@ namespace posk.Popups
             {
                 ID = u.id,
                 Nombre = u.nombre,
-                NombreUsuario = u.nombre_usuario,
                 Tipo = u.tipo,
                 Favorito = u.favorito == false ? false : true,
                 Imagen = u.imagen
             };
-
-            string fav = "";
-            fav = ui.Favorito == true ? "Favorito: si" : "Favorito: no";
-            ui.ToolTip = $"Nombre: {ui.Nombre}\nUsuario: {ui.NombreUsuario}\n{fav}";
             return ui;
         }
 

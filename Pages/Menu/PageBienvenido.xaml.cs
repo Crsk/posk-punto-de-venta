@@ -25,7 +25,7 @@ namespace posk.Pages.Menu
         public PageBienvenido()
         {
             InitializeComponent();
-            lbBienvenida.Content = $"Hola {Settings.Nombre}";
+            lbBienvenida.Content = $"Hola {Settings.NombreUsuario}";
             
             Loaded += (se, a) => Events();
             MainWindow.AlIniciarJornada += (se, a) =>
