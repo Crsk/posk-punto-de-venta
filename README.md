@@ -15,13 +15,13 @@ Información de jornada, cuadre de caja:
 Creación de productos especiales:
 ![Screenshot](screenshot04.png)
 
-Categorias (izquierda) y Pendientes (derecha):
+Categorias (izquierda) y Pendientes (derecha) - se muestran con gestura de dedo:
 ![Screenshot](screenshot05.png)
 
 Selección de ingredientes para producto especial:
 ![Screenshot](screenshot06.png)
 
-Mesas y Sectores:
+Mesas y Sectores (opcionalmente selección de mesero/a por foto):
 ![Screenshot](screenshot07.png)
 
 Notificaciones:
@@ -30,11 +30,11 @@ Notificaciones:
 Sistema de recetas:
 ![Screenshot](screenshot10.png)
 
-Posk punto de venta:
-![Screenshot](screenshot08.png)
-
 Distintos módulos:
 ![Screenshot](screenshot11.png)
+
+Posk punto de venta:
+![Screenshot](screenshot08.png)
 
 
 algo de making-of:
