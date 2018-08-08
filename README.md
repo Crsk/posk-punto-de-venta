@@ -1,7 +1,7 @@
 # posk-punto-de-venta
 Punto de venta simple, potente y moderno
 
-![Screenshot](gif01.gif)
+![Screenshot](gif02.gif)
 
 Interfaz de venta:
 ![Screenshot](screenshot01.png)

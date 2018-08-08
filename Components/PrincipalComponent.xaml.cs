@@ -268,12 +268,16 @@ namespace posk.Components
             txtBuscar.Foreground = colorDorado;
             bFavorito = true;
 
+
             /*
+            */
             bFavorito = false;
             iconFavorito.Foreground = colorNeutro;
             txtBuscar.Text = "";
             bPromo = false;
+            /*
             */
+
             itemDcto.Reset();
             gridDcto.Children.Clear();
 
