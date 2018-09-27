@@ -39,10 +39,12 @@
                         <Label Content="Adicional: " Foreground="Black" HorizontalAlignment="Center" Margin="0 12 0 0"/>
                         <TextBlock x:Name="txtAdicional" TextWrapping="Wrap" Foreground="Black" MaxWidth="150" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Label x:Name="lbTotal" Content="Total Boleta: $" Foreground="Black" HorizontalAlignment="Center" FontWeight="Bold"/>
-                        <StackPanel HorizontalAlignment="Center">
-                            <ComboBox x:Name="cbMedioPago" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Paga Con" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="0 12 8 0"/>
-                            <TextBlock x:Name="txtPagaConMonto" Margin="0 16 0 0" HorizontalAlignment="Center"/>
-                        </StackPanel>
+                        <Expander Style="{StaticResource ExpMenu}" Header="Cambiar medio de pago" Background="{x:Null}" Foreground="#FF8E6464">
+                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                <ComboBox x:Name="cbMedioPago" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Paga Con" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="0 12 8 0"/>
+                                <TextBlock x:Name="txtPagaConMonto" Margin="16 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                        </Expander>
                     </StackPanel>
                 </StackPanel>
             </Grid>
