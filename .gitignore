@@ -11,6 +11,7 @@
 *.config
 Globals/EnviarCorreo.cs
 Pages/Menu/PagePrimerInicio.xaml.cs
+Pages/Menu/PageConfig.xaml.cs
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
