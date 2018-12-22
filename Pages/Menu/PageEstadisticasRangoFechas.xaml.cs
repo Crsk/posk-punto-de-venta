@@ -70,13 +70,13 @@ namespace posk.Pages.Menu
             listaVentasRangoFechas.ForEach(vj => AgregarProductoCantidad(listaProductoCantidad, vj));
             foreach (var vj in listaVentasRangoFechas)
             {
-                ProductoCantidad pcExistente = listaProductoCantidadAgrupado.Where(x => x.Producto.id == vj.detalle_boleta.producto.id && x.Opcion == vj.opcion).FirstOrDefault();
-                if (pcExistente.Producto != null && vj.opcion == pcExistente.Opcion)
+                ProductoCantidad pcExistente = listaProductoCantidadAgrupado.Where(x => x.Producto?.id == vj?.detalle_boleta?.producto?.id && x.Opcion == vj?.opcion).FirstOrDefault();
+                if (pcExistente.Producto != null && vj?.opcion == pcExistente.Opcion)
                     AgregarProductoCantidadExistente(listaProductoCantidadAgrupado, vj, pcExistente);
                 else
                     AgregarProductoCantidad(listaProductoCantidadAgrupado, vj);
             }
-            return listaProductoCantidadAgrupado.OrderBy(x => x.Cantidad).OrderBy(x => x.Producto.nombre).OrderBy(x => x.Opcion).Reverse().ToList();
+            return listaProductoCantidadAgrupado.OrderBy(x => x.Cantidad).OrderBy(x => x.Producto?.nombre).OrderBy(x => x.Opcion).Reverse().ToList();
         }
 
         private void AgregarProductoCantidadExistente(List<ProductoCantidad> listaProductoCantidad, ventas_jornada vj, ProductoCantidad pcExistente)
@@ -84,12 +84,12 @@ namespace posk.Pages.Menu
             listaProductoCantidad.Remove(pcExistente);
             listaProductoCantidad.Add(new ProductoCantidad()
             {
-                Producto = vj.detalle_boleta.producto,
+                Producto = vj.detalle_boleta?.producto,
                 Cantidad = pcExistente.Cantidad + vj.cantidad,
                 Opcion = vj.opcion,
                 Adicional = vj.cobro_extra + pcExistente.Adicional,
-                SubTotal = vj.detalle_boleta.producto.precio * (vj.cantidad + pcExistente.Cantidad),
-                Total = vj.detalle_boleta.producto.precio * (vj.cantidad + pcExistente.Cantidad) + vj.cobro_extra
+                SubTotal = vj.detalle_boleta?.producto?.precio * (vj.cantidad + pcExistente.Cantidad),
+                Total = vj.detalle_boleta?.producto?.precio * (vj.cantidad + pcExistente.Cantidad) + vj?.cobro_extra
             });
         }
 
@@ -97,12 +97,12 @@ namespace posk.Pages.Menu
         {
             listaProductoCantidad.Add(new ProductoCantidad()
             {
-                Producto = vj.detalle_boleta.producto,
+                Producto = vj?.detalle_boleta?.producto,
                 Cantidad = vj.cantidad,
-                Opcion = vj.opcion,
-                Adicional = vj.cobro_extra,
-                SubTotal = vj.detalle_boleta.producto.precio * vj.cantidad,
-                Total = vj.detalle_boleta.producto.precio * vj.cantidad + vj.cobro_extra
+                Opcion = vj?.opcion,
+                Adicional = vj?.cobro_extra,
+                SubTotal = vj?.detalle_boleta?.producto?.precio * vj.cantidad,
+                Total = vj?.detalle_boleta?.producto?.precio * vj.cantidad + vj?.cobro_extra
             });
         }
 

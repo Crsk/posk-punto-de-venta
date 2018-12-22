@@ -1,6 +1,7 @@
 ﻿using posk.BLL;
 using posk.Controls;
 using posk.Models;
+using posk.Popup;
 using System;
 using System.Linq;
 using System.Windows;
@@ -40,11 +41,16 @@ namespace posk.Popups
 
             Loaded += (se, a) =>
             {
-                lbTotal.Content += di.boleta.total.ToString();
+                if (di == null)
+                {
+                    new Notification("Este pedido ya no existe", "", Notification.Type.Warning);
+                    return;
+                }
+                lbTotal.Content += di.boleta?.total?.ToString();
                 lbNumeroBoleta.Content = $"#{di.boleta?.numero_boleta}";
                 lbNombreCliente.Content = $"{di.nombre_cliente}";
-                txtAdicional.Text = $"{di.incluye}";
-                txtServirLlevar.Text = di.servir == true ? "SERVIR" : "LLEVAR";
+                txtAdicional.Text = $"{di?.incluye}";
+                txtServirLlevar.Text = di?.servir == true ? "SERVIR" : "LLEVAR";
                 if ((cbMedioPago.SelectedItem as medio_pago)?.id == 1 && di.paga_con != 0)
                     txtPagaConMonto.Text = $" (Monto: ${di.paga_con}, Vuelto: ${di.vuelto})";
                 else
@@ -57,8 +63,8 @@ namespace posk.Popups
 
                 DetalleBoletaBLL.ObtenerPorBoletaId(di.boleta?.id).ForEach(x =>
                 {
-                    spDetalleBoleta.Children.Add(new Label() { Content = $"{x.producto.nombre} x{x.cantidad}", Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)) });
-                    string nombreProducto = x.producto.nombre;
+                    string nombreProducto = x.producto == null ? "[Producto eliminado]" : x.producto.nombre;
+                    spDetalleBoleta.Children.Add(new Label() { Content = $"{nombreProducto} x{x.cantidad}", Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0)) });
                     string cantidad = x.cantidad + "";
                 });
 

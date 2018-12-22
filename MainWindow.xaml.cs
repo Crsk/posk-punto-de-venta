@@ -157,6 +157,12 @@ namespace posk
             }
             else
             {
+                if (bCerrarPrograma == true)
+                {
+                    Close();
+                    return;
+                }
+
                 JornadaBLL.CrearJornadaSiNoExiste();
 
                 if (bInicioComoAdmin) // cambia la visual de page bienvenido (admin), no aplica para cajero
