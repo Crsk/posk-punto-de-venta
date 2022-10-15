@@ -8,7 +8,7 @@ Point of Sale desktop application written in C# oriented to touch devices
 - Bar: https://www.youtube.com/watch?v=Uvtj2vukWZI
 
 # Making of
-- Some client requested a feature to customize products selection, I mspaint draw the requirements and code it all night, next day we started testing for production: https://youtu.be/eXSwujbNzJk
+- Some client requested a feature to customize products selection, I took the requirements and code it at night, next day we started testing for production and client was happy: https://youtu.be/eXSwujbNzJk
 - Queue counter: https://youtu.be/cuwabvXYx10
 - Associate sell to client: https://youtu.be/Z_fvmWIUIlU
 - Pay with, change and more: https://youtu.be/CfaI0ZTo3CM
