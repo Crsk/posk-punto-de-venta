@@ -1,51 +1,58 @@
-# posk-punto-de-venta
-Punto de venta simple, potente y moderno
+# Posk Point of Sale
+Desktop application written in C# oriented to touch devices
 
+# Quick Demo
 ![Screenshot](gif03.gif)
+- Client/cashier and kitchen thermal print copies are shown in notepad for demo purposes only
 
-Interfaz de venta:
+- Bar: https://www.youtube.com/watch?v=Uvtj2vukWZI
+
+# Making of
+- Some client requested a feature to customize products selection, I mspaint draw the requirements and code it all night, next day we started testing for production: https://youtu.be/eXSwujbNzJk
+- Queue counter: https://youtu.be/cuwabvXYx10
+- Associate sell to client: https://youtu.be/Z_fvmWIUIlU
+- Pay with, change and more: https://youtu.be/CfaI0ZTo3CM
+
+# Screenshots
+- Main UI
 ![Screenshot](screenshot01.png)
 
-Login tocando secuencia secreta (orientado a dispositivos táctiles):
-![Screenshot](screenshot02.png)
-
-Información de jornada, cuadre de caja:
-![Screenshot](screenshot03.png)
-
-Creación de productos especiales:
-![Screenshot](screenshot04.png)
-
-Categorias (izquierda) y Pendientes (derecha) - se muestran con gestura de dedo:
+- Open categories (left) or pendings queue (right) with a swipe gesture
 ![Screenshot](screenshot05.png)
 
-Selección de ingredientes para producto especial:
+- Login with a secret tap sequence on the user's photo
+![Screenshot](screenshot02.png)
+
+- Working hours data (cash sells, losses, tips, etc)
+![Screenshot](screenshot03.png)
+
+- Product builder
+![Screenshot](screenshot04.png)
+
+- Second part of product builder: Select between its available ingredients
 ![Screenshot](screenshot06.png)
 
-Mesas y Sectores (opcionalmente selección de mesero/a por foto):
+- Restaurant sectors and tables
 ![Screenshot](screenshot07.png)
 
-Notificaciones:
-![Screenshot](screenshot09.png)
-
-Sistema de recetas:
-![Screenshot](screenshot10.png)
-
-Distintos módulos:
+- Some modules or features:
 ![Screenshot](screenshot11.png)
+1. Email to the owner after closing working hours
+2. Client app to request something without a waiter that prints a kitchen voucher instantly
+3. Watch and manage the step 2 requests
 
-Posk punto de venta:
+# Pproduction demo
+- Sushi: https://www.youtube.com/watch?v=E9_BYEc99Mk
+- Bar: https://www.youtube.com/watch?v=10zwXxgYUG8
+
+# Website
+Website doesn't exists anymore since I turned Posk open source back in 2018
+
+- Page 1: Home
 ![Screenshot](screenshot08.png)
 
+- Page 2: Notifications
+![Screenshot](screenshot09.png)
 
-algo de making-of:
-
-Creación de producto especial (handroll, pizza, shawarma, carne 3/4 apunto, etc.) https://youtu.be/eXSwujbNzJk 
-
-Contador de demora en pedido https://youtu.be/cuwabvXYx10
-
-Asociar venta a cliente https://youtu.be/Z_fvmWIUIlU
-
-Paga con y Vuelto para delivery https://youtu.be/CfaI0ZTo3CM
-
-
-Mostrando funcionalidades de pedido y venta en restaurant https://youtu.be/AsbejwMban8 
+- Page 3: Example, if buying a hotdog, bread and sausage are discounted from stock
+![Screenshot](screenshot10.png)
