@@ -1,5 +1,5 @@
-# Posk Point of Sale
-Desktop application written in C# oriented to touch devices
+# Posk
+Point of Sale desktop application written in C# oriented to touch devices
 
 # Quick Demo
 ![Screenshot](gif03.gif)
