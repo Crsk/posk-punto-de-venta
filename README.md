@@ -29,7 +29,7 @@ Point of Sale desktop application written in C# oriented to touch devices
 - Product builder
 ![Screenshot](screenshot04.png)
 
-- Second part of product builder: Select between its available ingredients
+- Product builder in action: Select between its available ingredients
 ![Screenshot](screenshot06.png)
 
 - Restaurant sectors and tables
