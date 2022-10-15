@@ -41,7 +41,7 @@ Point of Sale desktop application written in C# oriented to touch devices
 2. Client app to request something without a waiter that prints a kitchen voucher instantly
 3. Watch and manage the step 2 requests
 
-# Pproduction demo
+# Production demo
 - Sushi: https://www.youtube.com/watch?v=E9_BYEc99Mk
 - Bar: https://www.youtube.com/watch?v=10zwXxgYUG8
 
