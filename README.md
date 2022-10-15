@@ -35,7 +35,7 @@ Point of Sale desktop application written in C# oriented to touch devices
 - Restaurant sectors and tables
 ![Screenshot](screenshot07.png)
 
-- Some modules or features:
+- Some modules/features:
 ![Screenshot](screenshot11.png)
 1. Email to the owner after closing working hours
 2. Client app to request something without a waiter that prints a kitchen voucher instantly
