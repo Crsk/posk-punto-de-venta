@@ -1,3 +1,5 @@
+⚠️ Disclaimer: Over the course of three years, from 2016 to 2018, I was involved in its development. Regrettably, I ceased maintenance in 2018. Nonetheless, as of today in 2023, customers are still utilizing it seamlessly
+
 # Posk
 Point of Sale desktop application written in C# oriented to touch devices
 
